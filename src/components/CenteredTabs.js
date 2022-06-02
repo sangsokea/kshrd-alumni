@@ -32,6 +32,9 @@ export default function CenteredTabs() {
       case 2:
         navigage("/register");
         break;
+      case 3:
+        navigage("/confirm");
+        break;
     }
   }, [value]);
   return (
