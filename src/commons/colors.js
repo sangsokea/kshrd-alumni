@@ -7,3 +7,4 @@ export const colors = {
     btn1: "#F24C4C",
     btn2: "#FCC43E",
 }
+

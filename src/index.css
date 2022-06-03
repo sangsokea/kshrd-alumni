@@ -19,6 +19,6 @@ code {
 @tailwind utilities;
 
 @font-face {
-  font-family: "maven";
+  font-family: "MAVEN";
   src: url("./commons/MavenPro-VariableFont_wght.ttf");
 }
