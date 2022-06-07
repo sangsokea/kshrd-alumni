@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { colors } from "../../commons/colors";
+import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
 // import OTPInput from "otp-input-react";
 

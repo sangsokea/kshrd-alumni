@@ -4,16 +4,15 @@ import LoginPage from "./pages/authentication/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/authentication/RegisterPage";
 import ConfirmPage from "./pages/authentication/ConfirmPage";
+import BasicRoute from "./Router/BasicRoute";
+
+
 function App() {
   return (
     <>
-      <CenteredTabs />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/confirm" element={<ConfirmPage />}/>
-      </Routes>
+    {console.log( `runing on ${process.env.NODE_ENV}`)}
+    {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      <BasicRoute/>
     </>
   );
 }

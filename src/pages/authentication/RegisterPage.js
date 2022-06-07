@@ -1,43 +1,97 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { colors } from "../../commons/colors";
+import { colors } from "../../commons/colors/colors";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { fetchEmail } from "../../redux/actions/EmailAction";
+import { fetchRegister } from "../../redux/actions/RegisterAction";
+import { useFormik } from "formik";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 export default function RegisterPage() {
+  const data = useSelector((state) => state?.email, shallowEqual);
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
+  const classes = useStyles();
+  {
+    console.log(
+      `items ${data.items}, loading ${data.loading}, error ${data.error}`,
+    );
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      // alert(JSON.stringify(values, null, 2));
+      values.email
+        ? dispatch(fetchEmail(values.email))
+        : console.log("NO email entered");
+    },
+  });
+
+  console.log();
+  useEffect(() => {
+    data.items ? navigate("/confirm") : navigate("/register");
+  }, [data]);
   return (
-    <body class="h-screen bg-slate-50">
-      <form class="flex justify-center items-center w-full">
-        <section class="text-gray-600 body-font font-maven">
-          <div class="w-full max-w-xl container mx-auto">
-            <div class="row mt-24">
+    <body className="h-screen bg-slate-50">
+      {data.loading ? (
+        <div className={classes.root} style={{ marginTop: "10px" }}>
+          <LinearProgress color="secondary" />
+        </div>
+      ) : (
+        ""
+      )}
+      <h1>{data?.items?.email}</h1>
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex justify-center items-center w-full"
+      >
+        <section className="text-gray-600 body-font font-maven">
+          <div className="w-full max-w-xl container mx-auto">
+            <div className="row mt-24">
               <div
                 style={styles}
-                class="p-6 text-xl text-white rounded-br-3xl justify-center"
+                className="p-6 text-xl text-white rounded-br-3xl justify-center"
               >
-                <h1 style={{ textTransform: "uppercase" }} class="text-2xl">
+                <h1 style={{ textTransform: "uppercase" }} className="text-2xl">
                   welcome <br></br>to{" "}
-                  <span class="font-bold">kshrd alumni</span>
+                  <span className="font-bold">kshrd alumni</span>
                 </h1>
               </div>
             </div>
 
-            <div class="text-center mt-6">
-              <p class="text-xl">Sign up</p>
-              <p class="mt-8">Continue to Gmail</p>
-              <h1 class="border-b border-b-black pb-2 pt-16">
-                <div class="row">
-                  <div class="grid grid-cols-3">
+            <div className="text-center mt-6">
+              <p className="text-xl">Sign up</p>
+              <p className="mt-8">Continue to Gmail</p>
+              <h1 className="border-b border-b-black pb-2 pt-16">
+                <div className="row">
+                  <div className="grid grid-cols-3">
                     <svg
-                      class="h-auto w-7 text-black"
+                      className="h-auto w-7 text-black"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
-                      stroke-width="1"
+                      strokeWidth="1"
                       stroke="currentColor"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       {" "}
                       <path stroke="none" d="M0 0h24v24H0z" />{" "}
@@ -48,10 +102,12 @@ export default function RegisterPage() {
                     </svg>
                     <div>
                       <input
-                        class="w-full py-1 px-3 text-gray-700 focus:outline-none bg-slate-50 text-center"
+                        className="w-full py-1 px-3 text-gray-700 focus:outline-none bg-slate-50 text-center"
                         id="email"
+                        name="email"
                         type="email"
-                        placeholder="Email"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
                       />
                     </div>
                   </div>
@@ -59,8 +115,11 @@ export default function RegisterPage() {
               </h1>
             </div>
 
-            <div class="mt-6">
-              <a href="#" class="text-blue-800 underline underline-offset-1">
+            <div className="mt-6">
+              <a
+                href="#"
+                className="text-blue-800 underline underline-offset-1"
+              >
                 Forgot password?
               </a>
             </div>
@@ -70,7 +129,7 @@ export default function RegisterPage() {
                 <button
                   style={styles}
                   class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center"
-                  onClick={() => navigate("/confirm")}
+                  type="submit"
                 >
                   Next{" "}
                   <span>

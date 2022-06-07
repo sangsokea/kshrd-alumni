@@ -1,5 +1,5 @@
 import React from "react";
-import { colors } from "../../commons/colors";
+import { colors } from "../../commons/colors/colors";
 
 export default function LoginPage() {
   return (
