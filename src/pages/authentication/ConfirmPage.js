@@ -9,15 +9,6 @@ export default function ConfirmPage() {
 
   const [inputSecretCode, setInputSecretCode] = useState("");
 
-  // const setValue = (e) => {
-  //   setInputSecretCode(e.target.value);
-  // };
-
-  // const handleCodeChange = (otp) => {
-  //   console.log(otp);
-  //   setInputSecretCode({ otp });
-  // };
-
   return (
     <body class="h-screen bg-slate-50">
       <form class="flex justify-center items-center w-full">
@@ -56,15 +47,6 @@ export default function ConfirmPage() {
               </p>
               <div class="grid grid-cols-6 gap-4">
                 <div class="border-b-2 border-b-black pb-1 pt-5 flex items-center">
-                  {/* <OtpInput
-                  value={inputSecretCode}
-                  onChange={setInputSecretCode}
-                  OtpLength={4}
-                  otpType="number"
-                  numInputs={6}
-                  disabled={false}
-                  separator={<span style={{width: "50px", textAlign: "center"}}></span>}
-                /> */}
                   <OtpInput
                     value={inputSecretCode}
                     onChange={setInputSecretCode}
@@ -92,80 +74,6 @@ export default function ConfirmPage() {
                 <div class="border-b-2 border-b-black pb-1 pt-3"></div>
                 <div class="border-b-2 border-b-black pb-1 pt-3"></div>
                 <div class="border-b-2 border-b-black pb-1 pt-3"></div>
-
-                {/* <input
-                class="otp-input w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-1"
-                name="digit-1"
-                data-next="digit-2"
-                type="text"
-                value={inputSecretCode.opt}
-                onChange={handleCodeChange}
-              /> */}
-                {/* <OtpInput
-                class="otp-input w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                onChange={(otp) => handleCodeChange(otp)}
-                numInputs={6}
-                separator={<span></span>}
-                value={inputSecretCode.otp}
-                className="otp-input bg-white mx-2 text-lg focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg  block w-full appearance-none leading-normal"
-                onChange={handleCodeChange}
-                numInputs={6}
-                separator={<span></span>}
-              />
-            </div> */}
-                {/* <p class="border-b-2 border-b-black pb-3 pt-8"></p> */}
-                {/* <div class="border-b-2 border-b-black pb-3 pt-3">
-              <input
-                class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-2"
-                name="digit-2"
-                data-next="digit-3"
-                type="text"
-              />
-            </div>
-            <div class="border-b-2 border-b-black pb-3 pt-3">
-              <input
-                class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-3"
-                name="digit-3"
-                data-next="digit-4"
-                type="text"
-              />
-            </div>
-            <div class="border-b-2 border-b-black pb-3 pt-3">
-              <input
-                class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-4"
-                name="digit-4"
-                data-next="digit-5"
-                type="text"
-              />
-            </div>
-            <div class="border-b-2 border-b-black pb-3 pt-3">
-              <input
-                class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-5"
-                name="digit-5"
-                data-next="digit-6"
-                type="text"
-              />
-            </div>
-            <div class="border-b-2 border-b-black pb-3 pt-3">
-              <input
-                class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="digit-6"
-                name="digit-6"
-                data-previous="digit-5"
-                type="text"
-              />
-            </div>
-            {/* <p class="border-b-2 border-b-black pb-3 pt-8"></p>
-            <p class="border-b-2 border-b-black pb-3 pt-4"></p>
-            <p class="border-b-2 border-b-black pb-3 pt-4"></p>
-            <p class="border-b-2 border-b-black pb-3 pt-4"></p>
-            <p class="border-b-2 border-b-black pb-3 pt-4"></p>
-            <p class="border-b-2 border-b-black pb-3 pt-4"></p> */}
               </div>
               <p class="text-blue-800 mt-6">code expires in 00:56</p>
               <button

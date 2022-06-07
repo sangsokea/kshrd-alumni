@@ -4,15 +4,19 @@ import LoginPage from "./pages/authentication/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/authentication/RegisterPage";
 import ConfirmPage from "./pages/authentication/ConfirmPage";
+import NavbarComponent from "./components/NavbarComponent";
+import ResetPasswordPage from "./pages/authentication/ResetPasswordPage";
 function App() {
   return (
     <>
       <CenteredTabs />
+      <NavbarComponent/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/confirm" element={<ConfirmPage />}/>
+        <Route path="/reset" element={<ResetPasswordPage/>} />
       </Routes>
     </>
   );

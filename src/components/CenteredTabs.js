@@ -19,21 +19,24 @@ export default function CenteredTabs() {
     setValue(newValue);
   };
 
-  const navigage = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     switch (value) {
       case 0:
-        navigage("/");
+        navigate("/");
         break;
       case 1:
-        navigage("/login");
+        navigate("/login");
         break;
       case 2:
-        navigage("/register");
+        navigate("/register");
         break;
       case 3:
-        navigage("/confirm");
+        navigate("/confirm");
+        break;
+      case 4:
+        navigate("/reset");
         break;
     }
   }, [value]);

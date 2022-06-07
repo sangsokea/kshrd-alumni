@@ -59,11 +59,11 @@ export default function RegisterPage() {
               </h1>
             </div>
 
-            <div class="mt-6">
+            {/* <div class="mt-6">
               <a href="#" class="text-blue-800 underline underline-offset-1">
                 Forgot password?
               </a>
-            </div>
+            </div> */}
 
             <div class="relative">
               <div class="absolute bottom-0 right-2 top-12">

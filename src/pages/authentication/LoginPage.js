@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   return (
     <body class="h-screen bg-slate-50">
       <form class="flex justify-center items-center w-full">
@@ -109,9 +111,17 @@ export default function LoginPage() {
               </button>
 
               <div class="mt-6">
-                <a href="#" class="text-blue-800 underline underline-1">
+              {/* <button
+                style={styles}
+                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
+                onClick={() => navigate("/reset")}
+              >
+                Forgot password{" "}
+                </button> */}
+                <a onClick={() => navigate("/reset")} class="text-blue-800 underline underline-1">
                   Forgot password?
                 </a>
+                {/* <p onClick={() => navigate("/reset")}>Forgot password</p> */}
               </div>
             </div>
           </div>
