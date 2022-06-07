@@ -1,8 +1,8 @@
 import {
-    EMAIL_SUCCESS,
-    EMAIL_REQUEST,
-    EMAIL_FAILURE,
-  } from "../actions/EmailAction";
+    LOGIN_SUCCESS,
+    LOGIN_REQUEST,
+    LOGIN_FAILURE,
+  } from "../actions/LoginAction";
   
   const initialState = {
     loading: false,
@@ -12,19 +12,19 @@ import {
   
   export default function (state = initialState, action) {
     switch (action.type) {
-      case EMAIL_REQUEST:
+      case LOGIN_REQUEST:
         return {
           ...state,
           loading: true,
         };
-      case EMAIL_SUCCESS:
+      case LOGIN_SUCCESS:
         return {
           loading: false,
           items: action.payload,
           error: "",
         };
   
-      case EMAIL_FAILURE:
+      case LOGIN_FAILURE:
         return {
           loading: false,
           items: "",
