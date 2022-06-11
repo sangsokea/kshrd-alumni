@@ -8,7 +8,7 @@ function CvTemplate() {
         <div className="h-screen">
 	    <div class=" py-12">
             <center>
-                <div className='w-full md:w-222'>
+                <div className='w-full md:w-222 '>
                     <div className="md:grid md:grid-cols-3 grid  bg-slate-50">
                         <div className="h-40 md:bg-regal-gg">
                         <div class="absolute ">
@@ -40,7 +40,7 @@ function CvTemplate() {
                         </div>
                     </div>
                     <div className="md:grid md:grid-cols-3 grid  bg-slate-50">
-                        <div className="h-40 md:bg-regal-gg">
+                        <div className=" md:bg-regal-gg">
                             <div className='mb-4'>
                                 <div>
                                         <h2 class='font-maven text-left ml-5  mt-4 font-bold text-xl'>Details</h2>
@@ -59,17 +59,17 @@ function CvTemplate() {
                                 </div> 
                                    
                         </div>
-                        <div className="md:col-span-2 ">
-                            <div className='md:mt-2 mt-4'>
+                        <div className="md:col-span-2">
+                            <div className='md:mt-5 mt-4'>
                                 <h2 class='font-maven text-left ml-5 font-bold text-xl'>Profile</h2>
                             </div>
                             <div>
-                                <p className='text-xs text-left ml-5 font-maven mt-2'>Our free cover letter examples + expert guides are packed with useful tips and the best practices for getting hired in dozens of industries. Combine these samples with our templates and cover letter builder tool to finish your application in minutes.</p>
+                                <p className='text-xs text-left ml-5 font-maven mt-2'>Our free cover letter examples + expert guides are packed with useful tips and the best practices for getting hired in dozens of industries. Combine these samples with our templates and cover letter builder tool to finish your application in minutes. </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="md:grid md:grid-cols-3  flex flex-wrap-reverse">
+                    <div class="md:grid md:grid-cols-3   flex flex-wrap-reverse">
                             <div className="min-h-1/22 w-full  md:bg-regal-gg bg-slate-50">
                                 {/*Start CV Profile */}
                                 
@@ -246,7 +246,7 @@ function CvTemplate() {
                             
                             
 
-                            <div className='mt-7'>
+                            <div className='md:mt-0 mt-'>
                                 <h2 class='font-maven text-left ml-5 font-bold text-xl'>Employment History</h2>
                             </div>
                             <div className='ml-5 font-maven mt-4'>
