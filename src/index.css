@@ -13,6 +13,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.fff{
+  list-style: none;
+}
+
+.fff::before {
+  content: "\2022";
+  color: #255FAB;;
+  font-weight: bold;
+  display: inline-block; 
+  width: 10px;
+  margin-left: -1em;
+}
 
 @tailwind base;
 @tailwind components;

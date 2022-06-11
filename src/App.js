@@ -6,6 +6,7 @@ import RegisterPage from "./pages/authentication/RegisterPage";
 import ConfirmPage from "./pages/authentication/ConfirmPage";
 import NavbarComponent from "./components/NavbarComponent";
 import ResetPasswordPage from "./pages/authentication/ResetPasswordPage";
+import CvTemplate from "./pages/template/CvTemplate";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/confirm" element={<ConfirmPage />}/>
         <Route path="/reset" element={<ResetPasswordPage/>} />
+        <Route path="/cvtemplate" element={<CvTemplate/>} />
       </Routes>
     </>
   );

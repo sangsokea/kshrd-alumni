@@ -33,9 +33,12 @@ export default function CenteredTabs() {
         navigate("/register");
         break;
       case 3:
-        navigate("/confirm");
+        navigate("/cvtemplate");
         break;
       case 4:
+        navigate("/confirm");
+        break;
+      case 5:
         navigate("/reset");
         break;
     }
@@ -52,6 +55,7 @@ export default function CenteredTabs() {
         <Tab label="Home" />
         <Tab label="Sign In" />
         <Tab label="Sign Up" />
+        <Tab label="CV template" />
       </Tabs>
     </Paper>
   );
