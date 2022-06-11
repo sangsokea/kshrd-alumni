@@ -31,7 +31,7 @@ module.exports = {
         '124' : '124px',
       },
       minHeight: {
-        '1/22': '842px',
+        '1/22': '522px',
       },
       minWidth: {
         '1/22':  '595px',
