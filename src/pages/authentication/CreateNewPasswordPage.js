@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 
-export default function ResetPasswordPage() {
+export default function CreateNewPasswordPage() {
   const navigate = useNavigate();
-
   return (
     <body class="h-screen bg-slate-50">
       <form class="flex justify-center items-center w-full">
@@ -21,40 +20,63 @@ export default function ResetPasswordPage() {
                 </h1>
               </div>
             </div>
-
+            <p class="text-xl mt-6 text-center">Create new password</p>
+            <p className="mt-8 text-center">
+              Your new password must be different from previous used password.
+            </p>
             <div class="text-center mt-6">
-              <p class="text-xl">Reset Password</p>
-              <p class="mt-8">
-                Enter the email associated with your account and we'll send 6
-                digits to your email to reset your password.
-              </p>
-              <h1 class="border-b border-b-black pb-2 pt-16">
+              <h1 class="border-b border-b-black pt-8">
                 <div class="row">
                   <div class="grid grid-cols-3">
                     <svg
-                      class="h-auto w-7 text-black"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="1"
-                      stroke="currentColor"
+                      class="h-8 w-8 text-black"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      {" "}
-                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                      <polyline points="3 9 12 15 21 9 12 3 3 9" />{" "}
-                      <path d="M21 9v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />{" "}
-                      <line x1="3" y1="19" x2="9" y2="13" />{" "}
-                      <line x1="15" y1="13" x2="21" y2="19" />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1"
+                        d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                      />
                     </svg>
+
                     <div>
                       <input
-                        class="w-full py-1 px-3 text-gray-700 focus:outline-none bg-slate-50 text-center"
-                        id="email"
-                        type="email"
-                        placeholder="Email"
+                        class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
+                        id="username"
+                        type="text"
+                        placeholder="Password"
+                      />
+                    </div>
+                    {/* </form> */}
+                  </div>
+                </div>
+              </h1>
+              <h1 class="border-b border-b-black pt-8">
+                <div class="row">
+                  <div class="grid grid-cols-3">
+                    <svg
+                      class="h-8 w-8 text-black"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1"
+                        d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                      />
+                    </svg>
+
+                    <div>
+                      <input
+                        class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
+                        id="password"
+                        type="password"
+                        placeholder="Confirm password"
                       />
                     </div>
                   </div>

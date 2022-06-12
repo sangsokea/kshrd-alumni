@@ -1,23 +1,13 @@
-import { Route, Routes } from "react-router-dom";
-import CenteredTabs from "./components/CenteredTabs";
-import LoginPage from "./pages/authentication/LoginPage";
-import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/authentication/RegisterPage";
-import ConfirmPage from "./pages/authentication/ConfirmPage";
-import NavbarComponent from "./components/NavbarComponent";
-import ResetPasswordPage from "./pages/authentication/ResetPasswordPage";
+import BasicRoute from "./Router/BasicRoute";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 function App() {
   return (
     <>
-      <CenteredTabs />
-      <NavbarComponent/>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/confirm" element={<ConfirmPage />}/>
-        <Route path="/reset" element={<ResetPasswordPage/>} />
-      </Routes>
+    {console.log( `runing on ${process.env.NODE_ENV}`)}
+    {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      <BasicRoute/>
     </>
   );
 }

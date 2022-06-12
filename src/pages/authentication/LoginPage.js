@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { colors } from "../../commons/colors";
+import { colors } from "../../commons/colors/colors";
 
 export default function LoginPage() {
   const navigate = useNavigate();

@@ -20,5 +20,16 @@ code {
 
 @font-face {
   font-family: "MAVEN";
-  src: url("./commons/MavenPro-VariableFont_wght.ttf");
+  src: url("./commons/fonts/MavenPro-VariableFont_wght.ttf");
 }
+
+button.slick-arrow.slick-prev::before {
+  z-index: 1000;
+  color: blue;
+}
+
+button.slick-arrow.slick-next::before {
+  z-index: 1000;
+  color: blue;
+}
+

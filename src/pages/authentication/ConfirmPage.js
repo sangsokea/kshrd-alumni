@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { colors } from "../../commons/colors";
+import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
 // import OTPInput from "otp-input-react";
 
@@ -78,7 +78,7 @@ export default function ConfirmPage() {
               <p class="text-blue-800 mt-6">code expires in 00:56</p>
               <button
                 style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-6"
+                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
                 onClick={() => navigate("/login")}
               >
                 Continue{" "}
