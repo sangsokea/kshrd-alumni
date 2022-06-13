@@ -8,7 +8,7 @@ function CvTemplate() {
         <div className="h-screen">
 	    <div class=" py-12">
             <center>
-                <div className='w-full md:w-222 '>
+                <div className='w-full md:w-222 shadow'>
                     <div className="md:grid md:grid-cols-3 grid  bg-slate-50">
                         <div className="h-40 md:bg-regal-gg">
                         <div class="absolute ">
