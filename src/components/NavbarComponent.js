@@ -11,7 +11,6 @@ function classNames(...classes) {
 }
 
 export default function NavbarComponent() {
-
   const navigate = useNavigate();
 
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -29,13 +28,13 @@ export default function NavbarComponent() {
         </div>
       </div>
 
-      <div>
+      <div class="body-font font-maven relative">
         <nav
-          class="bg-white px-2 tablet:px-4 py-2.5 text-white body-font font-maven tablet:text-sm"
+          class="bg-white px-4 py-2.5 text-white body-font font-maven tablet:text-sm overflow-hidden"
           style={styles}
         >
           <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="http://localhost:3000/" class="flex items-center">
+            <a href="http://localhost:3000/" class="items-center">
               <span class="self-center text-2xl font-bold whitespace-nowrap tracking-wider">
                 KSHRD ALUMNI
               </span>
@@ -76,34 +75,34 @@ export default function NavbarComponent() {
             </button>
             <div
               className={
-                (openNavbar ? "laptop:block laptop:w-auto" : " hidden")
+                openNavbar
+                  ? "hidden"
+                  : "w-full flex justify-start laptop:w-auto"
               }
-              class="hidden w-full laptop:block laptop:w-auto"
               id="mobile-menu"
             >
-              <ul class="flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:text-sm laptop:font-medium items-center">
+              <ul class="flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
                 <li>
                   <a
                     href="#"
-                    class="block py-2 pr-4 pl-3 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white"
+                    class="block py-2 px-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white laptop:pl-2 "
                     aria-current="page"
                   >
                     ALUMNI
                   </a>
                 </li>
-                <div class="block py-2 pr-4 pl-3 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
-                  <Menu as="div" className="relative inline-block text-left">
-                    <div>
-                      <Menu.Button className="inline-flex justify-center w-full rounded-laptop shadow-sm px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                        NEW RESUME
-                        <ChevronDownIcon
-                          className="-mr-1 ml-2 h-5 w-5"
-                          aria-hidden="true"
-                        />
-                      </Menu.Button>
-                    </div>
+                <div class="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
+                  <Menu as="div" className="inline-block text-left">
+                    <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                      NEW RESUME
+                      <ChevronDownIcon
+                        className="w-5 h-5 ml-2 -mr-1"
+                        aria-hidden="true"
+                      />
+                    </Menu.Button>
 
                     <Transition
+                      class="absolute"
                       as={Fragment}
                       enter="transition ease-out duration-100"
                       enterFrom="transform opacity-0 scale-95"
@@ -112,7 +111,7 @@ export default function NavbarComponent() {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-laptop shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="right-0 w-56 mt-2 origin-top-right bg-white shadow-lg rounded-laptop ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="py-1">
                           <Menu.Item>
                             {({ active }) => (
@@ -121,7 +120,7 @@ export default function NavbarComponent() {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-500",
+                                    : "text-gray-500 bg-white rounded",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -136,7 +135,7 @@ export default function NavbarComponent() {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 bg-white rounded",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -151,7 +150,7 @@ export default function NavbarComponent() {
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
+                                    : "text-gray-700 bg-white rounded",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
@@ -165,7 +164,7 @@ export default function NavbarComponent() {
                   </Menu>
                 </div>
 
-                <div>
+                <div class="py-2 px-2">
                   <button
                     onClick={() => navigate("/register")}
                     // style={styles}

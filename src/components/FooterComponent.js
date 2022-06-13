@@ -5,10 +5,10 @@ export default function FooterComponent() {
 
   return (
     <div class="mt-5 laptop:grid-cols-3">
-      <section class="body-font font-maven">
+      <section class="body-font font-maven text-sm laptop:text-md">
         <div class="bg-white px-2 tablet:px-4 py-2.5 text-white " style={styles}>
           <footer class="container mx-auto">
-            <div class="grid grid-cols-3 gap-8 py-8 laptop:grid-cols-3 tablet:grid-cols-1">
+            <div class="grid gap-8 py-8 laptop:grid-cols-3 grid-cols-1">
               <div>
                 <h2 class="text-lg font-semibold uppercase mb-3">
                   contact us:
@@ -113,12 +113,11 @@ export default function FooterComponent() {
                   </ul>
                 </div>
               </div>
-              <div class="visible">
-                <div class="laptop:visible">
+              <div>
+                <div class="hidden laptop:block ">
                   <iframe
+                    class="laptop:w-full laptop:h-96"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d977.1677865254815!2d104.88866774015999!3d11.575416007195466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109519cfe734349%3A0x5174d2178ff95112!2sKorean%20HRD%20Center!5e0!3m2!1sen!2skh!4v1654863405682!5m2!1sen!2skh"
-                    width="400"
-                    height="400"
                     style={{borderRadius: "5px"}}
                   ></iframe>
                 </div>
@@ -362,7 +361,7 @@ export default function FooterComponent() {
           </footer>
         </div>
         <div style={logoBackground}>
-          <span class="block text-md text-white tablet:text-center p-3">
+          <span class="block text-md text-white text-center p-3">
             2022 © Korean Software HRD Center. All right reserved.
           </span>
         </div>
