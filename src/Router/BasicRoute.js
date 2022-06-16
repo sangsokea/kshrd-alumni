@@ -8,6 +8,7 @@ import LoginPage from "../pages/authentication/LoginPage";
 import RegisterPage from "../pages/authentication/RegisterPage";
 import ResetPasswordPage from "../pages/authentication/ResetPasswordPage";
 import HomePage from "../pages/HomePage";
+import ViewAlumniPage from "../pages/ViewAlumniPage";
 
 function BasicRoute() {
   return (
@@ -21,6 +22,7 @@ function BasicRoute() {
         <Route path="/confirm" element={<ConfirmPage />}/>
         <Route path="/reset" element={<ResetPasswordPage/>}></Route>
         <Route path="/createNewPassword" element={<CreateNewPasswordPage/>}></Route>
+        <Route path="/viewAlumni" element={<ViewAlumniPage/>}></Route>
       </Routes>
       <FooterComponent/>
     </>
