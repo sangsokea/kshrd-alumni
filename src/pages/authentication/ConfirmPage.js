@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
 // import OTPInput from "otp-input-react";
 
 export default function ConfirmPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [inputSecretCode, setInputSecretCode] = useState("");
+  const [resendCode, setResendCode] = useState();
+  const [code , setCode] = useState()
+
+  const onValidateCode = () => {};
+
+  useEffect(() => {
+    console.log(
+      `====> /ConfirmPage: data from registerPage`,
+    );
+    console.log(location.state.data)
+    setCode(location.state.data?.verifyCode || 0)
+  }, [navigate]);
 
   return (
     <body class="h-screen bg-slate-50">
