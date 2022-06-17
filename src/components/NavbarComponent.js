@@ -3,7 +3,7 @@ import { colors, myStyles } from "../commons/colors/colors";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import logo from "./logo.png";
+import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
@@ -76,7 +76,7 @@ export default function NavbarComponent() {
             <div
               className={
                 openNavbar
-                  ? "block laptop:hidden"
+                  ? "hidden"
                   : "w-full flex justify-start laptop:w-auto"
               }
               id="mobile-menu"
@@ -116,21 +116,7 @@ export default function NavbarComponent() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-500 bg-white rounded",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                New Resume
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
+                                onClick={() => navigate("/createNewCV")}
                                 href="#"
                                 className={classNames(
                                   active
@@ -162,35 +148,6 @@ export default function NavbarComponent() {
                       </Menu.Items>
                     </Transition>
                   </Menu>
-                </div>
-
-                <div class="py-2 px-2">
-                  <button
-                    onClick={() => navigate("/register")}
-                    // style={styles}
-                    class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
-                  >
-                    SIGN UP{" "}
-                    <span>
-                      <svg
-                        class="h-auto w-7 text-white pl-2"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        {" "}
-                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                        <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                        <circle cx="12" cy="16" r="1" />{" "}
-                        <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                      </svg>
-                    </span>
-                  </button>
                 </div>
 
                 <div class="py-2 px-2">

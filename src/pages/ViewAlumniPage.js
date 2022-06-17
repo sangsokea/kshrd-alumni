@@ -21,10 +21,10 @@ export default function ViewAlumniPage() {
   ]);
 
   return (
-    <div class="container mx-auto bg-slate-300 mt-3 body-font font-maven">
-      <div class="grid grid-cols-5">
+    <div class="container mx-auto mt-3 body-font font-maven rounded-md shadow-lg">
+      <div class="grid grid-cols-4">
         <div class="col-span-1">
-          <div class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto border-r">
+          <div class="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
             <div class="shrink-0 mb-5">
               <img
                 src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
@@ -63,14 +63,14 @@ export default function ViewAlumniPage() {
               </div>
             </form>
 
-            <div>
+            <div class="flex flex-col">
               <button
                 id="menu-btn"
                 class="text-md desktop:text-lg py-2 rounded mb-2 flex"
                 onClick={() => setDropdown(!dropdown)}
               >
                 Skill{" "}
-                <span class="ml-36">
+                <span class="ml-auto">
                   <svg
                     class="h-auto w-6 text-gray-500"
                     width="24"
@@ -203,18 +203,20 @@ export default function ViewAlumniPage() {
               </div>
             </div>
 
-            <div class="text-md desktop:text-lg mt-5">
-              Generation
-              <span class="ml-16">
-                <input
-                  type="text"
-                  class="p-2 w-16 rounded-md border border-blue-500 bg-gray-200"
-                ></input>
-              </span>
+            <div class="mt-5">
+              <div class="text-md desktop:text-lg flex flex-row">
+                Generation
+                <span class="ml-auto">
+                  <input
+                    type="text"
+                    class="p-2 w-16 rounded-md border border-blue-500 bg-gray-200"
+                  ></input>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="laptop:ml-20 col-span-4 mr-5 mt-5 hidden laptop:block">
+        <div class="p-5 rounded-md col-span-3 hidden laptop:block bg-slate-200">
           <img
             src="https://kshrd.com.kh/static/media/about2.eb34674d.jpg"
             alt="view alumni logo"
@@ -225,7 +227,7 @@ export default function ViewAlumniPage() {
           {/* <div>
             {data.map((item, index) => {
               <div> */}
-          <div class="grid grid-cols-2 gap-5">
+          <div class="grid grid-cols-2 gap-5 ">
             {/* {data.map((item) => {
               <a
                 href="#"
@@ -252,7 +254,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100"
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3"
             >
               <img
                 class="w-16 h-auto rounded"
@@ -275,7 +277,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3 "
             >
               <img
                 class="w-16 h-auto rounded"
@@ -298,7 +300,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100"
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3"
             >
               <img
                 class="w-16 h-auto rounded"
@@ -321,7 +323,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3 "
             >
               <img
                 class="w-16 h-auto rounded"
@@ -344,7 +346,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3 "
             >
               <img
                 class="w-16 h-auto rounded"
@@ -367,7 +369,7 @@ export default function ViewAlumniPage() {
 
             <a
               href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
+              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 pl-3 "
             >
               <img
                 class="w-16 h-auto rounded"
@@ -387,7 +389,6 @@ export default function ViewAlumniPage() {
                 View
               </button>
             </a>
-        
           </div>
 
           {/* </div>;

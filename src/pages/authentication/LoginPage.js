@@ -111,17 +111,12 @@ export default function LoginPage() {
               </button>
 
               <div class="mt-6">
-              {/* <button
-                style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
-                onClick={() => navigate("/reset")}
-              >
-                Forgot password{" "}
-                </button> */}
-                <a onClick={() => navigate("/reset")} class="text-blue-800 underline underline-1">
+                <a onClick={() => navigate("/reset")} class="text-blue-800 underline underline-1 cursor-pointer">
                   Forgot password?
                 </a>
-                {/* <p onClick={() => navigate("/reset")}>Forgot password</p> */}
+
+                <p class="mt-5">Haven't had an account? <span><a class="text-blue-800 underline underline-1 cursor-pointer" onClick={() => navigate("/register")}>Sign up</a></span></p>
+
               </div>
             </div>
           </div>
