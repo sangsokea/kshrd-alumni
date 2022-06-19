@@ -29,6 +29,7 @@ export default function PorfolioEdit() {
   const [school, setEducationValues] = useState("");
   const [technology, setTechnologyValues] = useState("");
   const [study, setStudyValues] = useState("");
+  const [start, setStartValues] = useState("");
   const [vall, setTitle] = useState(true);
   const [Desc, setDesc] = useState(true);
   const [Status, setStatus] = useState(true);
@@ -47,14 +48,12 @@ export default function PorfolioEdit() {
     console.log(titleFormValues);
   };
   const handleDescChange = (e) => {
-    let desFormValues = e.target.value;
-    setDescValues(desFormValues);
-    console.log(desFormValues);
+    setDescValues(e.target.value);
+    console.log(e.target.value);
   };
   const handleStatusChange = (e) => {
-    let desFormValues = e.target.value;
-    setStatusValues(desFormValues);
-    console.log(desFormValues);
+    setStatusValues(e.target.value);
+    console.log(e.target.value);
   };
   const handleSchoolChange = (e) => {
     setEducationValues(e.target.value);
@@ -70,6 +69,9 @@ export default function PorfolioEdit() {
   };
   const resetInputTitle = () => {
     setTitleValues("");
+  };
+  const resetInputStart = () => {
+    setStartValues("Start year");
   };
   const resetInputDesc = () => {
     setDescValues("");
