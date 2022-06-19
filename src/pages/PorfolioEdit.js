@@ -33,7 +33,7 @@ const handleChange = (e) =>{
   console.log("e.target.files[0] " + e.target.files[0]);
   console.log(URL.createObjectURL(e.target.files[0]));
   setFile(URL.createObjectURL(e.target.files[0]))
- 
+}
 
 const handleTitleChange = (e) => {
    let titleFormValues = e.target.value;
@@ -446,7 +446,5 @@ const handleStudyChange = (e) => {
 </div>
 </div>
   )
-}
-const styles = {
-    backgroundColor: colors.content,
-  };
+ }
+
