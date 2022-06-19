@@ -31,11 +31,9 @@ const [Technology,setTechnology]=useState(true)
 
 const handleChange = (e) =>{
   console.log("e.target.files[0] " + e.target.files[0]);
-    console.log(URL.createObjectURL(e.target.files[0]));
+  console.log(URL.createObjectURL(e.target.files[0]));
   setFile(URL.createObjectURL(e.target.files[0]))
-  const formData = new FormData();
-  formData.append("image", e.target.files[0]);
-}
+ 
 
 const handleTitleChange = (e) => {
    let titleFormValues = e.target.value;
