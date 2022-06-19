@@ -20,7 +20,7 @@ export default function LoginPage() {
                 </h1>
               </div>
             </div>
-            <p class="text-xl mt-6 text-center">Sign in</p>
+            <p class="text-xl mt-6 text-center">Log In</p>
             <div class="text-center mt-6">
               <h1 class="border-b border-b-black pt-8">
                 <div class="row">
@@ -44,9 +44,9 @@ export default function LoginPage() {
                     <div>
                       <input
                         class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
-                        id="username"
+                        id="email"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Email"
                       />
                     </div>
                     {/* </form> */}
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 style={styles}
                 class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
               >
-                Sign in{" "}
+                Log In{" "}
                 <span>
                   <svg
                     class="h-auto w-8 text-white pl-2"
@@ -115,7 +115,7 @@ export default function LoginPage() {
                   Forgot password?
                 </a>
 
-                <p class="mt-5">Haven't had an account? <span><a class="text-blue-800 underline underline-1 cursor-pointer" onClick={() => navigate("/register")}>Sign up</a></span></p>
+                <p class="mt-5">Not registered yet? <span><a class="text-blue-800 underline underline-1 cursor-pointer" onClick={() => navigate("/register")}>Create an Account</a></span></p>
 
               </div>
             </div>

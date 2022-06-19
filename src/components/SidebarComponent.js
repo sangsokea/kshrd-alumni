@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
-import CVBuilderPage from "../pages/CVBuilderPage";
+
+import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 
 export default function SidebarComponent() {
   return (
@@ -11,10 +12,7 @@ export default function SidebarComponent() {
         <div style={styles}>
           <div class=" text-white font-light text-center text-lg p-3 ">
             <div class="flex justify-center mt-5">
-              <img
-                class="rounded-full p-5"
-                src="https://www.whatsappimages.in/wp-content/uploads/2021/12/Free-Black-Profile-Images-Wallpaper-Free.jpg"
-              />
+              <img class="rounded-full p-5" src={alumni1} />
             </div>
 
             <p class="p-5">
@@ -77,10 +75,10 @@ export default function SidebarComponent() {
 
             <hr class="mt-5"></hr>
 
-            <div class="flex items-center mt-16 pl-2 hover:p-2 hover:bg-gray-50 hover:rounded-md hover:text-black">
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
-                  class="h-auto w-6 text-white"
+                  class="h-auto w-6 "
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -97,13 +95,15 @@ export default function SidebarComponent() {
                 </svg>
               </span>
               {/* <img class="mr-3 iCon" src={v2} /> */}
-              <p class="ml-5">About me</p>
+              <div class="ml-5">
+                <NavLink to="/sidebar/aboutMe">About Me</NavLink>
+              </div>
             </div>
 
-            <div class="flex mt-7 items-center hover:p-2 pl-2 hover:bg-gray-50 hover:rounded-md hover:text-black">
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
-                  class="h-auto w-6 text-white"
+                  class="h-auto w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -116,15 +116,15 @@ export default function SidebarComponent() {
                   />
                 </svg>
               </span>
-              {/* <img class="mr-3  iCon" src={v5} /> */}
-              <p class="ml-5">Portfolio</p>
-              {/* <img class=" ml-10 iCon" src={v1} /> */}
+              <div class="ml-5">
+                <NavLink to="">Portfolio</NavLink>
+              </div>
             </div>
 
-            <div class="flex mt-7 items-center hover:p-2 pl-2 hover:bg-gray-50 hover:rounded-md hover:text-black">
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
-                  class="h-auto w-6 text-white"
+                  class="h-auto w-6"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -140,7 +140,7 @@ export default function SidebarComponent() {
               <p class="ml-5">Resume</p>
               <span class="ml-auto">
                 <svg
-                  class="h-auto w-6 text-white"
+                  class="h-auto w-6 "
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -158,11 +158,11 @@ export default function SidebarComponent() {
                 </svg>
               </span>
             </div>
-          
-            <div class="flex mt-7 items-center pl-2 hover:p-2 hover:bg-gray-50 hover:rounded-md hover:text-black">
+
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
-                  class="h-auto w-6 text-white "
+                  class="h-auto w-6"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -178,14 +178,17 @@ export default function SidebarComponent() {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               </span>
-              <p class="ml-5">Account Setting</p>
+
+              <div class="ml-5">
+                <NavLink to="/sidebar/accountSetting">Account Setting</NavLink>
+              </div>
               {/* <NavLink to="account-setting "> Account Setting</NavLink> */}
             </div>
 
-            <div class="flex items-center mt-7 pl-2 hover:p-2 hover:bg-gray-50 hover:rounded-md hover:text-black ">
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
-                  class="h-auto w-6 text-white"
+                  class="h-auto w-6"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -203,14 +206,12 @@ export default function SidebarComponent() {
               </span>
               <p class="ml-5">Log Out</p>
             </div>
-
-            
           </div>
         </div>
 
         {/* Result */}
         <div class="col-span-4">
-          <CVBuilderPage/>
+          <Outlet />
         </div>
       </div>
     </div>

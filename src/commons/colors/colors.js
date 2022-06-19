@@ -1,3 +1,5 @@
+import { ImportantDevices } from "@material-ui/icons"
+
 export const colors = {
     footer: "rgb(3, 83, 151)",
     content: "#255FAB",
@@ -14,3 +16,15 @@ export const myStyles = {
     logoMargin: "55px"
 }
 
+export const customCKEditorStyle = {
+    borderRadius: "50px !important " 
+}
+
+export const setNumberOfLines = {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    webkitLineClamp: 3, /* number of lines to show */
+    lineClamp: 3,
+    webkitBoxOrient: "vertical"
+}

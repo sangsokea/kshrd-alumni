@@ -5,6 +5,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-bootstrap";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -116,8 +117,8 @@ export default function NavbarComponent() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                onClick={() => navigate("/createNewCV")}
-                                href="#"
+                                onClick={() => navigate("/sidebar/createNewCV")}
+                                
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
@@ -132,7 +133,7 @@ export default function NavbarComponent() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                onClick={() => navigate("/sidebar/cvTemplate")}
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
