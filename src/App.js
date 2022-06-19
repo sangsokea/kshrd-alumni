@@ -8,6 +8,8 @@ import NavbarComponent from "./components/NavbarComponent";
 import ResetPasswordPage from "./pages/authentication/ResetPasswordPage";
 import CvTemplate from "./pages/template/CvTemplate";
 import HrdCvTemplate from "./pages/template/HrdCvTemplate";
+import PorfolioPage from "./pages/PorfolioPage";
+import PorfolioEdit from "./pages/PorfolioEdit";
 function App() {
   return (
     <>
@@ -21,6 +23,8 @@ function App() {
         <Route path="/reset" element={<ResetPasswordPage/>} />
         <Route path="/cvtemplate" element={<CvTemplate/>} />
         <Route path="/hrdcv" element={<HrdCvTemplate/>} />
+        <Route path="/porfolio" element={<PorfolioPage />} />
+        <Route path="/porfolioedit" element={<PorfolioEdit />} />
       </Routes>
     </>
   );

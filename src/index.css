@@ -22,7 +22,7 @@ code {
   color: #255FAB;;
   font-weight: bold;
   display: inline-block; 
-  width: 10px;
+  width: 30px;
   margin-left: -1em;
 }
 
@@ -33,4 +33,27 @@ code {
 @font-face {
   font-family: "MAVEN";
   src: url("./commons/MavenPro-VariableFont_wght.ttf");
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
