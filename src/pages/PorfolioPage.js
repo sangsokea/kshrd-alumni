@@ -245,32 +245,49 @@ export default function PorfolioPage() {
             </div>
             <div className="desktop:grid desktop:grid-cols-3 desktop:mt-24  laptop:grid laptop:grid-cols-3 laptop:mt-24 mt-10">
               <div className="text-left desktop:ml-20 laptop:ml-20 tablet:ml-20 ml-7 mt-4 col-span-2 ">
-                <div className="gap-2 flex font-maven">
-                  <ui>
-                    <li class="fff desktop:text-xl ">
-                      Web Application Development: Spring Framework, NodeJS,
-                      ReactJS
+                <div className="gap-2 flex font-maven ">
+                  <ul className="list-outside">
+                  <li class="fff desktop:text-xl">
+                    <span className="text-black">Web Application Development: Spring Framework, NodeJS,
+                      ReactJS</span>
+                    </li>
+ 
+                    <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">Web Service (API) Development: Spring Boot, NodeJS,
+                      Express</span>
+                      
                     </li>
                     <li class="fff desktop:text-xl mt-2">
-                      Web Service (API) Development: Spring Boot, NodeJS,
-                      Express
-                    </li>
-                    <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">
                       iOS Application Development: Swift
+                      </span>
+                     
                     </li>
                     <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">
                       Hybrid Mobile Application Development: React Native
+                      </span>
+                      
                     </li>
                     <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">
                       Database Management: PostgreSQL, MongoDB
+                      </span>
+                      
                     </li>
                     <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">
                       Server and Tool: Docker, Linux, Jenkin
+                      </span>
+                      
                     </li>
                     <li class="fff desktop:text-xl mt-2">
+                      <span className="text-black">
                       Others: Shell, Python
+                      </span>
+                     
                     </li>
-                  </ui>
+                  </ul>
                 </div>
               </div>
               <div className="">

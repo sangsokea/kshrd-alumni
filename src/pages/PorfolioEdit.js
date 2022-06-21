@@ -8,7 +8,6 @@ import { ReactComponent as Remove } from "../commons/icon/remove.svg";
 import { ReactComponent as Group } from "../commons/icon/Group.svg";
 import { ReactComponent as Add } from "../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../commons/icon/removed.svg";
-import { colors } from "../commons/colors";
 import { Transition, Popover } from "@headlessui/react";
 
 function classNames(...classes) {
@@ -435,7 +434,7 @@ export default function PorfolioEdit() {
                       </div>
                       <div className="flex justify-center">
                         <button
-                          class="desktop:ml-24 tablet:ml-10 ml-20 mb-6"
+                          class="desktop:ml-40 tablet:ml-10 ml-24 mb-6"
                           onClick={resetInputTechnology}
                         >
                           <Remove className=""></Remove>
