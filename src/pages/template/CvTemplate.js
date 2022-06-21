@@ -8,9 +8,9 @@ function CvTemplate() {
     <div className="h-screen">
       <div class=" py-12">
         <center>
-          <div className="w-full md:w-222 shadow">
-            <div className="md:grid md:grid-cols-3 grid  bg-slate-50">
-              <div className="h-40 md:bg-regal-gg">
+          <div className="w-350  laptop:w-222 shadow">
+            <div className="laptop:grid laptop:grid-cols-3 grid  bg-slate-50">
+              <div className="h-40 laptop:bg-regal-gg">
                 <div class="absolute ">
                   <svg
                     width="126"
@@ -21,20 +21,20 @@ function CvTemplate() {
                   >
                     <circle cx="51" cy="49" r="75" fill="#8CC0DE" />
                   </svg>
-                  <div className="rounded-full md:h-32 md:w-32 h-32 w-32 md:left-10 left-7 top-5 bg-white absolute">
+                  <div className="rounded-full laptop:h-32 laptop:w-32 h-32 w-32 laptop:left-10 left-7 top-5 bg-white absolute">
                     <div>
                       <img
-                        className="rounded-full md:h-28  md:w-28 h-28 w-28 left-2 top-2  bg-gray-500 absolute"
+                        className="rounded-full laptop:h-28  laptop:w-28 h-28 w-28 left-2 top-2  bg-gray-500 absolute"
                         src="https://wallpaperaccess.com/full/6235574.jpg"
                         alt=""
                       />
-                      <div className="bg-regal-rgb md:h-14 md:w-14 md:left-20 absolute rounded-full"></div>
+                      <div className="bg-regal-rgb laptop:h-14 laptop:w-14 laptop:left-20 absolute rounded-full"></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="md:col-span-2 ">
-                <div className="mt-1 md:mt-12 text-left ml-5">
+              <div className="laptop:col-span-2 ">
+                <div className="mt-1 laptop:mt-12 text-left ml-5">
                   <span className="font-maven text-4xl font-bold ">Kong </span>
                   &nbsp;
                   <span className="font-maven text-3xl text-regal-bg  font-bold">
@@ -48,8 +48,8 @@ function CvTemplate() {
                 </div>
               </div>
             </div>
-            <div className="md:grid md:grid-cols-3 grid  bg-slate-50">
-              <div className=" md:bg-regal-gg">
+            <div className="laptop:grid laptop:grid-cols-3 grid  bg-slate-50">
+              <div className=" laptop:bg-regal-gg">
                 <div className="mb-4">
                   <div>
                     <h2 class="font-maven text-left ml-5  mt-4 font-bold text-xl">
@@ -71,8 +71,8 @@ function CvTemplate() {
                   </div>
                 </div>
               </div>
-              <div className="md:col-span-2">
-                <div className="md:mt-5 mt-4">
+              <div className="laptop:col-span-2">
+                <div className="laptop:mt-5 mt-4">
                   <h2 class="font-maven text-left ml-5 font-bold text-xl">
                     Profile
                   </h2>
@@ -89,8 +89,8 @@ function CvTemplate() {
               </div>
             </div>
 
-            <div class="md:grid md:grid-cols-3   flex flex-wrap-reverse">
-              <div className="min-h-1/22 w-full  md:bg-regal-gg bg-slate-50">
+            <div class="laptop:grid laptop:grid-cols-3   flex flex-wrap-reverse">
+              <div className="min-h-1/22 w-full  laptop:bg-regal-gg bg-slate-50">
                 {/*Start CV Profile */}
 
                 {/* End CV Profile */}
@@ -98,7 +98,7 @@ function CvTemplate() {
                 {/* start Details */}
                 <div className="mb-4">
                   {/*  Start Education */}
-                  <div className="mt-3">
+                  <div className="tablet:mt-3 mt-5">
                     <h2 class="font-maven text-left ml-5 font-bold text-xl">
                       Education
                     </h2>
@@ -172,7 +172,7 @@ function CvTemplate() {
                         <p>jQuery</p>
                       </div>
                       <div class="col-span-2">
-                        <div className="md:grid md:grid-cols-6  gap-2 mt-1 flex justify-start">
+                        <div className="laptop:grid laptop:grid-cols-6  gap-2 mt-1 flex justify-start">
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
@@ -186,7 +186,7 @@ function CvTemplate() {
                         <p>Docker</p>
                       </div>
                       <div class="col-span-2">
-                        <div className="md:grid md:grid-cols-6 mt-1 gap-2 flex justify-start">
+                        <div className="laptop:grid laptop:grid-cols-6 mt-1 gap-2 flex justify-start">
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
@@ -200,7 +200,7 @@ function CvTemplate() {
                         <p>Node js</p>
                       </div>
                       <div class="col-span-2">
-                        <div className="md:grid md:grid-cols-6 mt-1 gap-2 flex justify-start">
+                        <div className="laptop:grid laptop:grid-cols-6 mt-1 gap-2 flex justify-start">
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
@@ -214,7 +214,7 @@ function CvTemplate() {
                         <p>Python</p>
                       </div>
                       <div class="col-span-2">
-                        <div className="md:grid md:grid-cols-6 mt-1 gap-2 flex justify-start">
+                        <div className="laptop:grid laptop:grid-cols-6 mt-1 gap-2 flex justify-start">
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
@@ -228,7 +228,7 @@ function CvTemplate() {
                         <p>HTML5</p>
                       </div>
                       <div class="col-span-2 justify-items-end">
-                        <div className="md:grid md:grid-cols-6 mt-1 gap-2 flex justify-start">
+                        <div className="laptop:grid laptop:grid-cols-6 mt-1 gap-2 flex justify-start">
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
                           <div className="bg-regal-bg h-3 w-3 rounded-full"></div>
@@ -242,8 +242,8 @@ function CvTemplate() {
 
                 {/* End Skills  */}
               </div>
-              <div className="md:col-span-2  bg-slate-50">
-                <div className="md:mt-0 mt-">
+              <div className="laptop:col-span-2  bg-slate-50">
+                <div className="laptop:mt-0 mt-">
                   <h2 class="font-maven text-left ml-5 font-bold text-xl">
                     Employment History
                   </h2>
