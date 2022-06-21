@@ -43,6 +43,8 @@ function BasicRoute() {
         <Route path="/viewAlumni" element={<ViewAlumniPage />}></Route>
       </Routes>
       <FooterComponent />
+
+
     </>
   );
 }

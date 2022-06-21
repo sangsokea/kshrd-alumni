@@ -74,7 +74,7 @@ export default function SidebarComponent() {
             </div>
 
             <hr class="mt-5"></hr>
-
+            <NavLink to="/sidebar/aboutMe">
             <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
                 <svg
@@ -96,9 +96,10 @@ export default function SidebarComponent() {
               </span>
               {/* <img class="mr-3 iCon" src={v2} /> */}
               <div class="ml-5">
-                <NavLink to="/sidebar/aboutMe">About Me</NavLink>
+              About Me  
               </div>
             </div>
+            </NavLink>
 
             <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
               <span>
