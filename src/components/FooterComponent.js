@@ -128,7 +128,7 @@ export default function FooterComponent() {
                 </h2>
                 <ul class="text-white pl-3">
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -147,10 +147,10 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Blockchain</span>
-                    </a>
+                    </p>
                   </li>
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -169,10 +169,10 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">DevOps</span>
-                    </a>
+                    </p>
                   </li>
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -191,10 +191,10 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Angular + Spring Framework</span>
-                    </a>
+                    </p>
                   </li>
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -213,11 +213,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">React Native</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -236,11 +236,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">iOS Mobile Development</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -259,11 +259,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Spring Framework</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -282,11 +282,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Database Technology</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -305,11 +305,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Web Technology</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -328,11 +328,11 @@ export default function FooterComponent() {
                         </svg>
                       </span>
                       <span class="pl-2">Java Basic</span>
-                    </a>
+                    </p>
                   </li>
 
                   <li class="mb-4">
-                    <a href="#" class="hover:underline">
+                    <p>
                       <span class="inline-flex">
                         <svg
                           class="h-auto w-4 text-white"
@@ -353,7 +353,7 @@ export default function FooterComponent() {
                       <span class="pl-2">
                         Android Mobile Application Development
                       </span>
-                    </a>
+                    </p>
                   </li>
                 </ul>
               </div>

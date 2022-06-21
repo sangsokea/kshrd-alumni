@@ -3,8 +3,9 @@ import { colors, myStyles } from "../commons/colors/colors";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import logo from "./logo.png";
+import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-bootstrap";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -73,155 +74,117 @@ export default function NavbarComponent() {
                 ></path>
               </svg>
             </button>
-            <div
-              className={
-                openNavbar
-                  ? "block laptop:hidden"
-                  : "w-full flex justify-start laptop:w-auto"
-              }
-              id="mobile-menu"
-            >
-              <ul class="laptop:text-md desktop:text-lg flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
-                <li>
-                  <a
-                    href="http://localhost:3000/viewAlumni"
-                    class="laptop:text-md desktop:text-lg inline-flex w-full px-2 py-2 text-sm laptop:font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900 focus:ring-offset-gray-100"
-                    aria-current="page"
-                  >
-                    ALUMNI
-                  </a>
-                </li>
-                <div class="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
-                  <Menu as="div" className="inline-block text-left">
-                    <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                      NEW RESUME
-                      <ChevronDownIcon
-                        className="w-5 h-5 ml-2 -mr-1"
-                        aria-hidden="true"
-                      />
-                    </Menu.Button>
-
-                    <Transition
-                      class="absolute"
-                      as={Fragment}
-                      enter="transition ease-out duration-100"
-                      enterFrom="transform opacity-0 scale-95"
-                      enterTo="transform opacity-100 scale-100"
-                      leave="transition ease-in duration-75"
-                      leaveFrom="transform opacity-100 scale-100"
-                      leaveTo="transform opacity-0 scale-95"
+            <div>
+              <div
+                className={
+                  openNavbar
+                    ? "hidden"
+                    : "w-full flex justify-start laptop:w-auto"
+                }
+                id="mobile-menu"
+              >
+                <ul class="laptop:text-md desktop:text-lg flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
+                  <li>
+                    <a
+                      href="http://localhost:3000/viewAlumni"
+                      class="laptop:text-md desktop:text-lg inline-flex w-full px-2 py-2 text-sm laptop:font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900 focus:ring-offset-gray-100"
+                      aria-current="page"
                     >
-                      <Menu.Items className="right-0 w-56 mt-2 origin-top-right bg-white shadow-lg rounded-laptop ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div className="py-1">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-500 bg-white rounded",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                New Resume
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700 bg-white rounded",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                Create New CV
-                              </a>
-                            )}
-                          </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="#"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700 bg-white rounded",
-                                  "block px-4 py-2 text-sm"
-                                )}
-                              >
-                                CV Templates
-                              </a>
-                            )}
-                          </Menu.Item>
-                        </div>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                </div>
+                      ALUMNI
+                    </a>
+                  </li>
+                  <div class="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
+                    <Menu as="div" className="inline-block text-left">
+                      <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                        NEW RESUME
+                        <ChevronDownIcon
+                          className="w-5 h-5 ml-2 -mr-1"
+                          aria-hidden="true"
+                        />
+                      </Menu.Button>
 
-                <div class="py-2 px-2">
-                  <button
-                    onClick={() => navigate("/register")}
-                    // style={styles}
-                    class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
-                  >
-                    SIGN UP{" "}
-                    <span>
-                      <svg
-                        class="h-auto w-7 text-white pl-2"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <Transition
+                        class="absolute"
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
                       >
-                        {" "}
-                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                        <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                        <circle cx="12" cy="16" r="1" />{" "}
-                        <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
+                        <Menu.Items className="right-0 w-56 mt-2 origin-top-right bg-white shadow-lg rounded-laptop ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <button className="py-1">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  onClick={() =>
+                                    navigate("/sidebar/createNewCV")
+                                  }
+                                  className={classNames(
+                                    active
+                                      ? "bg-gray-100 text-gray-900"
+                                      : "text-gray-700 bg-white rounded",
+                                    "block px-4 py-2 text-sm",
+                                  )}
+                                >
+                                  Create New CV
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  onClick={() =>
+                                    navigate("/sidebar/cvTemplate")
+                                  }
+                                  className={classNames(
+                                    active
+                                      ? "bg-gray-100 text-gray-900"
+                                      : "text-gray-700 bg-white rounded",
+                                    "block px-4 py-2 text-sm",
+                                  )}
+                                >
+                                  CV Templates
+                                </a>
+                              )}
+                            </Menu.Item>
+                          </button>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </div>
 
-                <div class="py-2 px-2">
-                  <button
-                    onClick={() => navigate("/login")}
-                    // style={styles}
-                    class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
-                  >
-                    LOG IN{" "}
-                    <span>
-                      <svg
-                        class="h-auto w-7 text-white pl-2"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        {" "}
-                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                        <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                        <circle cx="12" cy="16" r="1" />{" "}
-                        <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-              </ul>
+                  <div class="py-2 px-2">
+                    <button
+                      onClick={() => navigate("/login")}
+                      // style={styles}
+                      class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
+                    >
+                      LOG IN{" "}
+                      <span>
+                        <svg
+                          class="h-auto w-7 text-white pl-2"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          {" "}
+                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                          <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
+                          <circle cx="12" cy="16" r="1" />{" "}
+                          <path d="M8 11v-5a4 4 0 0 1 8 0" />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </ul>
+              </div>
             </div>
           </div>
         </nav>

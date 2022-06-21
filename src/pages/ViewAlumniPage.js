@@ -1,30 +1,60 @@
 import React, { useState } from "react";
-import view_alumni from "../commons/images/view alumni.jpg";
+import view_alumni from "../commons/images/Cover-dashboard.jpg";
 import PaginationComponent from "../components/PaginationComponent";
+import { setNumberOfLines } from "../commons/colors/colors";
+import "../commons/styles/text.css";
+import alumni1 from "../commons/images/Alumni/alumni1.jpg";
+import alumni2 from "../commons/images/Alumni/alumni2.jpg";
+import alumni3 from "../commons/images/Alumni/alumni3.jpg";
+import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import alumni5 from "../commons/images/Alumni/alumni5.jpg";
+// import alumni6 from "../commons/images/Alumni/alumni6.jpg";
 
 export default function ViewAlumniPage() {
   const [dropdown, setDropdown] = useState(false);
 
+  const onClickDropdown = () => {
+    setDropdown(!dropdown);
+  };
+
   const [data, setData] = useState([
     {
-      profile:
-        "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg",
+      profile: alumni1,
       name: "Mr. Sang Sokea",
       bio: "Experienced programmer with serveral successful projects under my belt.",
     },
     {
-      profile:
-        "https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/alone-Best-Dp-Profile-Images-For-Instagram-photo.gif",
+      profile: alumni4,
+      name: "Ms. Vong Yuoyi",
+      bio: "I've been working in one of the BIG 4 companies for seven years, climbing ...",
+    },
+    {
+      profile: alumni2,
       name: "Ms. Pol Paradis",
-      bio: "I dream of working at Google, working on applications billions of people use.",
+      bio: "I dream of working at Google, working on applications billions of people use ...",
+    },
+    {
+      profile: alumni3,
+      name: "Mr. Kong Sachayarith",
+      bio: "Passionate coder, responsible father, best colleague ever.",
+    },
+    {
+      profile: alumni3,
+      name: "Mr. Em Boonlin",
+      bio: "Well, I've been working on mobile app development for four years now, ...",
+    },
+    {
+      profile: alumni5,
+      name: "Ms. Stranger Khatia",
+      bio: "Looking for a part time job I can do while still at school, ideally working ...",
     },
   ]);
 
   return (
-    <div class="container mx-auto bg-slate-300 mt-3 body-font font-maven">
-      <div class="grid grid-cols-5">
+    <div class="container mx-auto mt-3 body-font font-maven rounded-md shadow-lg">
+      <div class="grid grid-cols-4">
         <div class="col-span-1">
-          <div class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto border-r">
+          <div class="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
             <div class="shrink-0 mb-5">
               <img
                 src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
@@ -56,43 +86,61 @@ export default function ViewAlumniPage() {
                 <input
                   type="search"
                   id="default-search"
-                  class="text-lg block p-2 pl-10 w-full rounded-lg border border-blue-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                  class="text-lg block p-2 pl-10 w-full rounded-lg border border-black focus:ring-blue-600 focus:ring-2 dark:bg-gray-50 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none "
                   placeholder="Search any name"
                   required
                 />
               </div>
             </form>
 
-            <div>
+            <div class="flex flex-col">
               <button
                 id="menu-btn"
                 class="text-md desktop:text-lg py-2 rounded mb-2 flex"
                 onClick={() => setDropdown(!dropdown)}
               >
                 Skill{" "}
-                <span class="ml-36">
-                  <svg
-                    class="h-auto w-6 text-gray-500"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    {" "}
-                    <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                    <polyline points="6 15 12 9 18 15" />
-                  </svg>
+                <span class="ml-auto">
+                  {dropdown ? (
+                    <svg
+                      class="h-auto w-6 text-gray-500"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {" "}
+                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                      <polyline points="6 15 12 9 18 15" />
+                    </svg>
+                  ) : (
+                    <svg
+                      class="h-auto w-6 text-gray-500"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {" "}
+                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  )}
                 </span>
               </button>
 
               <div
                 id="dropdown"
                 className={
-                  !dropdown ? "hidden" : "bg-gray-200 flex flex-col rounded p-2"
+                  !dropdown ? "hidden" : "flex flex-col rounded p-2"
                 }
               >
                 <a
@@ -203,196 +251,53 @@ export default function ViewAlumniPage() {
               </div>
             </div>
 
-            <div class="text-md desktop:text-lg mt-5">
-              Generation
-              <span class="ml-16">
-                <input
-                  type="text"
-                  class="p-2 w-16 rounded-md border border-blue-500 bg-gray-200"
-                ></input>
-              </span>
+            <div class="mt-5">
+              <div class="text-md desktop:text-lg flex flex-row">
+                Generation
+                <span class="ml-auto">
+                  <input
+                    type="text"
+                    class="p-2 w-16 rounded-md border border-black bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2"
+                  ></input>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="laptop:ml-20 col-span-4 mr-5 mt-5 hidden laptop:block">
-          <img
-            src="https://kshrd.com.kh/static/media/about2.eb34674d.jpg"
-            alt="view alumni logo"
-          ></img>
-          <div class="text-lg mt-5 font-bold mb-5">Results</div>
+        <div class="rounded-br-md col-span-3 hidden laptop:block bg-slate-200 laptop:text-md desktop:text-lg">
+          <img src={view_alumni} alt="view alumni logo"></img>
+          <div class="p-5">
+            <div class="text-2xl mt-10 font-bold mb-5">Results</div>
 
-          {/* card */}
-          {/* <div>
-            {data.map((item, index) => {
-              <div> */}
-          <div class="grid grid-cols-2 gap-5">
-            {/* {data.map((item) => {
-              <a
-                href="#"
-                class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-              >
-                <img
-                  class="w-16 h-auto rounded"
-                  src={item.profile}
-                  alt=""
-                />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {item.name}
-                  </h5>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {item.bio}
-                  </p>
+            {/* card */}
+            <div class="grid grid-cols-2 gap-5">
+              {data.map((item) => (
+                <div>
+                  <a
+                    href="#"
+                    class="flex flex-col items-center bg-gray-50 rounded-lg border md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md pl-5 "
+                  >
+                    <img
+                      class="w-24 h-auto rounded-full"
+                      src={item.profile}
+                      alt="alumni"
+                    />
+                    <div class="flex flex-col justify-between pt-5 pl-5 leading-normal">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                        {item.name}
+                      </h5>
+                      <p class="font-normal text-black textLine w-52 mb-5">
+                        {item.bio}
+                      </p>
+                    </div>
+                    <button class="bg-blue-500 mt-auto rounded-md pl-2.5 pr-2.5 ml-auto">
+                      View
+                    </button>
+                  </a>
                 </div>
-                <button class="bg-blue-500 rounded px-2 mt-auto mr-2 ">
-                  View
-                </button>
-              </a>;
-            })} */}
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100"
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/alone-Best-Dp-Profile-Images-For-Instagram-photo.gif"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Ms. Pol Paradis
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://i.pinimg.com/originals/bc/af/18/bcaf18ce6054768da1628a939e2b4f65.jpg"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Mr.Sang Sokea
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100"
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/alone-Best-Dp-Profile-Images-For-Instagram-photo.gif"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Ms. Pol Paradis
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://i.pinimg.com/originals/bc/af/18/bcaf18ce6054768da1628a939e2b4f65.jpg"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Mr.Sang Sokea
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/alone-Best-Dp-Profile-Images-For-Instagram-photo.gif"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Ms. Pol Paradis
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-
-            <a
-              href="#"
-              class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 "
-            >
-              <img
-                class="w-16 h-auto rounded"
-                src="https://i.pinimg.com/originals/bc/af/18/bcaf18ce6054768da1628a939e2b4f65.jpg"
-                alt=""
-              />
-              <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                  Mr.Sang Sokea
-                </h5>
-                <p class="mb-3 font-normal text-black">
-                  Experienced programmer with serveral successful projects under
-                  my belt.
-                </p>
-              </div>
-              <button class="bg-blue-500 rounded px-2 mt-auto mr-1 ">
-                View
-              </button>
-            </a>
-        
+              ))}
+            </div>
           </div>
-
-          {/* </div>;
-            })}
-          </div> */}
         </div>
       </div>
 

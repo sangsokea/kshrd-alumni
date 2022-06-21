@@ -1,5 +1,24 @@
 import React from "react";
 import Slider from "react-slick";
+import homepage from "../commons/images/Cover_homepage.jpeg";
+
+// card slides
+import director_picture from "../commons/images/card-slide/director.7a1c2126.jpg";
+import graduated_student_2 from "../commons/images/card-slide/graduated student(2).jpg";
+import graduated_student from "../commons/images/card-slide/graduated student.jpg";
+import event from "../commons/images/card-slide/event.jpg";
+import sport from "../commons/images/card-slide/sport.jpg";
+import closing from "../commons/images/card-slide/closing.jpg";
+
+// partners
+import ckcc from "../commons/images/partner logo/ckcc.jpg";
+import king_sejong_institute from "../commons/images/partner logo/king sejong institute.png";
+import koica from "../commons/images/partner logo/koica.jpg";
+import kosign from "../commons/images/partner logo/kosign.jpg";
+import morakot from "../commons/images/partner logo/morakot.png";
+import nipa from "../commons/images/partner logo/nipa.png";
+import webcash from "../commons/images/partner logo/webcash.jpg";
+import WeMB from "../commons/images/partner logo/WeMB.png";
 
 const settings = {
   className: "center",
@@ -10,63 +29,61 @@ const settings = {
   speed: 500,
   dots: true,
   arrows: true,
-
 };
 
 export default function HomePage() {
   return (
     <div class="container mx-auto mt-3">
       <section class="body-font font-maven text-sm laptop:text-md">
-        <img
-          src="https://api.kshrd-ite.com/api/v1/image/333c1464-eb9f-4da4-b592-a4c0149a56aa.jpeg"
-          alt="9th gen image"
-        ></img>
+        <img src={homepage} alt="9th gen image"></img>
         <div class="hidden laptop:block">
           {/* Our Achievement Section */}
-          <h1 class="text-2xl mt-6">Our Achievements</h1>
+          <h1 class="text-2xl mt-5 mb-5">Our Achievements</h1>
           {/* <p class="text-orange-700 -mt-5" style={{fontWeight: "1200"}}>_______</p> */}
           <div>
             <Slider {...settings}>
-              <div>
+              <div class="px-2">
                 <img
-                  class="p-2 rounded"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md"
+                  src={director_picture}
+                  alt="director's picture"
                 />
               </div>
-              <div>
+
+              <div class="px-2">
                 <img
-                  class="rounded p-2"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md "
+                  src={graduated_student_2}
+                  alt="alumni archievement"
                 />
               </div>
-              <div>
+
+              <div class="px-2">
                 <img
-                  class="rounded p-2"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md "
+                  src={event}
+                  alt="other event"
                 />
               </div>
-              <div>
+              <div class="px-2">
                 <img
-                  class="rounded p-2"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md "
+                  src={graduated_student}
+                  alt="graduated student"
                 />
               </div>
-              <div>
+              <div class="px-2">
                 <img
-                  class="rounded p-2"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md "
+                  src={sport}
+                  alt="sport event"
                 />
               </div>
-              <div>
+              <div class="px-2">
                 <img
-                  class="rounded p-2"
-                  src="https://kshrd.com.kh/static/media/director.7a1c2126.jpg"
-                  alt=""
+                  class="rounded-md "
+                  src={closing}
+                  alt="closing day"
                 />
               </div>
             </Slider>
@@ -110,55 +127,35 @@ export default function HomePage() {
                   <div class="grid-rows-2">
                     <div class="grid grid-cols-4 ">
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img src={nipa} alt="nipa"></img>
+                      </div>
+                      <div>
+                        <img class="px-2" src={ckcc} alt="ckcc"></img>
                       </div>
                       <div>
                         <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
+                        class="px-2"
+                          src={king_sejong_institute}
+                          alt="king sejong institute"
                         ></img>
                       </div>
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
-                      </div>
-                      <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img class="px-2" src={koica} alt="koica"></img>
                       </div>
                     </div>
 
-                    <div class="grid grid-cols-4">
+                    <div class="grid grid-cols-4 px-2">
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img class="px-2" src={kosign} alt="kosign"></img>
                       </div>
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img class="px-2" src={morakot} alt="morakot"></img>
                       </div>
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img class="px-2" src={webcash} alt="webcash"></img>
                       </div>
                       <div>
-                        <img
-                          src="https://api.kshrd-ite.com/api/v1/image/3beb0547-242a-408b-96c8-7e4417d9b663.png"
-                          alt="nipa"
-                        ></img>
+                        <img class="px-2" src={WeMB} alt="WeMB"></img>
                       </div>
                     </div>
                   </div>
