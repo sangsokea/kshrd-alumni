@@ -70,15 +70,15 @@ export default function EducationComponent() {
   return (
     <>
       {/* Education */}
-      <div class="mb-6">
+      <div className="mb-6">
         <label
           for="large-input"
-          class="mb-2 text-md font-medium dark:text-black flex flex-row"
+          className="flex flex-row mb-2 font-medium text-md dark:text-black"
         >
           Education
           <span onClick={addFieldsEducation}>
             <svg
-              class="h-auto w-6 text-black ml-2"
+              className="w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -96,16 +96,16 @@ export default function EducationComponent() {
         {/* Dynamic form for Education */}
         <div className={!displayEducation ? "hidden" : "block"}>
           {education.map((input, index) => (
-            <form onSubmit={submit} class="bg-white mt-5 p-5 rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               <div
-                class="mb-5 flex flex-row"
+                className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
               >
                 {input.school ? input.school : "(Not Specified)"}
-                <span class="ml-auto">
+                <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export default function EducationComponent() {
                     </svg>
                   ) : (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -140,17 +140,17 @@ export default function EducationComponent() {
               </div>
 
               <div className={input.isShow ? "hidden" : "block"}>
-                <div key={index} class="mb-3 ">
-                  <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div key={index} className="mb-3 ">
+                  <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                       <label
                         for="school"
-                        class="block mb-2 text-sm font-medium dark:text-black"
+                        className="block mb-2 text-sm font-medium dark:text-black"
                       >
                         School
                       </label>
                       <input
-                        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="school"
                         placeholder="RUPP"
                         value={input.school}
@@ -162,7 +162,7 @@ export default function EducationComponent() {
                     <div>
                       <label
                         for="degree"
-                        class="block mb-2 text-sm font-medium dark:text-black"
+                        className="block mb-2 text-sm font-medium dark:text-black"
                       >
                         Degree
                       </label>
@@ -173,17 +173,17 @@ export default function EducationComponent() {
                         value={input.degree}
                         type="text"
                         name="degree"
-                        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
                       />
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label
                           for="start_date"
-                          class="block mb-2 text-sm font-medium dark:text-black"
+                          className="block mb-2 text-sm font-medium dark:text-black"
                         >
                           Start Date
                         </label>
@@ -194,7 +194,7 @@ export default function EducationComponent() {
                           value={input.startDate}
                           type="date"
                           name="startDate"
-                          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="dd/mm/yy"
                           required
                         />
@@ -202,7 +202,7 @@ export default function EducationComponent() {
                       <div>
                         <label
                           for="end_date"
-                          class="block mb-2 text-sm font-medium dark:text-black"
+                          className="block mb-2 text-sm font-medium dark:text-black"
                         >
                           End Date
                         </label>
@@ -213,18 +213,18 @@ export default function EducationComponent() {
                           value={input.endDate}
                           type="date"
                           name="endDate"
-                          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="dd/mm/yy"
                           required
                         />
                       </div>
                     </div>
 
-                    <div class="grid grid-cols-1">
+                    <div className="grid grid-cols-1">
                       <div>
                         <label
                           for="city"
-                          class="block mb-2 text-sm font-medium dark:text-black"
+                          className="block mb-2 text-sm font-medium dark:text-black"
                         >
                           City
                         </label>
@@ -235,15 +235,15 @@ export default function EducationComponent() {
                           value={input.city}
                           type="text"
                           name="city"
-                          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
                       </div>
                     </div>
                   </div>
-                  <div class="w-full">
+                  <div className="w-full">
                     <label
                       for="city"
-                      class="block mb-2 text-sm font-medium dark:text-black"
+                      className="block mb-2 text-sm font-medium dark:text-black"
                     >
                       Description
                     </label>
@@ -260,14 +260,14 @@ export default function EducationComponent() {
               <button
                 onClick={submit}
                 style={styles}
-                class="mr-5 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
               </button>
 
               <button
                 onClick={() => removeFieldsEducation(index)}
-                class="bg-red-600 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>

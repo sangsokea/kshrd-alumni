@@ -21,7 +21,7 @@ import webcash from "../commons/images/partner logo/webcash.jpg";
 import WeMB from "../commons/images/partner logo/WeMB.png";
 
 const settings = {
-  className: "center",
+  classNameName: "center",
   centerMode: true,
   infinite: true,
   centerPadding: "60px",
@@ -33,55 +33,56 @@ const settings = {
 
 export default function HomePage() {
   return (
-    <div class="container mx-auto mt-3">
-      <section class="body-font font-maven text-sm laptop:text-md">
+
+    <div className="container mx-auto mt-3">
+      <section className="text-sm body-font font-maven laptop:text-md">
         <img src={homepage} alt="9th gen image"></img>
-        <div class="hidden laptop:block">
+        <div className="hidden laptop:block">
           {/* Our Achievement Section */}
-          <h1 class="text-2xl mt-5 mb-5">Our Achievements</h1>
-          {/* <p class="text-orange-700 -mt-5" style={{fontWeight: "1200"}}>_______</p> */}
+          <h1 className="mt-5 mb-5 text-2xl">Our Achievements</h1>
+          {/* <p className="-mt-5 text-orange-700" style={{fontWeight: "1200"}}>_______</p> */}
           <div>
             <Slider {...settings}>
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md"
+                  className="rounded-md"
                   src={director_picture}
                   alt="director's picture"
                 />
               </div>
 
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md "
+                  className="rounded-md "
                   src={graduated_student_2}
                   alt="alumni archievement"
                 />
               </div>
 
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md "
+                  className="rounded-md "
                   src={event}
                   alt="other event"
                 />
               </div>
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md "
+                  className="rounded-md "
                   src={graduated_student}
                   alt="graduated student"
                 />
               </div>
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md "
+                  className="rounded-md "
                   src={sport}
                   alt="sport event"
                 />
               </div>
-              <div class="px-2">
+              <div className="px-2">
                 <img
-                  class="rounded-md "
+                  className="rounded-md "
                   src={closing}
                   alt="closing day"
                 />
@@ -91,8 +92,8 @@ export default function HomePage() {
         </div>
 
         {/* Our Partner Section */}
-        <div class="text-sm ml-3 mr-3 laptop:text-md desktop:text-lg">
-          <h1 class="text-2xl mt-6 mb-3">Our Partners</h1>
+        <div className="ml-3 mr-3 text-sm laptop:text-md desktop:text-lg">
+          <h1 className="mt-6 mb-3 text-2xl">Our Partners</h1>
           <p>
             We have a network of dedicated partners, each brining their special
             expertise and contribution. We successfully cooperate with many
@@ -100,62 +101,62 @@ export default function HomePage() {
             government, and universities for mutual improvement.
           </p>
 
-          <div class="mt-4">
-            <div class="grid grid-row-1">
-              <div class="grid grid-cols-2 laptop:grid-cols-3">
-                <div class="col-span-1">
-                  <ul class="bg-white rounded-lg w-30 text-gray-900 ">
-                    <li class="py-2 border-b border-gray-200 w-full rounded-t-lg grid grid-rows-1">
+          <div className="mt-4">
+            <div className="grid grid-row-1">
+              <div className="grid grid-cols-2 laptop:grid-cols-3">
+                <div className="col-span-1">
+                  <ul className="text-gray-900 bg-white rounded-lg w-30 ">
+                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
                       Public Sector
                     </li>
-                    <li class="py-2 border-b border-gray-200 w-full grid grid-rows-1">
+                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Universities
                     </li>
-                    <li class="py-2 border-b border-gray-200 w-full grid grid-rows-1">
+                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Global Companies
                     </li>
-                    <li class="py-2 border-b border-gray-200 w-full grid grid-rows-1">
+                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Local Companies
                     </li>
-                    <li class="py-2 w-full rounded-b-lg grid grid-rows-1">
+                    <li className="grid w-full grid-rows-1 py-2 rounded-b-lg">
                       Bank & Finance
                     </li>
                   </ul>
                 </div>
 
-                <div class="hidden col-span-1 laptop:col-span-2 laptop:block">
-                  <div class="grid-rows-2">
-                    <div class="grid grid-cols-4 ">
+                <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
+                  <div className="grid-rows-2">
+                    <div className="grid grid-cols-4 ">
                       <div>
                         <img src={nipa} alt="nipa"></img>
                       </div>
                       <div>
-                        <img class="px-2" src={ckcc} alt="ckcc"></img>
+                        <img className="px-2" src={ckcc} alt="ckcc"></img>
                       </div>
                       <div>
                         <img
-                        class="px-2"
+                        className="px-2"
                           src={king_sejong_institute}
                           alt="king sejong institute"
                         ></img>
                       </div>
                       <div>
-                        <img class="px-2" src={koica} alt="koica"></img>
+                        <img className="px-2" src={koica} alt="koica"></img>
                       </div>
                     </div>
 
-                    <div class="grid grid-cols-4 px-2">
+                    <div className="grid grid-cols-4 px-2">
                       <div>
-                        <img class="px-2" src={kosign} alt="kosign"></img>
+                        <img className="px-2" src={kosign} alt="kosign"></img>
                       </div>
                       <div>
-                        <img class="px-2" src={morakot} alt="morakot"></img>
+                        <img className="px-2" src={morakot} alt="morakot"></img>
                       </div>
                       <div>
-                        <img class="px-2" src={webcash} alt="webcash"></img>
+                        <img className="px-2" src={webcash} alt="webcash"></img>
                       </div>
                       <div>
-                        <img class="px-2" src={WeMB} alt="WeMB"></img>
+                        <img className="px-2" src={WeMB} alt="WeMB"></img>
                       </div>
                     </div>
                   </div>

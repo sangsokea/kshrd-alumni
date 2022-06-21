@@ -13,6 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ .fff{
+  list-style-type:disc;
+  color: #255FAB;
+}
+
+.fff::after {
+  color: black;
+} 
 
 @tailwind base;
 @tailwind components;
@@ -20,6 +28,7 @@ code {
 
 @font-face {
   font-family: "MAVEN";
+
   src: url("./commons/fonts/MavenPro-VariableFont_wght.ttf");
 }
 
@@ -43,3 +52,25 @@ nav.side-navigation-panel {
   border: 1px solid #695656;
   border-width: thin;        
 } */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

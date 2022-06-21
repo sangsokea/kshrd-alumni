@@ -55,25 +55,25 @@ export default function ViewAlumniPage() {
   ]);
 
   return (
-    <div class="container mx-auto mt-3 body-font font-maven rounded-md shadow-lg">
-      <div class="grid grid-cols-4">
-        <div class="col-span-1">
-          <div class="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
-            <div class="shrink-0 mb-5">
+    <div className="container mx-auto mt-3 rounded-md shadow-lg body-font font-maven">
+      <div className="grid grid-cols-4">
+        <div className="col-span-1">
+          <div className="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
+            <div className="mb-5 shrink-0">
               <img
                 src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                class="rounded-full w-10"
+                className="w-10 rounded-full"
                 alt="Avatar"
               />
             </div>
-            <hr class="mb-5"></hr>
-            <p class="text-2xl font-bold mb-5 mt-8">Filter</p>
+            <hr className="mb-5"></hr>
+            <p className="mt-8 mb-5 text-2xl font-bold">Filter</p>
 
             <form>
-              <div class="relative mb-5 focus:border-none">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+              <div className="relative mb-5 focus:border-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg
-                    class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -90,24 +90,24 @@ export default function ViewAlumniPage() {
                 <input
                   type="search"
                   id="default-search"
-                  class="text-lg block p-2 pl-10 w-full rounded-lg border border-black focus:ring-blue-600 focus:ring-2 dark:bg-gray-50 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none "
+                  className="block w-full p-2 pl-10 text-lg border border-black rounded-lg focus:ring-blue-600 focus:ring-2 dark:bg-gray-50 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none "
                   placeholder="Search any name"
                   required
                 />
               </div>
             </form>
 
-            <div class="flex flex-col">
+            <div className="flex flex-col">
               <button
                 id="menu-btn"
-                class="text-md desktop:text-lg py-2 rounded mb-2 flex"
+                className="flex py-2 mb-2 rounded text-md desktop:text-lg"
                 onClick={() => setDropdown(!dropdown)}
               >
                 Skill{" "}
-                <span class="ml-auto">
+                <span className="ml-auto">
                   {dropdown ? (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -123,7 +123,7 @@ export default function ViewAlumniPage() {
                     </svg>
                   ) : (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -147,11 +147,11 @@ export default function ViewAlumniPage() {
               >
                 <a
                   href="#"
-                  class="px-2 py-1 hover:bg-blue-200 rounded flex items-center"
+                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
                 >
                   <span>
                     <svg
-                      class="h-auto w-4 text-blue-500 mr-3"
+                      className="w-4 h-auto mr-3 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -168,11 +168,11 @@ export default function ViewAlumniPage() {
                 </a>
                 <a
                   href="#"
-                  class="px-2 py-1 hover:bg-blue-200 rounded flex items-center"
+                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
                 >
                   <span>
                     <svg
-                      class="h-auto w-4 text-blue-500 mr-3"
+                      className="w-4 h-auto mr-3 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -189,11 +189,11 @@ export default function ViewAlumniPage() {
                 </a>
                 <a
                   href="#"
-                  class="px-2 py-1 hover:bg-blue-200 rounded flex items-center"
+                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
                 >
                   <span>
                     <svg
-                      class="h-auto w-4 text-blue-500 mr-3"
+                      className="w-4 h-auto mr-3 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -210,11 +210,11 @@ export default function ViewAlumniPage() {
                 </a>
                 <a
                   href="#"
-                  class="px-2 py-1 hover:bg-blue-200 rounded flex items-center"
+                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
                 >
                   <span>
                     <svg
-                      class="h-auto w-4 text-blue-500 mr-3"
+                      className="w-4 h-auto mr-3 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -231,11 +231,11 @@ export default function ViewAlumniPage() {
                 </a>
                 <a
                   href="#"
-                  class="px-2 py-1 hover:bg-blue-200 rounded flex items-center"
+                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
                 >
                   <span>
                     <svg
-                      class="h-auto w-4 text-blue-500 mr-3"
+                      className="w-4 h-auto mr-3 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -253,46 +253,46 @@ export default function ViewAlumniPage() {
               </div>
             </div>
 
-            <div class="mt-5">
-              <div class="text-md desktop:text-lg flex flex-row">
+            <div className="mt-5">
+              <div className="flex flex-row text-md desktop:text-lg">
                 Generation
-                <span class="ml-auto">
+                <span className="ml-auto">
                   <input
                     type="text"
-                    class="p-2 w-16 rounded-md border border-black bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2"
+                    className="w-16 p-2 border border-black rounded-md bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2"
                   ></input>
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div class="rounded-br-md col-span-3 hidden laptop:block bg-slate-200 laptop:text-md desktop:text-lg">
+        <div className="hidden col-span-3 rounded-br-md laptop:block bg-slate-200 laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
-          <div class="p-5">
-            <div class="text-2xl mt-10 font-bold mb-5">Results</div>
+          <div className="p-5">
+            <div className="mt-10 mb-5 text-2xl font-bold">Results</div>
 
             {/* card */}
-            <div class="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-5">
               {data.map((item) => (
                 <div>
-                  <div class="flex flex-col items-center bg-gray-50 rounded-lg border md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md pl-5 p-2">
+                  <div className="flex flex-col items-center p-2 pl-5 border rounded-lg bg-gray-50 md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
-                      class="w-24 h-auto rounded-full"
+                      className="w-24 h-auto rounded-full"
                       src={item.profile}
                       alt="alumni"
                     />
-                    <div class="flex flex-col justify-between pt-5 pl-5 leading-normal">
-                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                    <div className="flex flex-col justify-between pt-5 pl-5 leading-normal">
+                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                         {item.name}
                       </h5>
-                      <p class="font-normal text-black textLine w-52 mb-5">
+                      <p className="mb-5 font-normal text-black textLine w-52">
                         {item.bio}
                       </p>
                     </div>
                     <button
                       onClick={() => navigate("/sidebar/aboutMe")}
                       style={{ backgroundColor: colors.footer, color: "white" }}
-                      class=" mt-auto rounded-md pl-3.5 pr-3.5 ml-auto"
+                      className=" mt-auto rounded-md pl-3.5 pr-3.5 ml-auto"
                     >
                       View
                     </button>

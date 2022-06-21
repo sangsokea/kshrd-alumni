@@ -18,86 +18,86 @@ export default function AccountSettingPage() {
 
   return (
     <>
-      <div class="container mx-auto ml-20">
-        <div class="mt-10 mb-20 text-4xl font-bold">
+      <div className="container mx-auto ml-20">
+        <div className="mt-10 mb-20 text-4xl font-bold">
           <p>ACCOUNT SETTING</p>
         </div>
 
-        <div class="grid grid-cols-4 m-auto">
-          <div class="col-span-1">
-            <p class="text-xl text-right">Profile Picture</p>
+        <div className="grid grid-cols-4 m-auto">
+          <div className="col-span-1">
+            <p className="text-xl text-right">Profile Picture</p>
           </div>
-          <div class="col-span-1 ml-10">
+          <div className="col-span-1 ml-10">
             <img
-              class="rounded-lg"
+              className="rounded-lg"
               src={imageUrl ? imageUrl : image}
               style={{ height: "200px" }}
             />
           </div>
-          <div class="col-span-1">
+          <div className="col-span-1">
             <input
               id="change-profile-picture"
-              class="hidden"
+              className="hidden"
               type="file"
               onChange={handleImageChange}
             ></input>
             <button
               style={styles}
-              class="text-xl ml-10 bg-transparent text-white h-[60px] w-[230px] border hover:border-transparent rounded-md"
+              className="text-xl ml-10 bg-transparent text-white h-[60px] w-[230px] border hover:border-transparent rounded-md"
             >
-              <label for="change-profile-picture" class="w-full h-full block mt-4 cursor-pointer">
+              <label for="change-profile-picture" className="block w-full h-full mt-4 cursor-pointer">
                 Change Profile Picture
               </label>
             </button>
           </div>
         </div>
 
-        <div class="grid grid-cols-4 mt-10 text-xl">
-          <div class="col-span-1">
+        <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="col-span-1">
             <p className="text-right">First Name</p>
           </div>
 
-          <div class="col-span-2">
+          <div className="col-span-2">
             <input
-              class="w-96 border ml-10 rounded py-2 px-4 "
+              className="px-4 py-2 ml-10 border rounded w-96 "
               placeholder=" boonlin"
             />
           </div>
         </div>
-        <div class="grid grid-cols-4 mt-10 text-xl">
-          <div class="col-span-1">
+        <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="col-span-1">
             <p className="text-right">Last Name</p>
           </div>
 
-          <div class="col-span-2">
+          <div className="col-span-2">
             <input
-              class="w-96 border ml-10  rounded py-2 px-4"
+              className="px-4 py-2 ml-10 border rounded w-96"
               placeholder=" em"
             />
           </div>
         </div>
 
-        <div class="grid grid-cols-4 mt-10 text-xl">
-          <div class="col-span-1">
+        <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="col-span-1">
             <p className="text-right">Email</p>
           </div>
-          <div class="col-span-2">
+          <div className="col-span-2">
             <input
-              class=" w-96 border ml-10  rounded  py-2 px-4"
+              className="px-4 py-2 ml-10 border rounded w-96"
               placeholder="emboonlin999@gmail.com"
             />
           </div>
         </div>
 
-        <div class="grid grid-cols-4 mt-10 text-xl">
-          <div class="col-span-1">
-            <p className="text-right">Password</p>
+        <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="col-span-1">
+            <p classNameName="text-right">Password</p>
           </div>
-          <div class="col-span-2">
+          <div className="col-span-2">
             <button
               id="menu-btn"
               // style={styles}
-              class="ml-10 bg-transparent text-gray-500 py-4 px-2 border rounded-md"
+              className="px-2 py-4 ml-10 text-gray-500 bg-transparent border rounded-md"
               onClick={() => setChangePassword(!changePassword)}
             >
               Change Password
@@ -107,15 +107,15 @@ export default function AccountSettingPage() {
 
         <div
           id="changePassword"
-          className={!changePassword ? "hidden" : "block"}
+          classNameName={!changePassword ? "hidden" : "block"}
         >
-          <div class="grid grid-cols-4 mt-10 text-xl">
-            <div class="col-span-1">
+          <div className="grid grid-cols-4 mt-10 text-xl">
+            <div className="col-span-1">
               <p className="text-xl text-right"> Current Password</p>
             </div>
-            <div class="col-span-2">
+            <div className="col-span-2">
               <input
-                class=" w-96 border ml-10  rounded  py-2 px-4"
+                className="px-4 py-2 ml-10 border rounded w-96"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -123,13 +123,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div class="grid grid-cols-4 mt-10 text-xl">
-            <div class="col-span-1">
+          <div className="grid grid-cols-4 mt-10 text-xl">
+            <div className="col-span-1">
               <p className="text-xl text-right"> New Password</p>
             </div>
-            <div class="col-span-2">
+            <div className="col-span-2">
               <input
-                class=" w-96 border ml-10  rounded  py-2 px-4"
+                className="px-4 py-2 ml-10 border rounded w-96"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -137,13 +137,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div class="grid grid-cols-4 mt-10 text-xl">
-            <div class="col-span-1">
+          <div className="grid grid-cols-4 mt-10 text-xl">
+            <div className="col-span-1">
               <p className="text-xl text-right"> Confirm New Password</p>
             </div>
-            <div class="col-span-2">
+            <div className="col-span-2">
               <input
-                class=" w-96 border ml-10  rounded  py-2 px-4"
+                className="px-4 py-2 ml-10 border rounded w-96"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -153,16 +153,16 @@ export default function AccountSettingPage() {
           <div></div>
         </div>
 
-        <div class="flex flex-row">
-          <div class="m-auto">
+        <div className="flex flex-row">
+          <div className="m-auto">
             <button
-              class="bg-transparent text-lg text-white px-10 py-2 border hover:border-transparent rounded-md"
+              className="px-10 py-2 text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
             >
               Save
             </button>
 
-            <button class="bg-transparent text-lg text-blue-600 px-10 py-2 ml-10 mt-10 border hover:border-transparent rounded-md">
+            <button className="px-10 py-2 mt-10 ml-10 text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
               Cancel
             </button>
           </div>

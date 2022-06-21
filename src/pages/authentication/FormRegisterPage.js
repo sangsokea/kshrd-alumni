@@ -72,7 +72,7 @@ export default function FormRegisterPage() {
     setToggle(!toggle);
   };
   return (
-    <body class="h-screen bg-slate-50">
+    <body className="h-screen bg-slate-50">
       {data.loading ? (
         <div className={classes.root} style={{ marginTop: "10px" }}>
           <LinearProgress color="secondary" />
@@ -82,28 +82,28 @@ export default function FormRegisterPage() {
       )}
       <form
         onSubmit={formik.handleSubmit}
-        class="flex justify-center items-center w-full"
+        className="flex items-center justify-center w-full"
       >
-        <section class="text-gray-600 body-font font-maven">
-          <div class="w-full max-w-xl container mx-auto">
-            <div class="row mt-24">
+        <section className="text-gray-600 body-font font-maven">
+          <div className="container w-full max-w-xl mx-auto">
+            <div className="mt-24 row">
               <div
                 style={styles}
-                class="p-6 text-xl text-white rounded-br-3xl justify-center"
+                className="justify-center p-6 text-xl text-white rounded-br-3xl"
               >
-                <h1 style={{ textTransform: "uppercase" }} class="text-2xl">
+                <h1 style={{ textTransform: "uppercase" }} className="text-2xl">
                   welcome <br></br>to{" "}
-                  <span class="font-bold">kshrd alumni</span>
+                  <span className="font-bold">kshrd alumni</span>
                 </h1>
               </div>
             </div>
-            <p class="text-xl mt-6 text-center">Sign up</p>
-            <div class="text-center mt-6">
-              <h1 class="border-b border-b-black pt-8">
-                <div class="row">
-                  <div class="grid grid-cols-3">
+            <p className="mt-6 text-xl text-center">Sign up</p>
+            <div className="mt-6 text-center">
+              <h1 className="pt-8 border-b border-b-black">
+                <div className="row">
+                  <div className="grid grid-cols-3">
                     <svg
-                      class="h-auto w-8 text-black"
+                      className="w-8 h-auto text-black"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -120,7 +120,7 @@ export default function FormRegisterPage() {
                     </svg>
                     <div>
                       <input
-                        class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
+                        className="w-full px-3 py-2 leading-tight text-center text-gray-700 focus:outline-none focus:shadow-outline bg-slate-50"
                         id="username"
                         name="username"
                         type="username"
@@ -136,15 +136,15 @@ export default function FormRegisterPage() {
               </h1>
               {/* error message */}
               {formik.errors.username ? (
-                <div class="text-red-600 text-[11px]">
+                <div className="text-red-600 text-[11px]">
                   {formik.errors.username}
                 </div>
               ) : null}
-              <h1 class="border-b border-b-black pt-8">
-                <div class="row">
-                  <div class="grid grid-cols-3">
+              <h1 className="pt-8 border-b border-b-black">
+                <div className="row">
+                  <div className="grid grid-cols-3">
                     <svg
-                      class="h-auto w-8 text-black"
+                      className="w-8 h-auto text-black"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -162,7 +162,7 @@ export default function FormRegisterPage() {
                     </svg>
                     <div>
                       <input
-                        class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
+                        className="w-full px-3 py-2 leading-tight text-center text-gray-700 focus:outline-none focus:shadow-outline bg-slate-50"
                         id="password"
                         type={!toggle ? "password" : "text"}
                         name="password"
@@ -175,13 +175,13 @@ export default function FormRegisterPage() {
                     {/* eye toggle */}
                     <button
                       type="button"
-                      class="flex justify-end"
+                      className="flex justify-end"
                       onClick={() => onClickEyes()}
                     >
                       {!toggle ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-auto w-8 text-black justify-end"
+                          className="justify-end w-8 h-auto text-black"
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
@@ -200,7 +200,7 @@ export default function FormRegisterPage() {
                       ) : (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-auto w-8 text-black justify-end"
+                          className="justify-end w-8 h-auto text-black"
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
@@ -228,19 +228,19 @@ export default function FormRegisterPage() {
               </h1>
               {/* error message */}
               {formik.errors.password ? (
-                <div class="text-red-600 text-[11px]">
+                <div className="text-red-600 text-[11px]">
                   {formik.errors.password}
                 </div>
               ) : null}
               <button
                 type="submit"
                 style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
+                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
               >
                 Submit{" "}
                 <span>
                   <svg
-                    class="h-auto w-8 text-white pl-2"
+                    className="w-8 h-auto pl-2 text-white"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"

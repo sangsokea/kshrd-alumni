@@ -73,15 +73,15 @@ export default function LicensesComponent() {
   return (
     <>
       {/* Licenses and Certifications */}
-      <div class="mb-6">
+      <div className="mb-6">
         <label
           for="large-input"
-          class="mb-2 text-md font-medium dark:text-black flex flex-row"
+          className="flex flex-row mb-2 font-medium text-md dark:text-black"
         >
           Licenses & cerifications
           <span onClick={addFieldsLicensesAndCertifications}>
             <svg
-              class="h-auto w-6 text-black ml-2"
+              className="w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -97,19 +97,19 @@ export default function LicensesComponent() {
         </label>
 
         {/* Dynamic form for Licenses and Certifications */}
-        <div className={!displayLicenses ? "hidden" : "block"}>
+        <div classNameName={!displayLicenses ? "hidden" : "block"}>
           {licenses.map((input, index) => (
-            <form onSubmit={submit} class="bg-white mt-5 p-5 rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               {/* Image and Upload Certificate Button */}
               <div onClick={() => onDropDwon(input.id)}>
-                <div class="mb-5 flex flex-row">
+                <div className="flex flex-row mb-5">
                   {input.school
                     ? "License or Certificate at " + input.school
                     : "(Not Specified)"}
-                  <span class="ml-auto">
+                  <span className="ml-auto">
                     {!input.isShow ? (
                       <svg
-                        class="h-auto w-6 text-gray-500"
+                        className="w-6 h-auto text-gray-500"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -125,7 +125,7 @@ export default function LicensesComponent() {
                       </svg>
                     ) : (
                       <svg
-                        class="h-auto w-6 text-gray-500"
+                        className="w-6 h-auto text-gray-500"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -145,30 +145,30 @@ export default function LicensesComponent() {
               </div>
 
               <div className={input.isShow ? "hidden" : "block"}>
-                <div key={index} class="mb-3 text-center">
+                <div key={index} className="mb-3 text-center">
                   <img
-                    class="m-auto rounded-lg mb-3"
+                    className="m-auto mb-3 rounded-lg"
                     src={imageUrl ? imageUrl : image}
                     alt="preview"
                     style={{height: "200px"}}
                   ></img>
                   <div>
-                    <input id="upload-certificate" type="file" class="hidden" onChange={handleImageChange}/>
-                    <button type="button" class="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]">
-                      <label for="upload-certificate" class="w-full h-auto block cursor-pointer">Upload Certificate</label>
+                    <input id="upload-certificate" type="file" className="hidden" onChange={handleImageChange}/>
+                    <button type="button" className="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]">
+                      <label for="upload-certificate" className="block w-full h-auto cursor-pointer">Upload Certificate</label>
                     </button>
                   </div>
                 </div>
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
                   <div>
                     <label
                       for="school"
-                      class="block mb-2 text-sm font-medium dark:text-black"
+                      className="block mb-2 text-sm font-medium dark:text-black"
                     >
                       School
                     </label>
                     <input
-                      class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="school"
                       placeholder="RUPP"
                       value={input.school}
@@ -178,7 +178,7 @@ export default function LicensesComponent() {
                   <div>
                     <label
                       for="degree"
-                      class="block mb-2 text-sm font-medium dark:text-black"
+                      className="block mb-2 text-sm font-medium dark:text-black"
                     >
                       Degree
                     </label>
@@ -187,34 +187,26 @@ export default function LicensesComponent() {
                       value={input.degree}
                       type="text"
                       name="degree"
-                      class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
                   </div>
                 </div>
 
-                {/* <div class="text-center">
-                  <button
-                    class="text-white px-10 py-3 rounded-md"
-                    style={styles}
-                  >
-                    Save Image
-                  </button>
-                </div> */}
               </div>
 
               <button
                 onClick={submit}
                 style={styles}
-                class="mr-5 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
               </button>
 
               <button
                 onClick={() => removeFieldsLicensesAndCertifications(index)}
-                class="bg-red-600 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>

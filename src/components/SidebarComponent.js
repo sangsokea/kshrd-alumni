@@ -24,27 +24,27 @@ export default function SidebarComponent() {
 
   const dispatch = useDispatch();
   return (
-    <div class="container mx-auto body-font font-maven">
+    <div className="container mx-auto body-font font-maven">
       {/* sideBar */}
-      <div class="mt-5 grid grid-cols-5 min-h-screen">
+      <div className="grid min-h-screen grid-cols-5 mt-5">
         <div style={styles}>
-          <div class=" text-white font-light text-center text-lg p-3 ">
-            <div class="flex justify-center mt-5">
-              <img class="rounded-full p-5" src={alumni1} />
+          <div className="p-3 text-lg font-light text-center text-white ">
+            <div className="flex justify-center mt-5">
+              <img className="p-5 rounded-full" src={alumni1} />
             </div>
 
-            <p class="p-5">
+            <p className="p-5">
               Hi, my name is Vong Yuoyi and I'm a senior software engineer.
               Welcome to my personal website!
             </p>
-            {/* <p class="divide-y-3"></p> */}
-            <hr class="mt-10"></hr>
-            <p class="mt-5">Contact school’s info:</p>
+            {/* <p className="divide-y-3"></p> */}
+            <hr className="mt-10"></hr>
+            <p className="mt-5">Contact school’s info:</p>
 
-            <div class="flex pt-3 justify-center">
-              <ButtonMailto mailto="mailto:info.kshrd@gmail.com" class="mr-2">
+            <div className="flex justify-center pt-3">
+              <ButtonMailto mailto="mailto:info.kshrd@gmail.com" className="mr-2">
                 <svg
-                  class="h-auto w-7 text-white"
+                  className="h-auto text-white w-7"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -60,10 +60,10 @@ export default function SidebarComponent() {
               <a
                 href="https://www.facebook.com/ksignhrd?_rdc=1&_rdr"
                 target={"_blank"}
-                class="ml-2 cursor-pointer"
+                className="ml-2 cursor-pointer"
               >
                 <svg
-                  class="h-auto w-7 text-white border rounded-full"
+                  className="h-auto text-white border rounded-full w-7"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -81,10 +81,10 @@ export default function SidebarComponent() {
               <a
                 href="https://www.youtube.com/c/KoreaSoftwareHRDCenter"
                 target={"_blank"}
-                class="ml-2 cursor-pointer"
+                className="ml-2 cursor-pointer"
               >
                 <svg
-                  class="h-auto w-7 text-white"
+                  className="h-auto text-white w-7"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -99,14 +99,14 @@ export default function SidebarComponent() {
               </a>
             </div>
 
-            <hr class="mt-5"></hr>
+            <hr className="mt-5"></hr>
 
             {/* Link to about me page */}
             <NavLink to="/sidebar/aboutMe">
-              <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
+              <div className="flex items-center px-2 py-2 mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
                 <span>
                   <svg
-                    class="h-auto w-6 "
+                    className="w-6 h-auto "
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -122,17 +122,17 @@ export default function SidebarComponent() {
                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                   </svg>
                 </span>
-                {/* <img class="mr-3 iCon" src={v2} /> */}
-                <div class="ml-5">About Me</div>
+                {/* <img className="mr-3 iCon" src={v2} /> */}
+                <div className="ml-5">About Me</div>
               </div>
             </NavLink>
 
             {/* Link to portfolio page */}
-            <NavLink to="">
-              <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
+            <NavLink to="/portfolio">
+              <div className="flex items-center px-2 py-2 mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
                 <span>
                   <svg
-                    class="h-auto w-6"
+                    className="w-6 h-auto"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -145,16 +145,16 @@ export default function SidebarComponent() {
                     />
                   </svg>
                 </span>
-                <div class="ml-5">Portfolio</div>
+                <div className="ml-5">Portfolio</div>
               </div>
             </NavLink>
 
             {/* Link to create new cv page */}
             <NavLink to="/sidebar/createNewCV">
-              <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+              <div className="flex items-center px-2 py-2 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
                 <span>
                   <svg
-                    class="h-auto w-6"
+                    className="w-6 h-auto"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -167,10 +167,10 @@ export default function SidebarComponent() {
                     <line x1="5" y1="19" x2="5" y2="5" />
                   </svg>
                 </span>
-                <p class="ml-5">Resume</p>
-                <span class="ml-auto">
+                <p className="ml-5">Resume</p>
+                <span className="ml-auto">
                   <svg
-                    class="h-auto w-6 "
+                    className="w-6 h-auto "
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -192,10 +192,10 @@ export default function SidebarComponent() {
 
             {/* Link to account setting page */}
             <NavLink to="/sidebar/accountSetting">
-              <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
+              <div className="flex items-center px-2 py-2 mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
                 <span>
                   <svg
-                    class="h-auto w-6"
+                    className="w-6 h-auto"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ export default function SidebarComponent() {
                   </svg>
                 </span>
 
-                <div class="ml-5">Account Setting</div>
+                <div className="ml-5">Account Setting</div>
               </div>
             </NavLink>
 
@@ -223,11 +223,11 @@ export default function SidebarComponent() {
                 localStorage.setItem("isAuth", false);
                 navigate("/");
               }}
-              class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer"
+              className="flex items-center px-2 py-2 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
             >
               <span>
                 <svg
-                  class="h-auto w-6"
+                  className="w-6 h-auto"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -243,13 +243,13 @@ export default function SidebarComponent() {
                   <path d="M7 12h14l-3 -3m0 6l3 -3" />
                 </svg>
               </span>
-              <p class="ml-5">Log Out</p>
+              <p className="ml-5">Log Out</p>
             </div>
           </div>
         </div>
 
         {/* Result */}
-        <div class="col-span-4">
+        <div className="col-span-4">
           <Outlet />
         </div>
       </div>
