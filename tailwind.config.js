@@ -1,19 +1,15 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx,jpg}", './flowbite-react/**/*.{js,jsx,ts,tsx}'],
-  
-plugins: [
-  require('flowbite/plugin')
-],
   theme: {
     screens: {
-      'sm': '576px',
-      // => @media (min-width: 576px) { ... }
+      'tablet': '640px',
+      // => @media (min-width: 640px) { ... }
 
-      'md': '960px',
-      // => @media (min-width: 960px) { ... }
+      'laptop': '1024px',
+      // => @media (min-width: 1024px) { ... }
 
-      'lg': '1440px',
-      // => @media (min-width: 1440px) { ... }
+      'desktop': '1280px',
+      // => @media (min-width: 1280px) { ... }
     },
    
     extend: {
@@ -24,6 +20,7 @@ plugins: [
         'tl-lgs' : '42px',
       },
       margin: {
+        '122'  : '122px',
         '195': '1005px',
         '3' : '10px',
         '25' : '90px',
@@ -47,6 +44,10 @@ plugins: [
         'tinys': '11px',
       },
       width: {
+        '350' : '350px',
+        '900' : '650px',
+        '1200' : '1030px',
+        '785': '785px',
         '222': '595px',
         '128': '236px',
         '555' : '360px',
@@ -57,9 +58,9 @@ plugins: [
         '87' : '87px',
         '84' : '84px',
         '297.5' : '297.5px',
-        '1341' : '1341px',
+        '1341' : '1285px',
         '404' : '404px',
-        '1112': '1010px',
+        '970': '970px',
         '1179' : '1109px',
         '570' : '510px',
         '423' : '360px;'
@@ -71,7 +72,8 @@ plugins: [
         '124' : '124px',
         '100'  : '100px',
         '43' : '43px',
-        '270' : '270px'
+        '270' : '270px',
+        '785' : '955px',
         
       },
       minHeight: {
@@ -86,5 +88,5 @@ plugins: [
       }
     },
   },
-  plugins: [],
+  
 }

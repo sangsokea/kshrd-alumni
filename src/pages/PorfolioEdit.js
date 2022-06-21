@@ -29,7 +29,7 @@ export default function PorfolioEdit() {
   const [school, setEducationValues] = useState("");
   const [technology, setTechnologyValues] = useState("");
   const [study, setStudyValues] = useState("");
-  const [start, setStartValues] = useState("");
+
   const [vall, setTitle] = useState(true);
   const [Desc, setDesc] = useState(true);
   const [Status, setStatus] = useState(true);
@@ -70,9 +70,6 @@ export default function PorfolioEdit() {
   const resetInputTitle = () => {
     setTitleValues("");
   };
-  const resetInputStart = () => {
-    setStartValues("Start year");
-  };
   const resetInputDesc = () => {
     setDescValues("");
   };
@@ -100,13 +97,13 @@ export default function PorfolioEdit() {
   return (
     <div className="h-screen">
       <div class="py-12">
-        <div className="md:w-1341  md:container md:mx-auto  ml-4 md:grid md:grid-cols-3 grid grid-cols-2">
-          <div className="md:col-span-2">
+        <div className="desktop:w-1341 desktop:container desktop:mx-auto laptop:w-1200 w-350 tablet:container tablet:mx-auto container mx-auto laptop:container laptop:mx-auto  desktop:grid desktop:grid-cols-3 tablet:grid tablet:grid-cols-2 grid grid-cols-2 laptop:grid laptop:grid-cols-2 ">
+          <div className="desktop:col-span-2">
             <p className="text-2xl font-normal">Portfolio</p>
             <p className="text-2xl font-bold text-blue-500">Sang Sokea</p>
           </div>
           <div className="flex flex-row ">
-            <p className="md:container md:mx-auto "></p>
+            <p className="desktop:container desktop:mx-auto laptop:container container mx-auto laptop:mx-auto tablet:container tablet:mx-auto"></p>
             <button onClick={() => navigate("/porfolio")}>
               <Arrow className="mt-7 mr-3 w-6" />
             </button>
@@ -128,7 +125,7 @@ export default function PorfolioEdit() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute -left-40  z-10 mt-3 w-423 h-270 max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
+                        <Popover.Panel className="absolute -left-40 z-10 mt-3 w-423 h-270 max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
                           <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                             <div className="relative  gap-8 bg-white p-7 ">
                               {/* {solutions.map((item) => ( */}
@@ -174,12 +171,12 @@ export default function PorfolioEdit() {
                                 </div>
                                 <div className="text-center">
                                   <button
-                                    class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+                                    class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6"
                                     onClick={handleSubmit}
                                   >
                                     Update
                                   </button>
-                                  <button class="bg-transparent  w-36 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                  <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                     Cancel
                                   </button>
                                 </div>
@@ -206,19 +203,20 @@ export default function PorfolioEdit() {
         </div>
         <br />
         <center>
-          <div className="md:w-1341 min-h-1/34 rounded shadow-2xl">
-            <div className="md:grid md:grid-cols-3 relative flex flex-wrap-reverse">
-              <div className="col-span-2  mt-14 text-left md:ml-20 ml-2  font-maven md:mr-">
+          <div className="desktop:w-1341 min-h-1/34 desktop:rounded desktop:shadow-2xl laptop:w-1200 w-350 shadow-2xl  desktop:min-h-1/34 laptop:rounded laptop:shadow-2xl tablet:w-900 tablet:shadow-2xl">
+            <div className="desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3 tablet:order-last relative tablet:flex tablet:flex-wrap-reverse flex flex-wrap-reverse">
+              <div className=" tablet:w-full desktop:col-span-2  desktop:mt-14 desktop:text-left desktop:ml-20   tablet:ml-20 tablet:col-span-2  tablet:mt-14 tablet:text-left laptop:col-span-2 mt-10 laptop:mt-14 laptop:text-left laptop:ml-3 text-left  font-maven ">
                 {/* {TitleValues.map((element, index) => ( */}
+                
                 <div>
                   <button
-                    class="ml-8 rounded-md text-xl  inline-flex  justify-between content-center"
+                    class="ml-8  rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
                     onClick={() => setTitle((Prev) => !Prev)}
                   >
                     {vall ? (
-                      <Add className="mr-2 mt-1 w-6"></Add>
+                      <Add className="laptop:mr-1 desktop:mr-2 mt-1 w-6"></Add>
                     ) : (
-                      <Removed className="mr-2 mt-1 w-6"></Removed>
+                      <Removed className="laptop:mr-1 desktop:mr-2 mt-1  w-6"></Removed>
                     )}
                     Title{""}
                   </button>
@@ -228,7 +226,7 @@ export default function PorfolioEdit() {
                       <div className="grid grid-cols-2 ">
                         <div className="mb-5 ">
                           <input
-                            class=" ml-10 w-222  outline outline-offset-2 outline-1 py-2 px-3  rounded text-gray-700 leading-tight focus:outline-blue-700  bg-slate-50 text-left inline-flex justify-between content-center"
+                            class=" ml-10 laptop:w-96 tablet:w-96 desktop:w-222 w-60 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-slate-50 text-left inline-flex justify-between content-center lap"
                             id="password"
                             type="text"
                             name="title"
@@ -238,7 +236,7 @@ export default function PorfolioEdit() {
                           />
                         </div>
                         <div className="flex justify-center">
-                          <button class="ml-24 mb-5" onClick={resetInputTitle}>
+                          <button class="desktop:ml-24 tablet:ml-10 ml-20 mb-5" onClick={resetInputTitle}>
                             <Remove className=""></Remove>
                           </button>
                         </div>
@@ -247,13 +245,13 @@ export default function PorfolioEdit() {
                   </div>
                 </div>
                 <button
-                  class="ml-8 rounded-md text-xl mt-3  inline-flex justify-between content-center"
+                  class="ml-8 rounded-md desktop:text-xl laptop:text-lg  mt-3  inline-flex justify-between content-center"
                   onClick={() => setDesc((Prev) => !Prev)}
                 >
                   {Desc ? (
-                    <Add className="mr-2 mt-1 w-6"></Add>
+                    <Add className="desktop:mr-2 laptop:mr-1  mt-1 w-6"></Add>
                   ) : (
-                    <Removed className="mr-2 mt-1 w-6"></Removed>
+                    <Removed className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Removed>
                   )}
                   Description{""}
                 </button>
@@ -263,7 +261,7 @@ export default function PorfolioEdit() {
                     <div className="grid grid-cols-2 ">
                       <div className="">
                         <input
-                          class=" ml-10 w-222 mb-5 outline outline-offset-2 h-14 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
+                          class=" ml-10 laptop:w-96 tablet:w-96  w-60 desktop:w-222 mb-5 outline outline-offset-2 desktop:h-14 laptop:h-10 outline-1 laptop:py-2 desktop:py-2 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
                           value={desc}
                           name="desc"
                           onChange={handleDescChange}
@@ -272,7 +270,7 @@ export default function PorfolioEdit() {
                         />
                       </div>
                       <div className="flex justify-center">
-                        <button class="ml-24 mb-5" onClick={resetInputDesc}>
+                        <button class="desktop:ml-24 tablet:ml-10 ml-20 mb-5" onClick={resetInputDesc}>
                           <Remove className=""></Remove>
                         </button>
                       </div>
@@ -281,13 +279,13 @@ export default function PorfolioEdit() {
                 </div>
 
                 <button
-                  class="ml-8 rounded-md text-xl mt-3  inline-flex justify-between content-center"
+                  class="ml-8 rounded-md desktop:text-xl laptop:text-lg mt-3  inline-flex justify-between content-center"
                   onClick={() => setStatus((Prev) => !Prev)}
                 >
                   {Status ? (
-                    <Add className="mr-2 mt-1 w-6"></Add>
+                    <Add className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Add>
                   ) : (
-                    <Removed className="mr-2 mt-1 w-6"></Removed>
+                    <Removed className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Removed>
                   )}
                   Status{""}
                 </button>
@@ -297,7 +295,7 @@ export default function PorfolioEdit() {
                     <div className="grid grid-cols-2 ">
                       <div className="mt-3">
                         <input
-                          class=" ml-10 w-222  outline outline-offset-2 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
+                          class=" ml-10 tablet:w-96 py-1 laptop:w-96  w-60 desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
                           id="password"
                           type="text"
                           name="status"
@@ -307,7 +305,7 @@ export default function PorfolioEdit() {
                         />
                       </div>
                       <div className="flex justify-center">
-                        <button class="ml-24 mt-2" onClick={resetInputStatus}>
+                        <button class="desktop:ml-24 tablet:ml-10 ml-20 mt-2" onClick={resetInputStatus}>
                           <Remove className=""></Remove>
                         </button>
                       </div>
@@ -319,14 +317,14 @@ export default function PorfolioEdit() {
               <div
                 className={
                   file
-                    ? "upload-btn-wrapper mr-24 md:mt-14  bg-cover bg-center rounded-tl-tl-lgs "
-                    : "upload-btn-wrapper bg-white shadow-lg left-2 ml-2  md:mt-12 h-40 w-80  rounded-tl-lg"
+                    ? "upload-btn-wrapper desktop:mr-24 laptop:mr-24 tabelt:mr-24 m-auto h-40 w-80 tablet:h-40 tablet:w-80 tablet:m-auto tablet:mt-14  desktop:mt-14 laptop:mt-14 bg-cover bg-center rounded-tl-tl-lgs "
+                    : "upload-btn-wrapper tablet:order-1 bg-white shadow-lg left-2 desktop:ml-2 laptop:-ml-1 desktop:mt-12 laptop:mt-14 tablet:mt-14 desktop:h-40 laptop:h-40 desktop:w-80 laptop:w-80 tablet:w-80 tablet:h-40 tablet:m-auto laptop:rounded-tl-lg desktop:rounded-tl-lg  tablet:rounded-tl-lg  ml-2 mt-12 h-40 w-80  rounded-tl-lg"
                 }
               >
                 {file ? (
-                  <button class="btn   inline-flex justify-center mb-20  content-center "></button>
+                  <button class="btn inline-flex justify-center mb-20 tablet:w-80  content-center "></button>
                 ) : (
-                  <button class="  mt-12 inline-flex justify-between content-center font-maven text-xl ">
+                  <button class=" mt-12 inline-flex justify-between content-center font-maven text-xl ">
                     <Img className="w-6 mr-2 -mt-1 rounded-md"></Img>+ Click to
                     add image
                   </button>
@@ -334,22 +332,22 @@ export default function PorfolioEdit() {
                 <input type="file" name="myfile" onChange={handleChange} />
                 <img
                   src={file}
-                  className="shadow-lg left-2   object-contain -mt-24 rounded-tl-lg"
+                  className="shadow-lg left-2  object-contain -mt-24 rounded-tl-lg"
                 />
               </div>
             </div>
-            <div className="bg-BDBDBD md:h-1 h-1 w-1179  mt-20  md:inline-block "></div>
+            <div className="bg-BDBDBD md:h-1 h-1 desktop:w-1179 laptop:w-1112 tablet:w-543 w-72 mt-20  md:inline-block "></div>
 
-            <div className="md:grid md:grid-cols-3 mt-2 relative flex flex-wrap-reverse">
-              <div className="col-span-2  mt-14 text-left md:ml-20 ml-2  font-maven md:mr-">
+            <div className="desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3 mt-2 ">
+              <div className="col-span-2  mt-14 text-left desktop:ml-20 laptop:ml-3 tablet:ml-20 font-maven md:mr-">
                 <button
-                  class="ml-8 rounded-md mb-3 text-xl  inline-flex justify-between content-center"
+                  class="ml-8 rounded-md mb-3 desktop:text-xl laptop:text-lg  inline-flex justify-between content-center"
                   onClick={() => setEducation((Prev) => !Prev)}
                 >
                   {Education ? (
-                    <Add className="mr-2 mt-1 w-6"></Add>
+                    <Add className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Add>
                   ) : (
-                    <Removed className="mr-2 mt-1 w-6"></Removed>
+                    <Removed className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Removed>
                   )}
                   Education{""}
                 </button>
@@ -359,7 +357,7 @@ export default function PorfolioEdit() {
                     <div className="grid grid-cols-2 ">
                       <div className="mb-5">
                         <input
-                          class=" ml-10 w-570 outline outline-offset-2 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                          class=" ml-10 desktop:w-570 laptop:w-72 tablet:w-96  w-60 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3 py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
                           id="password"
                           type="text"
                           name="school"
@@ -368,7 +366,7 @@ export default function PorfolioEdit() {
                           placeholder="School Name"
                         />
                         <input
-                          class=" ml-10 w-570 mt-5 outline outline-offset-2 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                          class=" ml-10  desktop:w-570 tablet:w-96 laptop:w-72 mt-5  w-60 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
                           id="password"
                           type="text"
                           name="study"
@@ -379,7 +377,7 @@ export default function PorfolioEdit() {
                         <div className="">
                           <select
                             id="countries"
-                            class="ml-10 w-32 mt-5  outline outline-offset-2 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                            class="ml-10 desktop:w-32  laptop:w-32 tablet:w-32 mt-5  outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
                           >
                             <option selected>Start year</option>
                             <option value="US">2019</option>
@@ -389,7 +387,7 @@ export default function PorfolioEdit() {
                           </select>
                           <select
                             id="countries"
-                            class="ml-2 w-32 mt-5 outline outline-offset-2 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left dark:text-placeholder-blue-500 inline-flex justify-between content-center"
+                            class="ml-10 tablet:ml-10 desktop:ml-2 laptop:ml-2  desktop:w-32 laptop:w-32 tablet:w-32  mt-5 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3  py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left dark:text-placeholder-blue-500 inline-flex justify-between content-center"
                           >
                             <option selected>End year</option>
                             <option value="US">2019</option>
@@ -400,23 +398,23 @@ export default function PorfolioEdit() {
                         </div>
                       </div>
                       <div className="flex justify-center">
-                        <button class="ml-24 mb-20" onClick={resetInputEdu}>
+                        <button class="desktop:ml-24 tablet:ml-10 ml-20 mb-20" onClick={resetInputEdu}>
                           <Remove className=""></Remove>
                         </button>
                       </div>
-                      <div className="bg-BDBDBD md:h-1 h-1 ml-10 w-570 mt-5  mb-5  md:inline-block "></div>
+                      <div className="bg-BDBDBD md:h-1 h-1 ml-10 desktop:w-570 mt-5  mb-5  md:inline-block "></div>
                     </div>
                   )}
                 </div>
 
                 <button
-                  class="ml-8 rounded-md text-xl  inline-flex justify-between content-center"
+                  class="ml-8 rounded-md  desktop:text-xl laptop:text-lg inline-flex justify-between content-center"
                   onClick={() => setTechnology((Prev) => !Prev)}
                 >
                   {Technology ? (
-                    <Add className="mr-2 mt-1 w-6"></Add>
+                    <Add className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Add>
                   ) : (
-                    <Removed className="mr-2 mt-1 w-6"></Removed>
+                    <Removed className="desktop:mr-2 laptop:mr-1 mt-1 w-6"></Removed>
                   )}
                   Technology Used{""}
                 </button>
@@ -426,7 +424,7 @@ export default function PorfolioEdit() {
                     <div className="grid grid-cols-2 ">
                       <div className="mb-5">
                         <textarea
-                          class=" ml-10 w-222 outline outline-offset-2 h-40 outline-1 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                          class=" ml-10 desktop:w-222 tablet:w-96 laptop:w-96 w-60 outline outline-offset-2 desktop:h-40 laptop:h-24 h-24 tablet:h-32 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
                           id="password"
                           type="textarea"
                           name="technology"
@@ -437,7 +435,7 @@ export default function PorfolioEdit() {
                       </div>
                       <div className="flex justify-center">
                         <button
-                          class="ml-24 mb-6"
+                          class="desktop:ml-24 tablet:ml-10 ml-20 mb-6"
                           onClick={resetInputTechnology}
                         >
                           <Remove className=""></Remove>
@@ -448,10 +446,10 @@ export default function PorfolioEdit() {
                 </div>
               </div>
               <div className="">
-                <img className="md:-ml-56 mt-3 md:mt-14" src={img3}></img>
+                <img className="desktop:-ml-56 mt-3 desktop:mt-14 laptop:-ml-24 -ml-10 laptop:mt-14 desktop:w-222" src={img3}></img>
                 <div classname="">
                   <button
-                    class="-ml-20 mt-24 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+                    class=" mt-24 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
                     onClick={handleSubmit}
                   >
                     Save
