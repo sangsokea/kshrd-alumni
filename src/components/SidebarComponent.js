@@ -215,6 +215,7 @@ export default function SidebarComponent() {
             <div
               onClick={() => {
                 dispatch(fetchIsAucthenticated(false));
+                localStorage.setItem("isAuth", false)
                 navigate("/");
               }}
               class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer"
