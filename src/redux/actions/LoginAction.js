@@ -7,15 +7,14 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 // action
 
-export const fetchLogin = (email, username, password) => (dispatch) => {
+export const fetchLogin = (email, password) => (dispatch) => {
   console.log("--> FetchLogin");
   dispatch(fetchLoginRequest());
   api
     .post(
-      "/authentication/register",
+      "/authentications/login",
       {
         email,
-        username,
         password
       },
       {
@@ -26,7 +25,8 @@ export const fetchLogin = (email, username, password) => (dispatch) => {
       },
     )
     .then((res) => {
-      console.log(`--> fetch regiter ${res}`);
+      console.log(`--> fetch login`);
+      console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchLoginSuccess(res?.data?.payload));
       } else {
@@ -35,7 +35,7 @@ export const fetchLogin = (email, username, password) => (dispatch) => {
     })
     .catch((err) => {
       let message = err?.response?.data?.error ?? "Unknow error!";
-      console.log(`fetch register error`);
+      console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchLoginFailure(message));
     });

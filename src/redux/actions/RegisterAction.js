@@ -9,14 +9,15 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const fetchRegister = (email, username, password) => (dispatch) => {
   console.log("--> FetchRegister");
+  console.log(email, username, password);
   dispatch(fetchRegisterRequest());
   api
     .post(
-      "/authentication/register",
+      "/authentications/register",
       {
         email,
         username,
-        password
+        password,
       },
       {
         headers: {
@@ -26,7 +27,8 @@ export const fetchRegister = (email, username, password) => (dispatch) => {
       },
     )
     .then((res) => {
-      console.log(`--> fetch regiter ${res}`);
+      console.log(`--> fetch regiter`);
+      console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchRegisterSuccess(res?.data?.payload));
       } else {

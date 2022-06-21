@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
-import { fetchLogin } from "../../redux/actions/LoginAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function FormRegisterPage() {
   const navigate = useNavigate();
   const data = useSelector((state) => state?.email, shallowEqual);
 
@@ -37,12 +36,13 @@ export default function LoginPage() {
       errors.password = "Must be 20 characters or less";
     }
 
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "";
+    if (!values.username) {
+      errors.username = "Required";
+    } else if (!/^[a-zA-Z]{1,}$/i.test(values.username)) {
+      errors.username =
+        "Must not contain any special charactor, number or space";
+    } else if (values.username.length > 30) {
+      errors.username = "Must be 30 characters or less";
     }
 
     return errors;
@@ -51,21 +51,23 @@ export default function LoginPage() {
   const formik = useFormik({
     initialValues: {
       password: "",
-      email: "",
+      username: "",
     },
     validate,
-    onSubmit: ({email, password}) => {
-    //   console.log(values);
+    onSubmit: (values) => {
+      console.log(values);
       console.log(data);
-    //   alert(JSON.stringify(values, null, 2));
-    dispatch(fetchLogin(email,password))
+      data?.items?.email
+        ? dispatch(
+            fetchRegister(data.items.email, values.username, values.password),
+          )
+        : navigate("/formRegister");
     },
   });
 
   const onClickEyes = () => {
     setToggle(!toggle);
   };
-  
   return (
     <body class="h-screen bg-slate-50">
       {data.loading ? (
@@ -92,7 +94,7 @@ export default function LoginPage() {
                 </h1>
               </div>
             </div>
-            <p class="text-xl mt-6 text-center">Sign in</p>
+            <p class="text-xl mt-6 text-center">Sign up</p>
             <div class="text-center mt-6">
               <h1 class="border-b border-b-black pt-8">
                 <div class="row">
@@ -116,13 +118,12 @@ export default function LoginPage() {
                     <div>
                       <input
                         class="w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-50 text-center"
-                        id="email"
-                        name="email"
-                        type="email"
+                        id="username"
+                        name="username"
+                        type="username"
                         onChange={formik.handleChange}
-                        value={formik.values.email}
-                        placeholder="Email"
-                        onBlur={formik.handleBlur}
+                        value={formik.values.username}
+                        placeholder="Username"
                       />
                     </div>
 
@@ -131,9 +132,9 @@ export default function LoginPage() {
                 </div>
               </h1>
               {/* error message */}
-              {formik.errors.email ? (
+              {formik.errors.username ? (
                 <div class="text-red-600 text-[11px]">
-                  {formik.errors.email}
+                  {formik.errors.username}
                 </div>
               ) : null}
               <h1 class="border-b border-b-black pt-8">
@@ -165,7 +166,6 @@ export default function LoginPage() {
                         placeholder="Password"
                         onChange={formik.handleChange}
                         value={formik.values.password}
-                        onBlur={formik.handleBlur}
                       />
                     </div>
 
@@ -234,7 +234,7 @@ export default function LoginPage() {
                 style={styles}
                 class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
               >
-                Sign in{" "}
+                Submit{" "}
                 <span>
                   <svg
                     class="h-auto w-8 text-white pl-2"
@@ -255,23 +255,6 @@ export default function LoginPage() {
                   </svg>
                 </span>
               </button>
-
-              <div class="mt-6">
-                {/* <button
-                style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
-                onClick={() => navigate("/reset")}
-              >
-                Forgot password{" "}
-                </button> */}
-                <button
-                  onClick={() => navigate("/reset")}
-                  class="text-blue-800 underline underline-1"
-                >
-                  Forgot password?
-                </button>
-                {/* <p onClick={() => navigate("/reset")}>Forgot password</p> */}
-              </div>
             </div>
           </div>
         </section>

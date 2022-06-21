@@ -5,10 +5,10 @@ export default function FooterComponent() {
 
   return (
     <div class="mt-5 laptop:grid-cols-3">
-      <section class="body-font font-maven text-sm laptop:text-md">
+      <section class="body-font font-maven text-sm laptop:text-md desktop:text-lg">
         <div class="bg-white px-2 tablet:px-4 py-2.5 text-white " style={styles}>
           <footer class="container mx-auto">
-            <div class="grid gap-8 py-8 laptop:grid-cols-3 grid-cols-1">
+            <div class="grid gap-8 py-8 laptop:grid-cols-3 grid-cols-1 mr-3 ml-3">
               <div>
                 <h2 class="text-lg font-semibold uppercase mb-3">
                   contact us:

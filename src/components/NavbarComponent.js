@@ -3,7 +3,7 @@ import { colors, myStyles } from "../commons/colors/colors";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import logo from "../commons/images/KSHRD Alumni_Logo_Final-Whtie.png";
+import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
@@ -21,7 +21,7 @@ export default function NavbarComponent() {
         <div class="">
           <img
             src={logo}
-            alt="..."
+            alt="logo homepage"
             style={{ ...styles, ...logoStyle }}
             class="border-none"
           />
@@ -35,7 +35,7 @@ export default function NavbarComponent() {
         >
           <div class="container flex flex-wrap justify-between items-center mx-auto">
             <a href="http://localhost:3000/" class="items-center">
-              <span class="self-center text-2xl font-bold whitespace-nowrap tracking-wider">
+              <span class="self-center text-3xl font-bold whitespace-nowrap tracking-wider">
                 KSHRD ALUMNI
               </span>
             </a>
@@ -76,16 +76,16 @@ export default function NavbarComponent() {
             <div
               className={
                 openNavbar
-                  ? "hidden"
+                  ? "block laptop:hidden"
                   : "w-full flex justify-start laptop:w-auto"
               }
               id="mobile-menu"
             >
-              <ul class="flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
+              <ul class="laptop:text-md desktop:text-lg flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
                 <li>
                   <a
-                    href="#"
-                    class="block py-2 px-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white laptop:pl-2 "
+                    href="http://localhost:3000/viewAlumni"
+                    class="laptop:text-md desktop:text-lg inline-flex w-full px-2 py-2 text-sm laptop:font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900 focus:ring-offset-gray-100"
                     aria-current="page"
                   >
                     ALUMNI
@@ -93,7 +93,7 @@ export default function NavbarComponent() {
                 </li>
                 <div class="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
                   <Menu as="div" className="inline-block text-left">
-                    <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                    <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                       NEW RESUME
                       <ChevronDownIcon
                         className="w-5 h-5 ml-2 -mr-1"
@@ -171,6 +171,35 @@ export default function NavbarComponent() {
                     class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
                   >
                     SIGN UP{" "}
+                    <span>
+                      <svg
+                        class="h-auto w-7 text-white pl-2"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        {" "}
+                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                        <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
+                        <circle cx="12" cy="16" r="1" />{" "}
+                        <path d="M8 11v-5a4 4 0 0 1 8 0" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="py-2 px-2">
+                  <button
+                    onClick={() => navigate("/login")}
+                    // style={styles}
+                    class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
+                  >
+                    LOG IN{" "}
                     <span>
                       <svg
                         class="h-auto w-7 text-white pl-2"

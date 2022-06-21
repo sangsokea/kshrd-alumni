@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
 // import OTPInput from "otp-input-react";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ConfirmPage() {
   const navigate = useNavigate();
@@ -10,21 +11,51 @@ export default function ConfirmPage() {
 
   const [inputSecretCode, setInputSecretCode] = useState("");
   const [resendCode, setResendCode] = useState();
-  const [code , setCode] = useState()
+  const [code, setCode] = useState();
+  const [showMessage, setShowMessage] = useState(false);
 
-  const onValidateCode = () => {};
+ 
+
+  // method
+
+  // --> validate code between input and code from api
+  const onValidateCode = (e) => {
+    console.log(e);
+    console.log(code);
+    console.log(inputSecretCode);
+    console.log(showMessage);
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    if (code == inputSecretCode) {
+      navigate("/formRegister");
+    } else {
+      toast.error("Code Incorrect !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
+  // --> validate code between input and code from api
+
+  const onIncorrectValidation = () => {};
 
   useEffect(() => {
-    console.log(
-      `====> /ConfirmPage: data from registerPage`,
-    );
-    console.log(location.state.data)
-    setCode(location.state.data?.verifyCode || 0)
+    const oldData = location.state?.data?.verifyCode;
+    console.log(`====> /ConfirmPage: data from registerPage`);
+    console.log(location.state?.data);
+    oldData ? setCode(oldData) : setCode(0);
   }, [navigate]);
 
   return (
     <body class="h-screen bg-slate-50">
-      <form class="flex justify-center items-center w-full">
+      <ToastContainer />
+      <form
+        onSubmit={(e) => onValidateCode(e)}
+        stopPropagation
+        class="flex justify-center items-center w-full"
+      >
         <section class="text-gray-600 body-font font-maven">
           <div class="w-full max-w-xl container mx-auto ">
             <div class="row mt-24">
@@ -92,7 +123,7 @@ export default function ConfirmPage() {
               <button
                 style={styles}
                 class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
-                onClick={() => navigate("/login")}
+                type="submit"
               >
                 Continue{" "}
                 <span>
