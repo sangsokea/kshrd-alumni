@@ -1,10 +1,29 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
+import { useDispatch } from "react-redux";
 
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
+import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
+
+const ButtonMailto = ({ mailto, children }) => {
+  return (
+    <Link
+      to="/alumni"
+      onClick={(e) => {
+        window.location.href = mailto;
+        e.preventDefault();
+      }}
+    >
+      {children}
+    </Link>
+  );
+};
 
 export default function SidebarComponent() {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   return (
     <div class="container mx-auto body-font font-maven">
       {/* sideBar */}
@@ -16,7 +35,7 @@ export default function SidebarComponent() {
             </div>
 
             <p class="p-5">
-              Hi, my name is Sang Sokea and I'm a senior software engineer.
+              Hi, my name is Vong Yuoyi and I'm a senior software engineer.
               Welcome to my personal website!
             </p>
             {/* <p class="divide-y-3"></p> */}
@@ -24,7 +43,7 @@ export default function SidebarComponent() {
             <p class="mt-5">Contact school’s info:</p>
 
             <div class="flex pt-3 justify-center">
-              <span class="mr-2 ">
+              <ButtonMailto mailto="mailto:info.kshrd@gmail.com" class="mr-2">
                 <svg
                   class="h-auto w-7 text-white"
                   fill="none"
@@ -38,8 +57,12 @@ export default function SidebarComponent() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-              </span>
-              <span class="mr-2">
+              </ButtonMailto>
+              <a
+                href="https://www.facebook.com/ksignhrd?_rdc=1&_rdr"
+                target={"_blank"}
+                class="mr-2 cursor-pointer"
+              >
                 <svg
                   class="h-auto w-7 text-white border rounded-full"
                   width="24"
@@ -55,8 +78,12 @@ export default function SidebarComponent() {
                   <path stroke="none" d="M0 0h24v24H0z" />{" "}
                   <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
                 </svg>
-              </span>
-              <span>
+              </a>
+              <a
+                href="https://www.youtube.com/c/KoreaSoftwareHRDCenter"
+                target={"_blank"}
+                class="mr-2 cursor-pointer"
+              >
                 <svg
                   class="h-auto w-7 text-white"
                   viewBox="0 0 24 24"
@@ -70,7 +97,7 @@ export default function SidebarComponent() {
                   <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />{" "}
                   <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
                 </svg>
-              </span>
+              </a>
             </div>
 
             <hr class="mt-5"></hr>
@@ -121,7 +148,7 @@ export default function SidebarComponent() {
               </div>
             </div>
 
-            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
+            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
               <span>
                 <svg
                   class="h-auto w-6"
@@ -185,7 +212,13 @@ export default function SidebarComponent() {
               {/* <NavLink to="account-setting "> Account Setting</NavLink> */}
             </div>
 
-            <div class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
+            <div
+              onClick={() => {
+                dispatch(fetchIsAucthenticated(false));
+                navigate("/");
+              }}
+              class="flex items-center mt-5 px-2 py-2 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer"
+            >
               <span>
                 <svg
                   class="h-auto w-6"

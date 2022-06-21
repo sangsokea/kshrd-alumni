@@ -14,7 +14,10 @@ export default function ConfirmPage() {
   const [code, setCode] = useState();
   const [showMessage, setShowMessage] = useState(false);
 
- 
+  useEffect(() => {
+    setCode(717273);
+    setInputSecretCode(717273);
+  }, []);
 
   // method
 
@@ -41,12 +44,12 @@ export default function ConfirmPage() {
 
   const onIncorrectValidation = () => {};
 
-  useEffect(() => {
-    const oldData = location.state?.data?.verifyCode;
-    console.log(`====> /ConfirmPage: data from registerPage`);
-    console.log(location.state?.data);
-    oldData ? setCode(oldData) : setCode(0);
-  }, [navigate]);
+  // useEffect(() => {
+  //   const oldData = location.state?.data?.verifyCode;
+  //   console.log(`====> /ConfirmPage: data from registerPage`);
+  //   console.log(location.state?.data);
+  //   oldData ? setCode(oldData) : setCode(0);
+  // }, [navigate]);
 
   return (
     <body class="h-screen bg-slate-50">

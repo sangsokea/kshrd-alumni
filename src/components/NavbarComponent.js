@@ -5,7 +5,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -15,6 +15,7 @@ export default function NavbarComponent() {
   const navigate = useNavigate();
 
   const [openNavbar, setOpenNavbar] = useState(false);
+  const isAuth = useSelector((state) => state.isAuth);
 
   return (
     <div style={logoBackground}>
@@ -35,11 +36,11 @@ export default function NavbarComponent() {
           style={styles}
         >
           <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="http://localhost:3000/" class="items-center">
+            <button onClick={() => navigate("/")} class="items-center">
               <span class="self-center text-3xl font-bold whitespace-nowrap tracking-wider">
                 KSHRD ALUMNI
               </span>
-            </a>
+            </button>
             <button
               onClick={() => setOpenNavbar(!openNavbar)}
               data-collapse-toggle="mobile-menu"
@@ -85,14 +86,15 @@ export default function NavbarComponent() {
               >
                 <ul class="laptop:text-md desktop:text-lg flex flex-col mt-4 laptop:flex-row laptop:space-x-8 laptop:mt-0 text-sm laptop:text-md laptop:font-medium laptop:items-center">
                   <li>
-                    <a
-                      href="http://localhost:3000/viewAlumni"
+                    <button
+                      onClick={() => navigate("/viewAlumni")}
                       class="laptop:text-md desktop:text-lg inline-flex w-full px-2 py-2 text-sm laptop:font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900 focus:ring-offset-gray-100"
                       aria-current="page"
                     >
                       ALUMNI
-                    </a>
+                    </button>
                   </li>
+
                   <div class="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
                     <Menu as="div" className="inline-block text-left">
                       <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
@@ -119,7 +121,9 @@ export default function NavbarComponent() {
                               {({ active }) => (
                                 <a
                                   onClick={() =>
-                                    navigate("/sidebar/createNewCV")
+                                    isAuth
+                                      ? navigate("/sidebar/createNewCV")
+                                      : navigate("/login")
                                   }
                                   className={classNames(
                                     active
@@ -136,7 +140,9 @@ export default function NavbarComponent() {
                               {({ active }) => (
                                 <a
                                   onClick={() =>
-                                    navigate("/sidebar/cvTemplate")
+                                    isAuth
+                                      ? navigate("/sidebar/cvTemplate")
+                                      : navigate("/login")
                                   }
                                   className={classNames(
                                     active
@@ -156,32 +162,48 @@ export default function NavbarComponent() {
                   </div>
 
                   <div class="py-2 px-2">
-                    <button
-                      onClick={() => navigate("/login")}
-                      // style={styles}
-                      class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
-                    >
-                      LOG IN{" "}
-                      <span>
-                        <svg
-                          class="h-auto w-7 text-white pl-2"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          {" "}
-                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                          <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                          <circle cx="12" cy="16" r="1" />{" "}
-                          <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                        </svg>
-                      </span>
-                    </button>
+                    {isAuth ? (
+                      <div
+                        onClick={() => navigate("/sidebar/aboutMe")}
+                        class="flex cursor-pointer"
+                      >
+                        <img
+                          class="w-10 h-10 rounded-full"
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaFX76XMJbvzJC_7S1rjVD5FbBt3oHhEKZhzVxRQDvLcUkJ7GmMYWpGH1tQR_OAsG76Gg&usqp=CAU"
+                          alt="Rounded avatar"
+                        ></img>
+                        <p class="text-white py-1 px-2 rounded-md inline-flex justify-between items-center">
+                          Vong Yuoyi
+                        </p>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => navigate("/login")}
+                        // style={styles}
+                        class="text-white py-1 px-2 rounded-md inline-flex justify-between border items-center"
+                      >
+                        LOG IN{" "}
+                        <span>
+                          <svg
+                            class="h-auto w-7 text-white pl-2"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            {" "}
+                            <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                            <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
+                            <circle cx="12" cy="16" r="1" />{" "}
+                            <path d="M8 11v-5a4 4 0 0 1 8 0" />
+                          </svg>
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </ul>
               </div>

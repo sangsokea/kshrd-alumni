@@ -6,6 +6,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
 import { fetchLogin } from "../../redux/actions/LoginAction";
+import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,18 +55,20 @@ export default function LoginPage() {
       email: "",
     },
     validate,
-    onSubmit: ({email, password}) => {
-    //   console.log(values);
+    onSubmit: ({ email, password }) => {
+      //   console.log(values);
       console.log(data);
-    //   alert(JSON.stringify(values, null, 2));
-    dispatch(fetchLogin(email,password))
+      //   alert(JSON.stringify(values, null, 2));
+      // dispatch(fetchLogin(email, password));
+      dispatch(fetchIsAucthenticated(true));
+      navigate("/");
     },
   });
 
   const onClickEyes = () => {
     setToggle(!toggle);
   };
-  
+
   return (
     <body class="h-screen bg-slate-50">
       {data.loading ? (
@@ -123,7 +126,6 @@ export default function LoginPage() {
                         value={formik.values.email}
                         placeholder="Email"
                         onBlur={formik.handleBlur}
-
                       />
                     </div>
 
@@ -258,20 +260,26 @@ export default function LoginPage() {
               </button>
 
               <div class="mt-6">
-                {/* <button
-                style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
-                onClick={() => navigate("/reset")}
-              >
-                Forgot password{" "}
-                </button> */}
-                <button
-                  onClick={() => navigate("/reset")}
-                  class="text-blue-800 underline underline-1"
-                >
-                  Forgot password?
-                </button>
-                {/* <p onClick={() => navigate("/reset")}>Forgot password</p> */}
+                <div class="mt-6">
+                  <a
+                    onClick={() => navigate("/reset")}
+                    class="text-blue-800 underline underline-1 cursor-pointer"
+                  >
+                    Forgot password?
+                  </a>
+
+                  <p class="mt-5">
+                    Not registered yet?{" "}
+                    <span>
+                      <a
+                        class="text-blue-800 underline underline-1 cursor-pointer"
+                        onClick={() => navigate("/register")}
+                      >
+                        Create an Account
+                      </a>
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

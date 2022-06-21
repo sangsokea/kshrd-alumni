@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import view_alumni from "../commons/images/Cover-dashboard.jpg";
 import PaginationComponent from "../components/PaginationComponent";
 import { setNumberOfLines } from "../commons/colors/colors";
+import { colors } from "../commons/colors/colors";
 import "../commons/styles/text.css";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import alumni2 from "../commons/images/Alumni/alumni2.jpg";
 import alumni3 from "../commons/images/Alumni/alumni3.jpg";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
 import alumni5 from "../commons/images/Alumni/alumni5.jpg";
+import { useNavigate } from "react-router-dom";
 // import alumni6 from "../commons/images/Alumni/alumni6.jpg";
 
 export default function ViewAlumniPage() {
   const [dropdown, setDropdown] = useState(false);
+
+  const navigate = useNavigate();
 
   const onClickDropdown = () => {
     setDropdown(!dropdown);
@@ -139,9 +143,7 @@ export default function ViewAlumniPage() {
 
               <div
                 id="dropdown"
-                className={
-                  !dropdown ? "hidden" : "flex flex-col rounded p-2"
-                }
+                className={!dropdown ? "hidden" : "flex flex-col rounded p-2"}
               >
                 <a
                   href="#"
@@ -273,10 +275,7 @@ export default function ViewAlumniPage() {
             <div class="grid grid-cols-2 gap-5">
               {data.map((item) => (
                 <div>
-                  <a
-                    href="#"
-                    class="flex flex-col items-center bg-gray-50 rounded-lg border md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md pl-5 "
-                  >
+                  <div class="flex flex-col items-center bg-gray-50 rounded-lg border md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md pl-5 p-2">
                     <img
                       class="w-24 h-auto rounded-full"
                       src={item.profile}
@@ -290,10 +289,14 @@ export default function ViewAlumniPage() {
                         {item.bio}
                       </p>
                     </div>
-                    <button class="bg-blue-500 mt-auto rounded-md pl-2.5 pr-2.5 ml-auto">
+                    <button
+                      onClick={() => navigate("/sidebar/aboutMe")}
+                      style={{ backgroundColor: colors.footer, color: "white" }}
+                      class=" mt-auto rounded-md pl-3.5 pr-3.5 ml-auto"
+                    >
                       View
                     </button>
-                  </a>
+                  </div>
                 </div>
               ))}
             </div>

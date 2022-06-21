@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
+import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,9 +39,9 @@ export default function FormRegisterPage() {
 
     if (!values.username) {
       errors.username = "Required";
-    } else if (!/^[a-zA-Z]{1,}$/i.test(values.username)) {
+    } else if (!/^[a-z A-Z]{3,}$/i.test(values.username)) {
       errors.username =
-        "Must not contain any special charactor, number or space";
+        "Must not contain any special charactor, number and more than 3 charactor";
     } else if (values.username.length > 30) {
       errors.username = "Must be 30 characters or less";
     }
@@ -55,13 +56,15 @@ export default function FormRegisterPage() {
     },
     validate,
     onSubmit: (values) => {
-      console.log(values);
-      console.log(data);
-      data?.items?.email
-        ? dispatch(
-            fetchRegister(data.items.email, values.username, values.password),
-          )
-        : navigate("/formRegister");
+      // console.log(values);
+      // console.log(data);
+      // data?.items?.email
+      //   ? dispatch(
+      //       fetchRegister(data.items.email, values.username, values.password),
+      //     )
+      //   : navigate("/formRegister");
+      dispatch(fetchIsAucthenticated(true));
+      navigate("/");
     },
   });
 

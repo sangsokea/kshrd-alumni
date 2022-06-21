@@ -7,6 +7,7 @@ import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { useFormik } from "formik";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,23 +32,41 @@ export default function RegisterPage() {
     );
   }
 
+  // custom validation
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "";
+    }
+
+    return errors;
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
-      // alert(JSON.stringify(values, null, 2));
-      values.email
-        ? dispatch(fetchEmail(values.email))
-        : console.log("NO email entered");
+    validate,
+    onSubmit: ({ email }) => {
+      //   console.log(values);
+      console.log(data);
+      //   alert(JSON.stringify(values, null, 2));
+      // dispatch(fetchLogin(email, password));
+      // dispatch(fetchIsAucthenticated(true));
+      navigate("/confirm");
     },
   });
 
-  console.log();
-  useEffect(() => {
-    data.items ? navigate("/confirm", {state: {data: data?.items ?? null}}) : navigate("/register");
-  }, [data]);
+  // console.log();
+  // useEffect(() => {
+  //   data.items
+  //     ? navigate("/confirm", { state: { data: data?.items ?? null } })
+  //     : navigate("/register");
+  // }, [data]);
   return (
     <body className="h-screen bg-slate-50">
       {data.loading ? (
@@ -115,32 +134,32 @@ export default function RegisterPage() {
                 </div>
               </h1>
               <button
-                  style={styles}
-                  class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
-                  type="submit"
-                >
-                  Next{" "}
-                  <span>
-                    <svg
-                      class="h-auto w-8 text-white pl-2"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      {" "}
-                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                      <circle cx="12" cy="12" r="9" />{" "}
-                      <line x1="16" y1="12" x2="8" y2="12" />{" "}
-                      <line x1="16" y1="12" x2="12" y2="16" />{" "}
-                      <line x1="16" y1="12" x2="12" y2="8" />
-                    </svg>
-                  </span>
-                </button>
+                style={styles}
+                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
+                type="submit"
+              >
+                Next{" "}
+                <span>
+                  <svg
+                    class="h-auto w-8 text-white pl-2"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    {" "}
+                    <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                    <circle cx="12" cy="12" r="9" />{" "}
+                    <line x1="16" y1="12" x2="8" y2="12" />{" "}
+                    <line x1="16" y1="12" x2="12" y2="16" />{" "}
+                    <line x1="16" y1="12" x2="12" y2="8" />
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </section>
@@ -152,4 +171,3 @@ export default function RegisterPage() {
 const styles = {
   backgroundColor: colors.content,
 };
-

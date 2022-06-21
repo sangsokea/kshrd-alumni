@@ -39,11 +39,11 @@ export default function CVTemplate() {
                     <div className="md:col-span-2 ">
                       <div className="mt-1 ml-5 text-left md:mt-12">
                         <span className="text-4xl font-bold font-maven ">
-                          Kong{" "}
+                          Vong{" "}
                         </span>
                         &nbsp;
                         <span className="text-3xl font-bold font-maven text-regal-bg">
-                          Sachakyarith
+                          Yuoyi
                         </span>
                       </div>
                       <div>
@@ -361,9 +361,7 @@ export default function CVTemplate() {
             >
               Finish
             </button>
-            <button
-              class="ml-5 py-3 px-10 text-blue-600 text-lg rounded-lg border border-blue-600"
-            >
+            <button class="ml-5 py-3 px-10 text-blue-600 text-lg rounded-lg border border-blue-600">
               Cancel
             </button>
           </div>

@@ -9,12 +9,12 @@ export default function ViewOwnerProfilePage() {
           {/* <img class='w-72 h-72' src={nop} alt="Image" /> */}
           <img
             class="w-full h-72"
-            src="https://www.online-4-business.de/img/dummies/slides/01.jpg"
+            src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
             alt="Image"
           />
         </div>
         <div class="flex justify-between mt-8 ">
-          <p class="text-4xl text-cB font-bold">Em Boonlin</p>
+          <p class="text-4xl text-cB font-bold">Vong Yuoyi</p>
           <NavLink to="profileViewEdit">
             <svg
               class="h-8 w-8"
@@ -34,7 +34,7 @@ export default function ViewOwnerProfilePage() {
 
         <p class="mt-3 text-2xl"> Full Stack Developer</p>
         <p class="mt-8 text-xl">
-          Hi, my name is Sang Sokea and I'm a senior software engineer. Welcome
+          Hi, my name is Vong Yuoyi and I'm a senior software engineer. Welcome
           to my personal website! in frontend and backend development for
           complex scalable web apps. If you want to know how I may help your
           project? Check out my project portfolio and online resume.
