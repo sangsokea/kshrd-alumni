@@ -7,6 +7,8 @@ import { colors } from "../../commons/colors/colors";
 
 export default function LicensesComponent() {
   const [displayLicenses, setDisplayLicenses] = useState(false);
+  const [image, setImage] = useState("https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png");
+  const [imageUrl, setImageUrl] = useState("");
 
   const [licenses, setLicenses] = useState([
     {
@@ -57,6 +59,15 @@ export default function LicensesComponent() {
     setLicenses(
       licenses.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
     );
+  };
+
+  const handleImageChange = (e) => {
+    console.log(e.target.files[0]);
+    console.log(URL.createObjectURL(e.target.files[0]));
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
+
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
   };
 
   return (
@@ -136,25 +147,17 @@ export default function LicensesComponent() {
               <div className={input.isShow ? "hidden" : "block"}>
                 <div key={index} class="mb-3 text-center">
                   <img
-                    class="m-auto"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAASFBMVEX///+hoaGenp729vb8/PyamprGxsbNzc3j4+P5+fnz8/Orq6ukpKS1tbW/v7/S0tLq6uqysrLb29vCwsLl5eW6urqVlZXQ0NC4CpzYAAACo0lEQVR4nO3b4XKCMBBGUYxEBEGo1fr+b1oQlQAhUpOOs5l7/pbJNF912Sw0SQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgetuw0k/v5w0XHZZqPr2jP9uqTVhq9+kt/dk2cARCM1B5GkqSKaEZBCxjZEAGHTKQn0GRVdXx7Lec8Axq1dFV7rOc7Axqfb+/f/ksJzqDoVdStcdyojOoh5754LGc6Ay+jXPD9v3lRGdwJIP2lx++Cx79gugMmmcGLzZRFK6fis7gWRBU6fwqHDebo6ODkJ1BctHqFoFzDtSVDVcHITyD5FSV5WHnbBP7RsqxTekZJEn+YiLaPErGfukK+Rm8kB4ehbNcKozRZzD0EIslIfYMTkYbpTL7NZFnUIzGx9o+aIg7g6EY3EuCtY2IO4Pd5GGMutiuijqD/ex5lHXOEHMGxTSBLgRLSYgog3Q/6Zi/bI8ly3lPGU8GxUGp0Ww1sz6ZVcfZctFkkHe3AGWMEc4LD6f1abpcNBlcbltW389rSnsE7TXTQ2YsGTzGq+rxV74svqOgpjOnSDIwJkr9yejqeE1j+LD04sjA6Af7k1HjfFNFjUtCHBmYQ/ZuP/nBFUFrdIyOIoOTNven945icM9p9Egmhgym/WBp7wxGIZibjiCDdNYPrnhtzZysRZDB9HC4jnGMlp/B/HC4ijFZE5/B2+8qDpM18RlUb7+z+jxGS8/g9S1g2aMkCM9g6XC47oNwn6zJziBfPByuC6GfrMnO4P1icA/hdowWnUHtGUHbM3eDJ8kZuA+H60LoJmuCM8g3Wnn7qUVnUOxDOAvOIOByUjPYZMFcK6kZ+JeCgcT/Z0qDJtDSPq87f0izC+v66Q0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwL/7BXcAHqZ+rh8wAAAAAElFTkSuQmCC"
+                    class="m-auto rounded-lg mb-3"
+                    src={imageUrl ? imageUrl : image}
+                    alt="preview"
+                    style={{height: "200px"}}
                   ></img>
-                  <div class="flex justify-center">
-                    <div class="mb-3 w-80">
-
-                    <input class="px-4 py-2 block w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-black cursor-pointer dark:text-gray-400 focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 dark:placeholder-gray-400" id="file_input" type="file"/>
-                    </div>
-                  </div>
-                  {/* <div>
-                    <button
-                      for="file-upload"
-                      class="border border-blue-600 shadow-md px-10 py-2 rounded-md text-blue-500"
-                    >
-                      Upload Certificate
-                      <input id="file-upload" type="file" class="opacity-0" />
+                  <div>
+                    <input id="upload-certificate" type="file" class="hidden" onChange={handleImageChange}/>
+                    <button type="button" class="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]">
+                      <label for="upload-certificate" class="w-full h-auto block cursor-pointer">Upload Certificate</label>
                     </button>
-                   
-                  </div> */}
+                  </div>
                 </div>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                   <div>

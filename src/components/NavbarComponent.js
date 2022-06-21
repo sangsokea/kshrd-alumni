@@ -178,7 +178,7 @@ export default function NavbarComponent() {
                       >
                         <img
                           class="w-10 h-10 rounded-full"
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaFX76XMJbvzJC_7S1rjVD5FbBt3oHhEKZhzVxRQDvLcUkJ7GmMYWpGH1tQR_OAsG76Gg&usqp=CAU"
+                          src="https://w7.pngwing.com/pngs/636/702/png-transparent-computer-icons-user-profile-avatar-black-man-heroes-desktop-wallpaper-silhouette-thumbnail.png"
                           alt="Rounded avatar"
                         ></img>
                         <p class="text-white py-1 px-2 rounded-md inline-flex justify-between items-center">

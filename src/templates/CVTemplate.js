@@ -358,10 +358,14 @@ export default function CVTemplate() {
             <button
               class="mb-10 py-3 px-10 text-white text-lg rounded-lg ml-auto"
               style={styles}
+              onClick={() => navigate("/")}
             >
               Finish
             </button>
-            <button class="ml-5 py-3 px-10 text-blue-600 text-lg rounded-lg border border-blue-600">
+            <button
+              class="ml-5 py-3 px-10 text-blue-600 text-lg rounded-lg border border-blue-600"
+              onClick={() => navigate("/sidebar/createNewCV")}
+            >
               Cancel
             </button>
           </div>

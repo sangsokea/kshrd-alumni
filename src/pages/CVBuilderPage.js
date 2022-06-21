@@ -8,8 +8,11 @@ import EducationComponent from "../components/CVBuilderComponent/EducationCompon
 import LicensesComponent from "../components/CVBuilderComponent/LicensesComponent";
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
+import { useNavigate } from "react-router-dom";
 
 export default function CVBuilderPage() {
+  const navigate = useNavigate();
+
   const payload = useSelector((state) => state);
   console.log("==> payload in CVBuilderPage");
   console.log(payload);
@@ -20,6 +23,11 @@ export default function CVBuilderPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [summary, setSummary] = useState("");
+
+  const [image, setImage] = useState(
+    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+  );
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleChangeFirstName = (e) => {
     console.log(e.target.value);
@@ -51,16 +59,34 @@ export default function CVBuilderPage() {
     setSummary(e.target.value);
   };
 
+  const handleImageChange = (e) => {
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
+
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+  };
+
   return (
     <div class="body-font font-maven p-10 bg-slate-100 rounded-tr-lg rounded-br-lg h-full">
       <div class="flex flex-row ">
         <h1 class="font-bold text-2xl">Create New Curriculum Vitae</h1>
-        <span class="w-52 ml-auto mt-0 ">
-          <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png" class="rounded-lg"></img>
-          <button class="bg-blue-500 py-3 rounded-md mt-2 w-full text-white">
-            Upload Image
+        <div class="w-64 ml-auto mt-0 ">
+          <img src={imageUrl ? imageUrl : image} class="rounded-lg" style={{height: "200px"}}></img>
+          <input
+            type="file"
+            class="hidden"
+            id="upload-image"
+            onChange={handleImageChange}
+          ></input>
+          <button
+            type="button"
+            class="bg-blue-500 h-[50px] w-full rounded-md mt-2 text-white"
+          >
+            <label class="w-full h-auto block cursor-pointer" for="upload-image">
+              Upload Image
+            </label>
           </button>
-        </span>
+        </div>
       </div>
 
       <h1 class="font-bold text-xl">Personal Information</h1>
@@ -187,10 +213,10 @@ export default function CVBuilderPage() {
 
       <div class="flex flex-row">
         <div class="ml-auto ">
-          <button class="px-12 text-lg py-2 bg-blue-600 text-white rounded-md mr-5">
+          <button class="px-12 text-lg py-2 bg-blue-600 text-white rounded-md mr-5" onClick={() => navigate("/sidebar/cvTemplate")}>
             Save
           </button>
-          <button class="px-10 text-lg py-2 border border-blue-600 text-blue-600 rounded-md">
+          <button class="px-10 text-lg py-2 border border-blue-600 text-blue-600 rounded-md" onClick={() => navigate("/")}>
             Cancel
           </button>
         </div>
