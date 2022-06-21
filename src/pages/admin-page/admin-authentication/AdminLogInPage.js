@@ -43,9 +43,7 @@ export default function AdminLogInPage() {
               
         <div className=' flex w-1/2 justify-center '>        
           <img  className='w-[460px] h-[380px]' src={aA} alt='alumini'/>
-
         </div>
-
       </div>
       <AdminFooterComponent/>
     </>
