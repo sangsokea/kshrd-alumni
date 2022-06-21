@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchIsAucthenticated } from "./redux/actions/IsAuthenticationAction";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
@@ -24,6 +25,7 @@ function App() {
     <>
       {console.log(`runing on ${process.env.NODE_ENV}`)}
       {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      <ToastContainer />
       <BasicRoute />
     </>
   );

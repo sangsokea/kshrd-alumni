@@ -6,6 +6,7 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CUSTOM_WARNING } from "../commons/notify/Notify";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -120,11 +121,15 @@ export default function NavbarComponent() {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
-                                  onClick={() =>
+                                  onClick={() => {
+                                    !isAuth &&
+                                      CUSTOM_WARNING(
+                                        "Please! login to access more feature",
+                                      );
                                     isAuth
                                       ? navigate("/sidebar/createNewCV")
-                                      : navigate("/login")
-                                  }
+                                      : navigate("/login");
+                                  }}
                                   className={classNames(
                                     active
                                       ? "bg-gray-100 text-gray-900"
@@ -139,11 +144,15 @@ export default function NavbarComponent() {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
-                                  onClick={() =>
+                                  onClick={() => {
+                                    !isAuth &&
+                                      CUSTOM_WARNING(
+                                        "Please! login to access more feature",
+                                      );
                                     isAuth
                                       ? navigate("/sidebar/cvTemplate")
-                                      : navigate("/login")
-                                  }
+                                      : navigate("/login");
+                                  }}
                                   className={classNames(
                                     active
                                       ? "bg-gray-100 text-gray-900"

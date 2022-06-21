@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 const notify = () => {
   toast("Default Notification !");
 
@@ -54,3 +55,9 @@ export const ERROR_DELETED = (message) =>
   toast.error(message ? message : "Error delete!", {
     position: toast.POSITION.TOP_CENTER,
   });
+
+export const CUSTOM_WARNING = (message) => {
+  toast.warn(message, {
+    position: toast.POSITION.TOP_LEFT,
+  });
+}
