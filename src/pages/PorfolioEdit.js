@@ -259,12 +259,11 @@ export default function PorfolioEdit() {
                   {Desc ? null : (
                     <div className="grid grid-cols-2 ">
                       <div className="">
-                        <input
+                        <textarea
                           class=" ml-10 laptop:w-96 tablet:w-96  w-60 desktop:w-222 mb-5 outline outline-offset-2 desktop:h-14 laptop:h-10 outline-1 laptop:py-2 desktop:py-2 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
                           value={desc}
                           name="desc"
                           onChange={handleDescChange}
-                          type="text"
                           placeholder=""
                         />
                       </div>
