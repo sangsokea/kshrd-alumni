@@ -36,17 +36,19 @@ export default function NavbarComponent() {
           className="bg-white px-4 py-2.5 text-white body-font font-maven tablet:text-sm overflow-hidden"
           style={styles}
         >
-          <div className="container flex flex-wrap items-center justify-between mx-auto">
-            <button onClick={() => navigate("/")} className="items-center">
+          <div className="container flex items-center justify-between mx-auto">
+            <div onClick={() => navigate("/")} className="items-center">
               <span className="self-center text-3xl font-bold tracking-wider whitespace-nowrap">
                 KSHRD ALUMNI
               </span>
-            </button>
+            </div>
+
+            {/* Hamburger button */}
             <button
               onClick={() => setOpenNavbar(!openNavbar)}
               data-collapse-toggle="mobile-menu"
               type="button"
-              className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg laptop:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="p-2 text-sm text-gray-500 rounded-lg laptop:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >
@@ -76,16 +78,18 @@ export default function NavbarComponent() {
                 ></path>
               </svg>
             </button>
+
+            {/* Navbar Menu */}
             <div>
               <div
                 className={
                   openNavbar
                     ? "hidden"
-                    : "w-full flex justify-start"
+                    : "block"
                 }
                 id="mobile-menu"
               >
-                <ul className="flex flex-col mt-4 text-sm laptop:text-md desktop:text-lg laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:font-medium laptop:items-center">
+                <ul className="w-full justify-start flex flex-col mt-4 text-sm laptop:text-md desktop:text-lg laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:font-medium laptop:items-center">
                   <li>
                     <button
                       onClick={() => navigate("/viewAlumni")}
@@ -96,6 +100,7 @@ export default function NavbarComponent() {
                     </button>
                   </li>
 
+                  {/* Dropdown */}
                   <div className="z-10 block py-2 text-white rounded laptop:bg-transparent laptop:p-0 dark:text-white">
                     <Menu as="div" className="inline-block text-left">
                       <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">

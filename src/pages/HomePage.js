@@ -19,6 +19,7 @@ import morakot from "../commons/images/partner logo/morakot.png";
 import nipa from "../commons/images/partner logo/nipa.png";
 import webcash from "../commons/images/partner logo/webcash.jpg";
 import WeMB from "../commons/images/partner logo/WeMB.png";
+import { NavLink } from "react-router-dom";
 
 const settings = {
   classNameName: "center",
@@ -106,21 +107,21 @@ export default function HomePage() {
               <div className="grid grid-cols-2 laptop:grid-cols-3">
                 <div className="col-span-1">
                   <ul className="text-gray-900 bg-white rounded-lg w-30 ">
-                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
+                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
                       Public Sector
-                    </li>
-                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
+                    </NavLink>
+                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Universities
-                    </li>
-                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
+                    </NavLink>
+                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Global Companies
-                    </li>
-                    <li className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
+                    </NavLink>
+                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
                       Local Companies
-                    </li>
-                    <li className="grid w-full grid-rows-1 py-2 rounded-b-lg">
+                    </NavLink>
+                    <NavLink to="" className="grid w-full grid-rows-1 py-2 rounded-b-lg">
                       Bank & Finance
-                    </li>
+                    </NavLink>
                   </ul>
                 </div>
 
