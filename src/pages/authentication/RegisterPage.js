@@ -79,14 +79,14 @@ export default function RegisterPage() {
       <h1>{data?.items?.email}</h1>
       <form
         onSubmit={formik.handleSubmit}
-        className="flex justify-center items-center w-full"
+        className="flex items-center justify-center w-full"
       >
         <section className="text-gray-600 body-font font-maven">
-          <div className="w-full max-w-xl container mx-auto">
-            <div className="row mt-24">
+          <div className="container w-full max-w-xl mx-auto">
+            <div className="mt-24 row">
               <div
                 style={styles}
-                className="p-6 text-xl text-white rounded-br-3xl justify-center"
+                className="justify-center p-6 text-xl text-white rounded-br-3xl"
               >
                 <h1 style={{ textTransform: "uppercase" }} className="text-2xl">
                   welcome <br></br>to{" "}
@@ -95,14 +95,14 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className="text-center mt-6">
+            <div className="mt-6 text-center">
               <p className="text-xl">Sign up</p>
               <p className="mt-8">Continue to Gmail</p>
-              <h1 className="border-b border-b-black pb-2 pt-16">
+              <h1 className="pt-16 pb-2 border-b border-b-black">
                 <div className="row">
                   <div className="grid grid-cols-3">
                     <svg
-                      className="h-auto w-7 text-black"
+                      className="h-auto text-black w-7"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                     </svg>
                     <div>
                       <input
-                        className="w-full py-1 px-3 text-gray-700 focus:outline-none bg-slate-50 text-center"
+                        className="w-full px-3 py-1 text-center text-gray-700 focus:outline-none bg-slate-50"
                         id="email"
                         name="email"
                         type="email"
@@ -135,13 +135,13 @@ export default function RegisterPage() {
               </h1>
               <button
                 style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-16"
+                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
                 type="submit"
               >
                 Next{" "}
                 <span>
                   <svg
-                    class="h-auto w-8 text-white pl-2"
+                    className="w-8 h-auto pl-2 text-white"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"

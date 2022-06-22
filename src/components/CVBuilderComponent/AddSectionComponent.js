@@ -56,15 +56,15 @@ export default function AddSectionComponent() {
   return (
     <>
       {/* Add Section */}
-      <div class="mb-6">
+      <div className="mb-6">
         <label
           for="large-input"
-          class="mb-2 text-md font-medium dark:text-black flex flex-row"
+          className="flex flex-row mb-2 font-medium text-md dark:text-black"
         >
           Add Section
           <span onClick={addFieldsSection}>
             <svg
-              class="h-auto w-6 text-black ml-2"
+              className="w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -80,18 +80,18 @@ export default function AddSectionComponent() {
         </label>
 
         {/* Dynamic form for Licenses and Certifications */}
-        <div className={!displaySection ? "hidden" : "block"}>
+        <div classNameName={!displaySection ? "hidden" : "block"}>
           {section.map((input, index) => (
-            <form onSubmit={submit} class="bg-white mt-5 p-5 rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               <div
-                class="mb-5 flex flex-row"
+                className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
               >
                 {input.customSection ? input.customSection : "(Not Specified)"}
-                <span class="ml-auto">
+                <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ export default function AddSectionComponent() {
                     </svg>
                   ) : (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -125,17 +125,17 @@ export default function AddSectionComponent() {
                 </span>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
-                <div key={index} class="mb-5">
+              <div classNameName={input.isShow ? "hidden" : "block"}>
+                <div key={index} className="mb-5">
                   <div>
                     <label
                       for="customSection"
-                      class="block mb-2 text-sm font-medium dark:text-black"
+                      className="block mb-2 text-sm font-medium dark:text-black"
                     >
                       Please input your title
                     </label>
                     <textarea
-                      class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="customSection"
                       placeholder="Spring Framework"
                       value={input.customSection}
@@ -148,14 +148,14 @@ export default function AddSectionComponent() {
               <button
                 onClick={submit}
                 style={styles}
-                class="mr-5 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
               </button>
 
               <button
                 onClick={() => removeFieldsSection(index)}
-                class="bg-red-600 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>

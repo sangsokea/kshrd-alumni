@@ -60,15 +60,15 @@ export default function SkillsComponent() {
   return (
     <>
       {/* Skills */}
-      <div class="mb-6">
+      <div className="mb-6">
         <label
           for="large-input"
-          class="mb-2 text-md font-medium dark:text-black flex flex-row"
+          className="flex flex-row mb-2 font-medium text-md dark:text-black"
         >
           Skills
           <span onClick={addFieldsSkill}>
             <svg
-              class="h-auto w-6 text-black ml-2"
+              className="w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -86,16 +86,16 @@ export default function SkillsComponent() {
         {/* Dynamic form for Skill section */}
         <div className={!displaySkill ? "hidden" : "block"}>
           {skill.map((input, index) => (
-            <form onSubmit={submit} class="bg-white mt-5 p-5 rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               <div
-                class="mb-5 flex flex-row"
+                className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
               >
                 {input.skill ? input.skill : "(Not Specified)"}
-                <span class="ml-auto">
+                <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ export default function SkillsComponent() {
                     </svg>
                   ) : (
                     <svg
-                      class="h-auto w-6 text-gray-500"
+                      className="w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -130,17 +130,17 @@ export default function SkillsComponent() {
               </div>
 
               <div className={input.isShow ? "hidden" : "block"}>
-                <div key={index} class="mb-3 ">
-                  <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div key={index} className="mb-3 ">
+                  <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                       <label
                         for="skill"
-                        class="block mb-2 text-sm font-medium dark:text-black"
+                        className="block mb-2 text-sm font-medium dark:text-black"
                       >
                         Skill
                       </label>
                       <input
-                        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="skill"
                         placeholder="Spring Framework"
                         value={input.skill}
@@ -152,7 +152,7 @@ export default function SkillsComponent() {
                     <div>
                       <label
                         for="levelExpert"
-                        class="block mb-2 text-sm font-medium dark:text-black"
+                        className="block mb-2 text-sm font-medium dark:text-black"
                       >
                         Level Expert
                       </label>
@@ -163,30 +163,26 @@ export default function SkillsComponent() {
                         value={input.levelExpert}
                         type="text"
                         name="levelExpert"
-                        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
                       />
                     </div>              
                   </div>
-               
-                  {/* <Button onClick={() => removeFields(index)} variant="danger">
-          Remove Field
-        </Button> */}
                 </div>
               </div>
 
               <button
                 onClick={submit}
                 style={styles}
-                class="mr-5 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
               </button>
 
               <button
                 onClick={() => removeFieldsSkills(index)}
-                class="bg-red-600 text-white rounded-md px-5 py-2"
+                className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>

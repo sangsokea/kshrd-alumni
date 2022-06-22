@@ -24,6 +24,7 @@ function App() {
 
   return (
     <>
+
       {console.log(`runing on ${process.env.NODE_ENV}`)}
       {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
       <ToastContainer />

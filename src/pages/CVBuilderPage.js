@@ -8,8 +8,11 @@ import EducationComponent from "../components/CVBuilderComponent/EducationCompon
 import LicensesComponent from "../components/CVBuilderComponent/LicensesComponent";
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
+import { useNavigate } from "react-router-dom";
 
 export default function CVBuilderPage() {
+  const navigate = useNavigate();
+
   const payload = useSelector((state) => state);
   console.log("==> payload in CVBuilderPage");
   console.log(payload);
@@ -20,6 +23,11 @@ export default function CVBuilderPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [summary, setSummary] = useState("");
+
+  const [image, setImage] = useState(
+    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+  );
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleChangeFirstName = (e) => {
     console.log(e.target.value);
@@ -51,33 +59,58 @@ export default function CVBuilderPage() {
     setSummary(e.target.value);
   };
 
+  const handleImageChange = (e) => {
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
+
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+  };
+
   return (
-    <div class="body-font font-maven p-10 bg-slate-100 rounded-tr-lg rounded-br-lg h-full">
-      <div class="flex flex-row ">
-        <h1 class="font-bold text-2xl">Create New Curriculum Vitae</h1>
-        <span class="w-52 ml-auto mt-0 ">
-          <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png" class="rounded-lg"></img>
-          <button class="bg-blue-500 py-3 rounded-md mt-2 w-full text-white">
-            Upload Image
+    <div className="h-full p-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100">
+      <div className="flex flex-row ">
+        <h1 className="text-2xl font-bold">Create New Curriculum Vitae</h1>
+        <div className="w-64 mt-0 ml-auto ">
+          <img
+            src={imageUrl ? imageUrl : image}
+            className="rounded-lg"
+            style={{ height: "200px" }}
+          ></img>
+          <input
+            type="file"
+            className="hidden"
+            id="upload-image"
+            onChange={handleImageChange}
+          ></input>
+          <button
+            type="button"
+            className="bg-blue-500 h-[50px] w-full rounded-md mt-2 text-white"
+          >
+            <label
+              className="block w-full h-auto cursor-pointer"
+              for="upload-image"
+            >
+              Upload Image
+            </label>
           </button>
-        </span>
+        </div>
       </div>
 
-      <h1 class="font-bold text-xl">Personal Information</h1>
+      <h1 className="text-xl font-bold">Personal Information</h1>
 
       <div>
         <form>
-          <div class="grid gap-6 mb-6 lg:grid-cols-2 mt-2">
+          <div className="grid gap-6 mt-2 mb-6 lg:grid-cols-2">
             {/* First Name */}
             <div>
               <label
                 for="first_name"
-                class="block mb-2 text-md font-medium dark:text-black"
+                className="block mb-2 font-medium text-md dark:text-black"
               >
                 First name
               </label>
               <input
-                class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handleChangeFirstName}
                 type="text"
                 id="first_name"
@@ -90,7 +123,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="last_name"
-                class="block mb-2 text-md font-medium dark:text-black"
+                className="block mb-2 font-medium text-md dark:text-black"
               >
                 Last name
               </label>
@@ -98,7 +131,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangeLastName}
                 type="text"
                 id="last_name"
-                class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Doe"
                 required
               />
@@ -108,7 +141,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="email"
-                class="block mb-2 text-md font-medium dark:text-black"
+                className="block mb-2 font-medium text-md dark:text-black"
               >
                 Email
               </label>
@@ -116,7 +149,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangeEmail}
                 type="email"
                 id="email"
-                class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="john.doe@company.com"
                 required
               />
@@ -126,7 +159,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="phone"
-                class="block mb-2 text-md font-medium dark:text-black"
+                className="block mb-2 font-medium text-md dark:text-black"
               >
                 Phone number
               </label>
@@ -134,7 +167,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangePhoneNumber}
                 type="tel"
                 id="phone"
-                class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="123-45-678"
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               />
@@ -142,10 +175,10 @@ export default function CVBuilderPage() {
           </div>
 
           {/* Address */}
-          <div class="mb-6">
+          <div className="mb-6">
             <label
               for="large-input"
-              class="block mb-2 text-md font-medium dark:text-black"
+              className="block mb-2 font-medium text-md dark:text-black"
             >
               Address
             </label>
@@ -153,15 +186,15 @@ export default function CVBuilderPage() {
               onChange={handleChangeAddress}
               type="text"
               id="large-input"
-              class="focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-4 w-full bg-gray-50 rounded-lg border border-gray-300 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
 
           {/* Summary */}
-          <div class="mb-6">
+          <div className="mb-6">
             <label
               for="large-input-summary"
-              class="mb-2 text-md font-medium dark:text-black flex flex-row"
+              className="flex flex-row mb-2 font-medium text-md dark:text-black"
             >
               Summary
             </label>
@@ -169,7 +202,7 @@ export default function CVBuilderPage() {
               onChange={handleChangeSummary}
               type="text"
               id="large-input-summary"
-              class="focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-4 w-full bg-gray-50 rounded-lg border border-gray-300 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
 
@@ -185,12 +218,18 @@ export default function CVBuilderPage() {
         </form>
       </div>
 
-      <div class="flex flex-row">
-        <div class="ml-auto ">
-          <button class="px-12 text-lg py-2 bg-blue-600 text-white rounded-md mr-5">
+      <div className="flex flex-row">
+        <div className="ml-auto ">
+          <button
+            className="px-12 py-2 mr-5 text-lg text-white bg-blue-600 rounded-md"
+            onClick={() => navigate("/sidebar/cvTemplate")}
+          >
             Save
           </button>
-          <button class="px-10 text-lg py-2 border border-blue-600 text-blue-600 rounded-md">
+          <button
+            className="px-10 py-2 text-lg text-blue-600 border border-blue-600 rounded-md"
+            onClick={() => navigate("/")}
+          >
             Cancel
           </button>
         </div>
