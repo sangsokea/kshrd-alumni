@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <CenteredTabs />
-      <NavbarComponent/>
+      {/* <NavbarComponent/> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
