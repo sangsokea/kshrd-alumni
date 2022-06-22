@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import AdminManageStudentComponent from "../components/admin-component/AdminManageStudentComponent";
 import CenteredTabs from "../components/CenteredTabs";
 import FooterComponent from "../components/FooterComponent";
 import NavbarComponent from "../components/NavbarComponent";
@@ -17,12 +18,12 @@ import PorfolioPage from "../pages/PorfolioPage";
 import CvTemplate from "../pages/template/CvTemplate";
 import ViewAlumniPage from "../pages/ViewAlumniPage";
 import ViewOwnerProfilePage from "../pages/ViewOwnerProfilePage";
+import AdminBasicRoute from "./AdminBasicRoute";
 
 function BasicRoute() {
   return (
     <>
       <NavbarComponent />
-
       {/* <CenteredTabs /> */}
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
@@ -49,6 +50,7 @@ function BasicRoute() {
         <Route path="/portfolioedit" element={<PorfolioEdit/>}></Route>
       </Routes>
       <FooterComponent />
+
     </>
   );
 }
