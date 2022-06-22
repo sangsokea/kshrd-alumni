@@ -28,9 +28,30 @@ code {
 
 @font-face {
   font-family: "MAVEN";
-  src: url("./commons/MavenPro-VariableFont_wght.ttf");
+
+  src: url("./commons/fonts/MavenPro-VariableFont_wght.ttf");
 }
 
+button.slick-arrow.slick-prev::before {
+  z-index: 1000;
+  color: blue;
+}
+
+button.slick-arrow.slick-next::before {
+  z-index: 1000;
+  color: blue;
+}
+
+nav.side-navigation-panel {
+  flex-wrap: nowrap;
+  display: inline-block;
+}
+
+/* .cke_chrome{
+  border-radius: 50px ;
+  border: 1px solid #695656;
+  border-width: thin;        
+} */
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;

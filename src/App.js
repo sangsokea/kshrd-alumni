@@ -1,20 +1,31 @@
-import { Route, Routes } from "react-router-dom";
-import CenteredTabs from "./components/CenteredTabs";
-import LoginPage from "./pages/authentication/LoginPage";
-import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/authentication/RegisterPage";
-import ConfirmPage from "./pages/authentication/ConfirmPage";
-import NavbarComponent from "./components/NavbarComponent";
-import ResetPasswordPage from "./pages/authentication/ResetPasswordPage";
-import CvTemplate from "./pages/template/CvTemplate";
-import HrdCvTemplate from "./pages/template/HrdCvTemplate";
-import PorfolioPage from "./pages/PorfolioPage";
-import PorfolioEdit from "./pages/PorfolioEdit";
+import BasicRoute from "./Router/BasicRoute";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchIsAucthenticated } from "./redux/actions/IsAuthenticationAction";
+import { ToastContainer, toast } from "react-toastify";
+
 function App() {
+  const isAuth = useSelector((state) => state.isAuth, shallowEqual);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getIsAuth = localStorage.getItem("isAuth");
+    getIsAuth && JSON.parse(getIsAuth)
+      ? dispatch(fetchIsAucthenticated(true))
+      : dispatch(fetchIsAucthenticated(false));
+  }, []);
+
+  useEffect(() => {
+    isAuth ? localStorage.setItem("isAuth", true) : console.log("");
+  }, [isAuth]);
+
   return (
     <>
-      <CenteredTabs />
-      {/* <NavbarComponent/> */}
+
+      {/* <CenteredTabs />
+      {/* <NavbarComponent/> *
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -25,7 +36,14 @@ function App() {
         <Route path="/hrdcv" element={<HrdCvTemplate/>} />
         <Route path="/porfolio" element={<PorfolioPage />} />
         <Route path="/porfolioedit" element={<PorfolioEdit />} />
-      </Routes>
+      </Routes> */}
+
+
+      {console.log(`runing on ${process.env.NODE_ENV}`)}
+      {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      <ToastContainer />
+      <BasicRoute />
+
     </>
   );
 }

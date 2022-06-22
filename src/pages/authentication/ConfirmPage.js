@@ -1,34 +1,81 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { colors } from "../../commons/colors";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
 // import OTPInput from "otp-input-react";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ConfirmPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [inputSecretCode, setInputSecretCode] = useState("");
+  const [resendCode, setResendCode] = useState();
+  const [code, setCode] = useState();
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    setCode(717273);
+    setInputSecretCode(717273);
+  }, []);
+
+  // method
+
+  // --> validate code between input and code from api
+  const onValidateCode = (e) => {
+    console.log(e);
+    console.log(code);
+    console.log(inputSecretCode);
+    console.log(showMessage);
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    if (code == inputSecretCode) {
+      navigate("/formRegister");
+    } else {
+      toast.error("Code Incorrect !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
+  // --> validate code between input and code from api
+
+  const onIncorrectValidation = () => {};
+
+  // useEffect(() => {
+  //   const oldData = location.state?.data?.verifyCode;
+  //   console.log(`====> /ConfirmPage: data from registerPage`);
+  //   console.log(location.state?.data);
+  //   oldData ? setCode(oldData) : setCode(0);
+  // }, [navigate]);
 
   return (
-    <body class="h-screen bg-slate-50">
-      <form class="flex justify-center items-center w-full">
-        <section class="text-gray-600 body-font font-maven">
-          <div class="w-full max-w-xl container mx-auto ">
-            <div class="row mt-24">
+    <body className="h-screen bg-slate-50">
+      <ToastContainer />
+      <form
+        onSubmit={(e) => onValidateCode(e)}
+        stopPropagation
+        className="flex items-center justify-center w-full"
+      >
+        <section className="text-gray-600 body-font font-maven">
+          <div className="container w-full max-w-xl mx-auto ">
+            <div className="mt-24 row">
               <div
                 style={styles}
-                class="p-6 text-xl text-white rounded-br-3xl justify-center"
+                className="justify-center p-6 text-xl text-white rounded-br-3xl"
               >
-                <h1 style={{ textTransform: "uppercase" }} class="text-2xl">
+                <h1 style={{ textTransform: "uppercase" }} className="text-2xl">
                   welcome <br></br>to{" "}
-                  <span class="font-bold">kshrd alumni</span>
+                  <span className="font-bold">kshrd alumni</span>
                 </h1>
               </div>
             </div>
-            <div class="text-center mt-6">
+            <div className="mt-6 text-center">
               <div>
                 <svg
-                  class="h-auto w-8 text-black flex items-center p-auto m-auto"
+                  className="flex items-center w-8 h-auto m-auto text-black p-auto"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -42,11 +89,11 @@ export default function ConfirmPage() {
                 </svg>
               </div>
 
-              <p class="mt-4">
+              <p className="mt-4">
                 Enter the 6 digit codes we sent you via email to continue
               </p>
-              <div class="grid grid-cols-6 gap-4">
-                <div class="border-b-2 border-b-black pb-1 pt-5 flex items-center">
+              <div className="grid grid-cols-6 gap-4">
+                <div className="flex items-center pt-5 pb-1 border-b-2 border-b-black">
                   <OtpInput
                     value={inputSecretCode}
                     onChange={setInputSecretCode}
@@ -69,22 +116,22 @@ export default function ConfirmPage() {
                     }}
                   />
                 </div>
-                <div class="border-b-2 border-b-black pb-1 pt-3"></div>
-                <div class="border-b-2 border-b-black pb-1 pt-3"></div>
-                <div class="border-b-2 border-b-black pb-1 pt-3"></div>
-                <div class="border-b-2 border-b-black pb-1 pt-3"></div>
-                <div class="border-b-2 border-b-black pb-1 pt-3"></div>
+                <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
+                <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
+                <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
+                <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
+                <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
               </div>
-              <p class="text-blue-800 mt-6">code expires in 00:56</p>
+              <p className="mt-6 text-blue-800">code expires in 00:56</p>
               <button
                 style={styles}
-                class="text-white py-1 px-8 rounded-md inline-flex justify-between content-center mt-6"
-                onClick={() => navigate("/login")}
+                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
+                type="submit"
               >
                 Continue{" "}
                 <span>
                   <svg
-                    class="h-auto w-8 text-white pl-2"
+                    className="w-8 h-auto pl-2 text-white"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -103,9 +150,9 @@ export default function ConfirmPage() {
                   </svg>
                 </span>
               </button>
-              <p class="mt-8">
+              <p className="mt-8">
                 Didn't get the code?{" "}
-                <a href="#" class="text-blue-800 underline underline-offset-1">
+                <a href="#" className="text-blue-800 underline underline-offset-1">
                   Resend code
                 </a>
               </p>
