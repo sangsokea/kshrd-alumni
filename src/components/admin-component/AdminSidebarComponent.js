@@ -55,7 +55,7 @@ export default function AdminSidebarComponent() {
         </div>
         <div className='w-4/5 mx-10 mt-32 font-maven'>
           <div className=' flex justify-between'>
-            <p className='font-f36 font-bold text-ch text-4xl  laptop: text-white'>Welcome back, Admin!</p>
+            <p className='font-f36 font-bold text-ch text-4xl '>Welcome back, Admin!</p>
             <div className='flex'>
               <svg class="h-7 w-7" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z" />  <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />  <circle cx="12" cy="12" r="3" /></svg>
               <div className='mx-5'>
@@ -73,7 +73,7 @@ export default function AdminSidebarComponent() {
           </div>
 
           <div className='flex'>
-            <a href="#" class=" block py-3 pl-4 pr-20 max-w-sm bg-bg1 rounded-lg border border-gray-200 s hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a href="#" class=" block py-3 pl-4 pr-20 max-w-sm bg-bg1 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
               <p class="font-bold  text-white text-xl">
                 560
               </p>

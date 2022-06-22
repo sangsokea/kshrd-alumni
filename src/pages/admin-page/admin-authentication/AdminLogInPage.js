@@ -5,7 +5,7 @@ import AdminFooterComponent from '../../../components/admin-component/AdminFoote
 export default function AdminLogInPage() {
   return (
     <>
-      <div className='  flex my-48 font-maven items-center tablet:bg-neutral-500 laptop:bg-red-500 desktop:bg-amber-200'>
+      <div className='flex my-48 font-maven items-center'>
 
         <div className='w-1/2 flex  text-f14 justify-center '>
           <form className=''>
@@ -41,8 +41,8 @@ export default function AdminLogInPage() {
           </form>
         </div>
               
-        <div className=' flex w-1/2 justify-center '>        
-          <img  className='w-[460px] h-[380px]' src={aA} alt='alumini'/>
+        <div className=' w-1/2 justify-center hidden laptop:block'>        
+          <img  className='w-[460px] h-[380px] ' src={aA} alt='alumini'/>
         </div>
       </div>
       <AdminFooterComponent/>
