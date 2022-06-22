@@ -4,10 +4,9 @@ import aA from '../../../commons/images/partner logo/aluminiAdmin.png'
 import AdminFooterComponent from '../../../components/admin-component/AdminFooterComponent'
 export default function AdminLogInPage() {
   return (
-    <>
-      <div className='flex my-48 font-maven items-center'>
-
-        <div className='w-1/2 flex  text-f14 justify-center '>
+    <div className=' bg-gradient-to-t from-blue-100  '>
+      <div className='flex py-48 font-maven items-center '>
+          <div className='w-1/2 flex  text-f14 justify-center '> 
           <form className=''>
             <p className='text-f34 font-bold text-ccon'>WELCOME BACK</p>
             <p className='text-cth'>Welcome back! Please enter your details.</p>
@@ -37,16 +36,19 @@ export default function AdminLogInPage() {
               </label>
               <NavLink to='' className='font-medium'>Forgot Password</NavLink>
             </div>
+            <NavLink to='homePage'>
             <button className='border rounded-lg py-2 w-full font-bold bg-ccon text-white hover:bg-cfoo' > Sign in </button>
+            </NavLink>
           </form>
-        </div>
               
-        <div className=' w-1/2 justify-center hidden laptop:block'>        
+          </div>
+      
+        <div className=' w-1/2 justify-center hidden laptop:block desktop:block'>        
           <img  className='w-[460px] h-[380px] ' src={aA} alt='alumini'/>
         </div>
       </div>
       <AdminFooterComponent/>
-    </>
+    </div>
     
   )
 

@@ -5,8 +5,8 @@ import pr from '../../commons/images/profile.png'
 import AdminFooterComponent from './AdminFooterComponent'
 export default function AdminSidebarComponent() {
   return (
-    <div>
-      <div className='flex '>
+    <div className='bg-gradient-to-b from-blue-100'>
+      <div className='flex bg-gradient-to-b from-blue-100 container mx-auto'>
         <div className='bg-ccon w-1/5 pt-[50px] font-maven text-white text-xl'>
           <div className='flex justify-center '>
             <img className='w-[156px] h-[94px]' src={lg} alt='aluminiLogo' />
@@ -131,10 +131,10 @@ export default function AdminSidebarComponent() {
           </div>
 
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
-            <div className='text-xl px-6 py-4 text-ccon font-bold border border-md '>
+            <div className='text-xl px-6 py-4 text-ccon font-bold border border-md  bg-white '>
               Total Alumni
             </div>
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400  bg-white">
               <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="px-6 py-3">
@@ -300,10 +300,11 @@ export default function AdminSidebarComponent() {
             </nav>
           </div>
           </div>
-        
+    
         </div>
       </div>
       <AdminFooterComponent/>
+
     </div>
 
 

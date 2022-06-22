@@ -46,12 +46,14 @@ module.exports = {
         f34: ['34px', '51px'],
         f14: ['14px', '21px'],
         f36: ['36px', '42px'],
-
-
+      },
+      backgroundImage: {
+        
 
       }
-
+  
     },
+ 
 
   },
 

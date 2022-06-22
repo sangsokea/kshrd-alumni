@@ -6,12 +6,9 @@ import AdminLogInPage from '../pages/admin-page/admin-authentication/AdminLogInP
 export default function AdminBasicRoute() {
   return (
     <>
-
       <Routes>
-
-            <Route path="/login" element={<AdminLogInPage/>}/ >
-            <Route path="/homePage" element={<AdminSidebarComponent/>} />
-
+            <Route path="/login" element={<AdminLogInPage/>} />
+            <Route path="/login/homePage" element={<AdminSidebarComponent/>} />
       </Routes>
     </>
   )
