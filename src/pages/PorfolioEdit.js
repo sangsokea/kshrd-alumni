@@ -47,6 +47,7 @@ export default function PorfolioEdit() {
     setTitleValues(titleFormValues);
     console.log(titleFormValues);
   };
+  
   const handleDescChange = (e) => {
     setDescValues(e.target.value);
     console.log(e.target.value);
@@ -242,6 +243,7 @@ export default function PorfolioEdit() {
                     )}
                   </div>
                 </div>
+
                 <button
                   class="ml-8 rounded-md desktop:text-xl laptop:text-lg  mt-3  inline-flex justify-between content-center"
                   onClick={() => setDesc((Prev) => !Prev)}
@@ -466,7 +468,7 @@ export default function PorfolioEdit() {
                     Save
                   </button>
                   <button
-                    class="bg-transparent  w-36 h-12 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    class=" w-36 h-12 text-blue-600 py-2 px-4 border border-blue-500 rounded"
                     onClick={() => navigate("/portfolio")}
                   >
                     Cancel

@@ -27,6 +27,7 @@ export default function NavbarComponent() {
             alt="logo homepage"
             style={{ ...styles, ...logoStyle }}
             className="border-none"
+            onClick={() => navigate("/")}
           />
         </div>
       </div>
@@ -38,7 +39,7 @@ export default function NavbarComponent() {
         >
           <div className="container flex items-center justify-between mx-auto">
             <div onClick={() => navigate("/")} className="items-center">
-              <span className="self-center text-3xl font-bold tracking-wider whitespace-nowrap">
+              <span className="self-center text-3xl font-bold tracking-wider whitespace-nowrap cursor-pointer">
                 KSHRD ALUMNI
               </span>
             </div>

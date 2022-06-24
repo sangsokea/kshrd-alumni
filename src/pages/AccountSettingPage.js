@@ -107,7 +107,7 @@ export default function AccountSettingPage() {
 
         <div
           id="changePassword"
-          classNameName={!changePassword ? "hidden" : "block"}
+          className={!changePassword ? "hidden" : "block"}
         >
           <div className="grid grid-cols-4 mt-10 text-xl">
             <div className="col-span-1">

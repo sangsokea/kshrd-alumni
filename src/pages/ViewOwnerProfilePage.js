@@ -15,7 +15,7 @@ export default function ViewOwnerProfilePage() {
         </div>
         <div className="flex justify-between mt-8 ">
           <p className="text-4xl font-bold text-cB">Vong Yuoyi</p>
-          <NavLink to="profileViewEdit">
+          <NavLink to="/sidebar/aboutMeEdit">
             <svg
               className="w-8 h-8"
               fill="none"
@@ -53,9 +53,9 @@ export default function ViewOwnerProfilePage() {
         <div className="flex justify-between mx-3 mt-20">
           <div className="w-48">
             <img
-              className="w-12 h-12 "
+              className="w-auto h-12 "
               src=" https://www.computerhope.com/jargon/j/javascript.png"
-              alt="f1"
+              alt="JavaScript"
             />
             <p className="text-xl font-medium">Java Script</p>
             <p>Sample text text text text text text text.</p>
@@ -63,19 +63,19 @@ export default function ViewOwnerProfilePage() {
 
           <div className="w-48">
             <img
-              className="w-12 h-12 "
+              className="w-auto h-12 "
               src="https://res.cloudinary.com/practicaldev/image/fetch/s--zrUJwvgZ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bupbqc9fctvw4j7r14it.png"
-              alt="f1"
+              alt="Spring Boot"
             />
             <p className="text-xl font-medium">Spring Boot</p>
             <p>Sample text text text text text text text.</p>
           </div>
 
-          <div className="items-center w-1/3 ">
+          <div className="">
             <img
-              className="w-12 h-12 "
+              className="w-auto h-12 "
               src="https://www.inapps.net/wp-content/uploads/2022/05/java_logo_640.jpg"
-              alt="f1"
+              alt="Java Programming"
             />
             <p className="text-xl font-medium">Java Programming</p>
             Sample text text text text text text text.

@@ -39,7 +39,7 @@ export default function SkillsComponent() {
     }
   };
 
-  const onDropDwon = (id) => {
+  const onDropDown = (id) => {
     setSkill(skill.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x)));
   };
 
@@ -89,7 +89,7 @@ export default function SkillsComponent() {
             <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               <div
                 className="flex flex-row mb-5"
-                onClick={() => onDropDwon(input.id)}
+                onClick={() => onDropDown(input.id)}
               >
                 {input.skill ? input.skill : "(Not Specified)"}
                 <span className="ml-auto">

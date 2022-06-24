@@ -20,6 +20,8 @@ import nipa from "../commons/images/partner logo/nipa.png";
 import webcash from "../commons/images/partner logo/webcash.jpg";
 import WeMB from "../commons/images/partner logo/WeMB.png";
 import { NavLink } from "react-router-dom";
+import PartnerSideComponent from "../components/partner-section/PartnerSideComponent";
+import DefaultPartnerComponent from "../components/partner-section/DefaultPartnerComponent";
 
 const settings = {
   classNameName: "center",
@@ -103,11 +105,14 @@ export default function HomePage() {
           </p>
 
           <div className="mt-4">
-            <div className="grid grid-row-1">
+            <PartnerSideComponent/>
+            {/* <DefaultPartnerComponent/> */}
+            {/* <div className="grid grid-row-1">
               <div className="grid grid-cols-2 laptop:grid-cols-3">
                 <div className="col-span-1">
                   <ul className="text-gray-900 bg-white rounded-lg w-30 ">
-                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
+                    
+                    <NavLink to="/publicSector" className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
                       Public Sector
                     </NavLink>
                     <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
@@ -123,9 +128,10 @@ export default function HomePage() {
                       Bank & Finance
                     </NavLink>
                   </ul>
-                </div>
+                </div> */}
 
-                <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
+{/* 
+                 <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
                   <div className="grid-rows-2">
                     <div className="grid grid-cols-4 ">
                       <div>
@@ -161,11 +167,11 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                </div>  */}
+               </div>
+            </div>  
+          {/* </div> */}
+       {/* </div> */}
         {/* </div> */}
       </section>
     </div>
