@@ -74,3 +74,15 @@ nav.side-navigation-panel {
   top: 0;
   opacity: 0;
 }
+
+/* Resume style */
+.btn-resume{
+  margin-top: 20px;
+}
+.cover-action{
+  float: right;
+  padding-right: 10px;
+}
+.list-resume{
+  height: 400px;
+}

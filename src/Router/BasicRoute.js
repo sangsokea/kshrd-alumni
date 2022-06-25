@@ -26,6 +26,7 @@ import ViewAlumniPage from "../pages/ViewAlumniPage";
 import ViewOwnerProfileEdit from "../pages/ViewOwnerProfileEdit";
 import ViewOwnerProfilePage from "../pages/ViewOwnerProfilePage";
 import AdminBasicRoute from "./AdminBasicRoute";
+import ResumePage from "../pages/ResumePage";
 
 function BasicRoute() {
   return (
@@ -35,6 +36,7 @@ function BasicRoute() {
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
+          <Route path="resume" element={<ResumePage/>}></Route>
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>
           <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route>

@@ -150,7 +150,7 @@ export default function SidebarComponent() {
             </NavLink>
 
             {/* Link to create new cv page */}
-            <NavLink to="/sidebar/createNewCV">
+            <NavLink to="/sidebar/resume">
               <div className="flex items-center px-2 py-2 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500">
                 <span>
                   <svg
