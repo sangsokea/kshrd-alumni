@@ -275,17 +275,17 @@ export default function ViewAlumniPage() {
             <div className="grid grid-cols-2 gap-5">
               {data.map((item) => (
                 <div>
-                  <div className="flex flex-col items-center p-2 pl-5 border rounded-lg bg-gray-50 md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                  <div className="flex flex-col items-center p-2 pl-5 border rounded-lg bg-gray-50 laptop:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
                       className="w-24 h-auto rounded-full"
                       src={item.profile}
                       alt="alumni"
                     />
-                    <div className="flex flex-col justify-between pt-5 pl-5 leading-normal">
+                    <div className="flex flex-col justify-between mt-5 ml-5 leading-normal">
                       <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                         {item.name}
                       </h5>
-                      <p className="mb-5 font-normal text-black textLine w-52">
+                      <p className="mb-7 font-normal text-black textLine w-52">
                         {item.bio}
                       </p>
                     </div>

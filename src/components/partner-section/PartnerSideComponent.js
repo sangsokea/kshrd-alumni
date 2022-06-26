@@ -42,8 +42,7 @@ export default function PartnerSideComponent() {
               </NavLink>
             </ul>
           </div>
-
-       
+                
           <div class="col-span-2">
             <Outlet />
           </div>
