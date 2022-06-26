@@ -14,6 +14,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
             iconOnly
             rounded
             ripple="light"
+            className="animate-pulse"
             onClick={() => setShowSidebar("left-0")}
           >
             <svg
@@ -42,6 +43,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               iconOnly
               rounded
               ripple="light"
+              className="animate-pulse"
               onClick={() => setShowSidebar("-left-64")}
             >
               <svg

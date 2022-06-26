@@ -101,8 +101,6 @@ export default function AdminSidebarsComponent() {
                       .filter(Boolean)
                       .join(" ")
                   }
-                  // className="flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg"
-                  // activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <svg
                     width="25"
