@@ -212,7 +212,9 @@ export default function AdminSidebarsComponent() {
           <AdminHome />
         </div>
       ) : (
-        <Outlet />
+        <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+          <Outlet />
+        </div>
       )}
     </>
   );

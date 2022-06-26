@@ -3,6 +3,8 @@ import { colors } from "../../commons/colors/colors";
 import Search from "react-search";
 import SearchBar from "../SearchBar";
 import profileDetail from "../../Data.json";
+import PaginationComponent from "../PaginationComponent";
+import AdminPagination from "./AdminPagination";
 
 export default function AdminManageStudentComponent() {
   const [data, setData] = useState(
@@ -48,7 +50,10 @@ export default function AdminManageStudentComponent() {
   };
   return (
     <>
-      <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64 flex justify-center m-5">
+      <div className="relative flex justify-center m-5">
+        <div className="right-2 m-5 absolute">
+          <AdminPagination />
+        </div>
         <SearchBar placeholder={"Search user profile..."} data={data} />
         {/* <form class="m-1 flex-1">
           <div class="mb-6 w-100">
@@ -85,7 +90,7 @@ export default function AdminManageStudentComponent() {
           </div>
         </form> */}
       </div>
-
+      <AdminPagination />
       {/* <div class="shadow-sm bg-gray-50 border border-blue-900 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-900 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-900 dark:shadow-sm-light">
         <input type="text" value={value} onChange={handleChange} />
         <Search
