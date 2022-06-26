@@ -26,7 +26,6 @@ function App() {
   const location = useLocation();
   
     useEffect(() => {
-      console.log("=========================================================")
       console.log(location.pathname)
       setRouteName(location.pathname)
     }, [location]);

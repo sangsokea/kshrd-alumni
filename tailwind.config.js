@@ -16,7 +16,7 @@ module.exports = {
       fontFamily: {
         maven: ["MAVEN", "cursive"]
       },
-
+   
       screens: {
         'tablet': '640px',
         // => @media (min-width: 640px) { ... }
@@ -129,7 +129,7 @@ module.exports = {
         f36: ['36px', '42px'],
       },
       backgroundImage: {
-        
+      
 
       }
   

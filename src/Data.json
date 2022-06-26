@@ -8003,7 +8003,7 @@
     "id": 501,
     "first_name": "Sang",
     "last_name": "Sokea",
-    "email": "mtelferdv@state.tx.us",
+    "email": "sangsokea@gmail.com",
     "gender": "Female",
     "generation": 500,
     "city": "Taibao",
@@ -8013,13 +8013,13 @@
     "dob": "10/3/2021",
     "jobHistory": "Senior Quality Engineer",
     "education": "U.S. Bancorp",
-    "skill": "IEEE standards"
+    "skill": "React, React Native, Spring, Block Chain"
   },
   {
     "id": 502,
     "first_name": "Vong",
     "last_name": "Yuoyi",
-    "email": "mtelferdv@state.tx.us",
+    "email": "vongyuoyi@gmail.com",
     "gender": "Female",
     "generation": 500,
     "city": "Taibao",
@@ -8029,13 +8029,13 @@
     "dob": "10/3/2021",
     "jobHistory": "Senior Quality Engineer",
     "education": "U.S. Bancorp",
-    "skill": "IEEE standards"
+    "skill": "React, Java, Spring, DEVOPS"
   },
   {
     "id": 503,
     "first_name": "Kong",
     "last_name": "Sachakyarith",
-    "email": "mtelferdv@state.tx.us",
+    "email": "kongsachakyarith@gmail.com",
     "gender": "Female",
     "generation": 500,
     "city": "Taibao",
@@ -8045,13 +8045,13 @@
     "dob": "10/3/2021",
     "jobHistory": "Senior Quality Engineer",
     "education": "U.S. Bancorp",
-    "skill": "IEEE standards"
+    "skill": "Android, IOS, Angular"
   },
   {
     "id": 504,
     "first_name": "Em",
     "last_name": "Boonlin",
-    "email": "mtelferdv@state.tx.us",
+    "email": "emboonlin@gmail.com",
     "gender": "Female",
     "generation": 500,
     "city": "Taibao",
@@ -8061,13 +8061,13 @@
     "dob": "10/3/2021",
     "jobHistory": "Senior Quality Engineer",
     "education": "U.S. Bancorp",
-    "skill": "IEEE standards"
+    "skill": "Spring, Java, React"
   },
   {
     "id": 505,
     "first_name": "Pol",
     "last_name": "Paradis",
-    "email": "mtelferdv@state.tx.us",
+    "email": "polparidis@gmail.com",
     "gender": "Female",
     "generation": 500,
     "city": "Taibao",
@@ -8077,6 +8077,6 @@
     "dob": "10/3/2021",
     "jobHistory": "Senior Quality Engineer",
     "education": "U.S. Bancorp",
-    "skill": "Block chain"
+    "skill": "Block Chain"
   }
 ]

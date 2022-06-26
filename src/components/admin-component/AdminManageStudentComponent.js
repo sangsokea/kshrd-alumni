@@ -2,16 +2,23 @@ import React, { useEffect, useState } from "react";
 import { colors } from "../../commons/colors/colors";
 import Search from "react-search";
 import SearchBar from "../SearchBar";
-import profileDetail from '../../Data.json'
+import profileDetail from "../../Data.json";
 
 export default function AdminManageStudentComponent() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(
+    profileDetail.map((item) => {
+      return {
+        ...item,
+        isEnalbe: true,
+      };
+    }),
+  );
   const [value, setValue] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => setData(json));
+    // fetch("https://jsonplaceholder.typicode.com/users")
+    //   .then((response) => response.json())
+    //   .then((json) => setData(json));
   }, []);
 
   const handleChange = (event) => {
@@ -41,8 +48,8 @@ export default function AdminManageStudentComponent() {
   };
   return (
     <>
-      <div class="flex justify-center w-1200 h-100 m-5">
-        <SearchBar placeholder={"Search user profile..."} data={profileDetail}/>
+      <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64 flex justify-center m-5">
+        <SearchBar placeholder={"Search user profile..."} data={data} />
         {/* <form class="m-1 flex-1">
           <div class="mb-6 w-100">
             <input
