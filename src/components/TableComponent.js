@@ -23,7 +23,6 @@ export default function TableComponent({
     isYes && onClick(selectedItem.isEnalbe, selectedItem.id);
   }, [selectedItem]);
 
-  console.log(ModelRef.current);
   return (
     <>
       <table class="w-full overflow-scroll text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-3">
@@ -122,16 +121,18 @@ export default function TableComponent({
                       <Modal
                         item={value}
                         onClick={onChangeStatus}
-                        className={
-                          "bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        }
+                        className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         buttonName="Enabled"
+                        title="Alert!"
+                        description="Are you sure want to Disable this account!"
                       />
                     ) : (
                       <Modal
                         item={value}
                         onClick={onChangeStatus}
                         buttonName="Disabled"
+                        title="Alert!"
+                        description="Are you sure want to Enable this account!"
                       />
                     )}
                   </td>
@@ -205,12 +206,16 @@ export default function TableComponent({
                         onClick={onChangeStatus}
                         className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         buttonName="Enabled"
+                        title="Alert!"
+                        description="Are you sure want to Disable this account!"
                       />
                     ) : (
                       <Modal
                         item={value}
                         onClick={onChangeStatus}
                         buttonName="Disabled"
+                        title="Alert!"
+                        description="Are you sure want to Enable this account!"
                       />
                     )}
                   </td>

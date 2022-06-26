@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
 import { useImperativeHandle } from "react";
 
-export default React.memo(function Modal(props, ref) {
-  const { buttonName, className, title, description, onClick, item } = props;
+export default React.memo(function Modal({
+  buttonName,
+  className,
+  title,
+  description,
+  onClick,
+  item,
+}) {
   const [showModal, setShowModal] = React.useState(false);
+  const onChangeModel = (value) => {
+    setShowModal(value);
+  };
 
   return (
     <>
