@@ -21,7 +21,7 @@ export default function PorfolioPage() {
           </div>
           <div className="flex flex-row ">
             <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
-            <button onClick={() => navigate("/sidebar/createNewCV")}>
+            <button onClick={() => navigate("/sidebar/aboutMe")}>
               <Arrow className="w-6 mr-3 mt-7" />
             </button>
 

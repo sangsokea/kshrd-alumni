@@ -17,6 +17,7 @@ export default function ViewOwnerProfileEdit() {
   const [addSkill, setAddSkill] = useState("");
   const [resetAddSkill, setResetAddSkillValues] = useState("");
 
+  const [display, setDisplay] = useState(false);
   const [displayReactJS, setDisplayReactJS] = useState(false);
   const [displayJavaProgramming, setDisplayJavaProgramming] = useState(false);
   const [displayTailwindReact, setDisplayTailwindReact] = useState(false);
@@ -51,50 +52,105 @@ export default function ViewOwnerProfileEdit() {
     setResetAddSkillValues("");
   };
 
+  const [major, setMajor] = useState([
+    {
+      data: "React JS",
+      id: 1,
+      isShow: false,
+    },
+
+    {
+      data: "Java Programming",
+      id: 2,
+      isShow: false,
+    },
+    {
+      data: "Tailwind React",
+      id: 3,
+      isShow: false,
+    },
+    {
+      data: "UX/UI",
+      id: 4,
+      isShow: false,
+    },
+    {
+      data: "Computer Science",
+      id: 5,
+      isShow: false,
+    },
+    {
+      data: "Korean Language",
+      id: 6,
+      isShow: false,
+    },
+  ]);
+
+  const [selectedMajor, setSelectedMajor] = useState("");
+
+  const removeInputField = (index) => {
+    let object = [...major];
+    object.splice(index, 1);
+    setMajor(object);
+  };
+
+  const [inputField, setInputField] = useState([
+    {
+      newMajor: "",
+      isShow: false,
+      id: 0,
+    },
+  ]);
+
+  const addInputFields = (item) => {
+    let newData = {
+      newMajor: "",
+      isShow: !major.isShow,
+      id: major.length,
+    };
+    setInputField([...inputField, newData]);
+
+    // setMajor(
+    //   major.map((obj) =>
+    //     obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj
+    //   )
+    // );
+    setSelectedMajor(item.data);
+    // }
+  };
+
+  const handleInputFieldChange = (index, event) => {
+    console.log(event.target.value);
+    let data = [...inputField];
+    data[index][event.target.name] = event.target.value;
+    setInputField(data);
+  };
+
   return (
     <>
-      <div class="mt-5 mx-10 body-font font-maven ">
+      <div class="mt-5 mx-10 body-font font-maven">
         <div>
           <img
             class="w-full h-72"
-            src="https://www.online-4-business.de/img/dummies/slides/01.jpg"
+            src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
             alt="Image"
           />
         </div>
 
-        <div class="flex justify-between mt-5 mb-5 text-sm laptop:text-md desktop:text-lg ">
-          <input
-            type="text"
-            placeholder="User Information"
-            class="input input-bordered w-[306px] max-w-xs px py-1 px-3 bg-slate-50 rounded-md border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:outline-none"
-          />
-          {/* <NavLink to="profileViewEdit">
-            <svg
-              class="h-8 w-8"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
-          </NavLink> */}
-        </div>
+        <p className="text-sm laptop:text-md desktop:text-lg mt-5 text-gray-400">
+          User Information
+        </p>
 
         {/* First Name, Last Name, Skill input form */}
-        <div class="flex justify-between mt-3 gap-3 text-sm laptop:text-md desktop:text-lg ">
+        <div class="flex justify-between mt-3 gap-2 text-sm laptop:text-md desktop:text-lg ">
           <div class="form-control w-full max-w-xs ">
             <label class="label ">
               <span class="label-text">First Name</span>
             </label>
             <input
               type="text"
-              placeholder="Boonlin"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3 bg-slate-50  focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              placeholder="Sokea"
+              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3 bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
             />
           </div>
           <div class="form-control w-full max-w-xs">
@@ -103,8 +159,8 @@ export default function ViewOwnerProfileEdit() {
             </label>
             <input
               type="text"
-              placeholder="Em"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-slate-50 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              placeholder="Sang"
+              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
             />
           </div>
           <div class="form-control w-full max-w-xs ">
@@ -114,63 +170,62 @@ export default function ViewOwnerProfileEdit() {
             <input
               type="text"
               placeholder="Web Development"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-slate-50 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
             />
           </div>
         </div>
 
-        <div class="inline-block text-sm laptop:text-md desktop:text-lg ">
-          <input
-            type="text"
-            placeholder="About"
-            class="input w-full max-w-xs px mt-5 py-1 px-3 mr-2 bg-slate-50 rounded-md border border-gray-200  focus:ring-2 focus:ring-blue-600 focus:outline-none"
-          />
+        <p className="text-sm laptop:text-md desktop:text-lg mt-5 text-gray-400">
+          About
+        </p>
 
-          {/* Add Summary section */}
-          <div>
-            <button
-              class="rounded-md inline-flex justify-between content-center mt-3"
-              onClick={() => setsummary((Prev) => !Prev)}
-            >
-              {sum ? (
-                <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
-              ) : (
-                <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
-              )}
-              Add Summary{""}
-            </button>
+        {/* Add Summary section */}
+        <div className="inline-block text-sm laptop:text-md desktop:text-lg ">
+          <button
+            class="rounded-md inline-flex justify-between content-center mt-3"
+            onClick={() => setsummary((Prev) => !Prev)}
+          >
+            {sum ? (
+              <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
+            ) : (
+              <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
+            )}
+            Add Summary{""}
+          </button>
 
-            <div className="mt-3">
-              {sum ? null : (
-                <div className="grid grid-cols-2 ">
-                  <div className="mb-5 ">
-                    <textarea
-                      class=" ml-10 laptop:w-96 tablet:w-96 desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-slate-50 text-left inline-flex justify-between content-center lap"
-                      id="password"
-                      // type="text"
-                      name="summary"
-                      value={summary}
-                      onChange={handleSummaryChange}
-                      placeholder=""
-                    />
-                  </div>
-                  <div className="flex justify-center">
-                    <button
-                      class="desktop:ml-24 tablet:ml-10 ml-20 mb-5"
-                      onClick={resetInputSummary}
-                    >
-                      <Remove className=""></Remove>
-                    </button>
-                  </div>
+          <div className="mt-3">
+            {sum ? null : (
+              <div className="grid grid-cols-2 ">
+                <div className="mb-5 ">
+                  <textarea
+                    class="laptop:w-96 tablet:w-96 desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
+                    // id="password"
+                    // type="text"
+                    name="summary"
+                    value={summary}
+                    onChange={handleSummaryChange}
+                    placeholder=""
+                  />
                 </div>
-              )}
-            </div>
+                <div className="flex justify-center">
+                  <button
+                    class="desktop:ml-10 tablet:ml-10 ml-10 mb-5"
+                    onClick={resetInputSummary}
+                  >
+                    <Remove className=""></Remove>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <p class="border border-solid border-gray-400 w-full mt-12"></p>
+        <p class="border-[2px] border-solid border-bgSkill w-full mt-12"></p>
         <div class="flex mt-12">
-          <p class="border border-solid h-10 border-3" style={borderStyle}></p>
+          <p
+            class="border-[2px] border-solid h-10 border-3"
+            style={borderStyle}
+          ></p>
           <p class="font-bold ml-4 text-4xl" style={styles}>
             What I can do{" "}
           </p>
@@ -233,138 +288,51 @@ export default function ViewOwnerProfileEdit() {
             <div className="mt-3">
               {addSkill ? null : (
                 <div>
-                  <div className="flex flex-row mb-5">
-                    <button
-                      className="ml-10 border bg-slate-200 w-24 text-center rounded-md"
-                      onClick={() => setDisplayReactJS(!displayReactJS)}
-                    >
-                      ReactJS +
-                    </button>
-
-                    <button
-                      className="border bg-slate-200 w-52 text-center rounded-md ml-5"
-                      onClick={() =>
-                        setDisplayJavaProgramming(!displayJavaProgramming)
-                      }
-                    >
-                      Java Programming +
-                    </button>
-
-                    <button
-                      className="border bg-slate-200 w-40 text-center rounded-md ml-5"
-                      onClick={() =>
-                        setDisplayTailwindReact(!displayTailwindReact)
-                      }
-                    >
-                      Tailwind React +
-                    </button>
-
-                    <button
-                      className="border bg-slate-200 w-40 text-center rounded-md ml-5"
-                      onClick={() => setDisplayUX(!displayUX)}
-                    >
-                      UX / UI +
-                    </button>
-
-                    <button
-                      className="border bg-slate-200 w-40 text-center rounded-md ml-5"
-                      onClick={() =>
-                        setDisplayComputerScience(!displayComputerScience)
-                      }
-                    >
-                      Computer Science +
-                    </button>
-
-                    <button
-                      className="border bg-slate-200 w-40 text-center rounded-md ml-5"
-                      onClick={() =>
-                        setDisplayKoreanLanguage(!displayKoreanLanguage)
-                      }
-                    >
-                      Korean Language +
-                    </button>
+                  <div className="flex flex-row gap-2">
+                    {major.map((item, index) => (
+                      <div className="mb-5">
+                        <button
+                          key={index}
+                          className="border bg-bgSkill text-center rounded-lg py-2 px-2"
+                          onClick={() => addInputFields(item)}
+                        >
+                          {item.data}
+                        </button>
+                      </div>
+                    ))}
                   </div>
 
-                  <div className="flex flex-col ">
-                    <form
-                      className={!displayJavaProgramming ? "hidden" : "block"}
-                    >
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="Java Programming"
-                      />
-                    </form>
+                  <div
+                    className="flex flex-col"
+                    onClick={!display ? "hidden" : "block"}
+                  >
+                    {inputField.map((input, index) => (
+                      <form>
+                        {/* return ( */}
+                        <div
+                          key={index}
 
-                    <form className={!displayReactJS ? "hidden" : "block"}>
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="ReactJS"
-                      />
-                    </form>
-
-                    <form
-                      className={!displayTailwindReact ? "hidden" : "block"}
-                    >
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="Tailwind React"
-                      />
-                    </form>
-
-                    <form className={!displayUX ? "hidden" : "block"}>
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="UX / UI"
-                      />
-                    </form>
-
-                    <form
-                      className={!displayComputerScience ? "hidden" : "block"}
-                    >
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="Computer Science"
-                      />
-                    </form>
-
-                    <form
-                      className={!displayKoreanLanguage ? "hidden" : "block"}
-                    >
-                      <textarea
-                        class="mt-3 ml-10 laptop:w-96 tablet:w-96 desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-left inline-flex justify-between content-center"
-                        id="skill"
-                        // type="text"
-                        name="react"
-                        // value="ReactJS"
-                        onChange={handleSkillChange}
-                        placeholder="Korean Language"
-                      />
-                    </form>
+                          // onClick={() => onShowForm(input.id)}
+                          // className="mb-3 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                          <div className={!input.isShow ? "hidden" : "block"}>
+                            <textarea
+                              className="mb-3 border border-gray-300 text-sm laptop:text-md desktop:text- rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              name="newMajor"
+                              placeholder={selectedMajor}
+                              value={input.newMajor}
+                              onChange={(event) =>
+                                handleInputFieldChange(index, event)
+                              }
+                            ></textarea>
+                          </div>
+                          <button onClick={() => removeInputField(index)}>
+                            Remove
+                          </button>
+                        </div>
+                        {/* ); */}
+                      </form>
+                    ))}
                   </div>
                 </div>
               )}

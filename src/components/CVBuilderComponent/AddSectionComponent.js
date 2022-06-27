@@ -80,7 +80,7 @@ export default function AddSectionComponent() {
         </label>
 
         {/* Dynamic form for Licenses and Certifications */}
-        <div classNameName={!displaySection ? "hidden" : "block"}>
+        <div className={!displaySection ? "hidden" : "block"}>
           {section.map((input, index) => (
             <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
               <div
@@ -125,7 +125,7 @@ export default function AddSectionComponent() {
                 </span>
               </div>
 
-              <div classNameName={input.isShow ? "hidden" : "block"}>
+              <div className={input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-5">
                   <div>
                     <label
@@ -135,7 +135,7 @@ export default function AddSectionComponent() {
                       Please input your title
                     </label>
                     <textarea
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="customSection"
                       placeholder="Spring Framework"
                       value={input.customSection}

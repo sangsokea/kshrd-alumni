@@ -19,10 +19,20 @@ const ButtonMailto = ({ mailto, children }) => {
   );
 };
 
+// const sideBarStyles = ({isActive}) => {
+//   return {
+//     color: isActive ? 'blue' : 'white',
+//     fontWeight: isActive ? 'bold' : 'normal',
+//     textDecoration: isActive ? 'underline' : 'none',
+//     backgroundColor: isActive ? 'gray' : 'orange'
+//   }
+// }
+
 export default function SidebarComponent() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
   return (
     <div className="container mx-auto body-font font-maven">
       {/* sideBar */}
@@ -34,7 +44,7 @@ export default function SidebarComponent() {
             </div>
 
             <p className="p-5">
-              Hi, my name is Vong Yuoyi and I'm a senior software engineer.
+              Hi, my name is Sang Sokea and I'm a senior software engineer.
               Welcome to my personal website!
             </p>
             {/* <p className="divide-y-3"></p> */}

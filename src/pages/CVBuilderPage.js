@@ -9,6 +9,7 @@ import LicensesComponent from "../components/CVBuilderComponent/LicensesComponen
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
 import { useNavigate } from "react-router-dom";
+import sample_image from "../commons/images/sample image.jpg";
 
 export default function CVBuilderPage() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export default function CVBuilderPage() {
   const [summary, setSummary] = useState("");
 
   const [image, setImage] = useState(
-    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+    sample_image
   );
   const [imageUrl, setImageUrl] = useState("");
 
@@ -71,28 +72,19 @@ export default function CVBuilderPage() {
       <div className="flex flex-row ">
         <h1 className="text-2xl font-bold">Create New Curriculum Vitae</h1>
         <div className="w-64 mt-0 ml-auto ">
-          <img
-            src={imageUrl ? imageUrl : image}
-            className="rounded-lg"
-            style={{ height: "200px" }}
-          ></img>
           <input
             type="file"
             className="hidden"
             id="upload-image"
             onChange={handleImageChange}
           ></input>
-          <button
-            type="button"
-            className="bg-blue-500 h-[50px] w-full rounded-md mt-2 text-white"
-          >
-            <label
-              className="block w-full h-auto cursor-pointer"
-              for="upload-image"
-            >
-              Upload Image
-            </label>
-          </button>
+          <label for="upload-image">
+            <img
+              src={imageUrl ? imageUrl : image}
+              className="rounded-lg cursor-pointer"
+              style={{ height: "200px" , width: "300px"}}
+            ></img>
+          </label>
         </div>
       </div>
 

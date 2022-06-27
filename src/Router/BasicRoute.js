@@ -27,6 +27,7 @@ import ViewOwnerProfileEdit from "../pages/ViewOwnerProfileEdit";
 import ViewOwnerProfilePage from "../pages/ViewOwnerProfilePage";
 import AdminBasicRoute from "./AdminBasicRoute";
 import ResumePage from "../pages/ResumePage";
+import ChangeTemplatePage from "../pages/ChangeTemplatePage";
 
 function BasicRoute() {
   return (
@@ -42,7 +43,11 @@ function BasicRoute() {
           <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route>
           {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate />}></Route>
+
+          <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route>
         </Route>
+
+        {/* Partner Section */}
         <Route path="/" element={<HomePage />}>
             <Route path="publicSector" element={<PublicSectorComponent/>}></Route>
             <Route path="universities" element={<UniversitiesComponent/>}></Route>

@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
+import JsPDF from "jspdf";
 
-export default function CvTemplate() {
+export default function CvTemplate(props) {
   const navigate = useNavigate();
+
+  // const generatePDF = () => {
+  //   const report = new JsPDF("portrait", "pt", "a4");
+  //   report.html(document.querySelector("#report")).then(() => {
+  //     report.save("report.pdf");
+  //   });
+  // };
+  
+  const {pdf} = props;
+
   return (
     <div className="h-screen">
       <div class="ml-20">
@@ -339,12 +350,15 @@ export default function CvTemplate() {
           </div>
           <div class="col-span-2 mt-10 ml-10 ">
             <button
+              // onClick={generatePDF}
+              type="button"
               class="mb-10 py-3 text-white text-lg rounded-lg w-full"
               style={styles}
             >
               Export as PDF
             </button>
             <button
+              onClick={() => navigate("/sidebar/changeCVTemplate")}
               class="py-3 text-white text-lg rounded-lg w-full"
               style={styles}
             >
@@ -353,7 +367,7 @@ export default function CvTemplate() {
           </div>
         </div>
       </div>
-      
+
       <div className="mt-5 text-center">
         <button
           className="px-10 py-3 mb-10 ml-auto text-lg text-white rounded-lg"
@@ -372,6 +386,7 @@ export default function CvTemplate() {
     </div>
   );
 }
+
 const styles = {
   backgroundColor: colors.content,
 };

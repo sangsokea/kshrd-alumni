@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { colors } from "../commons/colors/colors";
 
 export default function ViewOwnerProfilePage() {
   return (
@@ -14,10 +15,10 @@ export default function ViewOwnerProfilePage() {
           />
         </div>
         <div className="flex justify-between mt-8 ">
-          <p className="text-4xl font-bold text-cB">Vong Yuoyi</p>
+          <p className="text-4xl font-bold" style={styles}>Sang Sokea</p>
           <NavLink to="/sidebar/aboutMeEdit">
             <svg
-              className="w-8 h-8"
+              className="w-6 h-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -25,7 +26,7 @@ export default function ViewOwnerProfilePage() {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
@@ -34,15 +35,17 @@ export default function ViewOwnerProfilePage() {
 
         <p className="mt-3 text-2xl"> Full Stack Developer</p>
         <p className="mt-8 text-xl">
-          Hi, my name is Vong Yuoyi and I'm a senior software engineer. Welcome
+          Hi, my name is Sang Sokea and I'm a senior software engineer. Welcome
           to my personal website! in frontend and backend development for
           complex scalable web apps. If you want to know how I may help your
           project? Check out my project portfolio and online resume.
         </p>
         <p className="w-full mt-12 border border-solid border-cB"></p>
-        <div className="flex mt-12">
-          <p className="h-10 border border-solid border-cB"></p>
-          <p className="ml-2 text-4xl font-bold  text-cB">What I can do </p>
+        <div class="flex mt-12">
+          <p class="border border-solid h-10 border-3" style={borderStyle}></p>
+          <p class="font-bold ml-4 text-4xl" style={styles}>
+            What I can do{" "}
+          </p>
         </div>
         <p className="mt-10">
           I am gratuated student from HRD and have more than 2 years' experience
@@ -85,3 +88,11 @@ export default function ViewOwnerProfilePage() {
     </>
   );
 }
+
+const styles = {
+  color: colors.content,
+};
+
+const borderStyle = {
+  borderColor: colors.content,
+};

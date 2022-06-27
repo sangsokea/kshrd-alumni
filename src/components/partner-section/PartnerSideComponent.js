@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
+import DefaultPartnerComponent from "./DefaultPartnerComponent";
 
 export default function PartnerSideComponent() {
+
+  const [isEmpty, setIsEmpty] = useState(false);
+
   return (
     <>
       <div className="grid grid-row-1">
@@ -44,7 +48,7 @@ export default function PartnerSideComponent() {
           </div>
                 
           <div class="col-span-2">
-            <Outlet />
+            {isEmpty ? <DefaultPartnerComponent /> : <Outlet /> }            
           </div>
         </div>
       </div>

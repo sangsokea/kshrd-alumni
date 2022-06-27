@@ -6,8 +6,10 @@ import { Transition, Popover } from "@headlessui/react";
 
 export default function ResumePage() {
 
+  const navigate = useNavigate();
+
   return (
-    <div className="mx-10 mt-5 maPro ">
+    <div className="mx-10 mt-5 body-font font-maven ">
       {/* content */}
       <div className="col-span-4">
         <div className="body-font font-maven p-10 rounded-tr-lg rounded-br-lg h-full grid-cols-2">
@@ -143,10 +145,10 @@ export default function ResumePage() {
           <div className="btn-resume">
             <div className="flex flex-row">
               <div className="ml-auto ">
-                <button className="px-12 text-lg py-2 bg-blue-600 text-white rounded-md mr-5" onClick={() => Navigate("/sidebar/cvTemplate")}>
+                <button className="px-12 text-lg py-2 bg-blue-600 text-white rounded-md mr-5" onClick={() => navigate("/sidebar/createNewCV")}>
                   Add New
                 </button>
-                <button className="px-10 text-lg py-2 border border-blue-600 text-blue-600 rounded-md" onClick={() => Navigate("/")}>
+                <button className="px-10 text-lg py-2 border border-blue-600 text-blue-600 rounded-md" onClick={() => navigate("/sidebar/changeCVTemplate")}>
                   Change Templates
                 </button>
               </div>

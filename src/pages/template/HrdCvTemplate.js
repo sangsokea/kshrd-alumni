@@ -1,18 +1,21 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import img1 from "../../images/logo.jpg";
 import img2 from "../../images/Rectangle.png";
+import alumni1 from "../../commons/images/Alumni/alumni1.jpg"
+
 export default function HrdCvTemplate() {
   return (
-    <div className="h-screen">
-      <div class="py-12">
-        <center>
-          <div className="shadow tablet:w-222 w-350">
+    <div className="h-full">
+      <div class="ml-20">
+        <center >
+          <div className="shadow w-222 laptop:w-full">
             <div class="tablet:gap-4 h-44 tablet:grid tablet:grid-cols-5 grid grid-cols-3 ">
               <div className="mt-10">
                 <img src={img1} className="w-89 h-69 tablet:ml-10" alt="" />
               </div>
-              <div class="tablet:col-span-3 col-span-2">
-                <p className="mt-10 font-bold text-tiny font-Maven tablet:mt-28">
+              <div class="tablet:col-span-3 col-span-2 border-b-4 text-sm laptop:text-md desktop:text-lg">
+                <p className="mt-10 font-bold text-tiny font-Maven tablet:mt-28 mb-5">
                   Korea Software HRD Center Student's Background <br></br>
                   #12, St 323, Boeungkak II Commune, Toul Kork District, Phnom
                   Penh. <br></br>
@@ -20,36 +23,41 @@ export default function HrdCvTemplate() {
                   www.kshrd.com.kh/FB. www.facebook.com/ksignhrd
                 </p>
               </div>
-              <div className="h-1 mt-4 ml-5 bg-regal-blue_hrd w-80 tabelt:ml-1 tablet:hidden">
+              
+              <div className="h-1 mt-4 ml-5 bg-regal-blue_hrd w-80 tabelt:ml-1 tablet:hidden ">
                 {" "}
               </div>
+
               <div class="tablet:mt-10 mt-10">
                 <div>
-                  <img src={img2} className="w-87 h-100 tablet:-ml-14" alt="" />
+                  <img src={alumni1} className="w-87 h-100 tablet:-ml-14" alt="" />
                 </div>
               </div>
             </div>
-            <div className="mb-4 min-h-1/25">
-              <div className="tablet:bg-regal-blue_hrd tablet:h-1 tablet:w-543 ">
+
+            <div className="mb-4 min-h-1/25 text-sm laptop:text-md desktop:text-lg">
+              <div className="tablet:bg-regal-blue_hrd tablet:h-1 tablet:w-543">
                 {" "}
               </div>
+              
               <div>
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-4 mt-24">
                   <div className="col-span-3">
-                    <center>
-                      <p className="mt-24 ml-20 text-xs font-extrabold font-maven tablet:mt-5 tablet:ml-44 text-regal-color_hrd">
+ 
+                    <center >
+                      <p className="laptop:text-md desktop:text-lg mt-24 ml-20 text-xs font-extrabold font-maven tablet:mt-5 tablet:ml-44 text-regal-color_hrd">
                         CURRICULUM VITAE
                       </p>
                     </center>
                   </div>
                   <div className="mt-5 font-extrabold text-blue-300 font-maven text-tiny">
                     <p className="-ml-10 tablet:ml-0">Download PDF Version</p>
-                    <p className="tablet:ml-8">Go back Home</p>
+                    <NavLink className="tablet:ml-8 underline underline-offset-1" to="/">Go back Home</NavLink>
                   </div>
                 </div>
               </div>
               <div className="px-3">
-              <div className="mt-3 ml-2 text-xs font-extrabold text-left uppercase tablet:mt-6 tablet:ml-10 font-maven">
+              <div className="text-sm laptop:text-md desktop:text-lg mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-6 tablet:ml-10 font-maven">
                 <span>Mr.</span>
                 <span>Kong </span>
                 <span>Sachakyarith</span>
@@ -213,9 +221,9 @@ export default function HrdCvTemplate() {
                 <span>5. </span>
                 <span>LANGUAGES</span>
               </div>
-              <div className="mt-2 ml-2 text-xs font-extrabold text-left uppercase tablet:mt-3 tablet:ml-10 font-maven">
+              <div className="text-sm laptop:text-md desktop:text-lg mt-2 ml-2 font-extrabold text-left uppercase tablet:mt-3 tablet:ml-10 font-maven">
                 <span>Mr.</span>
-                <span>Chea </span>
+                <span>Chen </span>
                 <span>Phirum</span>
               </div>
               <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 m tablet:ml-10 font-maven text-tinys">
@@ -243,7 +251,7 @@ export default function HrdCvTemplate() {
                 </div>
               </div>
               <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-1 tablet:ml-10 font-maven text-tinys">
-                <div className="font-extrabold">
+                <div className="font-extrabold mb-10">
                   <p>Email</p>
                 </div>
                 <div className="font-extrabold">

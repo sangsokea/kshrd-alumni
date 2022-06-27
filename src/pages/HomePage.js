@@ -36,7 +36,6 @@ const settings = {
 
 export default function HomePage() {
   return (
-
     <div className="container mx-auto mt-3">
       <section className="text-sm body-font font-maven laptop:text-md">
         <img src={homepage} alt="9th gen image"></img>
@@ -63,11 +62,7 @@ export default function HomePage() {
               </div>
 
               <div className="px-2">
-                <img
-                  className="rounded-md "
-                  src={event}
-                  alt="other event"
-                />
+                <img className="rounded-md " src={event} alt="other event" />
               </div>
               <div className="px-2">
                 <img
@@ -77,18 +72,10 @@ export default function HomePage() {
                 />
               </div>
               <div className="px-2">
-                <img
-                  className="rounded-md "
-                  src={sport}
-                  alt="sport event"
-                />
+                <img className="rounded-md " src={sport} alt="sport event" />
               </div>
               <div className="px-2">
-                <img
-                  className="rounded-md "
-                  src={closing}
-                  alt="closing day"
-                />
+                <img className="rounded-md " src={closing} alt="closing day" />
               </div>
             </Slider>
           </div>
@@ -105,74 +92,17 @@ export default function HomePage() {
           </p>
 
           <div className="mt-4">
-            <PartnerSideComponent/>
-            {/* <DefaultPartnerComponent/> */}
-            {/* <div className="grid grid-row-1">
-              <div className="grid grid-cols-2 laptop:grid-cols-3">
-                <div className="col-span-1">
-                  <ul className="text-gray-900 bg-white rounded-lg w-30 ">
-                    
-                    <NavLink to="/publicSector" className="grid w-full grid-rows-1 py-2 border-b border-gray-200 rounded-t-lg">
-                      Public Sector
-                    </NavLink>
-                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
-                      Universities
-                    </NavLink>
-                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
-                      Global Companies
-                    </NavLink>
-                    <NavLink to="" className="grid w-full grid-rows-1 py-2 border-b border-gray-200">
-                      Local Companies
-                    </NavLink>
-                    <NavLink to="" className="grid w-full grid-rows-1 py-2 rounded-b-lg">
-                      Bank & Finance
-                    </NavLink>
-                  </ul>
-                </div> */}
-
-{/* 
-                 <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
-                  <div className="grid-rows-2">
-                    <div className="grid grid-cols-4 ">
-                      <div>
-                        <img src={nipa} alt="nipa"></img>
-                      </div>
-                      <div>
-                        <img className="px-2" src={ckcc} alt="ckcc"></img>
-                      </div>
-                      <div>
-                        <img
-                        className="px-2"
-                          src={king_sejong_institute}
-                          alt="king sejong institute"
-                        ></img>
-                      </div>
-                      <div>
-                        <img className="px-2" src={koica} alt="koica"></img>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-4 px-2">
-                      <div>
-                        <img className="px-2" src={kosign} alt="kosign"></img>
-                      </div>
-                      <div>
-                        <img className="px-2" src={morakot} alt="morakot"></img>
-                      </div>
-                      <div>
-                        <img className="px-2" src={webcash} alt="webcash"></img>
-                      </div>
-                      <div>
-                        <img className="px-2" src={WeMB} alt="WeMB"></img>
-                      </div>
-                    </div>
-                  </div>
-                </div>  */}
-               </div>
-            </div>  
-          {/* </div> */}
-       {/* </div> */}
-        {/* </div> */}
+            {/* <div className="grid grid-cols-2">
+              <div className="col-span-1"> */}
+                <PartnerSideComponent />
+              {/* </div> */}
+              {/* <DefaultPartnerComponent /> */}
+            {/* </div> */}
+            {/* <div className="">
+              
+            </div> */}
+          </div>
+        </div>
       </section>
     </div>
   );

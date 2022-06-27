@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
+import sample_image from "../commons/images/sample image.jpg"
 
 export default function AccountSettingPage() {
   const [changePassword, setChangePassword] = useState(false);
   const [image, setImage] = useState(
-    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+    sample_image
   );
   const [imageUrl, setImageUrl] = useState("");
 
@@ -28,31 +29,23 @@ export default function AccountSettingPage() {
             <p className="text-xl text-right">Profile Picture</p>
           </div>
           <div className="col-span-1 ml-10">
-            <img
-              className="rounded-lg"
-              src={imageUrl ? imageUrl : image}
-              style={{ height: "200px" }}
-            />
-          </div>
-          <div className="col-span-1">
             <input
               id="change-profile-picture"
               className="hidden"
               type="file"
               onChange={handleImageChange}
             ></input>
-            <button
-              style={styles}
-              className="text-xl ml-10 bg-transparent text-white h-[60px] w-[230px] border hover:border-transparent rounded-md"
-            >
-              <label for="change-profile-picture" className="block w-full h-full mt-4 cursor-pointer">
-                Change Profile Picture
-              </label>
-            </button>
+            <label for="change-profile-picture">
+              <img
+                className="rounded-lg cursor-pointer"
+                src={imageUrl ? imageUrl : image}
+                style={{ height: "200px" , width: "300px"}}
+              />
+            </label>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="grid grid-cols-4 mt-5 text-xl items-center">
           <div className="col-span-1">
             <p className="text-right">First Name</p>
           </div>
@@ -60,11 +53,11 @@ export default function AccountSettingPage() {
           <div className="col-span-2">
             <input
               className="px-4 py-2 ml-10 border rounded w-96 "
-              placeholder=" boonlin"
+              placeholder="boonlin"
             />
           </div>
         </div>
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="grid grid-cols-4 mt-5 text-xl items-center">
           <div className="col-span-1">
             <p className="text-right">Last Name</p>
           </div>
@@ -72,12 +65,12 @@ export default function AccountSettingPage() {
           <div className="col-span-2">
             <input
               className="px-4 py-2 ml-10 border rounded w-96"
-              placeholder=" em"
+              placeholder="em"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="grid grid-cols-4 mt-5 text-xl items-center">
           <div className="col-span-1">
             <p className="text-right">Email</p>
           </div>
@@ -89,18 +82,18 @@ export default function AccountSettingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="grid grid-cols-4 mt-5 text-xl items-center">
           <div className="col-span-1">
-            <p classNameName="text-right">Password</p>
+            <p className="text-right">Password</p>
           </div>
           <div className="col-span-2">
             <button
               id="menu-btn"
               // style={styles}
-              className="px-2 py-4 ml-10 text-gray-500 bg-transparent border rounded-md"
+              className="px-4 py-2 ml-10 text-gray-500 bg-transparent border rounded-md"
               onClick={() => setChangePassword(!changePassword)}
             >
-              Change Password
+              Change password
             </button>
           </div>
         </div>
@@ -109,9 +102,9 @@ export default function AccountSettingPage() {
           id="changePassword"
           className={!changePassword ? "hidden" : "block"}
         >
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="grid grid-cols-4 mt-5 text-xl">
             <div className="col-span-1">
-              <p className="text-xl text-right"> Current Password</p>
+              <p className="text-xl text-right">Current Password</p>
             </div>
             <div className="col-span-2">
               <input
@@ -123,7 +116,7 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="grid grid-cols-4 mt-5 text-xl">
             <div className="col-span-1">
               <p className="text-xl text-right"> New Password</p>
             </div>
@@ -137,7 +130,7 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="grid grid-cols-4 mt-5 text-xl">
             <div className="col-span-1">
               <p className="text-xl text-right"> Confirm New Password</p>
             </div>
