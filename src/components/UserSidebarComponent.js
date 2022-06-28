@@ -311,8 +311,10 @@ export default function UserSidebarComponent() {
           </main>
         </div>
         <footer>
-          <div class="bg-[#035397]">
-            <AdminFooterComponent></AdminFooterComponent>
+          <div class="bg-[#035397] py-1">
+          <span className="block p-3 text-center text-white text-md">
+            2022 © Korean Software HRD Center. All right reserved.
+          </span>
           </div>
         </footer>
       </body>
