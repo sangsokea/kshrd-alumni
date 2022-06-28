@@ -37,22 +37,6 @@ function App() {
 
   return (
     <>
-
-      {/* <CenteredTabs />
-      {/* <NavbarComponent/> *
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/confirm" element={<ConfirmPage />}/>
-        <Route path="/reset" element={<ResetPasswordPage/>} />
-        <Route path="/cvtemplate" element={<CvTemplate/>} />
-        <Route path="/hrdcv" element={<HrdCvTemplate/>} />
-        <Route path="/porfolio" element={<PorfolioPage />} />
-        <Route path="/porfolioedit" element={<PorfolioEdit />} />
-      </Routes> */}
-
-
       {console.log(`runing on ${process.env.NODE_ENV}`)}
       {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
       <ToastContainer />

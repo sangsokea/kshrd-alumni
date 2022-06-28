@@ -15,7 +15,7 @@ import closing from "../commons/images/card-slide/closing.jpg";
 import PartnerSideComponent from "../components/partner-section/PartnerSideComponent";
 
 const settings = {
-  classNameName: "center",
+  className: "center",
   centerMode: true,
   infinite: true,
   centerPadding: "60px",

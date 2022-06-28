@@ -11,6 +11,8 @@ import PublicSectorComponent from "../components/partner-section/PublicSectorCom
 import UniversitiesComponent from "../components/partner-section/UniversitiesComponent";
 import SidebarComponent from "../components/SidebarComponent";
 import AccountSettingPage from "../pages/AccountSettingPage";
+import EditEducationStudent from "../pages/admin-page/EditEducationStudent";
+import ViewStudentProfile from "../pages/admin-page/ViewStudentProfile";
 import ConfirmPage from "../pages/authentication/ConfirmPage";
 import CreateNewPasswordPage from "../pages/authentication/CreateNewPasswordPage";
 import FormRegisterPage from "../pages/authentication/FormRegisterPage";
@@ -32,8 +34,8 @@ import ChangeTemplatePage from "../pages/ChangeTemplatePage";
 function BasicRoute() {
   return (
     <>
-      <NavbarComponent />
-      {/* <CenteredTabs /> */}
+      <NavbarComponent/>
+      {/* <CenteredTabs /> */} 
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
@@ -46,7 +48,7 @@ function BasicRoute() {
 
           <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route>
         </Route>
-
+ 
         {/* Partner Section */}
         <Route path="/" element={<HomePage />}>
             <Route path="publicSector" element={<PublicSectorComponent/>}></Route>
@@ -55,6 +57,7 @@ function BasicRoute() {
             <Route path="localCompanies" element={<LocalCompaniesComponent/>}></Route>
             <Route path="bank" element={<BankAndFinanceComponent/>}></Route>
         </Route>
+        {/* <Route path="/sidebars" element={<UserSidebarComponent />}></Route> */}
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/formRegister" element={<FormRegisterPage />} />
@@ -75,6 +78,7 @@ function BasicRoute() {
           ></Route>
         </Route>{" "} */}
       </Routes>
+      {/* <FooterComponent /> */}
       <FooterComponent />
     </>
   );

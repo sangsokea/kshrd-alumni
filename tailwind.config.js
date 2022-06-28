@@ -127,6 +127,7 @@ module.exports = {
         f14: ["14px", "21px"],
         f36: ["36px", "42px"],
       },
+
       backgroundImage: {},
     },
   },
