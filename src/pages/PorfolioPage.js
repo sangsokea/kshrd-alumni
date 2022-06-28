@@ -287,7 +287,9 @@ export default function PorfolioPage() {
               </div>
               <div className="">
                 <img
-                  className="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0 "
+
+                  className="desktop:-ml-56 laptop:-ml-20 mt-3 desktop:mt-0"
+
                   src={img3}
                 ></img>
               </div>

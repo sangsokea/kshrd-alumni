@@ -245,3 +245,4 @@ const logoStyle = {
 const logoBackground = {
   backgroundColor: colors.footer,
 };
+
