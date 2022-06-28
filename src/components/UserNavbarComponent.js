@@ -12,7 +12,7 @@ function classNames(...classNamees) {
   return classNamees.filter(Boolean).join(" ");
 }
 
-export default function UserNavbarComponent({ showSidebar, setShowSidebar }) {
+export default function UserNavbarComponent() {
   const navigate = useNavigate();
   const [show, setshow] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -32,61 +32,6 @@ export default function UserNavbarComponent({ showSidebar, setShowSidebar }) {
       </div>
 
       <nav className="bg-[#255FAB] ">
-        <div className="tablet:hidden">
-          <button
-            color="transparent"
-            buttonType="link"
-            size="lg"
-            iconOnly
-            rounded
-            ripple="light"
-            onClick={() => setShowSidebar("left-0")}
-          >
-            <svg
-              class="h-7 w-7 text-white absolute top-[88px] ml-3"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              {" "}
-              <line x1="3" y1="12" x2="21" y2="12" />{" "}
-              <line x1="3" y1="6" x2="21" y2="6" />{" "}
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-          <div
-            className={`absolute top-2 tablet:hidden ${
-              showSidebar === "left-0" ? "left-64" : "-left-64"
-            }  transition-all duration-300`}
-          >
-            <button
-              color="transparent"
-              buttonType="link"
-              size="lg"
-              iconOnly
-              rounded
-              ripple="light"
-              onClick={() => setShowSidebar("-left-64")}
-            >
-              <svg
-                class="h-10 w-10 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
         <div className=" mx-auto  px-4 tablet:px-10 desktop:px-24">
           <div className="grid grid-cols-2">
             <div className="flex items-center justify-start w-full">
