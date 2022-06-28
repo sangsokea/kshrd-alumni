@@ -2,24 +2,27 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import JsPDF from "jspdf";
+import html2canvas from "html2canvas";
+// import ReactPDF from "@react-pdf/renderer";
 
-export default function CvTemplate(props) {
-  const navigate = useNavigate();
-
-  // const generatePDF = () => {
-  //   const report = new JsPDF("portrait", "pt", "a4");
-  //   report.html(document.querySelector("#report")).then(() => {
-  //     report.save("report.pdf");
-  //   });
-  // };
+const generatePDF = async () => {
+  const doc = new JsPDF("portrait", "pt", "a4");
+  const data = await document.querySelector("#pdf");
   
-  const {pdf} = props;
+  doc.html(data).then(() => {
+    doc.setFont("maven")
+    doc.save("cvTemplate.pdf");
+  });
+};
+
+export default function CvTemplate() {
+  const navigate = useNavigate();
 
   return (
     <div className="h-screen">
       <div class="ml-20">
         <div class="grid grid-cols-8">
-          <div class="col-span-6">
+          <div class="col-span-6" id="pdf">
             <center>
               <div className="shadow w-350 laptop:w-222">
                 <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
@@ -348,15 +351,21 @@ export default function CvTemplate(props) {
               </div>
             </center>
           </div>
-          <div class="col-span-2 mt-10 ml-10 ">
+
+          <div class="col-span-2 mt-10 ml-10">
+            {/* <ReactToPdf targetRef={ref} filename="cvTemplate.pdf">
+              {({ toPdf }) => ( */}
             <button
-              // onClick={generatePDF}
+              onClick={generatePDF}
               type="button"
               class="mb-10 py-3 text-white text-lg rounded-lg w-full"
               style={styles}
             >
               Export as PDF
             </button>
+            {/* )}
+            </ReactToPdf> */}
+
             <button
               onClick={() => navigate("/sidebar/changeCVTemplate")}
               class="py-3 text-white text-lg rounded-lg w-full"

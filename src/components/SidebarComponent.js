@@ -4,6 +4,7 @@ import { colors } from "../commons/colors/colors";
 import { useDispatch } from "react-redux";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
+import alumni4 from "../commons/images/Alumni/alumni4.jpg"
 
 const ButtonMailto = ({ mailto, children }) => {
   return (
@@ -40,11 +41,11 @@ export default function SidebarComponent() {
         <div style={styles}>
           <div className="p-3 text-lg font-light text-center text-white ">
             <div className="flex justify-center mt-5">
-              <img className="p-5 rounded-full" src={alumni1} />
+              <img className="p-5 rounded-full" src={alumni4} />
             </div>
 
             <p className="p-5">
-              Hi, my name is Sang Sokea and I'm a senior software engineer.
+              Hi, my name is Vong Yuoyi and I'm a senior software engineer.
               Welcome to my personal website!
             </p>
             {/* <p className="divide-y-3"></p> */}

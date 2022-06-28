@@ -11,17 +11,8 @@ import sport from "../commons/images/card-slide/sport.jpg";
 import closing from "../commons/images/card-slide/closing.jpg";
 
 // partners
-import ckcc from "../commons/images/partner logo/ckcc.jpg";
-import king_sejong_institute from "../commons/images/partner logo/king sejong institute.png";
-import koica from "../commons/images/partner logo/koica.jpg";
-import kosign from "../commons/images/partner logo/kosign.jpg";
-import morakot from "../commons/images/partner logo/morakot.png";
-import nipa from "../commons/images/partner logo/nipa.png";
-import webcash from "../commons/images/partner logo/webcash.jpg";
-import WeMB from "../commons/images/partner logo/WeMB.png";
-import { NavLink } from "react-router-dom";
+
 import PartnerSideComponent from "../components/partner-section/PartnerSideComponent";
-import DefaultPartnerComponent from "../components/partner-section/DefaultPartnerComponent";
 
 const settings = {
   classNameName: "center",
@@ -42,7 +33,7 @@ export default function HomePage() {
         <div className="hidden laptop:block">
           {/* Our Achievement Section */}
           <h1 className="mt-5 mb-5 text-2xl">Our Achievements</h1>
-          {/* <p className="-mt-5 text-orange-700" style={{fontWeight: "1200"}}>_______</p> */}
+
           <div>
             <Slider {...settings}>
               <div className="px-2">
@@ -92,15 +83,7 @@ export default function HomePage() {
           </p>
 
           <div className="mt-4">
-            {/* <div className="grid grid-cols-2">
-              <div className="col-span-1"> */}
-                <PartnerSideComponent />
-              {/* </div> */}
-              {/* <DefaultPartnerComponent /> */}
-            {/* </div> */}
-            {/* <div className="">
-              
-            </div> */}
+            <PartnerSideComponent />
           </div>
         </div>
       </section>

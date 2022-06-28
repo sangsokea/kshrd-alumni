@@ -4,8 +4,13 @@ import { ReactComponent as Add } from "../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../commons/icon/removed.svg";
 import { ReactComponent as Remove } from "../commons/icon/remove.svg";
 import { colors } from "../commons/colors/colors";
+import { useDispatch } from "react-redux";
+import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction";
 
 export default function ViewOwnerProfileEdit() {
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const [sum, setsummary] = useState(true);
@@ -18,12 +23,6 @@ export default function ViewOwnerProfileEdit() {
   const [resetAddSkill, setResetAddSkillValues] = useState("");
 
   const [display, setDisplay] = useState(false);
-  const [displayReactJS, setDisplayReactJS] = useState(false);
-  const [displayJavaProgramming, setDisplayJavaProgramming] = useState(false);
-  const [displayTailwindReact, setDisplayTailwindReact] = useState(false);
-  const [displayUX, setDisplayUX] = useState(false);
-  const [displayComputerScience, setDisplayComputerScience] = useState(false);
-  const [displayKoreanLanguage, setDisplayKoreanLanguage] = useState(false);
 
   const handleSummaryChange = (e) => {
     setSummaryValues(e.target.value);
@@ -41,15 +40,6 @@ export default function ViewOwnerProfileEdit() {
 
   const resetAddSummary = () => {
     setResetSummaryValues("");
-  };
-
-  const handleSkillChange = (e) => {
-    console.log(e.target.value);
-    setResetAddSkillValues(e.target.value);
-  };
-
-  const resetSkill = () => {
-    setResetAddSkillValues("");
   };
 
   const [major, setMajor] = useState([
@@ -88,12 +78,6 @@ export default function ViewOwnerProfileEdit() {
 
   const [selectedMajor, setSelectedMajor] = useState("");
 
-  const removeInputField = (index) => {
-    let object = [...major];
-    object.splice(index, 1);
-    setMajor(object);
-  };
-
   const [inputField, setInputField] = useState([
     {
       newMajor: "",
@@ -102,22 +86,36 @@ export default function ViewOwnerProfileEdit() {
     },
   ]);
 
+  const removeInputField = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    console.log("Error");
+
+    let object = [...inputField];
+    object.splice(index, 1);
+    setInputField(object);
+  };
+
   const addInputFields = (item) => {
     let newData = {
-      newMajor: "",
+      newMajor: item.data,
       isShow: !major.isShow,
       id: major.length,
     };
     setInputField([...inputField, newData]);
 
-    // setMajor(
-    //   major.map((obj) =>
-    //     obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj
-    //   )
-    // );
+    setMajor(
+      major.map((obj) =>
+        obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj
+      )
+    );
+
     setSelectedMajor(item.data);
     // }
   };
+
+  console.log(inputField);
 
   const handleInputFieldChange = (index, event) => {
     console.log(event.target.value);
@@ -307,7 +305,7 @@ export default function ViewOwnerProfileEdit() {
                     onClick={!display ? "hidden" : "block"}
                   >
                     {inputField.map((input, index) => (
-                      <form>
+                      <form onSubmit={(e) => removeInputField(index, e)}>
                         {/* return ( */}
                         <div
                           key={index}
@@ -316,19 +314,19 @@ export default function ViewOwnerProfileEdit() {
                           // className="mb-3 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
                           <div className={!input.isShow ? "hidden" : "block"}>
+                            <button type="submit" className="float-right">
+                              <Remove className="w-5"></Remove>
+                            </button>
                             <textarea
-                              className="mb-3 border border-gray-300 text-sm laptop:text-md desktop:text- rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="mb-3 border border-gray-300 bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               name="newMajor"
-                              placeholder={selectedMajor}
-                              value={input.newMajor}
+                              placeholder={input.newMajor}
+                              // value={input.newMajor}
                               onChange={(event) =>
                                 handleInputFieldChange(index, event)
                               }
                             ></textarea>
                           </div>
-                          <button onClick={() => removeInputField(index)}>
-                            Remove
-                          </button>
                         </div>
                         {/* ); */}
                       </form>
@@ -352,7 +350,7 @@ export default function ViewOwnerProfileEdit() {
 
             <button
               className="px-10 py-2 mt-10 ml-10 text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
-              onClick={() => navigate("/sidebar/aboutMe")}
+              onClick={() => dispatch(fetchAboutMePage(false))}
             >
               Cancel
             </button>

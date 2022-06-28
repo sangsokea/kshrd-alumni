@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
+import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction";
 
 export default function ViewOwnerProfilePage() {
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.aboutMePage, shallowEqual)
+
+  useEffect(() => {setIsEdit(state)},[state])
+  const [isEdit, setIsEdit] = useState(state);
+
   return (
     <>
-      <div className="mx-10 mt-5 maPro ">
+     { isEdit ? <ViewOwnerProfileEdit /> : <div className="mx-10 mt-5 body-font font-maven ">
         <div>
           {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}
           <img
@@ -15,39 +25,47 @@ export default function ViewOwnerProfilePage() {
           />
         </div>
         <div className="flex justify-between mt-8 ">
-          <p className="text-4xl font-bold" style={styles}>Sang Sokea</p>
-          <NavLink to="/sidebar/aboutMeEdit">
-            <svg
-              className="w-6 h-auto"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
-          </NavLink>
+          <p className="text-4xl font-bold" style={styles}>
+            Vong Yuoyi
+          </p>
+
+          <button
+            type="button"
+            onClick={() => dispatch(fetchAboutMePage(true))}
+          >
+            {/* <NavLink to=""> */}
+              <svg
+                className="w-6 h-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+            {/* </NavLink> */}
+          </button>
         </div>
 
         <p className="mt-3 text-2xl"> Full Stack Developer</p>
-        <p className="mt-8 text-xl">
-          Hi, my name is Sang Sokea and I'm a senior software engineer. Welcome
+        <p className="mt-8 text-sm laptop:text-md desktop:text-lg">
+          Hi, my name is Vong Yuoyi and I'm a senior software engineer. Welcome
           to my personal website! in frontend and backend development for
           complex scalable web apps. If you want to know how I may help your
           project? Check out my project portfolio and online resume.
         </p>
         <p className="w-full mt-12 border border-solid border-cB"></p>
-        <div class="flex mt-12">
+        <div class="flex mt-12 mb-10">
           <p class="border border-solid h-10 border-3" style={borderStyle}></p>
           <p class="font-bold ml-4 text-4xl" style={styles}>
             What I can do{" "}
           </p>
         </div>
-        <p className="mt-10">
+        <p className="text-sm laptop:text-md desktop:text-lg">
           I am gratuated student from HRD and have more than 2 years' experience
           building software for clients. Below is a quick overview of my main
           technical skill sets and technologies I use.{" "}
@@ -84,7 +102,7 @@ export default function ViewOwnerProfilePage() {
             Sample text text text text text text text.
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 }

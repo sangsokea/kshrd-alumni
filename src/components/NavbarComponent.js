@@ -7,6 +7,7 @@ import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
+import alumni4 from "../commons/images/Alumni/alumni4.jpg";
 
 function classNames(...classNamees) {
   return classNamees.filter(Boolean).join(" ");
@@ -184,7 +185,7 @@ export default function NavbarComponent() {
                       >
                         <img
                           className="w-10 h-10 rounded-full"
-                          src="https://w7.pngwing.com/pngs/636/702/png-transparent-computer-icons-user-profile-avatar-black-man-heroes-desktop-wallpaper-silhouette-thumbnail.png"
+                          src={alumni4}
                           alt="Rounded avatar"
                         ></img>
                         <p className="inline-flex items-center justify-between px-2 py-1 text-white rounded-md">

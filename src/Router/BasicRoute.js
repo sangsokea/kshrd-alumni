@@ -40,7 +40,7 @@ function BasicRoute() {
           <Route path="resume" element={<ResumePage/>}></Route>
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>
-          <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route>
+          {/* <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route> */}
           {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate />}></Route>
 
