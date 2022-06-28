@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Add } from "../../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 
 export default function ViewStudentProfile() {
+  const [skill, setSkill] = useState([
+    {
+      id: 1,
+      title: "Java",
+      desc: "This is Java book",
+    },
+    {
+      id: 1,
+      title: "Java",
+      desc: "This is Java book",
+    },
+    {
+      id: 2,
+      title: "Javascript",
+      desc: "This is Javascript Book",
+    },
+    {
+      id: 3,
+      title: "Spring",
+      desc: "This is Spring Book",
+    },
+  ]);
   const [vall, setTitle] = useState(true);
+  const [valls, setTitles] = useState(true);
   const [title, setTitleValues] = useState(
     "I am gratuated student from HRD and have more than 2 years' experience building software for clients. Below is a quick overview of my main technical skill sets and technologies I use.  "
   );
@@ -16,6 +40,7 @@ export default function ViewStudentProfile() {
   const resetInputTitle = () => {
     setTitleValues("");
   };
+  const navigate = useNavigate();
   return (
     <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
       <div>
@@ -76,10 +101,12 @@ export default function ViewStudentProfile() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <svg
-              width="37"
-              height="37"
+          <div className="flex items-center justify-end">
+      <button>
+      <svg
+              onClick={() => navigate("editeducationStudent")}
+              width="28px"
+              height="28px"
               viewBox="0 0 37 37"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -89,10 +116,12 @@ export default function ViewStudentProfile() {
                 fill="#255FAB"
               />
             </svg>
+      </button>
+            
 
             <svg
-              width="48"
-              height="48"
+              width="38px"
+              height="38px"
               viewBox="0 0 48 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -349,6 +378,59 @@ export default function ViewStudentProfile() {
                 </div>
               )}
             </div>
+            <div className="mt-3">
+              <button
+                class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
+                onClick={() => setTitle((Prev) => !Prev)}
+              >
+                {vall ? (
+                  <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
+                ) : (
+                  <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
+                )}
+                skill{""}
+              </button>
+            </div>
+            <div className="laptop:grid grid-cols-3">
+              {vall ? null : (
+                <div className="">
+                  <div className="flex  flex-wrap">
+                  {skill?.map((item) => (
+                    <button key={item.id} 
+                      class="flex  flex-wrap pl-4 pr-2 py-2 m-1  justify-center items-center text-sm font-medium rounded-md cursor-pointer bg-[#D9D9D9] font-maven hover:bg-slate-400 hover:text-gray-100 dark:bg-gray-300 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+                      onClick={() => setTitles((Prev) => !Prev)}
+                      >
+                      
+                      {item.title}
+                      <svg class="h-4 w-4 text-black ml-2 hover:text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="12" y1="5" x2="12" y2="19" />  <line x1="5" y1="12" x2="19" y2="12" /></svg>
+                    </button>
+                                       
+                  ))}
+                  </div>
+                 
+                 <div className="">
+              {valls ? null : (
+              
+                  <div className="">
+                    <input
+                      class="block laptop:w-[1157px] w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                      id="password"
+                      name="title"
+                      value={title}
+                      onChange={handleTitleChange}
+                      placeholder=""
+                    />
+                  </div>
+               
+              )}
+            </div>
+                </div>
+              )}
+            </div>
+            <div>
+              
+            </div>
+            
           </div>
         </section>
       </div>

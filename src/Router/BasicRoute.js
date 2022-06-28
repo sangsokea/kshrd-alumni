@@ -4,7 +4,11 @@ import CenteredTabs from "../components/CenteredTabs";
 import FooterComponent from "../components/FooterComponent";
 import NavbarComponent from "../components/NavbarComponent";
 import SidebarComponent from "../components/SidebarComponent";
+import UserNavbarComponent from "../components/UserNavbarComponent";
+import UserSidebarComponent from "../components/UserSidebarComponent";
 import AccountSettingPage from "../pages/AccountSettingPage";
+import EditEducationStudent from "../pages/admin-page/EditEducationStudent";
+import ViewStudentProfile from "../pages/admin-page/ViewStudentProfile";
 import ConfirmPage from "../pages/authentication/ConfirmPage";
 import CreateNewPasswordPage from "../pages/authentication/CreateNewPasswordPage";
 import FormRegisterPage from "../pages/authentication/FormRegisterPage";
@@ -23,8 +27,8 @@ import AdminBasicRoute from "./AdminBasicRoute";
 function BasicRoute() {
   return (
     <>
-      <NavbarComponent />
-      {/* <CenteredTabs /> */}
+      <UserNavbarComponent/>
+      {/* <CenteredTabs /> */} 
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
@@ -33,6 +37,7 @@ function BasicRoute() {
           {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate />}></Route>
         </Route>
+        <Route path="/sidebars" element={<UserSidebarComponent />}></Route>
 
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -49,7 +54,7 @@ function BasicRoute() {
         <Route path="/portfolio" element={<PorfolioPage/>}></Route>
         <Route path="/portfolioedit" element={<PorfolioEdit/>}></Route>
       </Routes>
-      <FooterComponent />
+      {/* <FooterComponent /> */}
 
     </>
   );

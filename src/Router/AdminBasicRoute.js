@@ -19,7 +19,7 @@ export default function AdminBasicRoute() {
           <Route path="homePage" element={<AdminHomePage />}></Route>
           <Route path="manageStudent" element={<ManageStudentPage />}></Route>
           <Route path="viewstudentProfile" element={<ViewStudentProfile />}></Route>
-          <Route path="editeducationStudent" element={<EditEducationStudent />}></Route>
+          <Route path="viewstudentProfile/editeducationStudent" element={<EditEducationStudent />}></Route>
           <Route path="editemploymenthistoryStudent" element={<EditEmploymentHistoryStudent />}></Route>
           <Route path="filterAlumin" element={<AdminHomePage />}></Route>
           <Route path="manageCv" element={<AdminHomePage />}></Route>
