@@ -12,7 +12,7 @@ function classNames(...classNamees) {
   return classNamees.filter(Boolean).join(" ");
 }
 
-export default function UserNavbarComponent() {
+export default function UserNavbarComponent({ showSidebar, setShowSidebar }) {
   const navigate = useNavigate();
   const [show, setshow] = useState(false);
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -32,7 +32,61 @@ export default function UserNavbarComponent() {
       </div>
 
       <nav className="bg-[#255FAB] ">
-        
+        <div className="tablet:hidden">
+          <button
+            color="transparent"
+            buttonType="link"
+            size="lg"
+            iconOnly
+            rounded
+            ripple="light"
+            onClick={() => setShowSidebar("left-0")}
+          >
+            <svg
+              class="h-7 w-7 text-white absolute top-[88px] ml-3"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              {" "}
+              <line x1="3" y1="12" x2="21" y2="12" />{" "}
+              <line x1="3" y1="6" x2="21" y2="6" />{" "}
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <div
+            className={`absolute top-2 tablet:hidden ${
+              showSidebar === "left-0" ? "left-64" : "-left-64"
+            }  transition-all duration-300`}
+          >
+            <button
+              color="transparent"
+              buttonType="link"
+              size="lg"
+              iconOnly
+              rounded
+              ripple="light"
+              onClick={() => setShowSidebar("-left-64")}
+            >
+              <svg
+                class="h-10 w-10 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
         <div className=" mx-auto  px-4 tablet:px-10 desktop:px-24">
           <div className="grid grid-cols-2">
             <div className="flex items-center justify-start w-full">
@@ -47,14 +101,14 @@ export default function UserNavbarComponent() {
                     <div className="ml-10 flex items-center  space-x-4">
                       <button
                         onClick={() => navigate("/viewAlumni")}
-                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        className="text-white hover:text-green-300 transition duration-300 px-3 py-2 rounded-md text-sm font-medium"
                         aria-current="page"
                       >
                         ALUMNI
                       </button>
 
                       <Menu as="div" className="inline-block text-left">
-                        <Menu.Button className="inline-flex justify-center w-full tablet:text-xs  px-2 py-2 text-sm text-white rounded-md shadow-sm  laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                        <Menu.Button className="inline-flex justify-center w-full tablet:text-xs hover:text-green-300  px-2 py-2 text-sm text-white rounded-md shadow-sm  laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                           NEW RESUME
                           <ChevronDownIcon
                             className="w-5 h-5 ml-2 -mr-1"
@@ -72,7 +126,7 @@ export default function UserNavbarComponent() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="right-0 w-56 mt-2 origin-top-right bg-white shadow-lg rounded-laptop ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="right-0 w-56 mt-2  origin-top-right bg-white shadow-lg rounded-laptop ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <button className="py-1">
                               <Menu.Item>
                                 {({ active }) => (
