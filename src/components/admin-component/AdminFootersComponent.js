@@ -3,7 +3,7 @@ import { colors } from "../../commons/colors/colors";
 
 export default function AdminFootersComponent() {
   return (
-    <div className="mt-5 laptop:grid-cols-3">
+    <div className="mt-5 laptop:grid-cols-3 fixed bottom-0 w-full">
       <section className="text-sm body-font font-maven laptop:text-md desktop:text-lg laptop:ml-64   tablet:ml-64">
         <div
           className="bg-white px-2 tablet:px-4 py-2.5 text-white "

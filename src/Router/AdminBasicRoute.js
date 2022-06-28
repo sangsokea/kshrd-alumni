@@ -7,22 +7,23 @@ import AdminLogInPage from "../pages/admin-page/admin-authentication/AdminLogInP
 import AdminHomePage from "../pages/admin-page/AdminHomePage";
 import ManageStudentPage from "../pages/admin-page/ManageStudentPage";
 import AdminFootersComponent from "../components/admin-component/AdminFootersComponent";
+import AdminManageCV from "../components/admin-component/AdminManageCV";
 
 export default function AdminBasicRoute() {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div>
-      <Routes>
-        <Route path="/admin" element={<AdminSidebarsComponent />}>
-          <Route path="home" element={<AdminHomePage />}></Route>
-          <Route
-            path="manageStudent"
-            element={<AdminManageStudentComponent />}
-          ></Route>
-          <Route path="filterAlumin" element={<AdminHomePage />}></Route>
-          <Route path="manageCV" element={<AdminHomePage />}></Route>
-        </Route>
-      </Routes>
+        <Routes>
+          <Route path="/admin" element={<AdminSidebarsComponent />}>
+            <Route path="home" element={<AdminHomePage />}></Route>
+            <Route
+              path="manageStudent"
+              element={<AdminManageStudentComponent />}
+            ></Route>
+            <Route path="filterAlumin" element={<AdminHomePage />}></Route>
+            <Route path="manageCV" element={<AdminManageCV />}></Route>
+          </Route>
+        </Routes>
       </div>
       <AdminFootersComponent />
     </div>

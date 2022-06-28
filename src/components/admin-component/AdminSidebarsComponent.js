@@ -17,12 +17,8 @@ export default function AdminSidebarsComponent() {
   }, [location]);
   return (
     <>
-      <AdminNavbarComponent
-        showSidebar={showSidebar}
-        setShowSidebar={setShowSidebar}
-      />
       <div
-        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-blue-800  w-64 z-10 py-4 px-6 transition-all duration-300`}
+        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-blue-800  w-64 z-10 py-4 px-6 transition-all duration-300 order-last`}
       >
         <div className="flex-col items-stretch min-h-full  flex-nowrap px-0 relative">
           <img
@@ -41,7 +37,7 @@ export default function AdminSidebarsComponent() {
                     [
                       "flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg ",
                       isActive
-                        ? "bg-gradient-to-tr from-red-700 to-yellow-500 text-white shadow-md"
+                        ? "bg-gradient-to-tr from-blue-900 to-blue-500 text-white shadow-md"
                         : null,
                     ]
                       .filter(Boolean)
@@ -69,35 +65,7 @@ export default function AdminSidebarsComponent() {
                   Home
                 </NavLink>
               </li>
-              <li className="rounded-lg mb-2">
-                <NavLink
-                  to="filterAlumin"
-                  className={({ isActive }) =>
-                    [
-                      "flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg ",
-                      isActive
-                        ? "bg-gradient-to-tr from-red-700 to-yellow-500 text-white shadow-md"
-                        : null,
-                    ]
-                      .filter(Boolean)
-                      .join(" ")
-                  }
-                >
-                  <svg
-                    width="25"
-                    height="25"
-                    viewBox="0 0 28 28"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M23.75 2.5H21.25V1.25C21.25 0.918479 21.1183 0.600537 20.8839 0.366117C20.6495 0.131696 20.3315 0 20 0C19.6685 0 19.3505 0.131696 19.1161 0.366117C18.8817 0.600537 18.75 0.918479 18.75 1.25V2.5H15V1.25C15 0.918479 14.8683 0.600537 14.6339 0.366117C14.3995 0.131696 14.0815 0 13.75 0C13.4185 0 13.1005 0.131696 12.8661 0.366117C12.6317 0.600537 12.5 0.918479 12.5 1.25V2.5H8.75V1.25C8.75 0.918479 8.6183 0.600537 8.38388 0.366117C8.14946 0.131696 7.83152 0 7.5 0C7.16848 0 6.85054 0.131696 6.61612 0.366117C6.3817 0.600537 6.25 0.918479 6.25 1.25V2.5H3.75C2.75544 2.5 1.80161 2.89509 1.09835 3.59835C0.395088 4.30161 0 5.25544 0 6.25V23.75C0 24.7446 0.395088 25.6984 1.09835 26.4017C1.80161 27.1049 2.75544 27.5 3.75 27.5H23.75C24.7446 27.5 25.6984 27.1049 26.4017 26.4017C27.1049 25.6984 27.5 24.7446 27.5 23.75V6.25C27.5 5.25544 27.1049 4.30161 26.4017 3.59835C25.6984 2.89509 24.7446 2.5 23.75 2.5ZM2.5 6.25C2.5 5.91848 2.6317 5.60054 2.86612 5.36612C3.10054 5.1317 3.41848 5 3.75 5H6.25V6.25C6.25 6.58152 6.3817 6.89946 6.61612 7.13388C6.85054 7.3683 7.16848 7.5 7.5 7.5C7.83152 7.5 8.14946 7.3683 8.38388 7.13388C8.6183 6.89946 8.75 6.58152 8.75 6.25V5H12.5V6.25C12.5 6.58152 12.6317 6.89946 12.8661 7.13388C13.1005 7.3683 13.4185 7.5 13.75 7.5C14.0815 7.5 14.3995 7.3683 14.6339 7.13388C14.8683 6.89946 15 6.58152 15 6.25V5H18.75V6.25C18.75 6.58152 18.8817 6.89946 19.1161 7.13388C19.3505 7.3683 19.6685 7.5 20 7.5C20.3315 7.5 20.6495 7.3683 20.8839 7.13388C21.1183 6.89946 21.25 6.58152 21.25 6.25V5H23.75C24.0815 5 24.3995 5.1317 24.6339 5.36612C24.8683 5.60054 25 5.91848 25 6.25V10H2.5V6.25ZM25 23.75C25 24.0815 24.8683 24.3995 24.6339 24.6339C24.3995 24.8683 24.0815 25 23.75 25H3.75C3.41848 25 3.10054 24.8683 2.86612 24.6339C2.6317 24.3995 2.5 24.0815 2.5 23.75V12.5H25V23.75Z"
-                      fill="white"
-                    />
-                  </svg>
-                  Filter Alumin
-                </NavLink>
-              </li>
+
               <li className="rounded-lg mb-2 ">
                 <NavLink
                   to="manageStudent"
@@ -105,7 +73,7 @@ export default function AdminSidebarsComponent() {
                     [
                       "flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg ",
                       isActive
-                        ? "bg-gradient-to-tr from-red-700 to-yellow-500 text-white shadow-md"
+                        ? "bg-gradient-to-tr from-blue-900 to-blue-500 text-white shadow-md"
                         : null,
                     ]
                       .filter(Boolean)
@@ -138,7 +106,7 @@ export default function AdminSidebarsComponent() {
                     [
                       "flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg ",
                       isActive
-                        ? "bg-gradient-to-tr from-red-700 to-yellow-500 text-white shadow-md"
+                        ? "bg-gradient-to-tr from-blue-900 to-blue-500 text-white shadow-md"
                         : null,
                     ]
                       .filter(Boolean)
@@ -173,7 +141,7 @@ export default function AdminSidebarsComponent() {
                     [
                       "flex items-center gap-4 text-md text-white font-maven font-light px-4 py-3 rounded-lg ",
                       isActive
-                        ? "bg-gradient-to-tr from-red-700 to-yellow-500 text-white shadow-md"
+                        ? "bg-gradient-to-tr from-blue-900 to-blue-500 text-white shadow-md"
                         : null,
                     ]
                       .filter(Boolean)
@@ -208,14 +176,20 @@ export default function AdminSidebarsComponent() {
         </div>
       </div>
       {routeName.includes("/home") ? (
-        <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+        <div className=" laptop:ml-72 laptop:mr-8 tablet:ml-64  desktop:py-32 tablet:py-32  py-32 px-4">
           <AdminHome />
         </div>
       ) : (
-        <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+        <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64  desktop:py-32 tablet:py-32  py-32 px-4">
           <Outlet />
         </div>
       )}
+      <div className="fixed top-0 w-full">
+        <AdminNavbarComponent
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+        />
+      </div>
     </>
   );
 }

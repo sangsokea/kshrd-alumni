@@ -6,31 +6,11 @@ import profileDetail from "../../Data.json";
 import PaginationComponent from "../PaginationComponent";
 import AdminPagination from "./AdminPagination";
 
-export default function AdminManageStudentComponent() {
+export default function AdminManageCV() {
   const [data, setData] = useState(
-    profileDetail.map((item) => {
-      return {
-        ...item,
-        isEnalbe: true,
-      };
-    }),
+  []
   );
-  const [value, setValue] = useState([]);
 
-  useEffect(() => {
-    // fetch("https://jsonplaceholder.typicode.com/users")
-    //   .then((response) => response.json())
-    //   .then((json) => setData(json));
-  }, []);
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    this.setState({ value });
-  };
-
-  const HiItems = (items) => {
-    console.log(items);
-  };
 
   const getItemsAsync = (searchValue, cb) => {
     let url = `https://api.github.com/search/repositories?q=${searchValue}&language=javascript`;
@@ -51,11 +31,13 @@ export default function AdminManageStudentComponent() {
   return (
     <>
       <div className="relative flex justify-center m-5">
-        <SearchBar placeholder={"Search user profile..."} data={data} />
+        <SearchBar placeholder={"Search templates..."} data={data} />
+
       </div>
       <div className="flex justify-center">
         <AdminPagination />
       </div>
+
     </>
   );
 }

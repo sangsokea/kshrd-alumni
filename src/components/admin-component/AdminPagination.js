@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function AdminPagination() {
+  const [page, setPage] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [selectedPage, setSelectedPage] = useState(1);
+
   return (
     <div className="py-2 flex">
       <nav className="block">
@@ -24,46 +27,20 @@ export default function AdminPagination() {
               </svg>
             </a>
           </li>
-          <li>
-            <a
-              href="#pablo"
-              className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 text-white bg-blue-500"
-            >
-              1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#pablo"
-              className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-white text-blue-500"
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#pablo"
-              className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-white text-blue-500"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#pablo"
-              className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-white text-blue-500"
-            >
-              4
-            </a>
-          </li>
-          <li>
-            <a
-              href="#pablo"
-              className="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 bg-white text-blue-500"
-            >
-              5
-            </a>
-          </li>
+          {page.map((item) => (
+            <li>
+              <a
+                onClick={() => setSelectedPage(item)}
+                className={
+                  selectedPage === item
+                    ? "first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 text-white bg-blue-500 cursor-pointer"
+                    : "first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blue-500 text-white text-blue-500 cursor-pointer"
+                }
+              >
+                {item}
+              </a>
+            </li>
+          ))}
           <li>
             <a
               href="#pablo"

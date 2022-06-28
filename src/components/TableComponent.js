@@ -25,40 +25,14 @@ export default function TableComponent({
 
   return (
     <>
-      <table class="w-full overflow-scroll text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-3">
+      <table class=" w-full overflow-scroll text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-24">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 font-bold">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-              First Name
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Last Name
-            </th>
-            <th scope="col" class="px-5 py-3">
-              Gender
-            </th>
-            <th scope="col" class="px-15 py-3">
-              Email
-            </th>
-            <th scope="col" class="px-5 py-3 text-center">
-              Generation
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Skill
-            </th>
-
-            <th scope="col" class="px-6 py-3">
-              Action
-            </th>
-            <th scope="col" class="px-6 py-3">
-              <span class="sr-only">Edit</span>
-            </th>
-          </tr>
+          <tr></tr>
         </thead>
         <tbody>
           {data.length !== 0 ? (
             <>
-              {data?.slice(0, 15).map((value, key) => (
+              {data?.slice(0, 10).map((value, key) => (
                 <tr
                   key={key}
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -141,7 +115,7 @@ export default function TableComponent({
             </>
           ) : (
             <>
-              {baseData?.slice(0, 15).map((value, key) => (
+              {baseData?.slice(0, 10).map((value, key) => (
                 <tr
                   key={key}
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
