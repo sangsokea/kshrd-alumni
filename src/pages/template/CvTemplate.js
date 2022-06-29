@@ -11,6 +11,7 @@ const generatePDF = async () => {
   
   doc.html(data).then(() => {
     doc.setFont("maven")
+    
     doc.save("cvTemplate.pdf");
   });
 };

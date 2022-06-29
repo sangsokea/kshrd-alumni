@@ -70,7 +70,7 @@ function BasicRoute() {
         ></Route>
         <Route path="/viewAlumni" element={<ViewAlumniPage />}></Route>
         <Route path="/portfolio" element={<PorfolioPage />}></Route>
-        <Route path="/portfolioedit" element={<PorfolioEdit />}></Route>
+        {/* <Route path="/portfolioedit" element={<PorfolioEdit />}></Route> */}
         {/* <Route path="/partner" element={<PartnerSideComponent />}>
           <Route
             path="publicSector"
@@ -78,8 +78,8 @@ function BasicRoute() {
           ></Route>
         </Route>{" "} */}
       </Routes>
-      {/* <FooterComponent /> */}
       <FooterComponent />
+      {/* <FooterComponent /> */}
     </>
   );
 }

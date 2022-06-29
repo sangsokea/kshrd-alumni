@@ -73,12 +73,12 @@ export default function EducationComponent() {
       <div className="mb-6">
         <label
           for="large-input"
-          className="flex flex-row mb-2 font-medium text-md dark:text-black"
+          className="flex flex-row mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black items-center"
         >
           Education
           <span onClick={addFieldsEducation}>
             <svg
-              className="w-6 h-auto ml-2 text-black"
+              className="w-4 latpop:w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -96,7 +96,7 @@ export default function EducationComponent() {
         {/* Dynamic form for Education */}
         <div className={!displayEducation ? "hidden" : "block"}>
           {education.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
               <div
                 className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
@@ -105,7 +105,7 @@ export default function EducationComponent() {
                 <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
-                      className="w-6 h-auto text-gray-500"
+                      className="w-4 laptop:w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export default function EducationComponent() {
                     </svg>
                   ) : (
                     <svg
-                      className="w-6 h-auto text-gray-500"
+                      className="w-4 laptop:w-6 h-auto text-gray-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"

@@ -19,16 +19,16 @@ export default function AccountSettingPage() {
 
   return (
     <>
-      <div className="container mx-auto ml-20">
-        <div className="mt-10 mb-20 text-4xl font-bold">
-          <p>ACCOUNT SETTING</p>
+      <div className="container mx-auto laptop:ml-20 ml-5 mt-0">
+        <div className="laptop:mt-10 laptop:mb-20 mb-5 text-lg laptop:text-xl desktop:text-4xl font-bold">
+          <p className="">ACCOUNT SETTING</p>
         </div>
 
-        <div className="grid grid-cols-4 m-auto">
+        <div className="grid laptop:grid-cols-4 m-auto">
           <div className="col-span-1">
-            <p className="text-xl text-right">Profile Picture</p>
+            <p className="text-xl text-right hidden laptop:block">Profile Picture</p>
           </div>
-          <div className="col-span-1 ml-10">
+          <div className="col-span-1 ml-4 laptop:ml-10">
             <input
               id="change-profile-picture"
               className="hidden"
@@ -45,52 +45,52 @@ export default function AccountSettingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-5 text-xl items-center">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">First Name</p>
+            <p className="laptop:text-right">First Name</p>
           </div>
 
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96 "
-              placeholder="boonlin"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="yuoyi"
             />
           </div>
         </div>
-        <div className="grid grid-cols-4 mt-5 text-xl items-center">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">Last Name</p>
+            <p className="laptop:text-right">Last Name</p>
           </div>
 
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96"
-              placeholder="em"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="vong"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-5 text-xl items-center">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">Email</p>
+            <p className="laptop:text-right">Email</p>
           </div>
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96"
-              placeholder="emboonlin999@gmail.com"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="yoiryivong@gmai.com"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-5 text-xl items-center">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">Password</p>
+            <p className="laptop:text-right">Password</p>
           </div>
           <div className="col-span-2">
             <button
               id="menu-btn"
               // style={styles}
-              className="px-4 py-2 ml-10 text-gray-500 bg-transparent border rounded-md"
+              className="px-4 py-2 laptop:ml-10 text-gray-500 bg-transparent border rounded-md"
               onClick={() => setChangePassword(!changePassword)}
             >
               Change password
@@ -102,13 +102,13 @@ export default function AccountSettingPage() {
           id="changePassword"
           className={!changePassword ? "hidden" : "block"}
         >
-          <div className="grid grid-cols-4 mt-5 text-xl">
+          <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right">Current Password</p>
+              <p className="laptop:text-xl laptop:text-right">Current Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -116,13 +116,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-5 text-xl">
+          <div className="flex grid-cols-4 laptop:grid mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right"> New Password</p>
+              <p className="laptop:text-xl laptop:text-right">New Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -130,13 +130,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-5 text-xl">
+          <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right"> Confirm New Password</p>
+              <p className="laptop:text-xl laptop:text-right">Confirm New Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -147,15 +147,15 @@ export default function AccountSettingPage() {
         </div>
 
         <div className="flex flex-row">
-          <div className="m-auto">
+          <div className="laptop:m-auto">
             <button
-              className="px-10 py-2 text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
             >
               Save
             </button>
 
-            <button className="px-10 py-2 mt-10 ml-10 text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
+            <button className="px-10 py-2 mt-10 ml-5 laptop:ml-10 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
               Cancel
             </button>
           </div>

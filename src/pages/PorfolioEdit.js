@@ -10,12 +10,16 @@ import { ReactComponent as Add } from "../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../commons/icon/removed.svg";
 import { Transition, Popover } from "@headlessui/react";
 import { colors } from "../commons/colors/colors";
+import { useDispatch } from "react-redux";
+import { fetchPortfolioPage } from "../redux/actions/localAction/PortfolioPageAction";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function PorfolioEdit() {
+  const dispatch = useDispatch();
+
   const [file, setFile] = useState("");
   const [title, setTitleValues] = useState(
     "Full Stack + UI designer from KSHRD . "
@@ -47,7 +51,6 @@ export default function PorfolioEdit() {
     setTitleValues(titleFormValues);
     console.log(titleFormValues);
   };
-  
   const handleDescChange = (e) => {
     setDescValues(e.target.value);
     console.log(e.target.value);
@@ -88,9 +91,9 @@ export default function PorfolioEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ title, desc, status, school, study, technology, file });
-    alert(
-      JSON.stringify({ title, desc, status, school, study, technology, file })
-    );
+    // alert(
+    //   JSON.stringify({ title, desc, status, school, study, technology, file })
+    // );
     // ... submit to API or something
   };
 
@@ -101,11 +104,11 @@ export default function PorfolioEdit() {
         <div className="container grid grid-cols-2 mx-auto desktop:w-1341 desktop:container desktop:mx-auto laptop:w-1200 w-350 tablet:container tablet:mx-auto laptop:container laptop:mx-auto desktop:grid desktop:grid-cols-3 tablet:grid tablet:grid-cols-2 laptop:grid laptop:grid-cols-2 ">
           <div className="desktop:col-span-2">
             <p className="text-2xl font-normal">Portfolio</p>
-            <p className="text-2xl font-bold text-blue-500">Sang Sokea</p>
+            <p className="text-2xl font-bold text-blue-500">Vong Yuoyi</p>
           </div>
           <div className="flex flex-row ">
             <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
-            <button onClick={() => navigate("/portfolio")}>
+            <button onClick={() => dispatch(fetchPortfolioPage(false))}>
               <Arrow className="w-6 mr-3 mt-7" />
             </button>
 
@@ -243,7 +246,6 @@ export default function PorfolioEdit() {
                     )}
                   </div>
                 </div>
-
                 <button
                   class="ml-8 rounded-md desktop:text-xl laptop:text-lg  mt-3  inline-flex justify-between content-center"
                   onClick={() => setDesc((Prev) => !Prev)}
@@ -265,6 +267,7 @@ export default function PorfolioEdit() {
                           value={desc}
                           name="desc"
                           onChange={handleDescChange}
+                          type="text"
                           placeholder=""
                         />
                       </div>
@@ -327,7 +330,7 @@ export default function PorfolioEdit() {
                 }
               >
                 {file ? (
-                  <button class="btn inline-flex justify-center mb-20 tablet:w-80  content-center "></button>
+                  <button class="btn inline-flex justify-center mb-20 tablet:w-80 content-center "></button>
                 ) : (
                   <button class=" mt-12 inline-flex justify-between content-center font-maven text-xl ">
                     <Img className="w-6 mr-2 -mt-1 rounded-lg"></Img>+ Click to
@@ -341,7 +344,7 @@ export default function PorfolioEdit() {
                 />
               </div>
             </div>
-            <div className="h-1 mt-20 bg-BDBDBD md:h-1 desktop:w-1179 laptop:w-1112 tablet:w-543 w-72 md:inline-block "></div>
+            <div className="h-1 mt-20 bg-[#BDBDBD] md:h-1 desktop:w-1179 laptop:w-1112 tablet:w-543 w-72 md:inline-block "></div>
 
             <div className="mt-2 desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3 ">
               <div className="col-span-2 text-left mt-14 desktop:ml-20 laptop:ml-3 tablet:ml-20 font-maven md:mr-">
@@ -410,7 +413,7 @@ export default function PorfolioEdit() {
                           <Remove className=""></Remove>
                         </button>
                       </div>
-                      <div className="h-1 mt-5 mb-5 ml-10 bg-BDBDBD md:h-1 desktop:w-570 md:inline-block "></div>
+                      <div className="h-1 mt-5 mb-5 ml-10 bg-[#BDBDBD] md:h-1 desktop:w-570 md:inline-block "></div>
                     </div>
                   )}
                 </div>
@@ -460,15 +463,14 @@ export default function PorfolioEdit() {
                 ></img>
                 <div classname="">
                   <button
-                    style={styles}
-                    class=" mt-24 hover:bg-blue-700 text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-                    onClick={handleSubmit}
+                    className="mt-10 px-12 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white bg-blue-600 rounded-md"
+                    onClick={() => dispatch(fetchPortfolioPage(false))}
                   >
                     Save
                   </button>
                   <button
-                    class=" w-36 h-12 text-blue-600 py-2 px-4 border border-blue-500 rounded"
-                    onClick={() => navigate("/portfolio")}
+                    className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-md"
+                    // onClick={() => dispatch(fetchPortfolioPage(false))}
                   >
                     Cancel
                   </button>

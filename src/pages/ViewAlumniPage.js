@@ -259,27 +259,27 @@ export default function ViewAlumniPage() {
             <div className="mt-10 mb-5 text-2xl font-bold">Results</div>
 
             {/* card */}
-            <div className="grid grid-cols-1 gap-5 laptop:grid-cols-2 tablet:w-full">
+            <div className="grid grid-cols-1 gap-5 laptop:grid-cols-2">
               {data.map((item) => (
-                <div>
-                  <div className="flex flex-col items-center p-2 pl-5 border rounded-lg bg-gray-50 laptop:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                <div className="w-full">
+                  <div className="p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
                       className="w-24 h-auto rounded-full"
                       src={item.profile}
                       alt="alumni"
                     />
                     <div className="flex flex-col justify-between mt-5 ml-5 leading-normal">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                      <h5 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                         {item.name}
                       </h5>
-                      <p className="mb-7 font-normal text-black textLine w-52">
+                      <p className="text-sm laptop:text-md desktop:text-lg mb-7 font-normal text-black textLine w-52">
                         {item.bio}
                       </p>
                     </div>
                     <button
                       onClick={() => navigate("/sidebar/aboutMe")}
                       style={{ backgroundColor: colors.footer, color: "white" }}
-                      className=" mt-auto rounded-md pl-3.5 pr-3.5 ml-auto"
+                      className="ml-[-54px] mb-1 mt-auto rounded-md pl-3.5 pr-3.5 laptop:ml-auto"
                     >
                       View
                     </button>

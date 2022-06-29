@@ -70,8 +70,8 @@ export default function CVBuilderPage() {
   return (
     <div className="h-full p-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100">
       <div className="flex flex-row ">
-        <h1 className="text-2xl font-bold">Create New Curriculum Vitae</h1>
-        <div className="w-64 mt-0 ml-auto ">
+        <h1 className="text-2xl font-bold hidden laptop:block">Create New Curriculum Vitae</h1>
+        <div className="w-64 mt-0 laptop:ml-auto ml-5 mb-3">
           <input
             type="file"
             className="hidden"
@@ -88,7 +88,7 @@ export default function CVBuilderPage() {
         </div>
       </div>
 
-      <h1 className="text-xl font-bold">Personal Information</h1>
+      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold">Personal Information</h1>
 
       <div>
         <form>
@@ -97,12 +97,12 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="first_name"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 First name
               </label>
               <input
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handleChangeFirstName}
                 type="text"
                 id="first_name"
@@ -115,7 +115,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="last_name"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Last name
               </label>
@@ -133,7 +133,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="email"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Email
               </label>
@@ -151,7 +151,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="phone"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Phone number
               </label>
@@ -170,7 +170,7 @@ export default function CVBuilderPage() {
           <div className="mb-6">
             <label
               for="large-input"
-              className="block mb-2 font-medium text-md dark:text-black"
+              className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Address
             </label>
@@ -186,7 +186,7 @@ export default function CVBuilderPage() {
           <div className="mb-6">
             <label
               for="large-input-summary"
-              className="flex flex-row mb-2 font-medium text-md dark:text-black"
+              className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Summary
             </label>
@@ -211,15 +211,15 @@ export default function CVBuilderPage() {
       </div>
 
       <div className="flex flex-row">
-        <div className="ml-auto ">
+        <div className="laptop:ml-auto">
           <button
-            className="px-12 py-2 mr-5 text-lg text-white bg-blue-600 rounded-md"
+            className="px-12 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white bg-blue-600 rounded-md"
             onClick={() => navigate("/sidebar/cvTemplate")}
           >
             Save
           </button>
           <button
-            className="px-10 py-2 text-lg text-blue-600 border border-blue-600 rounded-md"
+            className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-md"
             onClick={() => navigate("/")}
           >
             Cancel
