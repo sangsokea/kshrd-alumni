@@ -139,7 +139,7 @@ export default function PorfolioPage() {
               </div>
               <div className="">
                 <img
-                  className="ml-4 shadow-lg h-52  tablet:order-1 desktop:-ml-4 laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-80 laptop:w-80 tablet:w-80 tablet:ml-40 desktop:rounded-tl-tl-lgs laptop:rounded-tl-tl-lgs tablet:rounded-tl-tl-lgs mt-14 rounded-tl-tl-lgs"
+                  className=" shadow-lg h-52  tablet:order-1 desktop:-ml-4 laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-80 laptop:w-80 tablet:w-80 tablet:ml-40 desktop:rounded-tl-tl-lgs laptop:rounded-tl-tl-lgs tablet:rounded-tl-tl-lgs mt-14 rounded-tl-tl-lgs"
                   src="https://wallpaperaccess.com/full/6235574.jpg"
                   alt=""
                 />
@@ -149,7 +149,7 @@ export default function PorfolioPage() {
               
               <div className="">
                 <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 ">
-                <div className="absolute w-1 mt-3 ml-3 bg-[#8CC0DE] desktop:h-1 laptop:h-1 desktop:w-970 laptop:w-785 h-785 tablet:ml-3 -z-50"></div>
+                <div className="absolute w-1 mt-3 ml-3 bg-[#8CC0DE] desktop:h-1 laptop:h-1 desktop:w-970 laptop:w-785 h-[1050px] tablet:ml-3 -z-50"></div>
                 </div>
                 
                 <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
@@ -287,7 +287,7 @@ export default function PorfolioPage() {
               </div>
               <div className="">
                 <img
-                  className="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0 "
+                  className="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0 -ml-7"
                   src={img3}
                 ></img>
               </div>
