@@ -46,7 +46,7 @@ function BasicRoute() {
           {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate />}></Route>
 
-          <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route>
+          {/* <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route> */}
         </Route>
  
         {/* Partner Section */}

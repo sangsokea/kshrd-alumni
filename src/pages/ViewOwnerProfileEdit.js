@@ -126,10 +126,10 @@ export default function ViewOwnerProfileEdit() {
 
   return (
     <>
-      <div class="mt-5 mx-10 body-font font-maven">
+      <div class="laptop:mt-5 mx-10 body-font font-maven">
         <div>
           <img
-            class="w-full h-72"
+            class="w-[300px] laptop:w-full h-auto"
             src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
             alt="Image"
           />
@@ -140,35 +140,35 @@ export default function ViewOwnerProfileEdit() {
         </p>
 
         {/* First Name, Last Name, Skill input form */}
-        <div class="flex justify-between mt-3 gap-2 text-sm laptop:text-md desktop:text-lg ">
-          <div class="form-control w-full max-w-xs ">
+        <div class="block laptop:flex justify-between mt-3 gap-2 text-sm laptop:text-md desktop:text-lg ">
+          <div class="form-control laptop:w-full w-[300px] mb-5">
             <label class="label ">
               <span class="label-text">First Name</span>
             </label>
             <input
               type="text"
-              placeholder="Sokea"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3 bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              placeholder="Yuoyi"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div class="form-control w-full max-w-xs">
+          <div class="form-control laptop:w-full w-[300px] mb-5">
             <label class="label">
               <span class="label-text">Last Name</span>
             </label>
             <input
               type="text"
-              placeholder="Sang"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              placeholder="Vong"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div class="form-control w-full max-w-xs ">
+          <div class="form-control laptop:w-full w-[300px] mb-5">
             <label class="label">
               <span class="label-text">Skill</span>
             </label>
             <input
               type="text"
               placeholder="Web Development"
-              class="mt-3 input input-bordered w-full max-w-xs border border-solid rounded-md py-1 px-3  bg-bgText focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ export default function ViewOwnerProfileEdit() {
               <div className="grid grid-cols-2 ">
                 <div className="mb-5 ">
                   <textarea
-                    class="laptop:w-96 tablet:w-96 desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
+                    class="laptop:w-96 w-[300px] h-[100px] desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
                     // id="password"
                     // type="text"
                     name="summary"
@@ -205,9 +205,9 @@ export default function ViewOwnerProfileEdit() {
                     placeholder=""
                   />
                 </div>
-                <div className="flex justify-center">
+                <div className="laptop:flex justify-center hidden">
                   <button
-                    class="desktop:ml-10 tablet:ml-10 ml-10 mb-5"
+                    class="desktop:ml-10 tablet:ml-10 ml-10 mb-5 w-4 laptop:w-6"
                     onClick={resetInputSummary}
                   >
                     <Remove className=""></Remove>
@@ -218,18 +218,18 @@ export default function ViewOwnerProfileEdit() {
           </div>
         </div>
 
-        <p class="border-[2px] border-solid border-bgSkill w-full mt-12"></p>
-        <div class="flex mt-12">
+        <p class="border-[2px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
+        <div class="flex mt-12 items-center">
           <p
             class="border-[2px] border-solid h-10 border-3"
             style={borderStyle}
           ></p>
-          <p class="font-bold ml-4 text-4xl" style={styles}>
+          <p class="font-bold ml-4 text-xl laptop:text-2xl desktop:text-4xl" style={styles}>
             What I can do{" "}
           </p>
         </div>
 
-        <div class=" mt-5 text-sm laptop:text-md desktop:text-lg">
+        <div class="mt-5 text-sm laptop:text-md desktop:text-lg">
           <div>
             <button
               class="rounded-md inline-flex justify-between content-center mt-3"
@@ -248,7 +248,7 @@ export default function ViewOwnerProfileEdit() {
                 <div className="grid grid-cols-2 ">
                   <div className="mb-5 ">
                     <textarea
-                      class=" ml-10 laptop:w-96 tablet:w-96 desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-slate-50 text-left inline-flex justify-between content-center lap"
+                      class="laptop:w-96 w-[300px] h-[100px] desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
                       id="summary"
                       // type="text"
                       name="resetSummary"
@@ -259,7 +259,7 @@ export default function ViewOwnerProfileEdit() {
                   </div>
                   <div className="flex justify-center">
                     <button
-                      class="desktop:ml-24 tablet:ml-10 ml-20 mb-5"
+                      class="desktop:ml-24 tablet:ml-10 ml-20 mb-5 hidden laptop:block"
                       onClick={resetAddSummary}
                     >
                       <Remove className=""></Remove>
@@ -286,7 +286,7 @@ export default function ViewOwnerProfileEdit() {
             <div className="mt-3">
               {addSkill ? null : (
                 <div>
-                  <div className="flex flex-row gap-2">
+                  <div className="flex laptop:flex-row laptop:gap-2 flex-col">
                     {major.map((item, index) => (
                       <div className="mb-5">
                         <button
@@ -338,10 +338,10 @@ export default function ViewOwnerProfileEdit() {
           </div>
         </div>
 
-        <div className="flex flex-row">
-          <div className="ml-auto">
+        <div className="flex flex-row ">
+          <div className="laptop:ml-auto ">
             <button
-              className="px-10 py-2 text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={saveBackground}
               onClick={() => navigate("/")}
             >
@@ -349,7 +349,7 @@ export default function ViewOwnerProfileEdit() {
             </button>
 
             <button
-              className="px-10 py-2 mt-10 ml-10 text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+              className="px-10 py-2 mt-5 ml-5 laptop:mt-10 laptop:ml-10 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
               onClick={() => dispatch(fetchAboutMePage(false))}
             >
               Cancel

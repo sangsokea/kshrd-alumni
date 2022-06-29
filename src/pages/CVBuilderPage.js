@@ -92,7 +92,7 @@ export default function CVBuilderPage() {
 
       <div>
         <form>
-          <div className="grid gap-6 mt-2 mb-6 lg:grid-cols-2">
+          <div className="grid gap-6 mt-2 mb-5 lg:grid-cols-2">
             {/* First Name */}
             <div>
               <label
@@ -213,8 +213,9 @@ export default function CVBuilderPage() {
       <div className="flex flex-row">
         <div className="laptop:ml-auto">
           <button
-            className="px-12 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white bg-blue-600 rounded-md"
+            className="px-10 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white rounded-md"
             onClick={() => navigate("/sidebar/cvTemplate")}
+            style={styles}
           >
             Save
           </button>

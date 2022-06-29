@@ -82,7 +82,7 @@ export default function HomePage() {
             government, and universities for mutual improvement.
           </p>
 
-          <div className="mt-4">
+          <div className="mt-4 hidden laptop:block">
             <PartnerSideComponent />
           </div>
         </div>

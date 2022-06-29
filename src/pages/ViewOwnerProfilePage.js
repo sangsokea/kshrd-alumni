@@ -12,7 +12,7 @@ export default function ViewOwnerProfilePage() {
   useEffect(() => {
     setIsEdit(state);
   }, [state]);
-  
+
   const [isEdit, setIsEdit] = useState(state);
 
   return (
@@ -40,21 +40,24 @@ export default function ViewOwnerProfilePage() {
             <button
               type="button"
               onClick={() => dispatch(fetchAboutMePage(true))}
+              className="ml-auto"
             >
               {/* <NavLink to=""> */}
-              <svg
-                className="w-6 h-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1"
-                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                />
-              </svg>
+              <span className="">
+                <svg
+                  className="w-6 h-auto"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                  />
+                </svg>
+              </span>
               {/* </NavLink> */}
             </button>
           </div>

@@ -19,8 +19,9 @@ export default function UniversitiesComponent() {
               <img src={aeu} alt="aeu"></img>
             </div>
             <div>
-              <img className="px-2" src={ckcc} alt="ckcc"></img>
+              <img className="px-2" src={rupp} alt="rupp"></img>
             </div>
+           
             <div>
               <img className="px-2" src={itc} alt="itc"></img>
             </div>
@@ -40,8 +41,8 @@ export default function UniversitiesComponent() {
                 alt="num"
               ></img>
             </div>
-            <div>
-              <img className="px-2" src={rupp} alt="rupp"></img>
+             <div>
+              <img className="px-2" src={ckcc} alt="ckcc"></img>
             </div>
             <div>
               <img className="px-2" src={setec} alt="setec"></img>

@@ -6,6 +6,7 @@ import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
 import ReNavbarComponent from "./ReNavbarComponent";
+import Swal from "sweetalert2";
 
 const ButtonMailto = ({ mailto, children }) => {
   return (
@@ -37,6 +38,25 @@ export default function SidebarComponent() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  const logOut = () => {
+    Swal.fire({
+      title: "Sign out from Moment",
+      text: "Are you sure you would like to sign out from your moment account?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sign out",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(fetchIsAucthenticated(false));
+        localStorage.setItem("isAuth", false);
+        navigate("/");
+        // Swal.fire("Cancel!", "Your have canceled!.", "success");
+      }
+    });
+  };
 
   return (
     <body>
@@ -268,7 +288,7 @@ export default function SidebarComponent() {
 
                 {/* Link to account setting page */}
                 {/* <NavLink to="/sidebar/accountSetting"> */}
-                  <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(4)}
                     to="/sidebar/accountSetting"
@@ -303,17 +323,19 @@ export default function SidebarComponent() {
                     </span>
 
                     <div className="ml-5">Account Setting</div>
-                    </NavLink>
-                  </div>
+                  </NavLink>
+                </div>
                 {/* </NavLink> */}
 
                 {/* Log out */}
                 <div
-                  onClick={() => {
-                    dispatch(fetchIsAucthenticated(false));
-                    localStorage.setItem("isAuth", false);
-                    navigate("/");
-                  }}
+                  onClick={logOut}
+                  // onClick={() => {
+                  //   dispatch(fetchIsAucthenticated(false));
+                  //   localStorage.setItem("isAuth", false);
+                  //   navigate("/");
+
+                  // }}
                   className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-2 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
                 >
                   <span>
