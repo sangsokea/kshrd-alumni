@@ -33,10 +33,18 @@ export default function ViewStudentProfile() {
   const [title, setTitleValues] = useState(
     "I am gratuated student from HRD and have more than 2 years' experience building software for clients. Below is a quick overview of my main technical skill sets and technologies I use.  "
   );
+  const [test, setTest] = useState(true);
+  const [summary, setSummary] = useState(
+    "I'm a Junior Developer in frontend and backend development for complex scalable web apps. If you want to know how I may help your project? Check out my project portfolio and online resume."
+  )
   const handleTitleChange = (e) => {
     let titleFormValues = e.target.value;
     setTitleValues(titleFormValues);
     console.log(titleFormValues);
+  };
+  const handleSummarChange = (e) => {
+    setSummary( e.target.value);
+    console.log(e.target.value);
   };
   const resetInputTitle = () => {
     setTitleValues("");
@@ -392,9 +400,9 @@ export default function ViewStudentProfile() {
             <div>
               <button
                 class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
-                onClick={() => setTitle((Prev) => !Prev)}
+                onClick={() => setTest((Prev) => !Prev)}
               >
-                {vall ? (
+                {test ? (
                   <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
                 ) : (
                   <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
@@ -404,15 +412,15 @@ export default function ViewStudentProfile() {
             </div>
 
             <div className="">
-              {vall ? null : (
+              {test ? null : (
                 <div className="grid grid-cols-1">
                   <div className="">
                     <textarea
                       class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                       id="password"
-                      name="title"
-                      value={title}
-                      onChange={handleTitleChange}
+                      name="summary"
+                      value={summary}
+                      onChange={handleSummarChange}
                       placeholder=""
                     />
                   </div>

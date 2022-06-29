@@ -7,9 +7,11 @@ export default function AccountChangePassword() {
         <div className="flex flex-row px-3 mb-3"></div>
 
         <section class=" p-12 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
-          <p className="font-maven text-3xl text-[#035397] font-bold">Account setting</p>
+          <p className="font-maven text-3xl text-[#035397] font-bold">
+            Account setting
+          </p>
           <div class=" gap-6 mt-4 tablet:grid-cols-3">
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="name"
                 class="inline-block w-[124px] laptop:ml-[70px]    
@@ -44,7 +46,7 @@ export default function AccountChangePassword() {
               </svg>
               <button
                 type="button"
-                className="W h-[40px]  w-1/4  ml-10 rounded-md mt-2 text-blue-800 border border-blue-800"
+                className="h-[40px] laptop:w-1/4 w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800"
               >
                 <label
                   className="block w-full h-auto cursor-pointer"
@@ -55,15 +57,15 @@ export default function AccountChangePassword() {
               </button>
             </div>
             <p
-              className="laptop:ml-48
+              className="laptop:ml-48 
                               font-bold text-[#757D8A]"
             >
               Administrator
             </p>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center  mb-5">
               <label
                 for="name"
-                class="inline-block w-56 mr-6 text-right 
+                class="inline-block w-56 mr-6 laptop:text-right 
                               font-bold text-gray-600"
               >
                 First Name
@@ -73,14 +75,14 @@ export default function AccountChangePassword() {
                 id=""
                 name=""
                 placeholder=""
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
 
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-56 mr-6 text-right
+                class="inline-block w-56 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Last Name
@@ -90,13 +92,13 @@ export default function AccountChangePassword() {
                 id=""
                 name=""
                 placeholder=""
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full b px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-56 mr-6 text-right
+                class="inline-block w-56 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Email
@@ -105,14 +107,14 @@ export default function AccountChangePassword() {
                 type="text"
                 id=""
                 name=""
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            
-            <div class="flex items-center mb-5">
+
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block laptop:w-[180px] tablet:w-[102px] w-[85px] mr-6 text-right
+                class="inline-block laptop:w-[180px] tablet:w-[102px]  mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Password
@@ -124,10 +126,10 @@ export default function AccountChangePassword() {
                 Change Password
               </button>
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-56 mr-6 text-right
+                class="inline-block w-56 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Current Password
@@ -137,7 +139,7 @@ export default function AccountChangePassword() {
                   type="password"
                   id=""
                   name=""
-                  class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3  flex items-center text-sm leading-5">
                   <svg
@@ -155,10 +157,10 @@ export default function AccountChangePassword() {
                 </div>
               </div>
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-56 mr-6 text-right
+                class="inline-block w-56 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 New Password
@@ -186,10 +188,10 @@ export default function AccountChangePassword() {
                 </div>
               </div>
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-56 mr-6 text-right
+                class="inline-block w-56 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Comfirm New Password
@@ -199,7 +201,7 @@ export default function AccountChangePassword() {
                   type="password"
                   id=""
                   name=""
-                  class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3  flex items-center text-sm leading-5">
                   <svg

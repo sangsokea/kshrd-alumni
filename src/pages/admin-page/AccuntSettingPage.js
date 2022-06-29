@@ -6,10 +6,12 @@ export default function AccuntSettingPage() {
       <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
         <div className="flex flex-row px-3 mb-3"></div>
 
-        <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
-          <p>Account setting</p>
+        <section class=" p-12 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
+          <p className="font-maven text-3xl text-[#035397] font-bold">
+            Account setting
+          </p>
           <div class=" gap-6 mt-4 tablet:grid-cols-3">
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="name"
                 class="inline-block w-32    
@@ -44,7 +46,7 @@ export default function AccuntSettingPage() {
               </svg>
               <button
                 type="button"
-                className="W h-[40px]  w-1/4  ml-10 rounded-md mt-2 text-blue-800 border border-blue-800"
+                className="W h-[40px]  laptop:w-1/4 w-full  laptop:ml-10 rounded-md mt-2 text-blue-800 border border-blue-800"
               >
                 <label
                   className="block w-full h-auto cursor-pointer"
@@ -60,10 +62,10 @@ export default function AccuntSettingPage() {
             >
               Administrator
             </p>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="name"
-                class="inline-block w-32 mr-6 text-right 
+                class="inline-block w-32 mr-6 laptop:text-right 
                               font-bold text-gray-600"
               >
                 First Name
@@ -73,14 +75,14 @@ export default function AccuntSettingPage() {
                 id=""
                 name=""
                 placeholder=""
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
 
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-32 mr-6 text-right
+                class="inline-block w-32 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Last Name
@@ -90,13 +92,13 @@ export default function AccuntSettingPage() {
                 id=""
                 name=""
                 placeholder=""
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block w-32 mr-6 text-right
+                class="inline-block w-32 mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Email
@@ -105,14 +107,13 @@ export default function AccuntSettingPage() {
                 type="text"
                 id=""
                 name=""
-               
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-blue-800 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            <div class="flex items-center mb-5">
+            <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block laptop:w-28 tablet:w-[102px] w-[85px] mr-6 text-right
+                class="inline-block laptop:w-28 tablet:w-[102px]  mr-6 laptop:text-right
                                  font-bold text-gray-600"
               >
                 Password
@@ -125,18 +126,18 @@ export default function AccuntSettingPage() {
               </button>
             </div>
             <div classname="">
-        <div className="flex items-center laptop:justify-start justify-center ml-[135px]">
-          <button
-            class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-            // onClick={handleSubmit}
-          >
-            Save
-          </button>
-          <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-800 hover:border-transparent rounded">
-            Cancel
-          </button>
-        </div>
-      </div>
+              <div className="flex items-center laptop:justify-start justify-center ml-[135px]">
+                <button
+                  class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+                  // onClick={handleSubmit}
+                >
+                  Save
+                </button>
+                <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-800 hover:border-transparent rounded">
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       </div>
