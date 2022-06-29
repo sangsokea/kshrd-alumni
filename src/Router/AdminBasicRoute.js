@@ -26,7 +26,6 @@ export default function AdminBasicRoute() {
           <Route path="editemploymenthistoryStudent" element={<EditEmploymentHistoryStudent />}></Route>
           <Route path="filterAlumin" element={<AdminHomePage />}></Route>
           <Route path="manageCv" element={<AdminHomePage />}></Route>
-          <Route path="accut" element={<AddNewStudent />}></Route>
         </Route>
       </Routes>
       <AdminFootersComponent />

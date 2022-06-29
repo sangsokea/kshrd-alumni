@@ -69,9 +69,7 @@ export default function EditEducationStudent() {
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button
-            onClick={() => Navigate("editeducationStudent")}
-          >
+          <button onClick={() => Navigate("editeducationStudent")}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
@@ -152,9 +150,87 @@ export default function EditEducationStudent() {
               </Popover>
             </div>
           </div>
-          <button>
-            <Counter className="w-8" />
-          </button>
+          <Popover className="relative">
+            {({ open }) => (
+              <>
+                <Popover.Button>
+                  <Counter className="w-8 mt-2" />
+                </Popover.Button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-24 w-[279px] h-270 sm:px-0 lg:max-w-3xl">
+                    <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                      <div className="relative gap-8 bg-white p-7 ">
+                        {/* {solutions.map((item) => ( */}
+                        <div>
+                          <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                            <div className="flex items-center">
+                              <p className="text-2xl text-gray-900 font-maven ">
+                                Menu
+                              </p>
+                            </div>
+                            <hr className="w-full mt-5"></hr>
+                          </div>
+                        </div>
+                        <button className="flex items-center justify-center ml-5 mt-3">
+                          <div className="mr-5">
+                            <svg
+                              width="15"
+                              height="18"
+                              viewBox="0 0 15 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M13.75 17.5H12.5V15.625C12.499 14.7965 12.1694 14.0022 11.5836 13.4164C10.9978 12.8306 10.2035 12.501 9.375 12.5H5.625C4.7965 12.501 4.00222 12.8306 3.41639 13.4164C2.83055 14.0022 2.50099 14.7965 2.5 15.625V17.5H1.25V15.625C1.25132 14.4651 1.71268 13.3531 2.53287 12.5329C3.35305 11.7127 4.46508 11.2513 5.625 11.25H9.375C10.5349 11.2513 11.6469 11.7127 12.4671 12.5329C13.2873 13.3531 13.7487 14.4651 13.75 15.625V17.5ZM0.625 2.5C0.45924 2.5 0.300269 2.56585 0.183058 2.68306C0.0658481 2.80027 0 2.95924 0 3.125V8.75H1.25V3.125C1.25 2.95924 1.18415 2.80027 1.06694 2.68306C0.949731 2.56585 0.79076 2.5 0.625 2.5Z"
+                                fill="#699BF7"
+                              />
+                              <path
+                                d="M0 0V1.25H3.125V5.625C3.125 6.78532 3.58594 7.89812 4.40641 8.71859C5.22688 9.53906 6.33968 10 7.5 10C8.66032 10 9.77312 9.53906 10.5936 8.71859C11.4141 7.89812 11.875 6.78532 11.875 5.625V1.25H15V0H0ZM4.375 1.25H10.625V3.125H4.375V1.25ZM7.5 8.75C6.6712 8.75 5.87634 8.42076 5.29029 7.83471C4.70424 7.24866 4.375 6.4538 4.375 5.625V4.375H10.625V5.625C10.625 6.4538 10.2958 7.24866 9.70971 7.83471C9.12366 8.42076 8.3288 8.75 7.5 8.75Z"
+                                fill="#699BF7"
+                              />
+                            </svg>
+                          </div>
+
+                          <p className="font-maven text-md text-[#035397] font-bold">
+                            Education
+                          </p>
+                        </button>
+                        <hr className="w-44 mt-4 mx-auto"></hr>
+                        <button className="flex items-center justify-center ml-5 mt-5">
+                          <div className="mr-5">
+                            <svg
+                              width="12"
+                              height="15"
+                              viewBox="0 0 12 15"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 0V5.59H1.5L6 10.09L10.5 5.59H7V0H5ZM0 9C0 12.31 2.69 15 6 15C9.31 15 12 12.31 12 9H10C10 11.21 8.21 13 6 13C3.79 13 2 11.21 2 9H0Z"
+                                fill="#699BF7"
+                              />
+                            </svg>
+                          </div>
+
+                          <p className="ml-1 font-maven text-md text-[#035397] font-bold">
+                            Employment
+                          </p>
+                        </button>
+                      </div>
+                    </div>
+                  </Popover.Panel>
+                </Transition>
+              </>
+            )}
+          </Popover>
         </div>
       </div>
 
@@ -195,7 +271,7 @@ export default function EditEducationStudent() {
             </div>
             <div className="grid grid-2 mt-2">
               <div>
-              <button
+                <button
                   class="rounded-md desktop:text-xl laptop:text-lg inline-flex justify-between content-center"
                   onClick={() => setDesc((Prev) => !Prev)}
                 >
@@ -227,7 +303,7 @@ export default function EditEducationStudent() {
             </div>
             <div className="grid grid-2 mt-2">
               <div>
-              <button
+                <button
                   class="rounded-md desktop:text-xl laptop:text-lg  inline-flex justify-between content-center"
                   onClick={() => setStatus((Prev) => !Prev)}
                 >
