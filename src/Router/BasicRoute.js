@@ -34,12 +34,12 @@ import ChangeTemplatePage from "../pages/ChangeTemplatePage";
 function BasicRoute() {
   return (
     <>
-      <NavbarComponent/>
-      {/* <CenteredTabs /> */} 
+      <NavbarComponent />
+      {/* <CenteredTabs /> */}
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
-          <Route path="resume" element={<ResumePage/>}></Route>
+          <Route path="resume" element={<ResumePage />}></Route>
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>
           {/* <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route> */}
@@ -48,15 +48,9 @@ function BasicRoute() {
 
           {/* <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route> */}
         </Route>
- 
+
         {/* Partner Section */}
-        <Route path="/" element={<HomePage />}>
-            <Route path="publicSector" element={<PublicSectorComponent/>}></Route>
-            <Route path="universities" element={<UniversitiesComponent/>}></Route>
-            <Route path="globalCompanies" element={<GlobalCompaniesComponent/>}></Route>
-            <Route path="localCompanies" element={<LocalCompaniesComponent/>}></Route>
-            <Route path="bank" element={<BankAndFinanceComponent/>}></Route>
-        </Route>
+        <Route path="/" element={<HomePage />}></Route>
         {/* <Route path="/sidebars" element={<UserSidebarComponent />}></Route> */}
 
         <Route path="/login" element={<LoginPage />} />
