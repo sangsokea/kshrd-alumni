@@ -183,7 +183,7 @@ export default function PorfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                         id="password"
                         name="title"
                         value={title}
@@ -220,7 +220,7 @@ export default function PorfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <textarea
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                         id="password"
                         value={desc}
                         name="desc"
@@ -257,7 +257,7 @@ export default function PorfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                         id="password"
                         name="status"
                         value={status}
