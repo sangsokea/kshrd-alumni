@@ -11,7 +11,7 @@ export default function AdminFootersComponent() {
         ></div>
         <div style={logoBackground}>
           <span className="block p-3 text-center text-white text-md">
-            2022 © Korean Software HRD Center. All right reserved.
+          2022 © Korea Software HRD Center. All right reserved.
           </span>
         </div>
       </section>

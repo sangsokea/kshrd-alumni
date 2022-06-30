@@ -9,6 +9,9 @@ import AdminFootersComponent from "../components/admin-component/AdminFootersCom
 import ViewStudentProfile from "../pages/admin-page/ViewStudentProfile";
 import EditEducationStudent from "../pages/admin-page/EditEducationStudent";
 import EditEmploymentHistoryStudent from "../pages/admin-page/EditEmploymentHistoryStudent";
+import AccuntSettingPage from "../pages/admin-page/AccuntSettingPage";
+import AccountChangePassword from "../pages/admin-page/AccountChangePassword";
+import AddNewStudent from "../pages/admin-page/AddNewStudent";
 
 export default function AdminBasicRoute() {
   return (
@@ -23,6 +26,7 @@ export default function AdminBasicRoute() {
           <Route path="editemploymenthistoryStudent" element={<EditEmploymentHistoryStudent />}></Route>
           <Route path="filterAlumin" element={<AdminHomePage />}></Route>
           <Route path="manageCv" element={<AdminHomePage />}></Route>
+          <Route path="accut" element={<EditEmploymentHistoryStudent />}></Route>
         </Route>
       </Routes>
       <AdminFootersComponent />

@@ -4,7 +4,7 @@ import logo from "../../commons/images/logo.png";
 import AdminNavbarComponent from "./AdminNavbarComponent";
 
 export default function AdminSidebarsComponent() {
-  const [showSidebar, setShowSidebar] = useState("-left-64");
+  const [showSidebar, setShowSidebar] = useState("-left-[330px]");
   return (
     <>
       <AdminNavbarComponent
@@ -12,18 +12,18 @@ export default function AdminSidebarsComponent() {
         setShowSidebar={setShowSidebar}
       />
       <div
-        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-blue-800  w-64 z-10 py-4 px-6 transition-all duration-300`}
+        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-[#255FAB]  w-[330px] z-10 py-4 px-6 transition-all duration-300`}
       >
         <div className="flex-col items-stretch min-h-full  flex-nowrap px-0 relative">
-          <img
-            src={logo}
-            alt="logo homepage"
-            className="border-none w-32 mx-auto"
-          />
           <div className="flex flex-col">
-            <hr className="my-4 min-w-full" />
+            <img
+              src={logo}
+              alt="logo homepage"
+              className="border-none w-32 mt-7 mx-auto"
+            />
+            <hr className="my-4 min-w-full mt-10" />
 
-            <ul className="flex-col min-w-full   flex list-none">
+            <ul className="flex-col min-w-full mt-10  flex list-none">
               <li className="rounded-lg mb-4">
                 <NavLink
                   to="homePage"
@@ -195,7 +195,9 @@ export default function AdminSidebarsComponent() {
           </div>
         </div>
       </div>
-      <Outlet></Outlet>
+      <div className="laptop:ml-[360px] laptop:mr-8 tablet:ml-[330px]">
+        <Outlet></Outlet>
+      </div>
     </>
   );
 }
