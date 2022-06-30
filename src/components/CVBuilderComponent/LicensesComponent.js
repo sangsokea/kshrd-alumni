@@ -4,10 +4,13 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
+import sample_image from "../../commons/images/sample image.jpg"
 
 export default function LicensesComponent() {
   const [displayLicenses, setDisplayLicenses] = useState(false);
-  const [image, setImage] = useState("https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png");
+  const [image, setImage] = useState(
+    sample_image
+  );
   const [imageUrl, setImageUrl] = useState("");
 
   const [licenses, setLicenses] = useState([
@@ -76,12 +79,12 @@ export default function LicensesComponent() {
       <div className="mb-6">
         <label
           for="large-input"
-          className="flex flex-row mb-2 font-medium text-md dark:text-black"
+          className="flex flex-row mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black items-center"
         >
-          Licenses & cerifications
+          Licenses & Cerifications
           <span onClick={addFieldsLicensesAndCertifications}>
             <svg
-              className="w-6 h-auto ml-2 text-black"
+              className="w-4 latpop:w-6 h-auto ml-2 text-black"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -97,9 +100,9 @@ export default function LicensesComponent() {
         </label>
 
         {/* Dynamic form for Licenses and Certifications */}
-        <div classNameName={!displayLicenses ? "hidden" : "block"}>
+        <div className={!displayLicenses ? "hidden" : "block"}>
           {licenses.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md">
+            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
               {/* Image and Upload Certificate Button */}
               <div onClick={() => onDropDwon(input.id)}>
                 <div className="flex flex-row mb-5">
@@ -109,7 +112,7 @@ export default function LicensesComponent() {
                   <span className="ml-auto">
                     {!input.isShow ? (
                       <svg
-                        className="w-6 h-auto text-gray-500"
+                        className="w-4 laptop:w-6 h-auto text-gray-500"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -125,7 +128,7 @@ export default function LicensesComponent() {
                       </svg>
                     ) : (
                       <svg
-                        className="w-6 h-auto text-gray-500"
+                        className="w-4 laptop:w-6 h-auto text-gray-500"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -146,17 +149,24 @@ export default function LicensesComponent() {
 
               <div className={input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-3 text-center">
-                  <img
-                    className="m-auto mb-3 rounded-lg"
-                    src={imageUrl ? imageUrl : image}
-                    alt="preview"
-                    style={{height: "200px"}}
-                  ></img>
                   <div>
-                    <input id="upload-certificate" type="file" className="hidden" onChange={handleImageChange}/>
-                    <button type="button" className="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]">
-                      <label for="upload-certificate" className="block w-full h-auto cursor-pointer">Upload Certificate</label>
-                    </button>
+                    <input
+                      id="upload-certificate"
+                      type="file"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                    {/* <button type="button" className="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]"> */}
+                    <label for="upload-certificate">
+                      {" "}
+                      <img
+                        className="m-auto mb-3 rounded-lg cursor-pointer"
+                        src={imageUrl ? imageUrl : image}
+                        alt="preview"
+                        style={{ height: "200px" , width: "300px"}}
+                      ></img>
+                    </label>
+                    {/* </button> */}
                   </div>
                 </div>
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -168,7 +178,7 @@ export default function LicensesComponent() {
                       School
                     </label>
                     <input
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="school"
                       placeholder="RUPP"
                       value={input.school}
@@ -187,13 +197,12 @@ export default function LicensesComponent() {
                       value={input.degree}
                       type="text"
                       name="degree"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
                   </div>
                 </div>
-
               </div>
 
               <button

@@ -62,7 +62,7 @@ export default function ResetPasswordPage() {
               </h1>
               <button
                 style={styles}
-                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
+                className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
                 onClick={() => navigate("/createNewPassword")}
               >
                 Reset Password{" "}

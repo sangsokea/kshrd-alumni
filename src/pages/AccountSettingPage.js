@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
+import sample_image from "../commons/images/sample image.jpg"
 
 export default function AccountSettingPage() {
   const [changePassword, setChangePassword] = useState(false);
   const [image, setImage] = useState(
-    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+    sample_image
   );
   const [imageUrl, setImageUrl] = useState("");
 
@@ -18,104 +19,96 @@ export default function AccountSettingPage() {
 
   return (
     <>
-      <div className="container mx-auto ml-20">
-        <div className="mt-10 mb-20 text-4xl font-bold">
-          <p>ACCOUNT SETTING</p>
+      <div className="container mx-auto laptop:ml-20 ml-5 mt-0">
+        <div className="laptop:mt-10 laptop:mb-20 mb-5 text-lg laptop:text-xl desktop:text-4xl font-bold">
+          <p className="">ACCOUNT SETTING</p>
         </div>
 
-        <div className="grid grid-cols-4 m-auto">
+        <div className="grid laptop:grid-cols-4 m-auto">
           <div className="col-span-1">
-            <p className="text-xl text-right">Profile Picture</p>
+            <p className="text-xl text-right hidden laptop:block">Profile Picture</p>
           </div>
-          <div className="col-span-1 ml-10">
-            <img
-              className="rounded-lg"
-              src={imageUrl ? imageUrl : image}
-              style={{ height: "200px" }}
-            />
-          </div>
-          <div className="col-span-1">
+          <div className="w-auto col-span-2 ml-4 laptop:ml-10">
             <input
               id="change-profile-picture"
               className="hidden"
               type="file"
               onChange={handleImageChange}
             ></input>
-            <button
-              style={styles}
-              className="text-xl ml-10 bg-transparent text-white h-[60px] w-[230px] border hover:border-transparent rounded-md"
-            >
-              <label for="change-profile-picture" className="block w-full h-full mt-4 cursor-pointer">
-                Change Profile Picture
-              </label>
-            </button>
+            <label for="change-profile-picture">
+              <img
+                className="rounded-lg cursor-pointer"
+                src={imageUrl ? imageUrl : image}
+                style={{ height: "200px" , width: "300px"}}
+              />
+            </label>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">First Name</p>
+            <p className="laptop:text-right">First Name</p>
           </div>
 
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96 "
-              placeholder=" boonlin"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="yuoyi"
             />
           </div>
         </div>
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">Last Name</p>
+            <p className="laptop:text-right">Last Name</p>
           </div>
 
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96"
-              placeholder=" em"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="vong"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p className="text-right">Email</p>
+            <p className="laptop:text-right">Email</p>
           </div>
           <div className="col-span-2">
             <input
-              className="px-4 py-2 ml-10 border rounded w-96"
-              placeholder="emboonlin999@gmail.com"
+              className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
+              placeholder="yoiryivong@gmail.com"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 mt-10 text-xl">
+        <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
           <div className="col-span-1">
-            <p classNameName="text-right">Password</p>
+            <p className="laptop:text-right">Password</p>
           </div>
           <div className="col-span-2">
             <button
               id="menu-btn"
               // style={styles}
-              className="px-2 py-4 ml-10 text-gray-500 bg-transparent border rounded-md"
+              className="px-4 py-2 laptop:ml-10 text-gray-400 bg-transparent border rounded-md hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-100 hover:ring-indigo-500 hover:outline-none"
               onClick={() => setChangePassword(!changePassword)}
             >
-              Change Password
+              Change password
             </button>
           </div>
         </div>
 
         <div
           id="changePassword"
-          classNameName={!changePassword ? "hidden" : "block"}
+          className={!changePassword ? "hidden" : "block"}
         >
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right"> Current Password</p>
+              <p className="laptop:text-xl laptop:text-right">Current Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -123,13 +116,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="flex grid-cols-4 laptop:grid mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right"> New Password</p>
+              <p className="laptop:text-xl laptop:text-right">New Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -137,13 +130,13 @@ export default function AccountSettingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 mt-10 text-xl">
+          <div className="flex laptop:grid grid-cols-4 mt-5 text-md laptop:text-lg desktop:text-xl laptop:items-center flex-col">
             <div className="col-span-1">
-              <p className="text-xl text-right"> Confirm New Password</p>
+              <p className="laptop:text-xl laptop:text-right">Confirm New Password</p>
             </div>
             <div className="col-span-2">
               <input
-                className="px-4 py-2 ml-10 border rounded w-96"
+                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
                 id="inline-password"
                 type="password"
                 placeholder="******************"
@@ -154,15 +147,15 @@ export default function AccountSettingPage() {
         </div>
 
         <div className="flex flex-row">
-          <div className="m-auto">
+          <div className="laptop:m-auto">
             <button
-              className="px-10 py-2 text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
             >
               Save
             </button>
 
-            <button className="px-10 py-2 mt-10 ml-10 text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
+            <button className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
               Cancel
             </button>
           </div>

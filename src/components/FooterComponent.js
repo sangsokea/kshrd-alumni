@@ -2,20 +2,24 @@ import React from "react";
 import { colors } from "../commons/colors/colors";
 
 export default function FooterComponent() {
-
   return (
-    <div className="mt-5 laptop:grid-cols-3">
+    <div className="mt-1 laptop:grid-cols-3">
       <section className="text-sm body-font font-maven laptop:text-md desktop:text-lg">
-        <div className="bg-white px-2 tablet:px-4 py-2.5 text-white " style={styles}>
+        <div
+          className="bg-white px-2 tablet:px-4 py-2.5 text-white "
+          style={styles}
+        >
           <footer className="container mx-auto">
             <div className="grid grid-cols-1 gap-8 py-8 ml-3 mr-3 laptop:grid-cols-3">
               <div>
-                <h2 className="mb-3 text-lg font-semibold uppercase">
+                <h2 className="mb-10 text-lg uppercase">
                   contact us:
+                  <p className="border-b-[0.5px] w-28"></p>
                 </h2>
+
                 <div>
                   <ul className="text-white rounded-lg w-90">
-                    <li className="inline-flex w-full py-2 text-white border-b border-gray-200">
+                    <li className="inline-flex w-full py-2 text-white divide-y-slate-200 items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white"
@@ -32,7 +36,7 @@ export default function FooterComponent() {
                       </span>
                       012 998 919
                     </li>
-                    <li className="inline-flex w-full py-2 text-white border-b border-gray-200">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white "
@@ -50,7 +54,7 @@ export default function FooterComponent() {
                       </span>
                       info.kshrd@gmail.com
                     </li>
-                    <li className="inline-flex w-full py-2 text-white border-b border-gray-200">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white border rounded"
@@ -67,7 +71,7 @@ export default function FooterComponent() {
                       </span>
                       @ksignhrd
                     </li>
-                    <li className="inline-flex w-full py-2 text-white border-b border-gray-200">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white"
@@ -85,10 +89,10 @@ export default function FooterComponent() {
                       </span>
                       Korea Software HRD Center
                     </li>
-                    <li className="inline-flex w-full py-2 text-white border-b border-gray-200">
+                    <li className="inline-flex w-full py-2 text-white">
                       <span className="pr-3">
                         <svg
-                          className="w-5 h-auto text-white"
+                          className="w-5 h-auto text-white mt-1"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -107,7 +111,7 @@ export default function FooterComponent() {
                           />
                         </svg>
                       </span>
-                      #12, St 323, Sangkat Boeung Kak II, Khan Toul Kork, Phnom
+                      #12, Street 323, Sangkat Boeung Kak II, Khan Toul Kork, Phnom
                       Penh
                     </li>
                   </ul>
@@ -118,12 +122,12 @@ export default function FooterComponent() {
                   <iframe
                     className="laptop:w-full laptop:h-96"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d977.1677865254815!2d104.88866774015999!3d11.575416007195466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109519cfe734349%3A0x5174d2178ff95112!2sKorean%20HRD%20Center!5e0!3m2!1sen!2skh!4v1654863405682!5m2!1sen!2skh"
-                    style={{borderRadius: "5px"}}
+                    style={{ borderRadius: "5px" }}
                   ></iframe>
                 </div>
               </div>
               <div className="divide-x">
-                <h2 className="mb-4 text-lg font-semibold uppercase">
+                <h2 className="mb-4 text-lg uppercase">
                   what our training includes
                 </h2>
                 <ul className="pl-3 text-white">
@@ -362,7 +366,7 @@ export default function FooterComponent() {
         </div>
         <div style={logoBackground}>
           <span className="block p-3 text-center text-white text-md">
-            2022 © Korean Software HRD Center. All right reserved.
+            2022 © Korea Software HRD Center. All right reserved.
           </span>
         </div>
       </section>

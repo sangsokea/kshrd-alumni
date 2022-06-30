@@ -235,7 +235,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 style={styles}
-                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
+                className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
               >
                 Log In{" "}
                 <span>

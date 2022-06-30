@@ -9,6 +9,7 @@ import LicensesComponent from "../components/CVBuilderComponent/LicensesComponen
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
 import { useNavigate } from "react-router-dom";
+import sample_image from "../commons/images/sample image.jpg";
 
 export default function CVBuilderPage() {
   const navigate = useNavigate();
@@ -24,9 +25,7 @@ export default function CVBuilderPage() {
   const [address, setAddress] = useState("");
   const [summary, setSummary] = useState("");
 
-  const [image, setImage] = useState(
-    "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
-  );
+  const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
 
   const handleChangeFirstName = (e) => {
@@ -69,43 +68,38 @@ export default function CVBuilderPage() {
   return (
     <div className="h-full p-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100">
       <div className="flex flex-row ">
-        <h1 className="text-2xl font-bold">Create New Curriculum Vitae</h1>
-        <div className="w-64 mt-0 ml-auto ">
-          <img
-            src={imageUrl ? imageUrl : image}
-            className="rounded-lg"
-            style={{ height: "200px" }}
-          ></img>
+        <h1 className="text-2xl font-bold hidden laptop:block">
+          Create New Curriculum Vitae
+        </h1>
+        <div className="w-auto mt-0 laptop:ml-auto ml-5 mb-3">
           <input
             type="file"
             className="hidden"
             id="upload-image"
             onChange={handleImageChange}
           ></input>
-          <button
-            type="button"
-            className="bg-blue-500 h-[50px] w-full rounded-md mt-2 text-white"
-          >
-            <label
-              className="block w-full h-auto cursor-pointer"
-              for="upload-image"
-            >
-              Upload Image
-            </label>
-          </button>
+          <label for="upload-image">
+            <img
+              src={imageUrl ? imageUrl : image}
+              className="rounded-lg cursor-pointer"
+              style={{ height: "200px", width: "300px" }}
+            ></img>
+          </label>
         </div>
       </div>
 
-      <h1 className="text-xl font-bold">Personal Information</h1>
+      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold">
+        Personal Information
+      </h1>
 
       <div>
         <form>
-          <div className="grid gap-6 mt-2 mb-6 lg:grid-cols-2">
+          <div className="grid gap-6 mt-2 mb-5 lg:grid-cols-2">
             {/* First Name */}
             <div>
               <label
                 for="first_name"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 First name
               </label>
@@ -123,7 +117,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="last_name"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Last name
               </label>
@@ -141,7 +135,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="email"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Email
               </label>
@@ -159,7 +153,7 @@ export default function CVBuilderPage() {
             <div>
               <label
                 for="phone"
-                className="block mb-2 font-medium text-md dark:text-black"
+                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
               >
                 Phone number
               </label>
@@ -178,7 +172,7 @@ export default function CVBuilderPage() {
           <div className="mb-6">
             <label
               for="large-input"
-              className="block mb-2 font-medium text-md dark:text-black"
+              className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Address
             </label>
@@ -194,7 +188,7 @@ export default function CVBuilderPage() {
           <div className="mb-6">
             <label
               for="large-input-summary"
-              className="flex flex-row mb-2 font-medium text-md dark:text-black"
+              className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Summary
             </label>
@@ -218,16 +212,35 @@ export default function CVBuilderPage() {
         </form>
       </div>
 
-      <div className="flex flex-row">
-        <div className="ml-auto ">
+      {/* <div className="flex flex-row">
+        <div className="laptop:ml-auto">
           <button
-            className="px-12 py-2 mr-5 text-lg text-white bg-blue-600 rounded-md"
+            className="px-10 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white rounded-md"
             onClick={() => navigate("/sidebar/cvTemplate")}
+            style={styles}
           >
             Save
           </button>
           <button
-            className="px-10 py-2 text-lg text-blue-600 border border-blue-600 rounded-md"
+            className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-md"
+            onClick={() => navigate("/")}
+          >
+            Cancel
+          </button>
+        </div>
+      </div> */}
+      <div className="flex flex-row">
+        <div className="laptop:ml-auto">
+          <button
+            className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+            style={styles}
+            onClick={() => navigate("/sidebar/cvTemplate")}
+          >
+            Save
+          </button>
+
+          <button
+            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
             onClick={() => navigate("/")}
           >
             Cancel

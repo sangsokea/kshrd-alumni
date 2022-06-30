@@ -14,7 +14,7 @@ export default function ReNavbarComponent({ showSidebar, setShowSidebar }) {
           onClick={() => setShowSidebar("left-0")}
         >
           <svg
-            class="h-7 w-7 text-white absolute top-[75px] ml-3"
+            class="h-7 w-7 text-white absolute top-12 ml-3"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

@@ -96,7 +96,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-xl">Sign up</p>
+              <p className="text-xl">Sign Up</p>
               <p className="mt-8">Continue to Gmail</p>
               <h1 className="pt-16 pb-2 border-b border-b-black">
                 <div className="row">
@@ -135,7 +135,7 @@ export default function RegisterPage() {
               </h1>
               <button
                 style={styles}
-                className="inline-flex content-center justify-between px-8 py-1 mt-16 text-white rounded-md"
+                className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
                 type="submit"
               >
                 Next{" "}

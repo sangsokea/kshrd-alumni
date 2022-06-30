@@ -33,8 +33,8 @@ export default function AccuntSettingPage() {
                 className={imageUrl ? "shadow-lg h-40" : "h-40 rounded-xl"}
               />
 
-              <div className="upload-btn-wrapper h-[40px] laptop:w-1/4 w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800">
-                <button class=" ml-14 mt-2 font-maven">
+              <div className="upload-btn-wrapper h-[40px] talbet:w-1/4 laptop:w-full w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800">
+                <button class=" laptop:ml-14 mt-2 font-maven">
                   Change Profile Picture
                 </button>
 
@@ -98,7 +98,24 @@ export default function AccuntSettingPage() {
             <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block laptop:w-28 tablet:w-[102px]  mr-6 laptop:text-right
+                class="inline-block w-32 mr-6 laptop:text-right
+                                 font-bold text-gray-600"
+              >
+                Password
+              </label>
+              <button
+                type="button"
+                id=""
+            
+                class="  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              >
+              Change Password
+            </button>
+            </div>
+            <div class="laptop:flex laptop:items-center mb-5">
+              <label
+                for="twitter"
+                class="inline-block laptop:w-28 tablet:w-[102px]  laptop:mr-4 desktop:mr- laptop:text-right
                                  font-bold text-gray-600"
               >
                 Password

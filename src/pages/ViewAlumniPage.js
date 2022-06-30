@@ -26,6 +26,7 @@ export default function ViewAlumniPage() {
       profile: alumni1,
       name: "Mr. Sang Sokea",
       bio: "Experienced programmer with serveral successful projects under my belt.",
+      
     },
     {
       profile: alumni4,
@@ -57,14 +58,15 @@ export default function ViewAlumniPage() {
   return (
     <div className="container mx-auto mt-3 rounded-md shadow-lg body-font font-maven">
       <div className="grid grid-cols-4">
-        <div className="col-span-1">
+        <div className="col-span-1 hidden laptop:block">
           <div className="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
-            <div className="mb-5 shrink-0">
+            <div className="mb-5 shrink-0 flex flex-row ">
               <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                src={alumni4}
                 className="w-10 rounded-full"
                 alt="Avatar"
               />
+              <p className="ml-5 mt-2 text-sm laptop:text-md desktop:text-lg">Ms. Vong Yuoyi</p>
             </div>
             <hr className="mb-5"></hr>
             <p className="mt-8 mb-5 text-2xl font-bold">Filter</p>
@@ -145,10 +147,7 @@ export default function ViewAlumniPage() {
                 id="dropdown"
                 className={!dropdown ? "hidden" : "flex flex-col rounded p-2"}
               >
-                <a
-                  href="#"
-                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
-                >
+                <p className="flex items-center px-2 py-1 rounded hover:bg-blue-200">
                   <span>
                     <svg
                       className="w-4 h-auto mr-3 text-blue-500"
@@ -165,11 +164,8 @@ export default function ViewAlumniPage() {
                     </svg>
                   </span>
                   Basic Java
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
-                >
+                </p>
+                <p className="flex items-center px-2 py-1 rounded hover:bg-blue-200">
                   <span>
                     <svg
                       className="w-4 h-auto mr-3 text-blue-500"
@@ -186,11 +182,8 @@ export default function ViewAlumniPage() {
                     </svg>
                   </span>
                   React
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
-                >
+                </p>
+                <p className="flex items-center px-2 py-1 rounded hover:bg-blue-200">
                   <span>
                     <svg
                       className="w-4 h-auto mr-3 text-blue-500"
@@ -207,11 +200,8 @@ export default function ViewAlumniPage() {
                     </svg>
                   </span>
                   Spring
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
-                >
+                </p>
+                <p className="flex items-center px-2 py-1 rounded hover:bg-blue-200">
                   <span>
                     <svg
                       className="w-4 h-auto mr-3 text-blue-500"
@@ -228,11 +218,8 @@ export default function ViewAlumniPage() {
                     </svg>
                   </span>
                   Angular
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center px-2 py-1 rounded hover:bg-blue-200"
-                >
+                </p>
+                <p className="flex items-center px-2 py-1 rounded hover:bg-blue-200">
                   <span>
                     <svg
                       className="w-4 h-auto mr-3 text-blue-500"
@@ -249,7 +236,7 @@ export default function ViewAlumniPage() {
                     </svg>
                   </span>
                   Backend
-                </a>
+                </p>
               </div>
             </div>
 
@@ -266,33 +253,33 @@ export default function ViewAlumniPage() {
             </div>
           </div>
         </div>
-        <div className="hidden col-span-3 rounded-br-md laptop:block bg-slate-200 laptop:text-md desktop:text-lg">
+        <div className="col-span-4 laptop:col-span-3 rounded-br-md laptop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
           <div className="p-5">
             <div className="mt-10 mb-5 text-2xl font-bold">Results</div>
 
             {/* card */}
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 gap-5 laptop:grid-cols-2">
               {data.map((item) => (
-                <div>
-                  <div className="flex flex-col items-center p-2 pl-5 border rounded-lg bg-gray-50 md:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                <div className="w-full">
+                  <div className="p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
                       className="w-24 h-auto rounded-full"
                       src={item.profile}
                       alt="alumni"
                     />
-                    <div className="flex flex-col justify-between pt-5 pl-5 leading-normal">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                    <div className="flex flex-col justify-between mt-5 ml-5 leading-normal">
+                      <h5 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                         {item.name}
                       </h5>
-                      <p className="mb-5 font-normal text-black textLine w-52">
+                      <p className="text-sm laptop:text-md desktop:text-lg mb-7 font-normal text-black textLine w-52">
                         {item.bio}
                       </p>
                     </div>
                     <button
                       onClick={() => navigate("/sidebar/aboutMe")}
                       style={{ backgroundColor: colors.footer, color: "white" }}
-                      className=" mt-auto rounded-md pl-3.5 pr-3.5 ml-auto"
+                      className="ml-[-54px] mb-1 mt-auto rounded-md pl-3.5 pr-3.5 laptop:ml-auto"
                     >
                       View
                     </button>

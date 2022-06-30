@@ -10,11 +10,10 @@ import SokeaRoute from "./Router/SokeaRoute";
 import AdminBasicRoute from "./Router/AdminBasicRoute";
 import { useLocation } from "react-router-dom";
 
-
 function App() {
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
   const dispatch = useDispatch();
-  const [routeName, setRouteName] = useState('')
+  const [routeName, setRouteName] = useState("");
   useEffect(() => {
     const getIsAuth = localStorage.getItem("isAuth");
     getIsAuth && JSON.parse(getIsAuth)
@@ -24,12 +23,12 @@ function App() {
 
   // listen route
   const location = useLocation();
-  
-    useEffect(() => {
-      console.log("=========================================================")
-      console.log(location.pathname)
-      setRouteName(location.pathname)
-    }, [location]);
+
+  useEffect(() => {
+    console.log("=========================================================");
+    console.log(location.pathname);
+    setRouteName(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     isAuth ? localStorage.setItem("isAuth", true) : console.log("");
@@ -37,16 +36,18 @@ function App() {
 
   return (
     <>
-
-      {console.log(`runing on ${process.env.NODE_ENV}`)}
-      {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      {/* {console.log(`runing on ${process.env.NODE_ENV}`)}
+      {console.log(` ${process.env.REACT_APP_BASE_URL}`)} */}
       <ToastContainer />
-      {routeName.includes('/admin')? <AdminBasicRoute/> : <BasicRoute/>}
+
+      {routeName.includes("/admin") ? <AdminBasicRoute /> : <BasicRoute />}
       {/* <SokeaRoute /> */}
-    {console.log( `runing on ${process.env.NODE_ENV}`)}
-    {console.log(` ${process.env.REACT_APP_BASE_URL}`)}
+      {/* {console.log( `runing on ${process.env.NODE_ENV}`)}
+    {console.log(` ${process.env.REACT_APP_BASE_URL}`)} */}
       {/* <BasicRoute/> */}
       {/* <AdminBasicRoute/> */}
+
+      {/* <BasicRoute /> */}
     </>
   );
 }
