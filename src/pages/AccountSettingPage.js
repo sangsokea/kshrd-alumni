@@ -20,7 +20,7 @@ export default function AccountSettingPage() {
       <div className=" bg-white shadow-2xl h-full laptop:h-screen shadow-slate-500 ">
         <div className="ml-5 mt-0">
           <div className="laptop:mt-10 laptop:mb-20 mb-5 text-lg laptop:text-xl desktop:text-4xl font-bold">
-            <p className="laptop:pt-20 laptop:ml-32" style={textStyle}>ACCOUNT SETTING</p>
+            <p className="pt-20 laptop:ml-32" style={textStyle}>ACCOUNT SETTING</p>
           </div>
 
           <div className="grid laptop:grid-cols-4 m-auto">
@@ -53,7 +53,7 @@ export default function AccountSettingPage() {
 
             <div className="col-span-2">
               <input
-                className="px-4 py-2 laptop:ml-10 border rounded laptop:w-full w-80"
+                className="px-4 py-2 laptop:ml-10 border rounded desktop:w-full tablet:w-80 laptop:w-auto"
                 placeholder="yuoyi"
               />
             </div>
@@ -152,9 +152,9 @@ export default function AccountSettingPage() {
           </div>
 
           <div className="flex flex-row ">
-            <div className="laptop:mt-10">
+            <div className="">
               <button
-                className="mb-10 laptop:ml-72 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+                className="mb-10 laptop:mb-0 laptop:ml-72 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
                 style={styles}
               >
                 Save

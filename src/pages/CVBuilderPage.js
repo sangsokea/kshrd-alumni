@@ -66,7 +66,7 @@ export default function CVBuilderPage() {
   };
 
   return (
-    <div className="h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full">
+    <div className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full">
       <div className="flex flex-row ">
         <h1 className="text-2xl font-bold hidden laptop:block">
           Create New Curriculum Vitae
@@ -104,7 +104,7 @@ export default function CVBuilderPage() {
                 First name
               </label>
               <input
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handleChangeFirstName}
                 type="text"
                 id="first_name"
@@ -125,7 +125,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangeLastName}
                 type="text"
                 id="last_name"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Doe"
                 required
               />
@@ -143,7 +143,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangeEmail}
                 type="email"
                 id="email"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="john.doe@company.com"
                 required
               />
@@ -161,7 +161,7 @@ export default function CVBuilderPage() {
                 onChange={handleChangePhoneNumber}
                 type="tel"
                 id="phone"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="123-45-678"
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               />
@@ -171,7 +171,7 @@ export default function CVBuilderPage() {
           {/* Address */}
           <div className="mb-6">
             <label
-              for="large-input"
+              // for="large-input"
               className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Address
@@ -179,7 +179,7 @@ export default function CVBuilderPage() {
             <textarea
               onChange={handleChangeAddress}
               type="text"
-              id="large-input"
+              // id="large-input"
               className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
@@ -187,7 +187,7 @@ export default function CVBuilderPage() {
           {/* Summary */}
           <div className="mb-6">
             <label
-              for="large-input-summary"
+              // for="large-input-summary"
               className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
             >
               Summary
@@ -195,7 +195,7 @@ export default function CVBuilderPage() {
             <textarea
               onChange={handleChangeSummary}
               type="text"
-              id="large-input-summary"
+              // id="large-input-summary"
               className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
@@ -224,7 +224,7 @@ export default function CVBuilderPage() {
 
           <button
             className="px-10 py-2 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/sidebar/resume")}
           >
             Cancel
           </button>

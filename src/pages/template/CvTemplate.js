@@ -18,7 +18,7 @@ export default function CvTemplate() {
   };
 
   return (
-    <div className="laptop:h-screen h-full mb-10">
+    <div className="h-full mb-10">
       <div class="ml-5 laptop:ml-20">
         <div class="grid grid-cols-8">
           <div class="col-span-6">
@@ -385,7 +385,7 @@ export default function CvTemplate() {
         >
           Cancel
         </button> */}
-      <div className="flex flex-row">
+      <div className="flex flex-row ">
         <div className="laptop:ml-auto">
           <button
             className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
@@ -396,7 +396,7 @@ export default function CvTemplate() {
           </button>
 
           <button
-            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+            className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
             onClick={() => navigate("/sidebar/createNewCV")}
           >
             Cancel

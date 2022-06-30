@@ -253,16 +253,16 @@ export default function ViewAlumniPage() {
             </div>
           </div>
         </div>
-        <div className="col-span-4 laptop:col-span-3 rounded-br-md laptop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
+        <div className="col-span-4 laptop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
           <div className="p-5">
             <div className="mt-5 mb-3 text-2xl font-bold">Results</div>
 
             {/* card */}
-            <div className="grid grid-cols-1 gap-5 laptop:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 desktop:grid-cols-2">
               {data.map((item) => (
                 <div className="w-full">
-                  <div className="p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                  <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
                       className="w-24 h-auto rounded-full"
                       src={item.profile}

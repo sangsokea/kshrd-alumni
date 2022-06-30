@@ -50,7 +50,7 @@ export default function NavbarComponent() {
             <div>
               <div className="flex items-center justify-end">
                 <div
-                  className="hidden laptop:block tablet:block"
+                  className="hidden laptop:block "
                   // className={
                   //   openNavbar
                   //     ? "hidden"
@@ -59,7 +59,7 @@ export default function NavbarComponent() {
                   id="mobile-menu"
                 >
                   <ul className="w-full justify-start flex flex-col mt-4 text-sm laptop:text-md desktop:text-lg laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:font-medium laptop:items-center">
-                    <li>
+                    <li className="">
                       <button
                         onClick={() => navigate("/viewAlumni")}
                         className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
@@ -197,7 +197,7 @@ export default function NavbarComponent() {
                   </ul>
                 </div>
               </div>
-              <div className="-mr-2 flex tablet:hidden">
+              <div className="-mr-2 flex laptop:hidden ">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   type="button"

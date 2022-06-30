@@ -42,7 +42,7 @@ function BasicRoute() {
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>
           {/* <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route> */}
-          <Route path="portfolio" element={<PortfolioPage/>}></Route>
+          {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate/>}></Route>
 
           {/* <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route> */}
@@ -62,7 +62,7 @@ function BasicRoute() {
           element={<CreateNewPasswordPage />}
         ></Route>
         <Route path="/viewAlumni" element={<ViewAlumniPage />}></Route>
-        {/* <Route path="/portfolio" element={<PorfolioPage />}></Route> */}
+        <Route path="/portfolio" element={<PortfolioPage />}></Route>
         {/* <Route path="/portfolioedit" element={<PorfolioEdit />}></Route> */}
         {/* <Route path="/partner" element={<PartnerSideComponent />}>
           <Route

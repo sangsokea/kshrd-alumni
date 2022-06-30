@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Navigate } from "react-router-dom";
+
 import img3 from "../images/Group.png";
 import { ReactComponent as Img } from "../commons/icon/Vectors.svg";
 import { ReactComponent as Group } from "../commons/icon/Group.svg";
@@ -10,8 +10,12 @@ import { ReactComponent as Removed } from "../commons/icon/removed.svg";
 import { ReactComponent as Vector } from "../commons/icon/Vector.svg";
 import { Transition, Popover } from "@headlessui/react";
 import UserEducationComponent from "../components/EducationAdminandUaerPage/UserEducationComponent";
+import { useDispatch } from "react-redux";
+import { fetchPortfolioPage } from "../redux/actions/localAction/PortfolioPageAction";
 
 export default function PortfolioEdite() {
+  const dispatch = useDispatch();
+
   const [file, setFile] = useState("");
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
@@ -66,14 +70,14 @@ export default function PortfolioEdite() {
     setTechnologyValues("");
   };
   return (
-    <div className="laptop:px-24">
+    <div className="container mx-auto mt-10">
       <div className="flex flex-row px-3 mb-3">
         <div className="basis-1/2 font-maven text-xl font-extrabold">
           <p className="text-[#919EAB]">Porfolio</p>
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button onClick={() => Navigate("/portfolio")}>
+          <button onClick={() => dispatch(fetchPortfolioPage(false))}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
@@ -155,12 +159,12 @@ export default function PortfolioEdite() {
             </div>
           </div>
           <button>
-              <Group className="w-7"></Group>
-            </button>
+            <Group className="w-7"></Group>
+          </button>
         </div>
       </div>
 
-      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
+      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20">
         <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
           <div>
             <div className="grid grid-2">
@@ -286,9 +290,9 @@ export default function PortfolioEdite() {
               <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
             ) : (
               <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
-              <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+ Click to
-              add image
-            </button>
+                <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
+                Click to add image
+              </button>
             )}
             <input type="file" name="myfile" onChange={handleChange} />
             <img
@@ -379,7 +383,10 @@ export default function PortfolioEdite() {
             >
               Save
             </button>
-            <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <button
+              class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              onClick={() => dispatch(fetchPortfolioPage(false))}
+            >
               Cancel
             </button>
           </div>

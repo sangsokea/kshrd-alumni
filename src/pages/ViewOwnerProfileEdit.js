@@ -125,10 +125,10 @@ export default function ViewOwnerProfileEdit() {
 
   return (
     <>
-      <div class="laptop:mt-5 ml-10 body-font font-maven">
+      <div class="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven">
         <div>
           <img
-            class="w-[300px] laptop:w-full h-auto"
+            class="w-auto laptop:w-full h-auto"
             src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
             alt="Image"
           />
@@ -140,34 +140,34 @@ export default function ViewOwnerProfileEdit() {
 
         {/* First Name, Last Name, Skill input form */}
         <div class="block laptop:flex justify-between mt-3 gap-2 text-sm laptop:text-md desktop:text-lg ">
-          <div class="form-control laptop:w-full w-[300px] mb-5">
+          <div class="form-control laptop:w-full w-full mb-5">
             <label class="label">
               <span class="label-text">First Name</span>
             </label>
             <input
               type="text"
               placeholder="Yuoyi"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div class="form-control laptop:w-full w-[300px] mb-5">
+          <div class="form-control laptop:w-full w-full mb-5">
             <label class="label">
               <span class="label-text">Last Name</span>
             </label>
             <input
               type="text"
               placeholder="Vong"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div class="form-control laptop:w-full w-[300px] mb-5">
+          <div class="form-control laptop:w-full w-full mb-5">
             <label class="label">
               <span class="label-text">Skill</span>
             </label>
             <input
               type="text"
               placeholder="Web Development"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
         </div>
@@ -177,7 +177,7 @@ export default function ViewOwnerProfileEdit() {
         </p>
 
         {/* Add Summary section */}
-        <div className="inline-block text-sm laptop:text-md desktop:text-lg ">
+        <div className="inline-block text-sm laptop:text-md desktop:text-lg  ">
           <button
             class="rounded-md inline-flex justify-between content-center mt-3"
             onClick={() => setsummary((Prev) => !Prev)}
@@ -195,7 +195,7 @@ export default function ViewOwnerProfileEdit() {
               <div className="grid grid-cols-2 ">
                 <div className="mb-5 ">
                   <textarea
-                    class="laptop:w-96 w-[300px] h-[100px] desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
+                    class="laptop:w-96 w-full h-[100px] desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 text-left inline-flex justify-between content-center lap p-4 border border-gray-300 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                     // id="password"
                     // type="text"
                     name="summary"
@@ -217,7 +217,7 @@ export default function ViewOwnerProfileEdit() {
           </div>
         </div>
 
-        <p class="border-[1px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
+        <p class="border-[1px] border-solid border-bgSkill laptop:w-full mt-12 w-full"></p>
         <div class="flex mt-12 items-center">
           <p
             class="border-[1px] border-solid h-10 border-3"
@@ -250,7 +250,7 @@ export default function ViewOwnerProfileEdit() {
                 <div className="grid grid-cols-2 ">
                   <div className="mb-5 ">
                     <textarea
-                      class="laptop:w-96 w-[300px] h-[100px] desktop:w-222 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700  bg-bgText text-left inline-flex justify-between content-center lap"
+                      class="laptop:w-96 w-full h-[100px] desktop:w-222 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 text-left inline-flex justify-between content-center lap p-4 border border-gray-300 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                       id="summary"
                       // type="text"
                       name="resetSummary"
@@ -288,12 +288,12 @@ export default function ViewOwnerProfileEdit() {
             <div className="mt-3">
               {addSkill ? null : (
                 <div>
-                  <div className="flex laptop:flex-row laptop:gap-2 flex-col">
+                  <div className="flex desktop:flex-row desktop:gap-2 flex-col">
                     {major.map((item, index) => (
                       <div className="mb-5">
                         <button
                           key={index}
-                          className="border bg-bgSkill text-center rounded-lg py-2 px-2"
+                          className="border bg-blue-100 text-center rounded-lg py-2 px-2"
                           onClick={() => addInputFields(item)}
                         >
                           {item.data}
@@ -317,10 +317,10 @@ export default function ViewOwnerProfileEdit() {
                         >
                           <div className={!input.isShow ? "hidden" : "block"}>
                             <button type="submit" className="float-right">
-                              <Remove className="w-5"></Remove>
+                              <Remove className="w-5 mr-3 mt-3"></Remove>
                             </button>
                             <textarea
-                              className="mb-3 border border-gray-300 bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="mb-5 w-full block laptop:w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               name="newMajor"
                               placeholder={input.newMajor}
                               // value={input.newMajor}
@@ -343,7 +343,7 @@ export default function ViewOwnerProfileEdit() {
         <div className="flex flex-row mb-10">
           <div className="laptop:ml-auto">
             <button
-              className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="laptop:ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={saveBackground}
               onClick={() => dispatch(fetchAboutMePage(false))}
             >
