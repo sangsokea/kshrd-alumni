@@ -66,12 +66,12 @@ export default function CVBuilderPage() {
   };
 
   return (
-    <div className="h-full p-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100">
+    <div className="h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full">
       <div className="flex flex-row ">
         <h1 className="text-2xl font-bold hidden laptop:block">
           Create New Curriculum Vitae
         </h1>
-        <div className="w-auto mt-0 laptop:ml-auto ml-5 mb-3">
+        <div className="w-auto laptop:ml-auto ml-5">
           <input
             type="file"
             className="hidden"
@@ -88,13 +88,13 @@ export default function CVBuilderPage() {
         </div>
       </div>
 
-      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold">
+      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold mb-7">
         Personal Information
       </h1>
 
       <div>
         <form>
-          <div className="grid gap-6 mt-2 mb-5 lg:grid-cols-2">
+          <div className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
             {/* First Name */}
             <div>
               <label

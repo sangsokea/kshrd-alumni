@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Navigate } from "react-router-dom";
-import PorfolioEdit from "../PorfolioEdit";
+// import PorfolioEdit from "../PorfolioEdit";
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";

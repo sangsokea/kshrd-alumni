@@ -21,15 +21,14 @@ import RegisterPage from "../pages/authentication/RegisterPage";
 import ResetPasswordPage from "../pages/authentication/ResetPasswordPage";
 import CVBuilderPage from "../pages/CVBuilderPage";
 import HomePage from "../pages/HomePage";
-import PorfolioEdit from "../pages/PorfolioEdit";
-import PorfolioPage from "../pages/PorfolioPage";
-import CvTemplate from "../pages/template/CvTemplate";
 import ViewAlumniPage from "../pages/ViewAlumniPage";
 import ViewOwnerProfileEdit from "../pages/ViewOwnerProfileEdit";
 import ViewOwnerProfilePage from "../pages/ViewOwnerProfilePage";
 import AdminBasicRoute from "./AdminBasicRoute";
 import ResumePage from "../pages/ResumePage";
 import ChangeTemplatePage from "../pages/ChangeTemplatePage";
+import PortfolioPage from "../pages/PortfolioPage";
+import CvTemplate from "../pages/template/CvTemplate";
 
 function BasicRoute() {
   return (
@@ -43,8 +42,8 @@ function BasicRoute() {
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>
           {/* <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route> */}
-          {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
-          <Route path="cvTemplate" element={<CvTemplate />}></Route>
+          <Route path="portfolio" element={<PortfolioPage/>}></Route>
+          <Route path="cvTemplate" element={<CvTemplate/>}></Route>
 
           {/* <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route> */}
         </Route>
@@ -63,7 +62,7 @@ function BasicRoute() {
           element={<CreateNewPasswordPage />}
         ></Route>
         <Route path="/viewAlumni" element={<ViewAlumniPage />}></Route>
-        <Route path="/portfolio" element={<PorfolioPage />}></Route>
+        {/* <Route path="/portfolio" element={<PorfolioPage />}></Route> */}
         {/* <Route path="/portfolioedit" element={<PorfolioEdit />}></Route> */}
         {/* <Route path="/partner" element={<PartnerSideComponent />}>
           <Route

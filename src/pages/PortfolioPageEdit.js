@@ -9,17 +9,9 @@ import { ReactComponent as Add } from "../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../commons/icon/removed.svg";
 import { ReactComponent as Vector } from "../commons/icon/Vector.svg";
 import { Transition, Popover } from "@headlessui/react";
-import { colors } from "../commons/colors/colors";
-import { useDispatch } from "react-redux";
-import { fetchPortfolioPage } from "../redux/actions/localAction/PortfolioPageAction";
+import UserEducationComponent from "../components/EducationAdminandUaerPage/UserEducationComponent";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export default function PorfolioEdit() {
-  const dispatch = useDispatch();
-
+export default function PortfolioEdite() {
   const [file, setFile] = useState("");
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
@@ -73,31 +65,18 @@ export default function PorfolioEdit() {
   const resetInputTechnology = () => {
     setTechnologyValues("");
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ title, desc, status, school, study, technology, file });
-    // alert(
-    //   JSON.stringify({ title, desc, status, school, study, technology, file })
-    // );
-    // ... submit to API or something
-  };
-
-  const navigate = useNavigate();
   return (
-    <div className="h-auto body-font font-maven">
-      <div class="mt-10">
-        <div className="container grid grid-cols-2 mx-auto desktop:w-1341 desktop:container desktop:mx-auto laptop:w-1200 w-350 tablet:container tablet:mx-auto laptop:container laptop:mx-auto desktop:grid desktop:grid-cols-3 tablet:grid tablet:grid-cols-2 laptop:grid laptop:grid-cols-2 ">
-          <div className="desktop:col-span-2">
-            <p className="text-2xl font-normal">Portfolio</p>
-            <p className="text-2xl font-bold text-blue-500">Vong Yuoyi</p>
-          </div>
-          <div className="flex flex-row ">
-            <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
-            <button onClick={() => dispatch(fetchPortfolioPage(false))}>
-              <Arrow className="w-6 mr-3 mt-7" />
-            </button>
-
+    <div className="laptop:px-24">
+      <div className="flex flex-row px-3 mb-3">
+        <div className="basis-1/2 font-maven text-xl font-extrabold">
+          <p className="text-[#919EAB]">Porfolio</p>
+          <p className="text-[#255FAB]">Vong Yuoyi</p>
+        </div>
+        <div className="basis-1/2 flex items-center justify-end">
+          <button onClick={() => Navigate("/portfolio")}>
+            <Arrow className="w-6 mr-2 " />
+          </button>
+          <div className="">
             <div className="">
               <Popover className="relative">
                 {({ open }) => (
@@ -340,7 +319,6 @@ export default function PorfolioEdit() {
                       <div className="">
                         <UserEducationComponent />
                       </div>
-                      <div className="h-1 mt-5 mb-5 ml-10 bg-[#BDBDBD] md:h-1 desktop:w-570 md:inline-block "></div>
                     </div>
                   )}
                 </div>
@@ -380,24 +358,6 @@ export default function PorfolioEdit() {
                       </div>
                     </div>
                   )}
-                </div>
-              </div>
-              <div className="">
-                <img
-                  className="mb-5 mt-3 -ml-10 desktop:-ml-56 desktop:mt-14 laptop:-ml-24 laptop:mt-14 desktop:w-222"
-                  src={img3}
-                ></img>
-                <div classname="">
-                  <button
-                    className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
-                    style={styles}
-                    onClick={() => dispatch(fetchPortfolioPage(false))}
-                  >
-                    Save
-                  </button>
-                  <button className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
-                    Cancel
-                  </button>
                 </div>
               </div>
             </div>

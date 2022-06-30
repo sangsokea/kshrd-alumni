@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import PorfolioEdit from "../PorfolioEdit";
+// import PorfolioEdit from "../PorfolioEdit";
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Arrow } from "../../commons/icon/ri_arrow-go-back-fill .svg";
