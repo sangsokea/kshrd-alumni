@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import "../commons/styles/SearchBar.css";
-import SearchIcon from "@material-ui/icons/Search";
-import CloseIcon from "@material-ui/icons/Close";
-import { createRoot } from "react-dom/client";
-import Highlighter from "react-highlight-words";
-import AdminHome from "./admin-component/AdminHome";
-import PaginationComponent from "./PaginationComponent";
-import TableComponent from "./TableComponent";
-import Modal from "./Modal";
+import "../../commons/styles/SearchBar.css";
+import TableTemplateComponent from "./TableTemplateComponent";
 
-function SearchBar({ placeholder, data }) {
+function SearchBarTemplate({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [items, setItems] = useState(data);
@@ -33,20 +26,14 @@ function SearchBar({ placeholder, data }) {
 
   console.log(filteredData);
 
-  const onChangeStatus = (isEnable, id) => {
+  const onChangeStatus = (status, id) => {
     if (filteredData === 0) {
-      setItems(
-        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x)),
-      );
+      setItems(items.map((x) => (x.id === id ? { ...x, status: !status } : x)));
     } else {
       setFilteredData(
-        filteredData.map((x) =>
-          x.id === id ? { ...x, isEnable: !isEnable } : x,
-        ),
+        filteredData.map((x) => (x.id === id ? { ...x, status: !status } : x)),
       );
-      setItems(
-        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x)),
-      );
+      setItems(items.map((x) => (x.id === id ? { ...x, status: !status } : x)));
     }
   };
 
@@ -109,22 +96,13 @@ function SearchBar({ placeholder, data }) {
             <tbody class="text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400 font-bold">
               <tr>
                 <td scope="col" class="px-6 py-3">
-                  First Name
+                  ID
                 </td>
                 <td scope="col" class="px-6 py-3">
-                  Last Name
+                  Template name
                 </td>
-                <td scope="col" class="px-6 py-3">
-                  Gender
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Email
-                </td>
-                <td scope="col" class="p-6 py-3">
-                  Generation
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Skill
+                <td scope="col" class="px-5 py-3">
+                  Type
                 </td>
 
                 <td scope="col" class="px-6 py-3">
@@ -138,7 +116,7 @@ function SearchBar({ placeholder, data }) {
           </table>
         </div>
         <div className="overflow-auto">
-          <TableComponent
+          <TableTemplateComponent
             data={filteredData}
             baseData={items}
             wordEntered={wordEntered}
@@ -150,4 +128,4 @@ function SearchBar({ placeholder, data }) {
   );
 }
 
-export default SearchBar;
+export default SearchBarTemplate;

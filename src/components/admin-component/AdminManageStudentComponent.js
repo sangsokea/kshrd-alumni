@@ -11,7 +11,7 @@ export default function AdminManageStudentComponent() {
     profileDetail.map((item) => {
       return {
         ...item,
-        isEnalbe: true,
+        isEnable: true,
       };
     }),
   );

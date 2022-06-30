@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { colors } from "../../commons/colors/colors";
-import Search from "react-search";
-import SearchBar from "../SearchBar";
-import profileDetail from "../../Data.json";
-import PaginationComponent from "../PaginationComponent";
+
 import AdminPagination from "./AdminPagination";
+import SearchBarTemplate from "./SearchBarTemplate";
 
 export default function AdminManageCV() {
   const [data, setData] = useState(
-  []
+  [{
+    id: 1,
+    template: "CV_HRD",
+    status: true,
+    type: "CV"
+  }, {
+    id: 2,
+    template: "CV_ALUMNI",
+    status: true,
+    type: "CV"
+  },
+  {
+    id: 3,
+    template: "PORTFOLIO_ALUMNI",
+    status: true,
+    type: "portfolio"
+  }]
   );
 
 
@@ -28,10 +41,11 @@ export default function AdminManageCV() {
         }
       });
   };
+
   return (
     <>
       <div className="relative flex justify-center m-5">
-        <SearchBar placeholder={"Search templates..."} data={data} />
+        <SearchBarTemplate placeholder={"Search templates..."} data={data} />
 
       </div>
       <div className="flex justify-center">

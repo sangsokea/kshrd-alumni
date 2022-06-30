@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Highlighter from "react-highlight-words";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
-export default function TableComponent({
+export default function TableTemplateComponent({
   data = [],
   baseData = [],
   wordEntered = "",
@@ -11,7 +11,7 @@ export default function TableComponent({
   const [isYes, setIsYes] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
   const onChangeStatus = (isYes, item) => {
-    isYes && onClick(item.isEnable, item.id);
+    isYes && onClick(item.status, item.id);
   };
 
   const onClicked = (item) => {
@@ -20,7 +20,7 @@ export default function TableComponent({
 
   useEffect(() => {
     console.log(selectedItem);
-    isYes && onClick(selectedItem.isEnable, selectedItem.id);
+    isYes && onClick(selectedItem.status, selectedItem.id);
   }, [selectedItem]);
 
   return (
@@ -37,61 +37,34 @@ export default function TableComponent({
                   key={key}
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  <td class="px-6 py-3">
+                  <td class="px-6 py-4">
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.first_name}
+                      textToHighlight={value?.id.toString()}
                     />
                   </td>
-                  <td class="px-6 py-3">
+                  <td class="px-6 py-4">
                     {" "}
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.last_name}
+                      textToHighlight={value?.template}
                     />
                   </td>
-                  <td class="px-6 py-3">
+                  <td class="px-5 py-4">
                     {" "}
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.gender}
+                      textToHighlight={value?.type}
                     />
                   </td>
-                  <td class="px-6 py-3">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.email.toString()}
-                    />
-                  </td>
-                  <td class="px-6 py-3">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.generation.toString()}
-                    />
-                  </td>
-                  <td class="px-6 py-3">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.skill}
-                    />
-                  </td>
-                  <td class="px-6 py-3">
-                    {value?.isEnable ? (
+                  <td class="px-6 py-4">
+                    {value?.status ? (
                       <Modal
                         item={value}
                         onClick={onChangeStatus}
@@ -120,62 +93,34 @@ export default function TableComponent({
                   key={key}
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  <td class="px-6 py-3">
+                  <td class="px-6 py-4">
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.first_name}
+                      textToHighlight={value?.id.toString()}
                     />
                   </td>
-                  <td class="px-6 py-3">
+                  <td class="px-6 py-4">
                     {" "}
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.last_name}
+                      textToHighlight={value?.template}
                     />
                   </td>
-                  <td class="px-6 py-3">
+                  <td class="px-5 py-4">
                     {" "}
                     <Highlighter
                       highlightClassName="YourHighlightClass"
                       searchWords={[wordEntered.toString()]}
                       autoEscape={true}
-                      textToHighlight={value?.gender}
+                      textToHighlight={value?.type}
                     />
                   </td>
-                  <td class="px-6 py-3">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.email.toString()}
-                    />
-                  </td>
-                  <td class="px-6 py-3 ">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.generation.toString()}
-                    />
-                  </td>
-                  <td class="px-6 py-3">
-                    {" "}
-                    <Highlighter
-                      highlightClassName="YourHighlightClass"
-                      searchWords={[wordEntered.toString()]}
-                      autoEscape={true}
-                      textToHighlight={value?.skill}
-                      
-                    />
-                  </td>
-                  <td class="px-6 py-3">
-                    {value?.isEnable ? (
+                  <td class="px-6 py-4">
+                    {value?.status ? (
                       <Modal
                         item={value}
                         onClick={onChangeStatus}
