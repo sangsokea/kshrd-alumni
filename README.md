@@ -27,7 +27,7 @@ KSHRD consists of 2 main roles of account. There are an Admin side and a user si
 
 
 ## Git Branch
- - We decided to use "master" branch as our branch.
+ - We decided to use "main" branch as our branch.
 
 
 ## Created By
