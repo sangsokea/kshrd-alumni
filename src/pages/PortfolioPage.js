@@ -131,7 +131,7 @@ export default function PortfolioPage() {
             </div>
             <br />
             <center>
-              <div className="rounded shadow-2xl w-350 desktop:w-1341 min-h-1079 laptop:w-1200 laptop:rounded laptop:shadow-2xl tablet:w-900 tablet:shadow-2xl ">
+            <div className="rounded shadow-2xl w-350 desktop:w-1341 min-h-1079 laptop:w-1200 laptop:rounded laptop:shadow-2xl tablet:w-900 tablet:shadow-2xl ">
                 <div className="flex flex-wrap-reverse desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3">
                   <div className="mt-10 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:mt-5 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
                     <p className="mt-10 text-2xl font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl tablet:text-4xl text-1xl ">

@@ -4,30 +4,11 @@ import { ReactComponent as Add } from "../../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 import { Transition, Popover } from "@headlessui/react";
+import SkillsComponent from "../../components/CVBuilderComponent/SkillsComponent";
 
 export default function ViewStudentProfile() {
-  const [skill, setSkill] = useState([
-    {
-      id: 1,
-      title: "Java",
-      desc: "This is Java book",
-    },
-    {
-      id: 1,
-      title: "Java",
-      desc: "This is Java book",
-    },
-    {
-      id: 2,
-      title: "Javascript",
-      desc: "This is Javascript Book",
-    },
-    {
-      id: 3,
-      title: "Spring",
-      desc: "This is Spring Book",
-    },
-  ]);
+  const [addSkill, setAddSkill] = useState("");
+  const [display, setDisplay] = useState(false);
   const [vall, setTitle] = useState(true);
   const [valls, setTitles] = useState(true);
   const [title, setTitleValues] = useState(
@@ -36,14 +17,94 @@ export default function ViewStudentProfile() {
   const [test, setTest] = useState(true);
   const [summary, setSummary] = useState(
     "I'm a Junior Developer in frontend and backend development for complex scalable web apps. If you want to know how I may help your project? Check out my project portfolio and online resume."
-  )
+  );
   const handleTitleChange = (e) => {
     let titleFormValues = e.target.value;
     setTitleValues(titleFormValues);
     console.log(titleFormValues);
   };
+  const [major, setMajor] = useState([
+    {
+      data: "React JS",
+      id: 1,
+      isShow: false,
+    },
+
+    {
+      data: "Java Programming",
+      id: 2,
+      isShow: false,
+    },
+    {
+      data: "Tailwind React",
+      id: 3,
+      isShow: false,
+    },
+    {
+      data: "UX/UI",
+      id: 4,
+      isShow: false,
+    },
+    {
+      data: "Computer Science",
+      id: 5,
+      isShow: false,
+    },
+    {
+      data: "Korean Language",
+      id: 6,
+      isShow: false,
+    },
+  ]);
+
+  const [selectedMajor, setSelectedMajor] = useState("");
+
+  const [inputField, setInputField] = useState([
+    {
+      newMajor: "",
+      isShow: false,
+      id: 0,
+    },
+  ]);
+  const removeInputField = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    console.log("Error");
+
+    let object = [...inputField];
+    object.splice(index, 1);
+    setInputField(object);
+  };
+
+  const addInputFields = (item) => {
+    let newData = {
+      newMajor: item.data,
+      isShow: !major.isShow,
+      id: major.length,
+    };
+    setInputField([...inputField, newData]);
+
+    setMajor(
+      major.map((obj) =>
+        obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj
+      )
+    );
+
+    setSelectedMajor(item.data);
+    // }
+  };
+
+  console.log(inputField);
+
+  const handleInputFieldChange = (index, event) => {
+    console.log(event.target.value);
+    let data = [...inputField];
+    data[index][event.target.name] = event.target.value;
+    setInputField(data);
+  };
   const handleSummarChange = (e) => {
-    setSummary( e.target.value);
+    setSummary(e.target.value);
     console.log(e.target.value);
   };
   const resetInputTitle = () => {
@@ -56,7 +117,7 @@ export default function ViewStudentProfile() {
         <div className="mt-10 w-full h-40 bg-[#255FAB] ">
           <div className="flex items-end justify-end ">
             <svg
-            className="mt-[50px]"
+              className="mt-[50px]"
               width="423"
               height="109"
               viewBox="0 0 423 109  "
@@ -114,7 +175,7 @@ export default function ViewStudentProfile() {
           <div className="flex items-center justify-end flex-col">
             <button>
               <svg
-                onClick={() => navigate("editeducationStudent")}
+                onClick={() => navigate("edite")}
                 width="38px"
                 height="38px"
                 viewBox="0 0 48 48"
@@ -190,7 +251,11 @@ export default function ViewStudentProfile() {
                               </svg>
                             </div>
 
-                            <p className="font-maven text-md text-[#035397] font-bold">Education</p>
+                            <button className="font-maven text-md text-[#035397] font-bold" 
+                            onClick={() => navigate("edite")}
+                            >
+                              Education
+                            </button>
                           </button>
                           <hr className="w-44 mt-4 mx-auto"></hr>
                           <button className="flex items-center justify-center ml-5 mt-5">
@@ -209,7 +274,11 @@ export default function ViewStudentProfile() {
                               </svg>
                             </div>
 
-                            <p className="ml-1 font-maven text-md text-[#035397] font-bold">Employment</p>
+                            <button className="ml-1 font-maven text-md text-[#035397] font-bold"
+                             onClick={() => navigate("editem")}
+                            >
+                              Employment
+                            </button>
                           </button>
                         </div>
                       </div>
@@ -463,68 +532,74 @@ export default function ViewStudentProfile() {
                 </div>
               )}
             </div>
-            <div className="mt-3">
-              <button
-                class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
-                onClick={() => setTitle((Prev) => !Prev)}
-              >
-                {vall ? (
-                  <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
+            <div>
+            <button
+              class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center mt-3"
+              onClick={() => setAddSkill((Prev) => !Prev)}
+            >
+              {addSkill ? (
+                <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
                 ) : (
                   <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
                 )}
-                skill{""}
-              </button>
-            </div>
-            <div className="laptop:grid grid-cols-3">
-              {vall ? null : (
-                <div className="">
-                  <div className="flex  flex-wrap">
-                    {skill?.map((item) => (
-                      <button
-                        key={item.id}
-                        class="flex  flex-wrap pl-4 pr-2 py-2 m-1  justify-center items-center text-sm font-medium rounded-md cursor-pointer bg-[#D9D9D9] font-maven hover:bg-slate-400 hover:text-gray-100 dark:bg-gray-300 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
-                        onClick={() => setTitles((Prev) => !Prev)}
-                      >
-                        {item.title}
-                        <svg
-                          class="h-4 w-4 text-black ml-2 hover:text-white"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+              Skills{""}
+            </button>
+
+            <div className="mt-3">
+              {addSkill ? null : (
+                <div>
+                  <div className="flex laptop:flex-row laptop:gap-2 flex-col">
+                    {major.map((item, index) => (
+                      <div className="mb-5">
+                        <button
+                          key={index}
+                          className="border bg-bgSkill text-center rounded-lg py-2 px-2"
+                          onClick={() => addInputFields(item)}
                         >
-                          {" "}
-                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                          <line x1="12" y1="5" x2="12" y2="19" />{" "}
-                          <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                      </button>
+                          {item.data}
+                        </button>
+                      </div>
                     ))}
                   </div>
 
-                  <div className="">
-                    {valls ? null : (
-                      <div className="">
-                        <input
-                          class="block laptop:w-[1157px] w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                          id="password"
-                          name="title"
-                          value={title}
-                          onChange={handleTitleChange}
-                          placeholder=""
-                        />
-                      </div>
-                    )}
+                  <div
+                    className="flex flex-col"
+                    onClick={!display ? "hidden" : "block"}
+                  >
+                    {inputField.map((input, index) => (
+                      <form onSubmit={(e) => removeInputField(index, e)}>
+                        {/* return ( */}
+                        <div
+                          key={index}
+
+                          // onClick={() => onShowForm(input.id)}
+                          // className="mb-3 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                          <div className={!input.isShow ? "hidden" : "block"}>
+                            <button type="submit" className="float-right">
+                              <Remove className="w-5"></Remove>
+                            </button>
+                            <textarea
+                              className="mb-3 border border-[#255FAB] bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              name="newMajor"
+                              placeholder={input.newMajor}
+                              // value={input.newMajor}
+                              onChange={(event) =>
+                                handleInputFieldChange(index, event)
+                              }
+                            ></textarea>
+                          </div>
+                        </div>
+                        {/* ); */}
+                      </form>
+                    ))}
                   </div>
                 </div>
               )}
             </div>
-            <div></div>
+          </div>
+           
+            
           </div>
         </section>
       </div>

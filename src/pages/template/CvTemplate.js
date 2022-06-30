@@ -349,7 +349,7 @@ export default function CvTemplate() {
                       </div>
                     </div>
                   </div>
-                </div>
+                
               </center>
             </PDFExport>
           </div>
@@ -403,6 +403,7 @@ export default function CvTemplate() {
           </button>
         </div>
       </div>
+      
     </div>
     // </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function AccuntSettingPage() {
+  const navigate = useNavigate()
   const [imageUrl, setImageUrl] = useState("");
   const [image, setImage] = useState(
     "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
@@ -33,8 +34,8 @@ export default function AccuntSettingPage() {
                 className={imageUrl ? "shadow-lg h-40" : "h-40 rounded-xl"}
               />
 
-              <div className="upload-btn-wrapper h-[40px] laptop:w-1/4 w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800">
-                <button class=" ml-14 mt-2 font-maven">
+              <div className="upload-btn-wrapper h-[40px] talbet:w-1/4 laptop:w-full w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800">
+                <button class=" laptop:ml-14 mt-2 font-maven">
                   Change Profile Picture
                 </button>
 
@@ -95,10 +96,11 @@ export default function AccuntSettingPage() {
                 class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#D9D9D9] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
+            
             <div class="laptop:flex laptop:items-center mb-5">
               <label
                 for="twitter"
-                class="inline-block laptop:w-28 tablet:w-[102px]  mr-6 laptop:text-right
+                class="inline-block laptop:w-28 tablet:w-[102px]  laptop:mr-4 desktop:mr- laptop:text-right
                                  font-bold text-gray-600"
               >
                 Password
@@ -106,6 +108,7 @@ export default function AccuntSettingPage() {
               <button
                 type="button"
                 class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-[#A098AE] whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none"
+                onClick={() => navigate('accuntchange')}
               >
                 Change Password
               </button>

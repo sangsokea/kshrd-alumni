@@ -9,7 +9,7 @@ export default function AddNewStudent() {
   };
   return (
     <div>
-      <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+      <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 
         <section class=" flex justify-between items-center p-6 mx-auto  rounded-t-lg h-2    shadow-2xl bg-blue-800 laptop:px-20  dark:bg-gray-800">
@@ -123,7 +123,7 @@ export default function AddNewStudent() {
                     </div>
                   </div>
                 </div>
-                <div className="laptop:mt-12 mt-5">
+                <div className="tablet:mt-[49px] desktop:mt-[30px] mt-5">
                   <label
                     class="text-[#303972] font-maven font-bold dark:text-gray-200"
                     for="username"

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
   const [show, setshow] = useState(false);
+  const navigate = useNavigate()
   return (
-    <div className=" bg-gradient-to-b from-blue-200 to-white  laptop:ml-80   tablet:ml-80">
+    <div className=" bg-gradient-to-b from-blue-200 to-white  laptop:ml-[330px]   tablet:ml-[330px]">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
         <div className="tablet:hidden">
           <button
@@ -80,6 +81,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               <button
                 type="button"
                 class="bg-[#DFE3E8] p-1  rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                onClick={() => navigate('accunt')}
               >
                 <span class="sr-only">View notifications</span>
 

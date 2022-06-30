@@ -1,5 +1,10 @@
 import React, { Fragment, useState } from "react";
+<<<<<<< HEAD
 // import PorfolioEdit from "../PorfolioEdit";
+=======
+import { useNavigate } from "react-router-dom";
+import PorfolioEdit from "../PorfolioEdit";
+>>>>>>> 1ceca2d6a7b7b29f10f579db71b468cb8c2414ff
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Arrow } from "../../commons/icon/ri_arrow-go-back-fill .svg";
@@ -11,7 +16,7 @@ import { Transition, Popover } from "@headlessui/react";
 
 export default function EditEmploymentHistoryStudent() {
   const [file, setFile] = useState("");
-
+  const navigate = useNavigate();
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
   );
@@ -70,7 +75,7 @@ export default function EditEmploymentHistoryStudent() {
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button>
+          <button onClick={() => navigate("/admin/view")}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
@@ -347,11 +352,12 @@ export default function EditEmploymentHistoryStudent() {
               </div>
             </div>
           </div>
+          <div className="flex items-center justify-between">
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-full border-dashed "
+                : "upload-btn-wrapper shadow-md w-full   h-40 "
             }
           >
             {file ? (
@@ -365,11 +371,13 @@ export default function EditEmploymentHistoryStudent() {
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "rounded-tl-tl-lgs" : null}
             />
           </div>
+          </div>
+          
         </div>
-        <div className="h-1 my-14 bg-[#BDBDBD] "></div>
+        <hr className=" my-14 bg-[#BDBDBD] "></hr>
         <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
           <div>
             <div className="grid grid-2">
@@ -397,7 +405,7 @@ export default function EditEmploymentHistoryStudent() {
                           name="school"
                           value={school}
                           onChange={handleSchoolChange}
-                          placeholder="School Name"
+                          placeholder="Write your programs and tools here!"
                         />
                       </div>
                     </div>

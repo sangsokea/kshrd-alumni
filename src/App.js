@@ -23,12 +23,11 @@ function App() {
 
   // listen route
   const location = useLocation();
-
-  useEffect(() => {
-    console.log("=========================================================");
-    console.log(location.pathname);
-    setRouteName(location.pathname);
-  }, [location]);
+  
+    useEffect(() => {
+      console.log(location.pathname)
+      setRouteName(location.pathname)
+    }, [location]);
 
   useEffect(() => {
     isAuth ? localStorage.setItem("isAuth", true) : console.log("");

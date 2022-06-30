@@ -1,6 +1,11 @@
 import React, { Fragment, useState } from "react";
+<<<<<<< HEAD
 import { Navigate } from "react-router-dom";
 // import PorfolioEdit from "../PorfolioEdit";
+=======
+import { useNavigate } from "react-router-dom";
+import PorfolioEdit from "../PorfolioEdit";
+>>>>>>> 1ceca2d6a7b7b29f10f579db71b468cb8c2414ff
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
@@ -13,6 +18,7 @@ import { Transition, Popover } from "@headlessui/react";
 import AdminEducationComponent from "../../components/EducationAdminandUaerPage/AdminEducationComponent";
 
 export default function EditEducationStudent() {
+  const navigate = useNavigate()
   const [file, setFile] = useState("");
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
@@ -75,7 +81,7 @@ export default function EditEducationStudent() {
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button onClick={() => Navigate("editeducationStudent")}>
+          <button onClick={() => navigate("/admin/view")}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
@@ -343,22 +349,22 @@ export default function EditEducationStudent() {
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-full border-dashed "
+                : "upload-btn-wrapper shadow-md w-full   h-40 "
             }
           >
             {file ? (
               <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
             ) : (
               <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
-              <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+ Click to
-              add image
-            </button>
+                <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
+                Click to add image
+              </button>
             )}
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "rounded-tl-tl-lgs" : null}
             />
           </div>
         </div>
@@ -402,12 +408,12 @@ export default function EditEducationStudent() {
       <div classname="">
         <div className="flex items-center laptop:justify-end justify-center ">
           <button
-            class=" mt-6 hover:bg-blue-500 bg-[#255FAB text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-            // onClick={handleSubmit}
+            class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+            onClick={()=>navigate('/admin/view')}
           >
             Save
           </button>
-          <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+          <button onClick={()=>navigate('/admin/view')} class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
             Cancel
           </button>
         </div>
