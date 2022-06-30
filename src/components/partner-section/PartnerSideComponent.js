@@ -53,8 +53,8 @@ export default function PartnerSideComponent() {
               </NavLink>
             </ul> */}
 
-      <div className="items-center">
-        <Tabs>
+      <div>
+        <Tabs className="font-bold">
           <TabList>
             <Tab>Public Sector</Tab>
             <Tab>Universities</Tab>

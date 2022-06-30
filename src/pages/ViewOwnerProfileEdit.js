@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction";
 
 export default function ViewOwnerProfileEdit() {
-
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -126,7 +125,7 @@ export default function ViewOwnerProfileEdit() {
 
   return (
     <>
-      <div class="laptop:mt-5 mx-10 body-font font-maven">
+      <div class="laptop:mt-5 ml-10 body-font font-maven">
         <div>
           <img
             class="w-[300px] laptop:w-full h-auto"
@@ -142,13 +141,13 @@ export default function ViewOwnerProfileEdit() {
         {/* First Name, Last Name, Skill input form */}
         <div class="block laptop:flex justify-between mt-3 gap-2 text-sm laptop:text-md desktop:text-lg ">
           <div class="form-control laptop:w-full w-[300px] mb-5">
-            <label class="label ">
+            <label class="label">
               <span class="label-text">First Name</span>
             </label>
             <input
               type="text"
               placeholder="Yuoyi"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
           <div class="form-control laptop:w-full w-[300px] mb-5">
@@ -158,7 +157,7 @@ export default function ViewOwnerProfileEdit() {
             <input
               type="text"
               placeholder="Vong"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
           <div class="form-control laptop:w-full w-[300px] mb-5">
@@ -168,7 +167,7 @@ export default function ViewOwnerProfileEdit() {
             <input
               type="text"
               placeholder="Web Development"
-              class="mt-2 bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="mt-2 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
         </div>
@@ -218,13 +217,16 @@ export default function ViewOwnerProfileEdit() {
           </div>
         </div>
 
-        <p class="border-[2px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
+        <p class="border-[1px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
         <div class="flex mt-12 items-center">
           <p
-            class="border-[2px] border-solid h-10 border-3"
+            class="border-[1px] border-solid h-10 border-3"
             style={borderStyle}
           ></p>
-          <p class="font-bold ml-4 text-xl laptop:text-2xl desktop:text-4xl" style={styles}>
+          <p
+            class="font-bold ml-4 text-xl laptop:text-2xl desktop:text-4xl"
+            style={styles}
+          >
             What I can do{" "}
           </p>
         </div>
@@ -338,18 +340,18 @@ export default function ViewOwnerProfileEdit() {
           </div>
         </div>
 
-        <div className="flex flex-row ">
-          <div className="laptop:ml-auto ">
+        <div className="flex flex-row mb-10">
+          <div className="laptop:ml-auto">
             <button
-              className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={saveBackground}
-              onClick={() => navigate("/")}
+              onClick={() => dispatch(fetchAboutMePage(false))}
             >
               Save
             </button>
 
             <button
-              className="px-10 py-2 mt-5 ml-5 laptop:mt-10 laptop:ml-10 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+              className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
               onClick={() => dispatch(fetchAboutMePage(false))}
             >
               Cancel

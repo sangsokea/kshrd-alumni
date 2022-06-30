@@ -36,7 +36,7 @@ export default function NavbarComponent() {
 
       <div className="relative body-font font-maven">
         <nav
-          className="bg-white laptop:px-4 laptop:py-2.5 text-white body-font font-maven tablet:text-sm overflow-hidden"
+          className="bg-white laptop:px-4 laptop:py-1 text-white body-font font-maven tablet:text-sm overflow-hidden"
           style={styles}
         >
           <div className="container flex items-center justify-between mx-auto">
@@ -256,7 +256,7 @@ export default function NavbarComponent() {
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <button
                     onClick={() => navigate("/viewAlumni")}
-                    className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900 focus:ring-offset-gray-100"
+                    className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                     aria-current="page"
                   >
                     ALUMNI

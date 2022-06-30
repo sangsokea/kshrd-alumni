@@ -25,9 +25,7 @@ export default function CVBuilderPage() {
   const [address, setAddress] = useState("");
   const [summary, setSummary] = useState("");
 
-  const [image, setImage] = useState(
-    sample_image
-  );
+  const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
 
   const handleChangeFirstName = (e) => {
@@ -70,8 +68,10 @@ export default function CVBuilderPage() {
   return (
     <div className="h-full p-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100">
       <div className="flex flex-row ">
-        <h1 className="text-2xl font-bold hidden laptop:block">Create New Curriculum Vitae</h1>
-        <div className="w-64 mt-0 laptop:ml-auto ml-5 mb-3">
+        <h1 className="text-2xl font-bold hidden laptop:block">
+          Create New Curriculum Vitae
+        </h1>
+        <div className="w-auto mt-0 laptop:ml-auto ml-5 mb-3">
           <input
             type="file"
             className="hidden"
@@ -82,13 +82,15 @@ export default function CVBuilderPage() {
             <img
               src={imageUrl ? imageUrl : image}
               className="rounded-lg cursor-pointer"
-              style={{ height: "200px" , width: "300px"}}
+              style={{ height: "200px", width: "300px" }}
             ></img>
           </label>
         </div>
       </div>
 
-      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold">Personal Information</h1>
+      <h1 className="text-md laptop:text-lg desktop:text-xl font-bold">
+        Personal Information
+      </h1>
 
       <div>
         <form>
@@ -102,7 +104,7 @@ export default function CVBuilderPage() {
                 First name
               </label>
               <input
-                className="bg-gray-50 border border-gray-300 text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handleChangeFirstName}
                 type="text"
                 id="first_name"
@@ -210,7 +212,7 @@ export default function CVBuilderPage() {
         </form>
       </div>
 
-      <div className="flex flex-row">
+      {/* <div className="flex flex-row">
         <div className="laptop:ml-auto">
           <button
             className="px-10 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white rounded-md"
@@ -221,6 +223,24 @@ export default function CVBuilderPage() {
           </button>
           <button
             className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-md"
+            onClick={() => navigate("/")}
+          >
+            Cancel
+          </button>
+        </div>
+      </div> */}
+      <div className="flex flex-row">
+        <div className="laptop:ml-auto">
+          <button
+            className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+            style={styles}
+            onClick={() => navigate("/sidebar/cvTemplate")}
+          >
+            Save
+          </button>
+
+          <button
+            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
             onClick={() => navigate("/")}
           >
             Cancel

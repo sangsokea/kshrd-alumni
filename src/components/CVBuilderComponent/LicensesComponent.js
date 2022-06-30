@@ -81,7 +81,7 @@ export default function LicensesComponent() {
           for="large-input"
           className="flex flex-row mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black items-center"
         >
-          Licenses & cerifications
+          Licenses & Cerifications
           <span onClick={addFieldsLicensesAndCertifications}>
             <svg
               className="w-4 latpop:w-6 h-auto ml-2 text-black"

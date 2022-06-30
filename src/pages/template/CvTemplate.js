@@ -371,8 +371,8 @@ export default function CvTemplate() {
         </div>
       </div>
 
-      <div className="mt-5 text-center">
-        <button
+      {/* <div className="mt-5 text-center"> */}
+      {/* <button
           className="px-10 py-2 mb-10 ml-auto text-sm laptop:text-md desktop:text-lg text-white rounded-md"
           style={styles}
           onClick={() => navigate("/")}
@@ -384,9 +384,27 @@ export default function CvTemplate() {
           onClick={() => navigate("/sidebar/createNewCV")}
         >
           Cancel
-        </button>
+        </button> */}
+      <div className="flex flex-row">
+        <div className="laptop:ml-auto">
+          <button
+            className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+            style={styles}
+            onClick={() => navigate("/sidebar/resume")}
+          >
+            Finish
+          </button>
+
+          <button
+            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+            onClick={() => navigate("/sidebar/createNewCV")}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
+    // </div>
   );
 }
 const styles = {

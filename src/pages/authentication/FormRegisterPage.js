@@ -237,7 +237,7 @@ export default function FormRegisterPage() {
                 style={styles}
                 className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
               >
-                Submit{" "}
+                Sign Up{" "}
                 <span>
                   <svg
                     className="w-8 h-auto pl-2 text-white"

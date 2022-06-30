@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import homepage from "../commons/images/Cover_homepage.jpeg";
+import { colors } from "../commons/colors/colors";
 
 // card slides
 import director_picture from "../commons/images/card-slide/director.7a1c2126.jpg";
@@ -32,7 +33,7 @@ export default function HomePage() {
         <img src={homepage} alt="9th gen image"></img>
         <div className="hidden laptop:block">
           {/* Our Achievement Section */}
-          <h1 className="mt-5 mb-5 text-2xl">Our Achievements</h1>
+          <h1 className="mt-5 mb-5 text-2xl font-bold" style={textStyle}>Our Achievements</h1>
 
           <div>
             <Slider {...settings}>
@@ -74,7 +75,7 @@ export default function HomePage() {
 
         {/* Our Partner Section */}
         <div className="ml-3 mr-3 text-sm laptop:text-md desktop:text-lg">
-          <h1 className="mt-6 mb-3 text-2xl">Our Partners</h1>
+          <h1 className="mt-6 mb-3 text-2xl font-bold" style={textStyle}>Our Partners</h1>
           <p>
             We have a network of dedicated partners, each brining their special
             expertise and contribution. We successfully cooperate with many
@@ -89,4 +90,8 @@ export default function HomePage() {
       </section>
     </div>
   );
+}
+
+const textStyle = {
+  color: colors.content
 }

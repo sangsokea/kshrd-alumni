@@ -157,7 +157,7 @@ export default function PorfolioPage() {
 
                     <div className="text-left">
                       <div class="mt-4 flex flex-col">
-                        <div class="mr-4 mt-4 rounded desktop:w-404 laptop:w-404 tablet:w-404 w-auto bg-blue-800 px-14 py-2 text-sm font-bold">
+                        <div class="mr-4 mt-4 rounded desktop:w-404 laptop:w-404 tablet:w-404 w-auto bg-blue-800 px-14 py-2 text-sm">
                           <div className="flex items-center justify-start text-white">
                             <img
                               className="mr-4 "
@@ -180,7 +180,7 @@ export default function PorfolioPage() {
                 </div>
                 <div className="ml-16 desktop:grid desktop:grid-cols-8 laptop:grid laptop:grid-cols-8 desktop:mt-16 laptop:mt-16 laptop:ml-0 desktop:ml-0">
                   <div className="">
-                    <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 ">
+                    <div className="w-5 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 ">
                       <div className="absolute w-1 mt-3 ml-3 bg-[#8CC0DE] desktop:h-1 laptop:h-1 desktop:w-970 laptop:w-785 h-[1050px] tablet:ml-3 -z-50"></div>
                     </div>
 
@@ -208,10 +208,10 @@ export default function PorfolioPage() {
                         2017 - 2018
                       </p>
                     </div>
-                    <div className="w-6 h-6 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
+                    <div className="w-5 h-5 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
                   </div>
                   <div className="">
-                    <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
+                    <div className="w-5 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
                     <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
                       <p className="w-24 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
                         2016 - 2020{" "}
@@ -236,10 +236,10 @@ export default function PorfolioPage() {
                         2017 - 2018
                       </p>
                     </div>
-                    <div className="w-6 h-6 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
+                    <div className="w-5 h-5 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
                   </div>
                   <div className="">
-                    <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
+                    <div className="w-5 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
                     <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
                       <p className="w-24 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
                         2016 - 2020{" "}
@@ -254,11 +254,11 @@ export default function PorfolioPage() {
                   </div>
                   <div className="">
                     <div></div>
-                    <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80"></div>
+                    <div className="w-5 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80"></div>
                   </div>
                   <div className="">
                     <div></div>
-                    <div className="w-6 h-6 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
+                    <div className="w-5 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
                   </div>
                   <div className="">
                     <div>

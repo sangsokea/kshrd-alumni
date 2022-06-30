@@ -3,7 +3,7 @@ import { colors } from "../commons/colors/colors";
 
 export default function FooterComponent() {
   return (
-    <div className="mt-5 laptop:grid-cols-3">
+    <div className="mt-1 laptop:grid-cols-3">
       <section className="text-sm body-font font-maven laptop:text-md desktop:text-lg">
         <div
           className="bg-white px-2 tablet:px-4 py-2.5 text-white "
@@ -19,7 +19,7 @@ export default function FooterComponent() {
 
                 <div>
                   <ul className="text-white rounded-lg w-90">
-                    <li className="inline-flex w-full py-2 text-white divide-y-slate-200">
+                    <li className="inline-flex w-full py-2 text-white divide-y-slate-200 items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white"
@@ -36,7 +36,7 @@ export default function FooterComponent() {
                       </span>
                       012 998 919
                     </li>
-                    <li className="inline-flex w-full py-2 text-white">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white "
@@ -54,7 +54,7 @@ export default function FooterComponent() {
                       </span>
                       info.kshrd@gmail.com
                     </li>
-                    <li className="inline-flex w-full py-2 text-white">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white border rounded"
@@ -71,7 +71,7 @@ export default function FooterComponent() {
                       </span>
                       @ksignhrd
                     </li>
-                    <li className="inline-flex w-full py-2 text-white ">
+                    <li className="inline-flex w-full py-2 text-white items-center">
                       <span className="pr-3">
                         <svg
                           className="w-5 h-auto text-white"
@@ -92,7 +92,7 @@ export default function FooterComponent() {
                     <li className="inline-flex w-full py-2 text-white">
                       <span className="pr-3">
                         <svg
-                          className="w-5 h-auto text-white"
+                          className="w-5 h-auto text-white mt-1"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -111,7 +111,7 @@ export default function FooterComponent() {
                           />
                         </svg>
                       </span>
-                      #12, St 323, Sangkat Boeung Kak II, Khan Toul Kork, Phnom
+                      #12, Street 323, Sangkat Boeung Kak II, Khan Toul Kork, Phnom
                       Penh
                     </li>
                   </ul>
@@ -366,7 +366,7 @@ export default function FooterComponent() {
         </div>
         <div style={logoBackground}>
           <span className="block p-3 text-center text-white text-md">
-            2022 © Korean Software HRD Center. All right reserved.
+            2022 © Korea Software HRD Center. All right reserved.
           </span>
         </div>
       </section>

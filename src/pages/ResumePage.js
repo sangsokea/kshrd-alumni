@@ -15,7 +15,7 @@ export default function ResumePage() {
           <div className="flex flex-row portolio-header">
             <div>
               <p className="text-xl font-normal">Portfolio</p>
-              <p className="text-2xl font-bold text-blue-800">Vong Yuoyi</p>
+              <p className="text-2xl font-bold mb-5" style={textStyle}>Vong Yuoyi</p>
             </div>
 
             {/* Insert image of QR Code */}
@@ -29,7 +29,7 @@ export default function ResumePage() {
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg list-resume">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               {/* Column1 <Curriculumn Vitae */}
-              <thead className="text-m text-white uppercase bg-sky-600	background-color: rgb(2 132 199);">
+              <thead className="text-m text-white uppercase	background-color: rgb(2 132 199);" style={styles}>
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Curriculum Vitae
@@ -43,10 +43,10 @@ export default function ResumePage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <tr className="bg-white border-b text-black dark:border-gray-700">
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                    className="px-6 py-4 font-medium text-black whitespace-nowrap"
                   >
                     <div className="flex flex-row">
                       <div>
@@ -223,3 +223,7 @@ const styles = {
   backgroundColor: colors.content,
   // logoSize: myStyles.logoSize
 };
+
+const textStyle = {
+  color: colors.content
+}

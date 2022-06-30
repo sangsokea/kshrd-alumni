@@ -28,7 +28,7 @@ export default function AccountSettingPage() {
           <div className="col-span-1">
             <p className="text-xl text-right hidden laptop:block">Profile Picture</p>
           </div>
-          <div className="col-span-1 ml-4 laptop:ml-10">
+          <div className="w-auto col-span-2 ml-4 laptop:ml-10">
             <input
               id="change-profile-picture"
               className="hidden"
@@ -77,7 +77,7 @@ export default function AccountSettingPage() {
           <div className="col-span-2">
             <input
               className="px-4 py-2 laptop:ml-10 border rounded laptop:w-96 w-80"
-              placeholder="yoiryivong@gmai.com"
+              placeholder="yoiryivong@gmail.com"
             />
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function AccountSettingPage() {
             <button
               id="menu-btn"
               // style={styles}
-              className="px-4 py-2 laptop:ml-10 text-gray-500 bg-transparent border rounded-md"
+              className="px-4 py-2 laptop:ml-10 text-gray-400 bg-transparent border rounded-md hover:ring-2 hover:ring-offset-2 hover:ring-offset-gray-100 hover:ring-indigo-500 hover:outline-none"
               onClick={() => setChangePassword(!changePassword)}
             >
               Change password
@@ -149,13 +149,13 @@ export default function AccountSettingPage() {
         <div className="flex flex-row">
           <div className="laptop:m-auto">
             <button
-              className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
             >
               Save
             </button>
 
-            <button className="px-10 py-2 mt-10 ml-5 laptop:ml-10 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
+            <button className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
               Cancel
             </button>
           </div>

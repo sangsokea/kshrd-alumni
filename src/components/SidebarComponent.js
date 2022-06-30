@@ -41,13 +41,14 @@ export default function SidebarComponent() {
 
   const logOut = () => {
     Swal.fire({
-      title: "Sign out from Moment",
+      title: "Sign Out from Moment",
       text: "Are you sure you would like to sign out from your moment account?",
-      icon: "warning",
+      // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sign out",
+      confirmButtonText: "Sign Out",
+      // customClass: 'swal-wide',
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(fetchIsAucthenticated(false));
@@ -70,7 +71,7 @@ export default function SidebarComponent() {
       <div className="container mx-auto body-font font-maven">
         {/* sideBar */}
 
-        <div className="grid laptop:min-h-screen laptop:grid-cols-5 mt-5">
+        <div className="grid laptop:min-h-screen laptop:grid-cols-5 mt-1">
           <div style={styles}>
             <div
               className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto h flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
@@ -154,13 +155,13 @@ export default function SidebarComponent() {
 
                 {/* Link to about me page */}
                 {/* <NavLink to="/sidebar/aboutMe"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-lg hover:text-blue-500 cursor-pointer">
+                <div className="mt-10 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(1)}
                     to="/sidebar/aboutMe"
                     className={({ isActive }) =>
                       [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-2 rounded-lg ",
+                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md ",
                         isActive
                           ? "bg-gray-50 text-blue-500 shadow-md w-full"
                           : null,
@@ -201,7 +202,7 @@ export default function SidebarComponent() {
                     to="/portfolio"
                     className={({ isActive }) =>
                       [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-2 rounded-lg",
+                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
                         isActive
                           ? "bg-gray-50 text-blue-500 shadow-md w-full"
                           : null,
@@ -238,7 +239,7 @@ export default function SidebarComponent() {
                     to="/sidebar/resume"
                     className={({ isActive }) =>
                       [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-2 rounded-lg",
+                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
                         isActive
                           ? "bg-gray-50 text-blue-500 shadow-md w-full"
                           : null,
@@ -263,9 +264,9 @@ export default function SidebarComponent() {
                       </svg>
                     </span>
                     <p className="ml-5">Resume</p>
-                    <span className="ml-5">
+                    <span className="ml-auto">
                       <svg
-                        className="w-6 h-auto "
+                        className="w-6 h-auto"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -294,7 +295,7 @@ export default function SidebarComponent() {
                     to="/sidebar/accountSetting"
                     className={({ isActive }) =>
                       [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-2 rounded-lg",
+                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
                         isActive
                           ? "bg-gray-50 text-blue-500 shadow-md w-full"
                           : null,
@@ -336,7 +337,7 @@ export default function SidebarComponent() {
                   //   navigate("/");
 
                   // }}
-                  className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-2 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
+                  className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
                 >
                   <span>
                     <svg

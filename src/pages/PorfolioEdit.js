@@ -458,21 +458,18 @@ export default function PorfolioEdit() {
               </div>
               <div className="">
                 <img
-                  className="mt-3 -ml-10 desktop:-ml-56 desktop:mt-14 laptop:-ml-24 laptop:mt-14 desktop:w-222"
+                  className="mb-5 mt-3 -ml-10 desktop:-ml-56 desktop:mt-14 laptop:-ml-24 laptop:mt-14 desktop:w-222"
                   src={img3}
                 ></img>
                 <div classname="">
                   <button
-                    className="mt-10 px-12 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white rounded-lg"
-                    onClick={() => dispatch(fetchPortfolioPage(false))}
+                    className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
                     style={styles}
+                    onClick={() => dispatch(fetchPortfolioPage(false))}
                   >
                     Save
                   </button>
-                  <button
-                    className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-lg"
-                    // onClick={() => dispatch(fetchPortfolioPage(false))}
-                  >
+                  <button className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
                     Cancel
                   </button>
                 </div>

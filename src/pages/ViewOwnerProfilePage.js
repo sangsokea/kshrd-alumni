@@ -72,7 +72,7 @@ export default function ViewOwnerProfilePage() {
             for complex scalable web apps. If you want to know how I may help
             your project? Check out my project portfolio and online resume.
           </p>
-          <p className="w-full mt-12 "></p>
+          <p class="border-[1px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
           <div class="flex mt-12 laptop:mb-10 mb-5">
             <p
               class="border border-solid h-10 border-3"
@@ -95,7 +95,7 @@ export default function ViewOwnerProfilePage() {
             <div className="">
               <img
                 className="w-auto h-12 mt-5"
-                src="https://www.computerhope.com/jargon/j/javascript.png"
+                src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png"
                 alt="JavaScript"
               />
               <p className="text-md laptop:text-lg desktop:text-xl font-bold">
@@ -118,21 +118,22 @@ export default function ViewOwnerProfilePage() {
               </p>
               <p className="text-sm laptop:text-md desktop:text-lg">
                 Spring Boot is a tool that makes developing web application and
-                microservices with Spring Framework faster.
+                microservices faster.
               </p>
             </div>
 
-            <div className="">
+            <div className="mb-10">
               <img
                 className="w-auto h-12 mt-5"
                 src="https://www.inapps.net/wp-content/uploads/2022/05/java_logo_640.jpg"
                 alt="Java Programming"
               />
-              <p className="text-sm laptop:text-md desktop:text-lg font-bold">
+              <p className="text-md laptop:text-lg desktop:text-xl font-bold">
                 Java Programming
               </p>
               <p className="text-sm laptop:text-md desktop:text-lg">
-                Java is a popular programming language, created in 1995.
+                Java is a high-level, class-based, object-oriented programming
+                language.
               </p>
             </div>
           </div>
