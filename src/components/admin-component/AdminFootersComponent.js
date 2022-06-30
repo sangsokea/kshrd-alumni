@@ -3,7 +3,7 @@ import { colors } from "../../commons/colors/colors";
 
 export default function AdminFootersComponent() {
   return (
-    <div className="mt-5 laptop:grid-cols-3 fixed bottom-0 w-full">
+    <div className="mt-5 laptop:grid-cols-3 fixed bottom-0 w-full body-font font-maven">
       <section className="text-sm body-font font-maven laptop:text-md desktop:text-lg laptop:ml-[330px]   tablet:ml-[330px]">
         
         <div style={logoBackground}>

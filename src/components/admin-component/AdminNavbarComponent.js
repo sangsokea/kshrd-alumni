@@ -5,7 +5,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
   const [show, setshow] = useState(false);
   const navigate = useNavigate()
   return (
-    <div className=" bg-gradient-to-b from-blue-200 to-white  laptop:ml-[330px]   tablet:ml-[330px]">
+    <div className="body-font font-maven bg-gradient-to-b from-blue-200 to-white  laptop:ml-[330px]   tablet:ml-[330px]">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
         <div className="tablet:hidden">
           <button

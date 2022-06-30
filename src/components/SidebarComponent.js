@@ -71,10 +71,10 @@ export default function SidebarComponent() {
       <div className="laptop:container laptop:mx-auto body-font font-maven">
         {/* sideBar */}
 
-        <div className="grid laptop:min-h-screen laptop:grid-cols-5 mt-1 grid-cols-3">
+        <div className="grid desktop:grid-cols-5 mt-1 laptop:grid-cols-3 tablet:grid-cols-2">
           <div style={styles}>
             <div
-              className={`laptop:h-screen desktop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
+              className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
               style={styles}
             >
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
@@ -364,7 +364,7 @@ export default function SidebarComponent() {
           </div>
 
           {/* Result */}
-          <div className="col-span-2 laptop:col-span-4">
+          <div className="tablet:col-span-1 laptop:col-span-2 desktop:col-span-4">
             <Outlet />
           </div>
         </div>

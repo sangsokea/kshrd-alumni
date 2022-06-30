@@ -8,21 +8,21 @@ export default function AddNewStudent() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
   return (
-    <div>
+    <div className="body-font font-maven">
       <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 
-        <section class=" flex justify-between items-center p-6 mx-auto  rounded-t-lg h-2    shadow-2xl bg-blue-800 laptop:px-20  dark:bg-gray-800">
+        <section class=" flex justify-between items-center p-6 mx-auto  rounded-t-lg h-2 shadow-2xl bg-blue-800 laptop:px-20 ">
           <p className="font-maven text-white text-xl  font-bold">
             Personal Details
           </p>
           <p className="font-maven text-white text-xl font-bold">ID: 001</p>
         </section>
-        <section class=" p-6 mx-auto w-full rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
+        <section class=" p-6 mx-auto w-full rounded-md shadow-2xl laptop:px-20  ">
           <div class=" gap-6 mt-4 grid grid-cols-1 laptop:grid-cols-6 tablet:grid tablet:grid-cols-1">
             <div className="flex flex-col">
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Photo *
@@ -53,7 +53,7 @@ export default function AddNewStudent() {
               <div class=" border-slate-200 flex flex-col ">
                 <div>
                   <label
-                    class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                    class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
                     First Name *
@@ -62,12 +62,12 @@ export default function AddNewStudent() {
                     id="username"
                     type="text"
                     placeholder="Maria"
-                    class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                    class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                   />
                 </div>
                 <div className="mt-6">
                   <label
-                    class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                    class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
                     Last Name *
@@ -76,7 +76,7 @@ export default function AddNewStudent() {
                     id="username"
                     type="text"
                     placeholder="Historia"
-                    class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                    class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                   />
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function AddNewStudent() {
               <div class=" border-slate-200 flex flex-col ">
                 <div>
                   <label
-                    class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                    class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
                     Gender *
@@ -125,14 +125,14 @@ export default function AddNewStudent() {
                 </div>
                 <div className="tablet:mt-[49px] desktop:mt-[30px] mt-5">
                   <label
-                    class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                    class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
                     Course Name
                   </label>
                   <select
                     id="countries"
-                    class=" border border-[#255FAB]  text-gray-900 text-sm rounded-lg mt-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class=" border border-[#255FAB]  text-gray-900 text-sm rounded-lg mt-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   >
                     <option selected>Choose a Course</option>
                     <option value="US">Basic Course</option>
@@ -145,7 +145,7 @@ export default function AddNewStudent() {
           <div className="gap-6 mt-4 tablet:grid tablet:grid-cols-1 laptop:grid-cols-2">
             <div>
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Email *
@@ -154,12 +154,12 @@ export default function AddNewStudent() {
                 id="username"
                 type="email"
                 placeholder="Historia@mail.com"
-                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Phone *
@@ -168,14 +168,14 @@ export default function AddNewStudent() {
                 id="username"
                 type="number"
                 placeholder="+1234567890"
-                class="block w-full  px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2   border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
           </div>
           <div className="gap-6 mt-4 grid grid-cols-1 laptop:grid-cols-5">
             <div>
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Date of Birth *
@@ -183,12 +183,12 @@ export default function AddNewStudent() {
               <input
                 id="username"
                 type="date"
-                class="block w-full  px-4 py-2 mt-2 text-gray-700  border  border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2 border  border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
             <div className="col-span-4">
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Place of Birth *
@@ -197,14 +197,14 @@ export default function AddNewStudent() {
                 id="username"
                 type="text"
                 placeholder="Jakarta, Indonesia"
-                class="block w-full  px-4 py-2 mt-2 text-gray-700  border  border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2  border  border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
           </div>
           <div className="gap-6 mt-4 grid grid-cols-1 tablet:grid-cols-1">
             <div>
               <label
-                class="text-[#303972] font-maven font-bold dark:text-gray-200"
+                class="text-[#303972] font-maven font-bold "
                 for="username"
               >
                 Address *
@@ -213,7 +213,7 @@ export default function AddNewStudent() {
                 placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                 id="username"
                 type="text"
-                class="block w-full text-sm  px-4 py-2 mt-2 h-56 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full text-sm  px-4 py-2 mt-2 h-56  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
           </div>

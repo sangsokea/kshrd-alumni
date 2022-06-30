@@ -55,7 +55,7 @@ export default function AdminManageCV() {
 
   return (
     <>
-      <div className="relative flex justify-center m-5">
+      <div className="relative flex justify-center m-5 body-font font-maven">
         <SearchBarTemplate placeholder={"Search templates..."} data={data} />
       </div>
       <div className="flex justify-center">

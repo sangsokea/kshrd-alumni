@@ -65,7 +65,7 @@ export default function AdminEducationComponent() {
   return (
     <>
       {/* Education */}
-      <div className="mb-6">
+      <div className="mb-6 body-font font-maven">
         {/* Dynamic form for Education */}
         <div>
           {education.map((input, index) => (
@@ -118,7 +118,7 @@ export default function AdminEducationComponent() {
                           </select>
                           <select
                             id="countries"
-                            class="laptop:ml-3  laptop:w-1/4 w-full  mt-5 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3  py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left dark:text-placeholder-blue-500 inline-flex justify-between content-center"
+                            class="laptop:ml-3  laptop:w-1/4 w-full  mt-5 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3  py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left  inline-flex justify-between content-center"
                           >
                             <option selected>End year</option>
                             <option value="US">2019</option>

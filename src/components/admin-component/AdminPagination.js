@@ -5,7 +5,7 @@ export default function AdminPagination() {
   const [selectedPage, setSelectedPage] = useState(1);
 
   return (
-    <div className="py-2 flex">
+    <div className="py-2 flex body-font font-maven">
       <nav className="block">
         <ul className="flex pl-0 rounded list-none flex-wrap">
           <li>

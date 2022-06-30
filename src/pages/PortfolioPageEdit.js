@@ -12,6 +12,7 @@ import { Transition, Popover } from "@headlessui/react";
 import UserEducationComponent from "../components/EducationAdminandUaerPage/UserEducationComponent";
 import { useDispatch } from "react-redux";
 import { fetchPortfolioPage } from "../redux/actions/localAction/PortfolioPageAction";
+import { colors } from "../commons/colors/colors";
 
 export default function PortfolioEdite() {
   const dispatch = useDispatch();
@@ -70,23 +71,25 @@ export default function PortfolioEdite() {
     setTechnologyValues("");
   };
   return (
-    <div className="container mx-auto mt-10">
-      <div className="flex flex-row px-3 mb-3">
-        <div className="basis-1/2 font-maven text-xl font-extrabold">
-          <p className="text-[#919EAB]">Porfolio</p>
-          <p className="text-[#255FAB]">Vong Yuoyi</p>
+    <div className="container mx-auto mt-10 body-font font-maven">
+      <div className="container grid grid-cols-2 mx-auto desktop:w-1341 desktop:container desktop:mx-auto laptop:w-1200 w-350 tablet:container tablet:mx-auto laptop:container laptop:mx-auto desktop:grid desktop:grid-cols-3 tablet:grid tablet:grid-cols-2 laptop:grid laptop:grid-cols-2">
+        <div className="desktop:col-span-2 ">
+          <p className="text-2xl font-normal">Portfolio</p>
+          <p className="text-2xl font-bold text-blue-500">Vong Yuoyi</p>
         </div>
-        <div className="basis-1/2 flex items-center justify-end">
+        <div className="flex flex-row ">
+          <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
           <button onClick={() => dispatch(fetchPortfolioPage(false))}>
-            <Arrow className="w-6 mr-2 " />
+            <Arrow className="w-6 mr-3 mt-7" />
           </button>
+
           <div className="">
             <div className="">
               <Popover className="relative">
                 {({ open }) => (
                   <>
                     <Popover.Button>
-                      <Vector className="w-5 mr-2"></Vector>
+                      <Vector className="w-5 mr-3 mt-7"></Vector>
                     </Popover.Button>
                     <Transition
                       as={Fragment}
@@ -97,13 +100,14 @@ export default function PortfolioEdite() {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-32 w-80 h-270 sm:px-0 lg:max-w-3xl">
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative gap-8 bg-white p-7 ">
+                            {/* {solutions.map((item) => ( */}
                             <div>
                               <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                                 <div className="flex items-center">
-                                  <p className="text-xl font-bold text-gray-900 font-maven">
+                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
                                     Show Profile
                                   </p>
                                 </div>
@@ -120,7 +124,7 @@ export default function PortfolioEdite() {
                                 />
                                 <label
                                   for="default-radio-1"
-                                  class="ml-2 text-md font-light font-maven text-gray-900"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
                                 >
                                   Public
                                 </label>
@@ -135,16 +139,16 @@ export default function PortfolioEdite() {
                                 />
                                 <label
                                   for="default-radio-2"
-                                  class="ml-2 text-md font-light font-maven text-gray-900"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
                                 >
                                   Private
                                 </label>
                               </div>
-                              <div className="flex items-baseline justify-center">
-                                <button class=" mt-10 bg-[#255FAB] w-1/2 hover:bg-blue-700 text-white font-maven  mr-3 py-2 px-4  h-12 rounded mb-6">
+                              <div className="text-center">
+                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6">
                                   Update
                                 </button>
-                                <button class="bg-transparent  w-1/2 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                <button class="bg-transparent  w-36 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                   Cancel
                                 </button>
                               </div>
@@ -158,8 +162,12 @@ export default function PortfolioEdite() {
               </Popover>
             </div>
           </div>
+
           <button>
-            <Group className="w-7"></Group>
+            <Group
+              className="mt-7 w-7"
+              onClick={() => dispatch(fetchPortfolioPage(false))}
+            ></Group>
           </button>
         </div>
       </div>
@@ -375,16 +383,17 @@ export default function PortfolioEdite() {
           </div>
         </div>
         <div class="grid grid-cols-1 gap-6  desktop:grid-cols-2"></div>
-        <div classname="">
-          <div className="flex items-center laptop:justify-end justify-center ">
+        <div className="flex flex-row ">
+          <div className="ml-auto">
             <button
-              class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-              // onClick={handleSubmit}
+              className="mb-10 laptop:mb-0 laptop:ml-72 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+              style={styles}
             >
               Save
             </button>
+
             <button
-              class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              className="px-10 py-2 mt-5 laptop:mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
               onClick={() => dispatch(fetchPortfolioPage(false))}
             >
               Cancel
@@ -395,4 +404,8 @@ export default function PortfolioEdite() {
       <div className="mt-5"></div>
     </div>
   );
+}
+
+const styles = {
+    backgroundColor: colors.content
 }

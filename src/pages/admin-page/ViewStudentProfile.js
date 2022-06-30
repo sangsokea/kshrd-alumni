@@ -112,7 +112,7 @@ export default function ViewStudentProfile() {
   };
   const navigate = useNavigate();
   return (
-    <div className="">
+    <div className="body-font font-maven">
       <div>
         <div className="mt-10 w-full h-40 bg-[#255FAB] ">
           <div className="flex items-end justify-end ">
@@ -145,7 +145,7 @@ export default function ViewStudentProfile() {
             </svg>
           </div>
           <img
-            class="w-36 h-36 p-1 absolute top-56 object-cover rounded-full ring-2  ml-5 bg-gray-300 dark:ring-gray-500"
+            class="w-36 h-36 p-1 absolute top-56 object-cover rounded-full ring-2  ml-5 bg-gray-300 "
             src="https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg1NjUzOTgxOTk1ODY5ODI0/johnnydepp.jpg"
             alt="Bordered avatar"
           />
@@ -164,7 +164,7 @@ export default function ViewStudentProfile() {
               </div>
               <div class="">
                 <input
-                  class="block w-20 h-10 bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  class="block w-20 h-10 bg-[#F5F5F6] px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                   id="inline-full-name"
                   type="text"
                   value="10"
@@ -292,25 +292,25 @@ export default function ViewStudentProfile() {
         <br></br>
         <hr></hr>
 
-        <section class=" p-6 mx-auto  rounded-md  dark:bg-gray-800">
-          <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
+        <section class=" p-6 mx-auto  rounded-md  ">
+          <h2 class="text-lg font-semibold  capitalize ">
             Personal Information{" "}
           </h2>
           <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
             <div>
-              <label class="text-gray-700 dark:text-gray-200" for="username">
+              <label class="" for="username">
                 First Name
               </label>
               <input
                 id="username"
                 type="text"
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2 text-gray-700  border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="emailAddress"
               >
                 Last Name
@@ -318,24 +318,24 @@ export default function ViewStudentProfile() {
               <input
                 id="emailAddress"
                 type="text"
-                class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full  px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
-              <label class="text-gray-700 dark:text-gray-200" for="password">
+              <label class="text-gray-700 " for="password">
                 Phone Number
               </label>
               <input
                 id="password"
                 type="number"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="passwordConfirmation"
               >
                 Date of Birth
@@ -343,12 +343,12 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="date"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="passwordConfirmation"
               >
                 Email
@@ -356,12 +356,12 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="email"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class="text-gray-700 "
                 for="passwordConfirmation"
               >
                 Place of Birth
@@ -369,31 +369,31 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
           </div>
           <br></br>
           <hr></hr>
           <br></br>
-          <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
+          <h2 class="text-lg font-semibold  capitalize ">
             Basic Course
           </h2>
           <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
             <div>
-              <label class="text-gray-700 dark:text-gray-200" for="username">
+              <label class="" for="username">
                 Class Name
               </label>
               <input
                 id="username"
                 type="text"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="emailAddress"
               >
                 Group Name
@@ -401,29 +401,29 @@ export default function ViewStudentProfile() {
               <input
                 id="emailAddress"
                 type="email"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
 
             <div>
-              <label class="text-gray-700 dark:text-gray-200" for="password">
+              <label class="" for="password">
                 Subject Name
               </label>
               <input
                 id="password"
                 type="password"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
           </div>
           <br></br>
-          <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
+          <h2 class="text-lg font-semibold ">
             Advance Course
           </h2>
           <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="passwordConfirmation"
               >
                 Class Name
@@ -431,12 +431,12 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="password"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class="text-gray-700 "
                 for="passwordConfirmation"
               >
                 Group Name
@@ -444,12 +444,12 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="password"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                class="text-gray-700 dark:text-gray-200"
+                class=""
                 for="passwordConfirmation"
               >
                 Subject Name
@@ -457,12 +457,12 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="password"
-                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
           </div>{" "}
           <br></br>
-          <h2 class="text-lg  text-[#A098AE] capitalize dark:text-white mb-3">
+          <h2 class="text-lg  text-[#A098AE] capitalize  mb-3">
             About
           </h2>
           <div className="grid grid-2">
@@ -485,7 +485,7 @@ export default function ViewStudentProfile() {
                 <div className="grid grid-cols-1">
                   <div className="">
                     <textarea
-                      class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                      class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       id="password"
                       name="summary"
                       value={summary}
@@ -521,7 +521,7 @@ export default function ViewStudentProfile() {
                 <div className="grid grid-cols-1">
                   <div className="">
                     <textarea
-                      class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                      class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                       id="password"
                       name="title"
                       value={title}
@@ -572,15 +572,14 @@ export default function ViewStudentProfile() {
                         <div
                           key={index}
 
-                          // onClick={() => onShowForm(input.id)}
-                          // className="mb-3 border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         
                         >
                           <div className={!input.isShow ? "hidden" : "block"}>
                             <button type="submit" className="float-right">
                               <Remove className="w-5"></Remove>
                             </button>
                             <textarea
-                              className="mb-3 border border-[#255FAB] bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="mb-3 border border-[#255FAB] bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 "
                               name="newMajor"
                               placeholder={input.newMajor}
                               // value={input.newMajor}

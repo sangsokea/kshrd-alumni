@@ -21,7 +21,7 @@ export default function AdminSidebarsComponent() {
       <div
         className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-[#255FAB]  w-[330px] z-10 py-4 px-6 transition-all duration-300 order-last`}
       >
-        <div className="flex-col items-stretch min-h-full  flex-nowrap px-0 relative">
+        <div className="body-font font-maven flex-col items-stretch min-h-full  flex-nowrap px-0 relative">
           <div className="flex flex-col">
             <img
               src={logo}

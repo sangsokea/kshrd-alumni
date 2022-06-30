@@ -233,7 +233,7 @@ export default function ResumePage() {
       </div>
 
 
-      <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+      {/* <input type="checkbox" id="my-modal-3" class="modal-toggle" />
       <div class="modal">
         <div class="modal-box relative">
           <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
@@ -255,7 +255,7 @@ export default function ResumePage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

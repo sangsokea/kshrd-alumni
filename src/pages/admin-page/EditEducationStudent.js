@@ -1,11 +1,6 @@
 import React, { Fragment, useState } from "react";
-<<<<<<< HEAD
-import { Navigate } from "react-router-dom";
-// import PorfolioEdit from "../PorfolioEdit";
-=======
 import { useNavigate } from "react-router-dom";
-import PorfolioEdit from "../PorfolioEdit";
->>>>>>> 1ceca2d6a7b7b29f10f579db71b468cb8c2414ff
+// import PortfolioEdit from "../PortfolioPageEdit";
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
@@ -74,7 +69,7 @@ export default function EditEducationStudent() {
     setTechnologyValues("");
   };
   return (
-    <div className="">
+    <div className="body-font font-maven">
       <div className="flex flex-row px-3 mb-3">
         <div className="basis-1/2 font-maven text-xl font-extrabold">
           <p className="text-[#919EAB]">Education</p>
@@ -120,7 +115,7 @@ export default function EditEducationStudent() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-1"
@@ -135,11 +130,11 @@ export default function EditEducationStudent() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-2"
-                                  class="ml-2 text-md font-light font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven "
                                 >
                                   Private
                                 </label>
@@ -246,7 +241,7 @@ export default function EditEducationStudent() {
         </div>
       </div>
 
-      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
+      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20  ">
         <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
           <div>
             <div className="grid grid-2">
@@ -269,7 +264,7 @@ export default function EditEducationStudent() {
                   <div className="grid grid-cols-1">
                     <div className="">
                       <input
-                        class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full  px-4 py-2 mt-2  bg-[#F5F5F6] border border-blue-800 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                         id="password"
                         name="title"
                         value={title}
@@ -301,7 +296,7 @@ export default function EditEducationStudent() {
                   <div className="grid grid-cols-1">
                     <div className="">
                       <textarea
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-blue-800 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                         id="password"
                         name="title"
                         value={desc}
@@ -333,7 +328,7 @@ export default function EditEducationStudent() {
                   <div className="grid grid-cols-1">
                     <div className="">
                       <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-blue-800 rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-blue-800 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                         id="password"
                         name="title"
                         value={status}

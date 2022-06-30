@@ -25,8 +25,8 @@ export default function TableComponent({
 
   return (
     <>
-      <table class=" w-full overflow-scroll text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-24">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 font-bold">
+      <table class="body-font font-maven w-full overflow-scroll text-sm text-left text-gray-500  table-fixed mt-24">
+        <thead class="text-xs  uppercase bg-gray-50  font-bold">
           <tr></tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@ export default function TableComponent({
               {data?.slice(0, 10).map((value, key) => (
                 <tr
                   key={key}
-                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  class="bg-white border-b hover:bg-gray-50 "
                 >
                   <td class="px-6 py-3">
                     <Highlighter
@@ -118,7 +118,7 @@ export default function TableComponent({
               {baseData?.slice(0, 10).map((value, key) => (
                 <tr
                   key={key}
-                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  class="bg-white border-b  hover:bg-gray-50 "
                 >
                   <td class="px-6 py-3">
                     <Highlighter
