@@ -20,7 +20,7 @@ code {
 
 .fff::after {
   color: black;
-} 
+}
 
 @tailwind base;
 @tailwind components;

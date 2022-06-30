@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import DATA from "../../Data.json";
 import AdminPagination from "./AdminPagination";
+import { useNavigate} from "react-router-dom";
 
 export default function AdminHome() {
   const [data, setData] = useState(DATA);
+  const navigate = useNavigate()
   return (
     <>
       <div className="flex flex-wrap justify-around">
@@ -171,7 +173,9 @@ export default function AdminHome() {
                   <td class="px-6 py-4">{item.email}</td>
                   <td class="px-6 py-4">{item.skill}</td>
                   <td class="px-6 py-4 text-right">
-                  <button className='border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo'>View</button>
+                  <button onClick={()=>{
+                    navigate('/admin/view', {state: {item}})
+                  }} className='border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo'>View</button>
                   </td>
                 </tr>
               ))}

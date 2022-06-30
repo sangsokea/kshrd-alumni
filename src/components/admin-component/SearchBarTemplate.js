@@ -1,11 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import "../../commons/styles/SearchBar.css";
 import TableTemplateComponent from "./TableTemplateComponent";
+import { useNavigate } from "react-router-dom";
+import { Transition, Popover } from "@headlessui/react";
+
+import { ReactComponent as More } from "../../commons/icon/More.svg";
+import CV_HRD from "../../commons/images/cvhrd.png";
+import CV_ALUMNI from "../../commons/images/cvAlumni.png";
+import PORTFOLIO_ALUMNI from "../../commons/images/portfolio.png";
 
 function SearchBarTemplate({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [items, setItems] = useState(data);
+  const [showModal, setShowModal] = React.useState(false);
+  const [tempItem, setTempItem] = useState();
+  const navigate = useNavigate();
+  const onChangeModel = (value) => {
+    setShowModal(!showModal);
+    switch (value.id) {
+      case 1:
+        setTempItem(CV_HRD);
+        break;
+      case 2:
+        setTempItem(CV_ALUMNI);
+        break;
+      case 3:
+        setTempItem(PORTFOLIO_ALUMNI);
+        break;
+      default:
+        setTempItem(CV_HRD);
+    }
+  };
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -45,7 +71,50 @@ function SearchBarTemplate({ placeholder, data }) {
   return (
     <>
       <div class="relative container w-full shadow-md sm:rounded-lg">
-        <div className="fixed top-24 bg-white">
+        {/* show modal */}
+        {showModal ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+              <div className="relative my-6 mx-auto max-w-sm">
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                    <h3 className="text-3xl font-semibold"></h3>
+                    <button
+                      className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      onClick={() => {
+                        onChangeModel(false);
+                      }}
+                    >
+                      <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                      </span>
+                    </button>
+                  </div>
+                  {/*body*/}
+                  <div className="relative p-6 flex-auto">
+                    <img src={tempItem} className="w-full h-auto" />
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                    <button
+                      className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => {
+                        onChangeModel(false);
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+        <div>
           <div class="p-4">
             <label for="table-search" class="sr-only">
               Search
@@ -92,36 +161,80 @@ function SearchBarTemplate({ placeholder, data }) {
               />
             </div>
           </div>
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-3">
-            <tbody class="text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400 font-bold">
-              <tr>
-                <td scope="col" class="px-6 py-3">
-                  ID
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Template name
-                </td>
-                <td scope="col" class="px-5 py-3">
-                  Type
-                </td>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+            <div className="text-xl px-6 py-4 text-ccon font-bold border border-md  bg-white ">
+              List of Templates
+            </div>
 
-                <td scope="col" class="px-6 py-3">
-                  Action
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  <span class="sr-only">Edit</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="overflow-auto">
-          <TableTemplateComponent
-            data={filteredData}
-            baseData={items}
-            wordEntered={wordEntered}
-            onClick={onChangeStatus}
-          />
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3">
+                      Template
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Action
+                      <span class="sr-only">Action</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.length === 0 ? (
+                    <>
+                      {" "}
+                      {data.slice(0, 10).map((item, key) => (
+                        <tr
+                     
+                          key={key}
+                          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                        >
+                          <td class="px-6 py-4">{item.template}</td>
+                          <td class="px-6 py-4">{item.type}</td>
+                          <td class="px-6 py-4 text-right flex justify-between">
+                            {item.status ? "Enable" : "Disable"}
+
+                            <button
+                             onClick={() => onChangeModel(item)}
+                              className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
+                            >
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      {filteredData.slice(0, 10).map((item, key) => (
+                        <tr
+                          
+                          key={key}
+                          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                        >
+                          <td class="px-6 py-4">{item.template}</td>
+                          <td class="px-6 py-4">{item.type}</td>
+                          <td class="px-6 py-4 text-right flex justify-between">
+                            {item.status ? "Enable" : "Disable"}
+                            <button
+                              onClick={() => onChangeModel(item)}
+                              className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
+                            >
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}{" "}
+                    </>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -258,7 +258,7 @@ export default function PorfolioEdit() {
                   {Desc ? null : (
                     <div className="grid grid-cols-2 ">
                       <div className="">
-                        <input
+                        <textarea
                           class=" ml-10 laptop:w-96 tablet:w-96  w-60 desktop:w-222 mb-5 outline outline-offset-2 desktop:h-14 laptop:h-10 outline-1 laptop:py-2 desktop:py-2 py-2 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50  inline-flex justify-between content-center"
                           value={desc}
                           name="desc"
@@ -340,7 +340,7 @@ export default function PorfolioEdit() {
                 />
               </div>
             </div>
-            <div className="h-1 mt-20 bg-BDBDBD md:h-1 desktop:w-1179 laptop:w-1112 tablet:w-543 w-72 md:inline-block "></div>
+            <div className="h-1 mt-20 bg-[#BDBDBD] md:h-1 desktop:w-1179 laptop:w-1112 tablet:w-543 w-72 md:inline-block "></div>
 
             <div className="mt-2 desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3 ">
               <div className="col-span-2 text-left mt-14 desktop:ml-20 laptop:ml-3 tablet:ml-20 font-maven md:mr-">
@@ -409,7 +409,7 @@ export default function PorfolioEdit() {
                           <Remove className=""></Remove>
                         </button>
                       </div>
-                      <div className="h-1 mt-5 mb-5 ml-10 bg-BDBDBD md:h-1 desktop:w-570 md:inline-block "></div>
+                      <div className="h-1 mt-5 mb-5 ml-10 bg-[#BDBDBD] md:h-1 desktop:w-570 md:inline-block "></div>
                     </div>
                   )}
                 </div>

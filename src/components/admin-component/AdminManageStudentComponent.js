@@ -6,6 +6,7 @@ import profileDetail from "../../Data.json";
 import PaginationComponent from "../PaginationComponent";
 import AdminPagination from "./AdminPagination";
 
+
 export default function AdminManageStudentComponent() {
   const [data, setData] = useState(
     profileDetail.map((item) => {

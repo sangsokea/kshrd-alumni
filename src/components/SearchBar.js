@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "../commons/styles/SearchBar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
@@ -8,11 +8,18 @@ import AdminHome from "./admin-component/AdminHome";
 import PaginationComponent from "./PaginationComponent";
 import TableComponent from "./TableComponent";
 import Modal from "./Modal";
+import { useNavigate } from "react-router-dom";
+import { Transition, Popover } from "@headlessui/react";
+
+import { ReactComponent as More } from "../commons/icon/More.svg";
+
 
 function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [items, setItems] = useState(data);
+
+  const navigate = useNavigate();
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -58,7 +65,7 @@ function SearchBar({ placeholder, data }) {
   return (
     <>
       <div class="relative container w-full shadow-md sm:rounded-lg">
-        <div className="fixed top-24 bg-white">
+        <div >
           <div class="p-4">
             <label for="table-search" class="sr-only">
               Search
@@ -105,45 +112,226 @@ function SearchBar({ placeholder, data }) {
               />
             </div>
           </div>
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-fixed mt-3">
-            <tbody class="text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400 font-bold">
-              <tr>
-                <td scope="col" class="px-6 py-3">
-                  First Name
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Last Name
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Gender
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Email
-                </td>
-                <td scope="col" class="p-6 py-3">
-                  Generation
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  Skill
-                </td>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+            <div className="text-xl px-6 py-4 text-ccon font-bold border border-md  bg-white ">
+              List of Students
+            </div>
 
-                <td scope="col" class="px-6 py-3">
-                  Action
-                </td>
-                <td scope="col" class="px-6 py-3">
-                  <span class="sr-only">Edit</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="overflow-auto">
-          <TableComponent
-            data={filteredData}
-            baseData={items}
-            wordEntered={wordEntered}
-            onClick={onChangeStatus}
-          />
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3">
+                      Fist Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Last Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Gender
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Generation
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Email
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                      Skill
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Action
+                      <span class="sr-only">Action</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.length ===0 ? <> {data.slice(0, 10).map((item, key) => (
+                    <tr
+                      key={key}
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td class="px-6 py-4">{item.first_name}</td>
+                      <td class="px-6 py-4">{item.last_name}</td>
+                      <td class="px-6 py-4">{item.gender}</td>
+                      <td class="px-6 py-4">{item.generation}</td>
+                      <td class="px-6 py-4">{item.email}</td>
+                      <td class="px-6 py-4">{item.skill}</td>
+                      <td class="px-6 py-4 text-right flex justify-between">
+                       Enable
+
+                       <Popover className="relative">
+                {({ open }) => (
+                  <>
+                    <Popover.Button>
+                      <More className="w-5 mr-2"></More>
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                          <div className="relative gap-8 bg-white p-7 ">
+                            <div>
+                              <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                <div className="flex items-center">
+                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                    Action
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <div class="flex items-center mt-3 ml-7">
+                                <input
+                                  id="default-radio-1"
+                                  type="radio"
+                                  value=""
+                                  name="default-radio"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                />
+                                <label
+                                  for="default-radio-1"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                >
+                                  Activate
+                                </label>
+                              </div>
+                              <div class="flex items-center mt-3 ml-7">
+                                <input
+                                  id="default-radio-2"
+                                  type="radio"
+                                  value=""
+                                  name="default-radio"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                />
+                                <label
+                                  for="default-radio-2"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                >
+                                  Deactivate
+                                </label>
+                              </div>
+                              <div className="text-center">
+                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
+                                  Update
+                                </button>
+                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </>
+                )}
+              </Popover>
+                      </td>
+                    </tr>
+                  )) }</>: <> {filteredData.slice(0, 10).map((item, key) => (
+                    <tr
+                      key={key}
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td class="px-6 py-4">{item.first_name}</td>
+                      <td class="px-6 py-4">{item.last_name}</td>
+                      <td class="px-6 py-4">{item.gender}</td>
+                      <td class="px-6 py-4">{item.generation}</td>
+                      <td class="px-6 py-4">{item.email}</td>
+                      <td class="px-6 py-4">{item.skill}</td>
+                      <td class="px-6 py-4 text-right flex justify-between">
+                       Enable
+
+                       <Popover className="relative">
+                {({ open }) => (
+                  <>
+                    <Popover.Button>
+                      <More className="w-5 mr-2"></More>
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                          <div className="relative gap-8 bg-white p-7 ">
+                            <div>
+                              <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                <div className="flex items-center">
+                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                    Show Profile
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <div class="flex items-center mt-3 ml-7">
+                                <input
+                                  id="default-radio-1"
+                                  type="radio"
+                                  value=""
+                                  name="default-radio"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                />
+                                <label
+                                  for="default-radio-1"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                >
+                                  Public
+                                </label>
+                              </div>
+                              <div class="flex items-center mt-3 ml-7">
+                                <input
+                                  id="default-radio-2"
+                                  type="radio"
+                                  value=""
+                                  name="default-radio"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                />
+                                <label
+                                  for="default-radio-2"
+                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                >
+                                  Private
+                                </label>
+                              </div>
+                              <div className="text-center">
+                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
+                                  Update
+                                </button>
+                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </>
+                )}
+              </Popover>
+                      </td>
+                    </tr>
+                  ))} </>}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </>

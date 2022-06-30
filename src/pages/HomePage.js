@@ -19,6 +19,7 @@ import morakot from "../commons/images/partner logo/morakot.png";
 import nipa from "../commons/images/partner logo/nipa.png";
 import webcash from "../commons/images/partner logo/webcash.jpg";
 import WeMB from "../commons/images/partner logo/WeMB.png";
+import UserNavbarComponent from "../components/UserNavbarComponent";
 
 const settings = {
   classNameName: "center",
@@ -33,7 +34,7 @@ const settings = {
 
 export default function HomePage() {
   return (
-
+   
     <div className="container mx-auto mt-3">
       <section className="text-sm body-font font-maven laptop:text-md">
         <img src={homepage} alt="9th gen image"></img>

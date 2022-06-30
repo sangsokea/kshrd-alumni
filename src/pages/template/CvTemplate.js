@@ -35,7 +35,7 @@ export default function CvTemplate() {
                       </div>
                     </div>
                   </div>
-                  <div className="laptop:col-span-2 ">
+                  <div className="laptop:col-span-2 bg-white">
                     <div className="mt-1 ml-5 text-left laptop:mt-12">
                       <span className="text-4xl font-bold font-maven ">
                         Kong{" "}
@@ -75,9 +75,9 @@ export default function CvTemplate() {
                       </div>
                     </div>
                   </div>
-                  <div className="laptop:col-span-2">
-                    <div className="mt-4 laptop:mt-5">
-                      <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                  <div className="laptop:col-span-2 bg-white">
+                    <div className="mt-4 laptop:mt-5 ">
+                      <h2 class="font-maven text-left ml-5  font-bold text-xl">
                         Profile
                       </h2>
                     </div>
@@ -109,7 +109,7 @@ export default function CvTemplate() {
                       </div>
                       <div className="mt-2 ml-5 text-xs text-left font-maven">
                         <div>
-                          <div className="w-20 h-4 text-left rounded bg-regal-bg">
+                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
                             <center>
                               <span className="font-bold">2019-2020</span>
                             </center>
@@ -121,7 +121,7 @@ export default function CvTemplate() {
                           </p>
                         </div>
                         <div className="mt-5">
-                          <div className="w-20 h-4 text-left rounded bg-regal-bg">
+                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
                             <center>
                               <span className="font-bold">2019-2020</span>
                             </center>
@@ -133,7 +133,7 @@ export default function CvTemplate() {
                           </p>
                         </div>
                         <div className="mt-5">
-                          <div className="w-20 h-4 text-left rounded bg-regal-bg">
+                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
                             <center>
                               <span className="font-bold">2019-2020</span>
                             </center>
@@ -177,11 +177,11 @@ export default function CvTemplate() {
                           </div>
                           <div class="col-span-2">
                             <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
                             </div>
                           </div>
                         </div>
@@ -191,11 +191,11 @@ export default function CvTemplate() {
                           </div>
                           <div class="col-span-2">
                             <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-greey"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
                             </div>
                           </div>
                         </div>
@@ -205,11 +205,11 @@ export default function CvTemplate() {
                           </div>
                           <div class="col-span-2">
                             <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
                             </div>
                           </div>
                         </div>
@@ -219,11 +219,11 @@ export default function CvTemplate() {
                           </div>
                           <div class="col-span-2">
                             <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-greey"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-greey"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
                             </div>
                           </div>
                         </div>
@@ -233,11 +233,11 @@ export default function CvTemplate() {
                           </div>
                           <div class="col-span-2 justify-items-end">
                             <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-bg"></div>
-                              <div className="w-3 h-3 rounded-full bg-regal-greey"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
                             </div>
                           </div>
                         </div>
@@ -246,7 +246,7 @@ export default function CvTemplate() {
 
                     {/* End Skills  */}
                   </div>
-                  <div className="laptop:col-span-2 bg-slate-50">
+                  <div className="laptop:col-span-2 bg-white">
                     <div className="laptop:mt-0 mt-">
                       <h2 class="font-maven text-left ml-5 font-bold text-xl">
                         Employment History
@@ -259,7 +259,7 @@ export default function CvTemplate() {
                         <span>phnom penh</span>
                       </div>
                       <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-regal-bg">
+                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                           <center>
                             <span className="font-bold">
                               JANUARY 2019 - MARCH 2020
@@ -280,7 +280,7 @@ export default function CvTemplate() {
                         <span>phnom penh</span>
                       </div>
                       <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-regal-bg">
+                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                           <center>
                             <span className="font-bold">
                               JANUARY 2019 - MARCH 2020
@@ -301,7 +301,7 @@ export default function CvTemplate() {
                         <span>phnom penh</span>
                       </div>
                       <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-regal-bg">
+                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                           <center>
                             <span className="font-bold">
                               JANUARY 2019 - MARCH 2020

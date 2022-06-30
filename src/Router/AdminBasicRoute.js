@@ -9,6 +9,8 @@ import ManageStudentPage from "../pages/admin-page/ManageStudentPage";
 import AdminFootersComponent from "../components/admin-component/AdminFootersComponent";
 import AdminManageCV from "../components/admin-component/AdminManageCV";
 import ErrorPage from "../pages/ErrorPage";
+import ViewStudentProfile from "../pages/admin-page/ViewStudentProfile";
+import EditEducationStudent from "../pages/admin-page/EditEducationStudent";
 
 export default function AdminBasicRoute() {
   const [routeName, setRouteName] = useState("");
@@ -43,6 +45,8 @@ export default function AdminBasicRoute() {
               ></Route>
               <Route path="filterAlumin" element={<AdminHomePage />}></Route>
               <Route path="manageCV" element={<AdminManageCV />}></Route>
+              <Route path="view" element={<ViewStudentProfile/>}/>
+              <Route path="view/edite" element={<EditEducationStudent/>}/>
             </Route>
           </Routes>
         ) : (
