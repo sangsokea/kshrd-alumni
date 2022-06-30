@@ -347,11 +347,12 @@ export default function EditEmploymentHistoryStudent() {
               </div>
             </div>
           </div>
+          <div className="flex items-center justify-between">
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-full border-dashed "
+                : "upload-btn-wrapper shadow-md w-full   h-40 "
             }
           >
             {file ? (
@@ -365,11 +366,13 @@ export default function EditEmploymentHistoryStudent() {
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "rounded-tl-tl-lgs" : null}
             />
           </div>
+          </div>
+          
         </div>
-        <div className="h-1 my-14 bg-[#BDBDBD] "></div>
+        <hr className=" my-14 bg-[#BDBDBD] "></hr>
         <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
           <div>
             <div className="grid grid-2">
@@ -397,7 +400,7 @@ export default function EditEmploymentHistoryStudent() {
                           name="school"
                           value={school}
                           onChange={handleSchoolChange}
-                          placeholder="School Name"
+                          placeholder="Write your programs and tools here!"
                         />
                       </div>
                     </div>

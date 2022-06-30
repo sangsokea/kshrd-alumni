@@ -343,22 +343,22 @@ export default function EditEducationStudent() {
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-full border-dashed "
+                : "upload-btn-wrapper shadow-md w-full   h-40 "
             }
           >
             {file ? (
               <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
             ) : (
               <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
-              <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+ Click to
-              add image
-            </button>
+                <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
+                Click to add image
+              </button>
             )}
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "rounded-tl-tl-lgs" : null}
             />
           </div>
         </div>
