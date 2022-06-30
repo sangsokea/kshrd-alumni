@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import DATA from "../../Data.json";
 import AdminPagination from "./AdminPagination";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminHome() {
   const [data, setData] = useState(DATA);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
+      <div>
+        <div className=" flex justify-end my-5 mr-5">
+          <button class="bg-ccon text-white py-2 px-4 rounded w-42 flex justify-center hover:bg-cfoo"
+           onClick={() => navigate('addstudent')}
+          >
+            New Student
+
+            <svg
+              class="h-7 w-7 text-white ml-1 "
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              {" "}
+              <path stroke="none" d="M0 0h24v24H0z" />{" "}
+              <circle cx="9" cy="7" r="4" />{" "}
+              <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />{" "}
+              <path d="M16 11h6m-3 -3v6" />
+            </svg>
+          </button>
+        </div>
+      </div>
       <div className="flex flex-wrap justify-around">
         <a
           href="#"
@@ -173,9 +200,14 @@ export default function AdminHome() {
                   <td class="px-6 py-4">{item.email}</td>
                   <td class="px-6 py-4">{item.skill}</td>
                   <td class="px-6 py-4 text-right">
-                  <button onClick={()=>{
-                    navigate('/admin/view', {state: {item}})
-                  }} className='border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo'>View</button>
+                    <button
+                      onClick={() => {
+                        navigate("/admin/view", { state: { item } });
+                      }}
+                      className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
+                    >
+                      View
+                    </button>
                   </td>
                 </tr>
               ))}

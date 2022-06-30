@@ -11,6 +11,10 @@ import AdminManageCV from "../components/admin-component/AdminManageCV";
 import ErrorPage from "../pages/ErrorPage";
 import ViewStudentProfile from "../pages/admin-page/ViewStudentProfile";
 import EditEducationStudent from "../pages/admin-page/EditEducationStudent";
+import EditEmploymentHistoryStudent from "../pages/admin-page/EditEmploymentHistoryStudent";
+import AccuntSettingPage from "../pages/admin-page/AccuntSettingPage";
+import AccountChangePassword from "../pages/admin-page/AccountChangePassword";
+import AddNewStudent from "../pages/admin-page/AddNewStudent";
 
 export default function AdminBasicRoute() {
   const [routeName, setRouteName] = useState("");
@@ -39,6 +43,9 @@ export default function AdminBasicRoute() {
 
             <Route path="/admin" element={<AdminSidebarsComponent />}>
               <Route path="home" element={<AdminHomePage />}></Route>
+              <Route path="addStudent" element={<AddNewStudent />}></Route>
+              <Route path="accunt" element={<AccuntSettingPage/>}></Route>
+              <Route path="accunt/accuntchange" element={<AccountChangePassword/>}/>
               <Route
                 path="manageStudent"
                 element={<AdminManageStudentComponent />}
@@ -47,7 +54,9 @@ export default function AdminBasicRoute() {
               <Route path="manageCV" element={<AdminManageCV />}></Route>
               <Route path="view" element={<ViewStudentProfile/>}/>
               <Route path="view/edite" element={<EditEducationStudent/>}/>
+              <Route path="view/editem" element={<EditEmploymentHistoryStudent/>}/>
             </Route>
+            
           </Routes>
         ) : (
           <AdminLogInPage />

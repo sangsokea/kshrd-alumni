@@ -403,7 +403,7 @@ export default function EditEducationStudent() {
       <div classname="">
         <div className="flex items-center laptop:justify-end justify-center ">
           <button
-            class=" mt-6 hover:bg-blue-500 bg-blue-700 text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+            class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
             onClick={()=>navigate('/admin/view')}
           >
             Save

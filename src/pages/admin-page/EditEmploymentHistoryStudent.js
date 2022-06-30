@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PorfolioEdit from "../PorfolioEdit";
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
@@ -11,7 +12,7 @@ import { Transition, Popover } from "@headlessui/react";
 
 export default function EditEmploymentHistoryStudent() {
   const [file, setFile] = useState("");
-
+  const navigate = useNavigate();
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
   );
@@ -70,7 +71,7 @@ export default function EditEmploymentHistoryStudent() {
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button>
+          <button onClick={() => navigate("/admin/view")}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
