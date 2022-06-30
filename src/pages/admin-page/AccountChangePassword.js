@@ -20,25 +20,34 @@ export default function AccountChangePassword() {
             Account setting
           </p>
           <div class=" gap-6 mt-4 tablet:grid-cols-3">
-          <div class="laptop:flex laptop:items-center mb-5">
+          <div class="tablet:flex tablet:items-center mb-5 laptop:ml-14">
               <label
                 for="name"
                 class="inline-block w-32    
-                              font-bold text-gray-600 laptop:ml-20"
+                              font-bold text-gray-600 "
               >
                 Profile Picture
               </label>
-              <img
-                src={imageUrl ? imageUrl : image}
-                className={imageUrl ? "shadow-lg h-40" : "h-40 rounded-xl"}
-              />
-
-              <div className="upload-btn-wrapper h-[40px] laptop:w-1/4 w-full laptop:ml-10  rounded-md mt-2 text-blue-800 border border-blue-800">
-                <button class=" ml-14 mt-2 font-maven">
-                  Change Profile Picture
-                </button>
-
+              <div
+                className={
+                  imageUrl
+                    ? "upload-btn-wrapper w-36"
+                    : "upload-btn-wrapper  w-36 "
+                }
+              >
+                {imageUrl ? (
+                  <button class=""></button>
+                ) : (
+                  <button class=" font-maven text-sm mt-10 text-[#A098AE]">
+                    {" "}
+                   
+                  </button>
+                )}
                 <input type="file" name="myfile" onChange={handleChange} />
+                <img
+                  src={imageUrl ? imageUrl : image}
+                  className={imageUrl ? "object-contain -mt-6 w-36 h-36" : ' rounded-lg'}
+                />
               </div>
             </div>
             <p
