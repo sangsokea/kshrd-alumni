@@ -3,11 +3,11 @@ import React from "react";
 export default function AccuntSettingPage() {
   return (
     <div>
-      <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+      <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 
-        <section class=" p-12 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">
-          <p className="font-maven text-3xl text-[#035397] font-bold">
+        <section class=" p-12 mx-auto  rounded-md shadow-2xl laptop:px-56  dark:bg-gray-800">
+          <p className="font-maven text-3xl mb-16 text-[#035397] font-bold">
             Account setting
           </p>
           <div class=" gap-6 mt-4 tablet:grid-cols-3">

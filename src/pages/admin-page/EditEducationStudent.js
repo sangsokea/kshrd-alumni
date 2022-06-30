@@ -63,7 +63,7 @@ export default function EditEducationStudent() {
     setTechnologyValues("");
   };
   return (
-    <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+    <div className="">
       <div className="flex flex-row px-3 mb-3">
         <div className="basis-1/2 font-maven text-xl font-extrabold">
           <p className="text-[#919EAB]">Education</p>

@@ -3,7 +3,7 @@ import React from "react";
 export default function AccountChangePassword() {
   return (
     <div>
-      <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+      <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 
         <section class=" p-12 mx-auto  rounded-md shadow-2xl laptop:px-20  dark:bg-gray-800">

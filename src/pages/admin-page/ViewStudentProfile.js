@@ -51,7 +51,7 @@ export default function ViewStudentProfile() {
   };
   const navigate = useNavigate();
   return (
-    <div className="laptop:ml-72 laptop:mr-8 tablet:ml-64">
+    <div className="">
       <div>
         <div className="mt-10 w-full h-40 bg-[#255FAB] ">
           <div className="flex items-end justify-end ">

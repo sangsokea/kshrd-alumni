@@ -4,7 +4,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
   const [show, setshow] = useState(false);
   return (
-    <div className=" bg-gradient-to-b from-blue-200 to-white  laptop:ml-64   tablet:ml-64">
+    <div className=" bg-gradient-to-b from-blue-200 to-white  laptop:ml-80   tablet:ml-80">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
         <div className="tablet:hidden">
           <button
@@ -33,7 +33,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
           </button>
           <div
             className={`absolute top-2 tablet:hidden ${
-              showSidebar === "left-0" ? "left-64" : "-left-64"
+              showSidebar === "left-0" ? "left-[330px]" : "-left-[330px]"
             } z-50 transition-all duration-300`}
           >
             <button
@@ -44,7 +44,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               rounded
               ripple="light"
               className="animate-pulse"
-              onClick={() => setShowSidebar("-left-64")}
+              onClick={() => setShowSidebar("-left-[330px]")}
             >
               <svg
                 class="h-8 w-8 text-red-500"
