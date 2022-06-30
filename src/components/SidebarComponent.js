@@ -48,7 +48,7 @@ export default function SidebarComponent() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sign Out",
-      // customClass: 'swal-wide',
+      customClass: 'swal-wide',
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(fetchIsAucthenticated(false));
@@ -68,26 +68,26 @@ export default function SidebarComponent() {
         ></ReNavbarComponent>
       </header>
 
-      <div className="container mx-auto body-font font-maven">
+      <div className="body-font font-maven w-full">
         {/* sideBar */}
 
-        <div className="grid laptop:min-h-screen laptop:grid-cols-5 mt-1">
+        <div className="grid laptop:grid-cols-5 mt-1">
           <div style={styles}>
             <div
-              className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto h flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
+              className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto h flex-row overflow-hidden z-10 transition-all duration-300`}
               style={styles}
             >
-              <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
-                <div className="flex justify-center mt-5">
-                  <img className="p-5 rounded-full" src={alumni4} />
+              <div className="text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
+                <div className="">
+                  <img className="p-16 rounded-full justify-center" src={alumni4} />
                 </div>
 
-                <p className="p-5">
+                <p className="mr-10 ml-10">
                   Hi, my name is Vong Yuoyi and I'm a senior software engineer.
                   Welcome to my personal website!
                 </p>
                 {/* <p className="divide-y-3"></p> */}
-                <hr className="mt-10"></hr>
+                <hr className="mt-10 mr-5 ml-5"></hr>
                 <p className="mt-5">Contact school’s info:</p>
 
                 <div className="flex justify-center pt-3">
@@ -151,11 +151,11 @@ export default function SidebarComponent() {
                   </a>
                 </div>
 
-                <hr className="mt-5"></hr>
+                <hr className="mt-5 mr-5 ml-5"></hr>
 
                 {/* Link to about me page */}
                 {/* <NavLink to="/sidebar/aboutMe"> */}
-                <div className="mt-10 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                <div className="mt-10 mr-5 ml-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(1)}
                     to="/sidebar/aboutMe"
@@ -196,7 +196,7 @@ export default function SidebarComponent() {
 
                 {/* Link to portfolio page */}
                 {/* <NavLink to="/portfolio"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                <div className="mt-5 mr-5 ml-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(2)}
                     to="/portfolio"
@@ -233,7 +233,7 @@ export default function SidebarComponent() {
 
                 {/* Link to create new cv page */}
                 {/* <NavLink to="/sidebar/resume"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                <div className="mt-5 mr-5 ml-5  hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(3)}
                     to="/sidebar/resume"
@@ -289,7 +289,7 @@ export default function SidebarComponent() {
 
                 {/* Link to account setting page */}
                 {/* <NavLink to="/sidebar/accountSetting"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                <div className="mt-5 mr-5 ml-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(4)}
                     to="/sidebar/accountSetting"
@@ -337,7 +337,7 @@ export default function SidebarComponent() {
                   //   navigate("/");
 
                   // }}
-                  className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
+                  className="flex mr-5 ml-5 text-sm laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
                 >
                   <span>
                     <svg
@@ -363,7 +363,7 @@ export default function SidebarComponent() {
             </div>
           </div>
           {/* Result */}
-          <div className="col-span-4">
+          <div className="col-span-3">
             <Outlet />
           </div>
         </div>

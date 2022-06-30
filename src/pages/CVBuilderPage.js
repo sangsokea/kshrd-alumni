@@ -212,27 +212,10 @@ export default function CVBuilderPage() {
         </form>
       </div>
 
-      {/* <div className="flex flex-row">
-        <div className="laptop:ml-auto">
-          <button
-            className="px-10 py-2 mr-5 text-sm laptop:text-md desktop:text-lg text-white rounded-md"
-            onClick={() => navigate("/sidebar/cvTemplate")}
-            style={styles}
-          >
-            Save
-          </button>
-          <button
-            className="px-10 py-2 text-sm laptop:text-md desktop:text-lg text-blue-600 border border-blue-600 rounded-md"
-            onClick={() => navigate("/")}
-          >
-            Cancel
-          </button>
-        </div>
-      </div> */}
       <div className="flex flex-row">
         <div className="laptop:ml-auto">
           <button
-            className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+            className="px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
             style={styles}
             onClick={() => navigate("/sidebar/cvTemplate")}
           >
@@ -240,7 +223,7 @@ export default function CVBuilderPage() {
           </button>
 
           <button
-            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+            className="px-10 py-2 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
             onClick={() => navigate("/")}
           >
             Cancel
