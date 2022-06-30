@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import PorfolioEdit from "../PorfolioEdit";
 import img3 from "../../images/Group.png";
-import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
+import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 import { ReactComponent as Arrow } from "../../commons/icon/ri_arrow-go-back-fill .svg";
 import { ReactComponent as Add } from "../../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
@@ -30,6 +30,11 @@ export default function EditEmploymentHistoryStudent() {
   const [title, setTitleValues] = useState(
     "Full Stack + UI designer from KSHRD .   "
   );
+  const handleChange = (e) => {
+    console.log("e.target.files[0] " + e.target.files[0]);
+    console.log(URL.createObjectURL(e.target.files[0]));
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
   const handleSchoolChange = (e) => {
     setEducationValues(e.target.value);
     console.log(e.target.value);
@@ -85,13 +90,13 @@ export default function EditEmploymentHistoryStudent() {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-32 w-80 h-270 sm:px-0 lg:max-w-3xl">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative gap-8 bg-white p-7 ">
                             <div>
                               <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                                 <div className="flex items-center">
-                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                  <p className="text-xl font-bold text-gray-900 font-maven">
                                     Show Profile
                                   </p>
                                 </div>
@@ -108,7 +113,7 @@ export default function EditEmploymentHistoryStudent() {
                                 />
                                 <label
                                   for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven text-gray-900"
                                 >
                                   Public
                                 </label>
@@ -123,16 +128,16 @@ export default function EditEmploymentHistoryStudent() {
                                 />
                                 <label
                                   for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven text-gray-900"
                                 >
                                   Private
                                 </label>
                               </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
+                              <div className="flex items-baseline justify-center">
+                                <button class=" mt-10 bg-[#255FAB] w-1/2 hover:bg-blue-700 text-white font-maven  mr-3 py-2 px-4  h-12 rounded mb-6">
                                   Update
                                 </button>
-                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                <button class="bg-transparent  w-1/2 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                   Cancel
                                 </button>
                               </div>
@@ -269,9 +274,9 @@ export default function EditEmploymentHistoryStudent() {
               <div>
                 <button
                   class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
-                  onClick={() => setTitle((Prev) => !Prev)}
+                  onClick={() => setDesc((Prev) => !Prev)}
                 >
-                  {vall ? (
+                  {Desc ? (
                     <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
                   ) : (
                     <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
@@ -281,7 +286,7 @@ export default function EditEmploymentHistoryStudent() {
               </div>
 
               <div className="">
-                {vall ? null : (
+                {Desc ? null : (
                   <div className="grid grid-cols-1">
                     <div className="">
                       <textarea
@@ -301,9 +306,9 @@ export default function EditEmploymentHistoryStudent() {
               <div>
                 <button
                   class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
-                  onClick={() => setTitle((Prev) => !Prev)}
+                  onClick={() => setStatus((Prev) => !Prev)}
                 >
-                  {vall ? (
+                  {Status ? (
                     <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
                   ) : (
                     <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
@@ -313,7 +318,7 @@ export default function EditEmploymentHistoryStudent() {
               </div>
 
               <div className="">
-                {vall ? null : (
+                {Status ? null : (
                   <div className="grid grid-cols-1">
                     <div className="">
                       <select
@@ -342,11 +347,25 @@ export default function EditEmploymentHistoryStudent() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end">
+          <div
+            className={
+              file
+                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
+                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+            }
+          >
+            {file ? (
+              <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
+            ) : (
+              <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
+                <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
+                Click to add image
+              </button>
+            )}
+            <input type="file" name="myfile" onChange={handleChange} />
             <img
-              className=" shadow-lg h-52  rounded-tl-tl-lgs "
-              src="https://wallpaperaccess.com/full/6235574.jpg"
-              alt=""
+              src={file}
+              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
             />
           </div>
         </div>
@@ -395,6 +414,19 @@ export default function EditEmploymentHistoryStudent() {
           </div>
         </div>
       </section>
+      <div classname="">
+        <div className="flex items-center laptop:justify-end justify-center ">
+          <button
+            class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+            // onClick={handleSubmit}
+          >
+            Save
+          </button>
+          <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
