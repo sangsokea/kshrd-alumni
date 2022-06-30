@@ -9,6 +9,7 @@ import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
 import { ReactComponent as Vector } from "../../commons/icon/Vector.svg";
 import { ReactComponent as Counter } from "../../commons/icon_admin/Counter.svg";
 import { Transition, Popover } from "@headlessui/react";
+import AdminEducationComponent from "../../components/EducationAdminandUaerPage/AdminEducationComponent";
 
 export default function EditEducationStudent() {
   const [file, setFile] = useState("");
@@ -358,55 +359,16 @@ export default function EditEducationStudent() {
                   )}
                   Education{""}
                 </button>
-
-                <div className="mt-3">
-                  {Education ? null : (
+                <div className="">
+                {Education ? null : (
+                  <div className="grid grid-cols-1">
                     <div className="">
-                      <div className="mb-5">
-                        <input
-                          class=" w-3/4 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3 py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
-                          id="password"
-                          type="text"
-                          name="school"
-                          value={school}
-                          onChange={handleSchoolChange}
-                          placeholder="School Name"
-                        />
-                        <input
-                          class=" w-3/4  mt-5  outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
-                          id="password"
-                          type="text"
-                          name="study"
-                          value={study}
-                          onChange={handleStudyChange}
-                          placeholder="Field of study"
-                        />
-                        <div className="">
-                          <select
-                            id="countries"
-                            class="mt-5 w-1/4  outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 py-1 px-3 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
-                          >
-                            <option selected>Start year</option>
-                            <option value="US">2019</option>
-                            <option value="CA">2020</option>
-                            <option value="FR">2021</option>
-                            <option value="DE">2022</option>
-                          </select>
-                          <select
-                            id="countries"
-                            class="ml-3  w-1/4  mt-5 outline outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3  py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left dark:text-placeholder-blue-500 inline-flex justify-between content-center"
-                          >
-                            <option selected>End year</option>
-                            <option value="US">2019</option>
-                            <option value="CA">2020</option>
-                            <option value="FR">2021</option>
-                            <option value="DE">2022</option>
-                          </select>
-                        </div>
-                      </div>
+                    <AdminEducationComponent />
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
+              </div>
+               
               </div>
             </div>
           </div>

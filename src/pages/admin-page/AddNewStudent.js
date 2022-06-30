@@ -39,15 +39,13 @@ export default function AddNewStudent() {
                 ) : (
                   <button class=" font-maven text-sm mt-10 text-[#A098AE]">
                     {" "}
-                    Drag and drop or 
-click here to select file
+                    Drag and drop or click here to select file
                   </button>
                 )}
                 <input type="file" name="myfile" onChange={handleChange} />
                 <img
                   src={file}
-                  
-                  className={file? "object-contain -mt-6 w-36 h-36" : null}
+                  className={file ? "object-contain -mt-6 w-36 h-36" : null}
                 />
               </div>
             </div>
