@@ -114,7 +114,7 @@ export default function ViewStudentProfile() {
           <div className="flex items-center justify-end flex-col">
             <button>
               <svg
-                onClick={() => navigate("editeducationStudent")}
+                onClick={() => navigate("edite")}
                 width="38px"
                 height="38px"
                 viewBox="0 0 48 48"

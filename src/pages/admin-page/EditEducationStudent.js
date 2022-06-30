@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PorfolioEdit from "../PorfolioEdit";
 import img3 from "../../images/Group.png";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
@@ -13,6 +13,7 @@ import { Transition, Popover } from "@headlessui/react";
 import AdminEducationComponent from "../../components/EducationAdminandUaerPage/AdminEducationComponent";
 
 export default function EditEducationStudent() {
+  const navigate = useNavigate()
   const [file, setFile] = useState("");
   const [desc, setDescValues] = useState(
     "I have a deep interest in Science with the intention to bring the world to a new evolution of technology. "
@@ -75,7 +76,7 @@ export default function EditEducationStudent() {
           <p className="text-[#255FAB]">Vong Yuoyi</p>
         </div>
         <div className="basis-1/2 flex items-center justify-end">
-          <button onClick={() => Navigate("editeducationStudent")}>
+          <button onClick={() => navigate("/admin/view")}>
             <Arrow className="w-6 mr-2 " />
           </button>
           <div className="">
@@ -402,12 +403,12 @@ export default function EditEducationStudent() {
       <div classname="">
         <div className="flex items-center laptop:justify-end justify-center ">
           <button
-            class=" mt-6 hover:bg-blue-500 bg-[#255FAB text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-            // onClick={handleSubmit}
+            class=" mt-6 hover:bg-blue-500 bg-blue-700 text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+            onClick={()=>navigate('/admin/view')}
           >
             Save
           </button>
-          <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+          <button onClick={()=>navigate('/admin/view')} class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
             Cancel
           </button>
         </div>
