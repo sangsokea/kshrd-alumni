@@ -19,11 +19,17 @@ KSHRD consists of 2 main roles of account. There are an Admin side and a user si
  - Alumni: ability to search the alumni profile, and resume dynamically.
  - New Resume: lets alumni easily make resumes with a click and built-in templates.
  - Admin-side: Admins can fully manage the alumni, resume, portfolio, and search engine.
+
+
 ## Pending tasks
-
-
  - Mobile App Version: we're implementing on it.
  - API: store and use data from API
+
+
+## Git Branch
+ - We decided to use "master" branch as our branch.
+
+
 ## Created By
 
 This project is created by students in 10th generation of the Korea Software HRD Center:
