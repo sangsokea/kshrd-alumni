@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Img } from "../../commons/icon/Vectors.svg";
 export default function AddNewStudent() {
   const [file, setFile] = useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
     console.log("e.target.files[0] " + e.target.files[0]);
     console.log(URL.createObjectURL(e.target.files[0]));
@@ -12,13 +14,13 @@ export default function AddNewStudent() {
       <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 
-        <section class=" flex justify-between items-center p-6 mx-auto  rounded-t-lg h-2 shadow-2xl bg-blue-800 laptop:px-20 ">
+        <section class=" flex justify-between container items-center p-6 mx-auto  rounded-t-lg h-2 shadow-2xl bg-[#255FAB] laptop:px-20 ">
           <p className="font-maven text-white text-xl  font-bold">
             Personal Details
           </p>
           <p className="font-maven text-white text-xl font-bold">ID: 001</p>
         </section>
-        <section class=" p-6 mx-auto w-full rounded-md shadow-2xl laptop:px-20  ">
+        <section class=" p-6 container mx-auto w-full rounded-md shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)]  laptop:px-20  ">
           <div class=" gap-6 mt-4 grid grid-cols-1 laptop:grid-cols-6 tablet:grid tablet:grid-cols-1">
             <div className="flex flex-col">
               <label
@@ -30,8 +32,8 @@ export default function AddNewStudent() {
               <div
                 className={
                   file
-                    ? "upload-btn-wrapper border-dashed  border-2 w-36 border-indigo-600 "
-                    : "upload-btn-wrapper border-dashed border-2 w-36 h-36 border-indigo-600 "
+                    ? "upload-btn-wrapper  w-36 "
+                    : "upload-btn-wrapper border-dashed border-2 w-36 h-36 border-gray-300 "
                 }
               >
                 {file ? (
@@ -62,7 +64,7 @@ export default function AddNewStudent() {
                     id="username"
                     type="text"
                     placeholder="Maria"
-                    class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                    class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
                 <div className="mt-6">
@@ -76,7 +78,7 @@ export default function AddNewStudent() {
                     id="username"
                     type="text"
                     placeholder="Historia"
-                    class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                    class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -90,10 +92,10 @@ export default function AddNewStudent() {
                   >
                     Gender *
                   </label>
-                  <div class="flex justify-start">
+                  <div class="flex justify-start mt-2">
                     <div class="form-check form-check-inline">
                       <input
-                        class="form-check-input  form-check-input appearance-none rounded-full h-4 w-4 border border-[#255FAB] bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        class="form-check-input  form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio1"
@@ -108,7 +110,7 @@ export default function AddNewStudent() {
                     </div>
                     <div class="form-check form-check-inline">
                       <input
-                        class="form-check-input form-check-input ml-3 appearance-none rounded-full h-4 w-4 border border-[#255FAB] bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                        class="form-check-input form-check-input ml-3 appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio2"
@@ -123,7 +125,7 @@ export default function AddNewStudent() {
                     </div>
                   </div>
                 </div>
-                <div className="tablet:mt-[49px] desktop:mt-[30px] mt-5">
+                <div className=" tablet:mt-[43px]">
                   <label
                     class="text-[#303972] font-maven font-bold "
                     for="username"
@@ -132,7 +134,7 @@ export default function AddNewStudent() {
                   </label>
                   <select
                     id="countries"
-                    class=" border border-[#255FAB]  text-gray-900 text-sm rounded-lg mt-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option selected>Choose a Course</option>
                     <option value="US">Basic Course</option>
@@ -154,7 +156,7 @@ export default function AddNewStudent() {
                 id="username"
                 type="email"
                 placeholder="Historia@mail.com"
-                class="block w-full  px-4 py-2 mt-2  border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div>
@@ -166,9 +168,10 @@ export default function AddNewStudent() {
               </label>
               <input
                 id="username"
-                type="number"
-                placeholder="+1234567890"
-                class="block w-full  px-4 py-2 mt-2   border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                type="tel"
+                placeholder="123-45-678"
+                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>
@@ -183,7 +186,7 @@ export default function AddNewStudent() {
               <input
                 id="username"
                 type="date"
-                class="block w-full  px-4 py-2 mt-2 border  border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div className="col-span-4">
@@ -197,7 +200,7 @@ export default function AddNewStudent() {
                 id="username"
                 type="text"
                 placeholder="Jakarta, Indonesia"
-                class="block w-full  px-4 py-2 mt-2  border  border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>
@@ -213,19 +216,22 @@ export default function AddNewStudent() {
                 placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                 id="username"
                 type="text"
-                class="block w-full text-sm  px-4 py-2 mt-2 h-56  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                class="block w-full border h-24 p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>
           <div classname="">
             <div className="flex items-center laptop:justify-end justify-center ">
               <button
-                class=" mt-6 hover:bg-blue-500 bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
-                // onClick={handleSubmit}
+                class=" hover:border-transparent mt-6 hover:bg-[#194f95] bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+                onClick={() => navigate("/admin/manageStudent")}
               >
                 Save
               </button>
-              <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-800 hover:border-transparent rounded">
+              <button 
+              class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-800 hover:border-transparent rounded"
+              onClick={() => navigate("/admin/manageStudent")}
+              >
                 Cancel
               </button>
             </div>

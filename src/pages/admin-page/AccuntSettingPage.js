@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import sample_image from "../../commons/images/sample image.jpg";
 
@@ -7,6 +7,7 @@ export default function AccountSettingPage() {
   const [changePassword, setChangePassword] = useState(false);
   const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     setImageUrl(URL.createObjectURL(e.target.files[0]));
@@ -17,7 +18,7 @@ export default function AccountSettingPage() {
 
   return (
     <>
-      <div className="body-font font-maven bg-white shadow-2xl h-full shadow-slate-500 ">
+      <div className="body-font font-maven bg-white h-full shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)]  ">
         <div className="ml-5 mt-0 ">
           <div className="laptop:mt-10 laptop:mb-20 mb-5 text-lg laptop:text-xl desktop:text-4xl font-bold">
             <p className="pt-20 laptop:ml-32" style={textStyle}>
@@ -187,11 +188,15 @@ export default function AccountSettingPage() {
               <button
                 className="mb-10 laptop:mb-0 laptop:ml-72 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
                 style={styles}
+                onClick={() => navigate("/admin/home")}
               >
                 Save
               </button>
 
-              <button className="mb-10 px-10 py-2 mt-5 laptop:mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent">
+              <button 
+              className="mb-10 px-10 py-2 mt-5 laptop:mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+              onClick={() => navigate("/admin/home")}
+              >
                 Cancel
               </button>
             </div>

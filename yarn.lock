@@ -9231,6 +9231,13 @@
     "iconv-lite" "0.4.24"
     "unpipe" "1.0.0"
 
+"react-animated-cursor@^2.5.1":
+  "integrity" "sha512-P+rDl/2+WYvo94X97Jk8ybD5be6UOa3aEZziU6qEToLlWvgSv6mKUtYD6k5zNjTXV024sl5E+fvbyyNCmDXnLw=="
+  "resolved" "https://registry.npmjs.org/react-animated-cursor/-/react-animated-cursor-2.5.1.tgz"
+  "version" "2.5.1"
+  dependencies:
+    "prop-types" "^15.8.1"
+
 "react-app-polyfill@^3.0.0":
   "integrity" "sha512-sZ41cxiU5llIB003yxxQBYrARBqe0repqPTTYBTmMqTz9szeBbE37BehCE891NZsmdZqqP+xWKdT3eo3vOzN8w=="
   "resolved" "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-3.0.0.tgz"

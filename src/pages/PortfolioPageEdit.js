@@ -171,9 +171,9 @@ export default function PortfolioEdite() {
         </div>
       </div>
 
-      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20">
-        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
-          <div>
+      <section class=" p-6 mx-auto  rounded-md shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:px-20">
+        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-3">
+          <div className="col-span-2">
             <div className="grid grid-2">
               <div>
                 <button
@@ -194,7 +194,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         name="title"
                         value={title}
@@ -231,7 +231,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <textarea
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         value={desc}
                         name="desc"
@@ -268,7 +268,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         name="status"
                         value={status}
@@ -289,14 +289,14 @@ export default function PortfolioEdite() {
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-fit h-48   shadow-[0_1px_5px_0px_rgba(0,0,0,0.1)] rounded-tl-tl-lgs"
+                : "upload-btn-wrapper shadow-[0_2px_5px_0px_rgba(0,0,0,0.1)] w-full   border rounded-tl-tl-lgs border-slate-100 h-40"
             }
           >
             {file ? (
-              <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
+              <button class="desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
             ) : (
-              <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
+              <button class="object-contain w-full h-40 rounded-tl-tl-lgs">
                 <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
                 Click to add image
               </button>
@@ -304,7 +304,7 @@ export default function PortfolioEdite() {
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "object-contain w-full h-48 laptop:-mt-6 rounded-tl-tl-lgs" : null}
             />
           </div>
         </div>
@@ -354,7 +354,7 @@ export default function PortfolioEdite() {
                     <div className="grid grid-cols-12">
                       <div className="col-span-11 mb-5">
                         <textarea
-                          class="outline w-full h-32 outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3 py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                          class="block w-full h-40 border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           id="password"
                           type="text"
                           name="technology"
