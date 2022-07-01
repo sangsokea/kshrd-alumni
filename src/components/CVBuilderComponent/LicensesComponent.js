@@ -178,7 +178,7 @@ export default function LicensesComponent() {
                       School
                     </label>
                     <input
-                      className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="school"
                       placeholder="RUPP"
                       value={input.school}
@@ -197,7 +197,7 @@ export default function LicensesComponent() {
                       value={input.degree}
                       type="text"
                       name="degree"
-                      className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
@@ -205,13 +205,13 @@ export default function LicensesComponent() {
                 </div>
               </div>
 
-              <button
+              {/* <button
                 onClick={submit}
                 style={styles}
                 className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
-              </button>
+              </button> */}
 
               <button
                 onClick={() => removeFieldsLicensesAndCertifications(index)}

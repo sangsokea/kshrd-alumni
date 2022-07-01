@@ -12,9 +12,9 @@ import wb from "../../commons/images/Bank and Finance/wb.jpg";
 export default function BankAndFinanceComponent() {
   return (
     <>
-      <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
+      <div className="col-span-1 laptop:col-span-2 laptop:block">
         <div className="grid-rows-2">
-          <div className="grid grid-cols-4 ">
+          <div className="grid laptop:grid-cols-4 grid-cols-2">
             <div>
               <img src={canadia} alt="canadia"></img>
             </div>
@@ -29,7 +29,7 @@ export default function BankAndFinanceComponent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 px-2">
+          <div className="grid laptop:grid-cols-4 grid-cols-2 px-2">
             <div>
               <img className="px-2" src={kb} alt="kb"></img>
             </div>

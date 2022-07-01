@@ -56,7 +56,7 @@ export default function ViewAlumniPage() {
   ]);
 
   return (
-    <div className="container mx-auto mt-3 rounded-md shadow-lg body-font font-maven">
+    <div className="container mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
       <div className="grid grid-cols-4">
         <div className="col-span-1 hidden laptop:block">
           <div className="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
@@ -246,23 +246,23 @@ export default function ViewAlumniPage() {
                 <span className="ml-auto">
                   <input
                     type="text"
-                    className="w-16 p-2 border border-black rounded-md bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2"
+                    className="w-16 p-2 border border-black rounded-md bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   ></input>
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-span-4 laptop:col-span-3 rounded-br-md laptop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
+        <div className="col-span-4 laptop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
           <div className="p-5">
-            <div className="mt-10 mb-5 text-2xl font-bold">Results</div>
+            <div className="mt-5 mb-3 text-2xl font-bold">Results</div>
 
             {/* card */}
-            <div className="grid grid-cols-1 gap-5 laptop:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 desktop:grid-cols-2">
               {data.map((item) => (
                 <div className="w-full">
-                  <div className="p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                  <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img
                       className="w-24 h-auto rounded-full"
                       src={item.profile}
@@ -279,7 +279,7 @@ export default function ViewAlumniPage() {
                     <button
                       onClick={() => navigate("/sidebar/aboutMe")}
                       style={{ backgroundColor: colors.footer, color: "white" }}
-                      className="ml-[-54px] mb-1 mt-auto rounded-md pl-3.5 pr-3.5 laptop:ml-auto"
+                      className="ml-[-70px] mb-1 mt-auto rounded pl-5 pr-5 laptop:ml-auto"
                     >
                       View
                     </button>

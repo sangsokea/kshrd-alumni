@@ -140,7 +140,7 @@ export default function SkillsComponent() {
                         Skill
                       </label>
                       <input
-                        className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="skill"
                         placeholder="Spring Framework"
                         value={input.skill}
@@ -163,7 +163,7 @@ export default function SkillsComponent() {
                         value={input.levelExpert}
                         type="text"
                         name="levelExpert"
-                        className="border border-gray-300 text-sm rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 dark:border-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
                       />
@@ -172,13 +172,13 @@ export default function SkillsComponent() {
                 </div>
               </div>
 
-              <button
+              {/* <button
                 onClick={submit}
                 style={styles}
                 className="px-5 py-2 mr-5 text-white rounded-md"
               >
                 Submit
-              </button>
+              </button> */}
 
               <button
                 onClick={() => removeFieldsSkills(index)}

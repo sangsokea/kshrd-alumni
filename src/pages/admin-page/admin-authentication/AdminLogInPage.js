@@ -66,7 +66,7 @@ export default function AdminLogInPage() {
     setToggle(!toggle);
   };
   return (
-    <div className=" bg-gradient-to-t from-blue-100  min-h-screen flex flex-col justify-between">
+    <div className="body-font font-maven bg-gradient-to-t from-blue-100  min-h-screen flex flex-col justify-between">
       <div className="flex py-48 font-maven items-center ">
         <div className="w-1/2 flex  text-f14 justify-center ">
           <form onSubmit={formik.handleSubmit} className="">

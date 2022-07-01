@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import SidebarComponent from "../components/SidebarComponent";
 import { colors } from "../commons/colors/colors";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -6,6 +6,13 @@ import { Transition, Popover } from "@headlessui/react";
 
 export default function ResumePage() {
   const navigate = useNavigate();
+  const pdfExportComponent = useRef(null);
+  const image = useRef(null);
+
+  const handleExportWithComponent = (event) => {
+    pdfExportComponent.current.save();
+    // savePDF(image.current, { imageResolution: 36 });
+  };
 
   return (
     <div className="mx-10 mt-5 body-font font-maven ">
@@ -73,25 +80,28 @@ export default function ResumePage() {
                   <td className="px-1 py-4 text-right">
                     <div className="flex flex-row cover-action">
                       <span>
-                        <div className="">
+                        <div className="mr-3">
                           <Popover className="relative">
                             {({ open }) => (
                               <>
+
+                                <label for="my-modal-3" class=""><svg
+                                  xmlns="https://www.basecampcountry.com/wp-content/uploads/2019/09/Downloadable-PDF-Button-PNG-HD-Image.png"
+                                  className="h-6 w-6 text-blue-600"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                >
+
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                  />
+                                </svg></label>
                                 <Popover.Button>
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 text-blue-600"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                  >
-                                    <path
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                                    />
-                                  </svg>
+
                                 </Popover.Button>
                                 <div className="bg-cyan-700">
                                   <Transition
@@ -148,17 +158,18 @@ export default function ResumePage() {
                           </Popover>
                         </div>
                       </span>
-                      <span>
-                        <a
-                          href="#"
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      <span className="mr-3">
+                        <button
+                          className=""
+                          onClick={() => navigate("/sidebar/createNewCV")}
+
                         >
-                          <svg
+                          <a><svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke="currentColor"
+                            stroke="#2563eb"
                             stroke-width="2"
                           >
                             <path
@@ -166,10 +177,15 @@ export default function ResumePage() {
                               stroke-linejoin="round"
                               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                             />
-                          </svg>
+                          </svg></a>
+                        </button>
+                        <a
+                          href="/CreateNewCV"
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+
                         </a>
                       </span>
-
                       <span>
                         <a
                           href="#"
@@ -215,6 +231,31 @@ export default function ResumePage() {
           </div>
         </div>
       </div>
+
+
+      {/* <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+      <div class="modal">
+        <div class="modal-box relative">
+          <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <h3 class="text-lg font-bold">Generate PDF and Download</h3>
+          <p class="py-4">Do you want to download this file as PDF?</p>
+          <div className="flex flex-row">
+            <div className="laptop:m-auto">
+
+
+              <div class="col-span-2 mt-2 ml-2 hidden laptop:block">
+                <button
+                  class="mb-2 py-2 text-white text-lg rounded-lg w-56"
+                  style={styles}
+                  onClick={handleExportWithComponent}
+                >
+                  Export as PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 }

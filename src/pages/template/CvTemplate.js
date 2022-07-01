@@ -18,13 +18,13 @@ export default function CvTemplate() {
   };
 
   return (
-    <div className="laptop:h-screen h-full">
+    <div className="h-full mb-10">
       <div class="ml-5 laptop:ml-20">
         <div class="grid grid-cols-8">
           <div class="col-span-6">
             <PDFExport ref={pdfExportComponent} paperSize="A4">
               <center>
-                <div className="shadow w-350 laptop:w-222">
+                <div className="shadow w-350 laptop:w-222 mt-10">
                   <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
                     <div className="h-40 laptop:bg-regal-gg">
                       <div class="absolute ">
@@ -50,27 +50,16 @@ export default function CvTemplate() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="laptop:col-span-2 bg-white">
-                    <div className="mt-1 ml-5 text-left laptop:mt-12">
-                      <span className="text-4xl font-bold font-maven ">
-                        Kong{" "}
-                      </span>
-                      &nbsp;
-                      <span className="text-3xl font-bold font-maven text-regal-bg">
-                        Sachakyarith
-                      </span>
-                    </div>
-                    <div>
-                      <h2 className="ml-5 text-xl text-left font-maven">
-                        UI Designer
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
-                  <div className=" laptop:bg-regal-gg">
-                    <div className="mb-4">
+                    <div className="laptop:col-span-2 bg-white">
+                      <div className="mt-1 ml-5 text-left laptop:mt-12">
+                        <span className="text-4xl font-bold font-maven ">
+                          Kong{" "}
+                        </span>
+                        &nbsp;
+                        <span className="text-3xl font-bold font-maven text-regal-bg">
+                          Sachakyarith
+                        </span>
+                      </div>
                       <div>
                         <h2 className="ml-5 text-xl text-left font-maven">
                           UI Designer
@@ -78,73 +67,23 @@ export default function CvTemplate() {
                       </div>
                     </div>
                   </div>
-                  <div className="laptop:col-span-2 bg-white">
-                    <div className="mt-4 laptop:mt-5 ">
-                      <h2 class="font-maven text-left ml-5  font-bold text-xl">
-                        Profile
-                      </h2>
-                    </div>
-                    <div>
-                      <p className="mt-2 ml-5 text-xs text-left font-maven">
-                        Our free cover letter examples + expert guides are
-                        packed with useful tips and the best practices for
-                        getting hired in dozens of industries. Combine these
-                        samples with our templates and cover letter builder tool
-                        to finish your application in minutes.{" "}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="laptop:grid laptop:grid-cols-3   flex flex-wrap-reverse">
-                  <div className="w-full min-h-1/22 laptop:bg-regal-gg bg-slate-50">
-                    {/*Start CV Profile */}
-
-                    {/* End CV Profile */}
-
-                    {/* start Details */}
-                    <div className="mb-4">
-                      {/*  Start Education */}
-                      <div className="mt-5 tablet:mt-3">
-                        <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                          Education
-                        </h2>
-                      </div>
-                      <div className="mt-2 ml-5 text-xs text-left font-maven">
+                  <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
+                    <div className=" laptop:bg-regal-gg">
+                      <div className="mb-4">
                         <div>
-                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
-                            <center>
-                              <span className="font-bold">2019-2020</span>
-                            </center>
-                          </div>
-                          <p className="mt-1">
-                            <span>Master, </span>
-                            <span>Rupp, </span>
-                            <span>phnom penh</span>
-                          </p>
+                          <h2 class="font-maven text-left ml-5  mt-4 font-bold text-xl">
+                            Details
+                          </h2>
                         </div>
-                        <div className="mt-5">
-                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
-                            <center>
-                              <span className="font-bold">2019-2020</span>
-                            </center>
-                          </div>
-                          <p className="mt-1">
-                            <span>Master, </span>
-                            <span>Rupp, </span>
-                            <span>phnom penh</span>
+                        <div className="mt-2 ml-5 text-xs text-left font-maven">
+                          <p>
+                            <span>SS Sterrt City, </span>
+                            <span>phnom penh, </span>
+                            <span className="break-words">Cambodia</span>
                           </p>
-                        </div>
-                        <div className="mt-5">
-                          <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
-                            <center>
-                              <span className="font-bold">2019-2020</span>
-                            </center>
-                          </div>
-                          <p className="mt-1">
-                            <span>Master, </span>
-                            <span>Rupp, </span>
-                            <span>phnom penh</span>
+                          <p>086236671</p>
+                          <p className="mb-2 break-words text-regal-blue">
+                            kongsachakyarith@gmail.com
                           </p>
                           <p className="font-bold">Nationality</p>
                           <p>khmer</p>
@@ -169,24 +108,26 @@ export default function CvTemplate() {
                     </div>
                   </div>
 
-                      {/* Start Skills */}
-                      <div className="mb-3">
-                        <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                          Skills
-                        </h2>
-                      </div>
-                      <div className="mt-2 ml-5 text-xs text-left font-maven">
-                        <div className="grid grid-cols-3 gap-4">
-                          <div class="">
-                            <p>jQuery</p>
-                          </div>
-                          <div class="col-span-2">
-                            <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                  <div class="laptop:grid laptop:grid-cols-3   flex flex-wrap-reverse">
+                    <div className="w-full min-h-1/22 laptop:bg-regal-gg bg-slate-50">
+                      {/*Start CV Profile */}
+
+                      {/* End CV Profile */}
+
+                      {/* start Details */}
+                      <div className="mb-4">
+                        {/*  Start Education */}
+                        <div className="mt-5 tablet:mt-3">
+                          <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                            Education
+                          </h2>
+                        </div>
+                        <div className="mt-2 ml-5 text-xs text-left font-maven">
+                          <div>
+                            <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
+                              <center>
+                                <span className="font-bold">2019-2020</span>
+                              </center>
                             </div>
                             <p className="mt-1">
                               <span>Master, </span>
@@ -206,13 +147,11 @@ export default function CvTemplate() {
                               <span>phnom penh</span>
                             </p>
                           </div>
-                          <div class="col-span-2">
-                            <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                          <div className="mt-5">
+                            <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
+                              <center>
+                                <span className="font-bold">2019-2020</span>
+                              </center>
                             </div>
                             <p className="mt-1">
                               <span>Master, </span>
@@ -237,13 +176,28 @@ export default function CvTemplate() {
                               alt=""
                             />
                           </div>
-                          <div class="col-span-2">
-                            <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                        </div>
+                        {/* End Links */}
+
+                        {/* Start Skills */}
+                        <div className="mb-3">
+                          <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                            Skills
+                          </h2>
+                        </div>
+                        <div className="mt-2 ml-5 text-xs text-left font-maven">
+                          <div className="grid grid-cols-3 gap-4">
+                            <div class="">
+                              <p>jQuery</p>
+                            </div>
+                            <div class="col-span-2">
+                              <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              </div>
                             </div>
                           </div>
                           <div class="grid grid-cols-3 gap-4 mt-3">
@@ -260,13 +214,18 @@ export default function CvTemplate() {
                               </div>
                             </div>
                           </div>
-                          <div class="col-span-2">
-                            <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                          <div class="grid grid-cols-3 gap-4 mt-3">
+                            <div class="...">
+                              <p>Node js</p>
+                            </div>
+                            <div class="col-span-2">
+                              <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              </div>
                             </div>
                           </div>
                           <div class="grid grid-cols-3 gap-4 mt-3">
@@ -283,25 +242,24 @@ export default function CvTemplate() {
                               </div>
                             </div>
                           </div>
-                          <div class="col-span-2 justify-items-end">
-                            <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                              <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                          <div class="grid grid-cols-3 gap-4 mt-3">
+                            <div class="...">
+                              <p>HTML5</p>
+                            </div>
+                            <div class="col-span-2 justify-items-end">
+                              <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                    {/* End Skills  */}
-                  </div>
-                  <div className="laptop:col-span-2 bg-white">
-                    <div className="laptop:mt-0 mt-">
-                      <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                        Employment History
-                      </h2>
+                      {/* End Skills  */}
                     </div>
                     <div className="laptop:col-span-2 bg-white">
                       <div className="laptop:mt-0 mt-">
@@ -309,13 +267,25 @@ export default function CvTemplate() {
                           Employment History
                         </h2>
                       </div>
-                      <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                          <center>
-                            <span className="font-bold">
-                              JANUARY 2019 - MARCH 2020
-                            </span>
-                          </center>
+                      <div className="mt-4 ml-5 font-maven">
+                        <div className="mb-1 text-left">
+                          <span>Web devloper, </span> &nbsp;&nbsp;
+                          <span>employer, </span> &nbsp;&nbsp;
+                          <span>phnom penh</span>
+                        </div>
+                        <div className="text-left">
+                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                            <center>
+                              <span className="font-bold">
+                                JANUARY 2019 - MARCH 2020
+                              </span>
+                            </center>
+                          </div>
+                          <p className="mt-3 text-xs">
+                            Combine these samples with our templates and
+                            coverccc letter builder tool to finish your
+                            application in minutes.
+                          </p>
                         </div>
                       </div>
                       <div className="mt-4 ml-5 font-maven">
@@ -339,13 +309,25 @@ export default function CvTemplate() {
                           </p>
                         </div>
                       </div>
-                      <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                          <center>
-                            <span className="font-bold">
-                              JANUARY 2019 - MARCH 2020
-                            </span>
-                          </center>
+                      <div className="mt-4 ml-5 font-maven">
+                        <div className="mb-1 text-left">
+                          <span>Web devloper, </span> &nbsp;&nbsp;
+                          <span>employer, </span> &nbsp;&nbsp;
+                          <span>phnom penh</span>
+                        </div>
+                        <div className="text-left">
+                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                            <center>
+                              <span className="font-bold">
+                                JANUARY 2019 - MARCH 2020
+                              </span>
+                            </center>
+                          </div>
+                          <p className="mt-3 text-xs">
+                            Combine these samples with our templates and
+                            coverccc letter builder tool to finish your
+                            application in minutes.
+                          </p>
                         </div>
                       </div>
                       <div className="mt-7">
@@ -353,18 +335,21 @@ export default function CvTemplate() {
                           Hobbies
                         </h2>
                       </div>
-                      <div className="text-left">
-                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                          <center>
-                            <span className="font-bold">
-                              JANUARY 2019 - MARCH 2020
-                            </span>
-                          </center>
+                      <div className="mt-4 text-left ml-9">
+                        <div className="flex justify-start gap-2 text-sm">
+                          <ui>
+                            <li class="fff">investing</li>
+                            <li class="fff">Gaming</li>
+                          </ui>
+                          <ui className="ml-20">
+                            <li class="fff">Mountain biking</li>
+                            <li class="fff">Writting</li>
+                          </ui>
                         </div>
                       </div>
                     </div>
                   </div>
-                
+                </div>
               </center>
             </PDFExport>
           </div>
@@ -400,7 +385,7 @@ export default function CvTemplate() {
         >
           Cancel
         </button> */}
-      <div className="flex flex-row">
+      <div className="flex flex-row ">
         <div className="laptop:ml-auto">
           <button
             className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
@@ -411,7 +396,7 @@ export default function CvTemplate() {
           </button>
 
           <button
-            className="px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+            className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
             onClick={() => navigate("/sidebar/createNewCV")}
           >
             Cancel
@@ -423,6 +408,7 @@ export default function CvTemplate() {
     // </div>
   );
 }
+
 const styles = {
   backgroundColor: colors.content,
 };

@@ -8,8 +8,8 @@ export default function AdminHome() {
   const navigate = useNavigate();
   return (
     <>
-      <div>
-        <div className=" flex justify-end my-5 mr-5">
+      <div className="body-font font-maven">
+        <div className=" flex justify-end my-5 mr-5 ">
           <button class="bg-ccon text-white py-2 px-4 rounded w-42 flex justify-center hover:bg-cfoo"
            onClick={() => navigate('addstudent')}
           >
@@ -38,7 +38,7 @@ export default function AdminHome() {
       <div className="flex flex-wrap justify-around">
         <a
           href="#"
-          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg1 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg1 rounded-lg border border-gray-200 s hover:bg-ccon "
         >
           <p class="font-bold  text-white text-xl">560</p>
           <p className=" text-white">Total Alumni</p>
@@ -61,7 +61,7 @@ export default function AdminHome() {
         </a>
         <a
           href="#"
-          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg2 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg2 rounded-lg border border-gray-200 s hover:bg-ccon "
         >
           <p class="font-bold  text-white text-xl">53</p>
           <p className=" text-white">New Students</p>
@@ -84,7 +84,7 @@ export default function AdminHome() {
         </a>
         <a
           href="#"
-          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg3 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg3 rounded-lg border border-gray-200 s hover:bg-ccon "
         >
           <p class="font-bold  text-white text-xl">35</p>
           <p className=" text-white">Student with portfolio</p>
@@ -107,7 +107,7 @@ export default function AdminHome() {
         </a>
         <a
           href="#"
-          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg4 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg4 rounded-lg border border-gray-200 s hover:bg-ccon "
         >
           <p class="font-bold  text-white text-xl">13</p>
           <p className=" text-white">Student with Resume</p>
@@ -130,7 +130,7 @@ export default function AdminHome() {
         </a>
         <a
           href="#"
-          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg5 rounded-lg border border-gray-200 s hover:bg-ccon dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          class="mx-2 flex-1 block py-3 pl-4 pr-20 max-w-sm bg-bg5 rounded-lg border border-gray-200 s hover:bg-ccon "
         >
           <p class="font-bold  text-white text-xl">35</p>
           <p className=" text-white">Total Course</p>
@@ -159,8 +159,8 @@ export default function AdminHome() {
         </div>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table class="w-full text-sm text-left text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr>
                 <th scope="col" class="px-6 py-3">
                   Fist Name
@@ -191,7 +191,7 @@ export default function AdminHome() {
               {data.slice(0, 10).map((item, key) => (
                 <tr
                   key={key}
-                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  class="bg-white border-b hover:bg-gray-50 "
                 >
                   <td class="px-6 py-4">{item.first_name}</td>
                   <td class="px-6 py-4">{item.last_name}</td>

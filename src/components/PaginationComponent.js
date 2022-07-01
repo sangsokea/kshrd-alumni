@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 export default function PaginationComponent() {
   return (
     <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 tablet:px-6">
-      {/* <div className="flex justify-between flex-1 tablet:hidden">
+      <div className="flex justify-between flex-1 tablet:block laptop:hidden">
         <a
           href="#"
           className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
@@ -17,7 +17,7 @@ export default function PaginationComponent() {
         >
           Next
         </a>
-      </div> */}
+      </div>
       <div className="hidden laptop:flex-1 laptop:flex laptop:items-center laptop:justify-between">
         <div>
           <p className="text-sm text-gray-700">

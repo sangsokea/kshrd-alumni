@@ -1,5 +1,5 @@
 import React from "react";
-import CvTemplate from "./template/CvTemplate";
+// import CvTemplate from "./template/CvTemplate";
 import HrdCvTemplate from "./template/HrdCvTemplate";
 import { colors } from "../commons/colors/colors";
 

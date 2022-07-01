@@ -48,7 +48,7 @@ export default function SidebarComponent() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sign Out",
-      // customClass: 'swal-wide',
+      customClass: 'swal-wide',
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(fetchIsAucthenticated(false));
@@ -68,13 +68,13 @@ export default function SidebarComponent() {
         ></ReNavbarComponent>
       </header>
 
-      <div className="container mx-auto body-font font-maven">
+      <div className="laptop:container laptop:mx-auto body-font font-maven">
         {/* sideBar */}
 
-        <div className="grid laptop:min-h-screen laptop:grid-cols-5 mt-1">
+        <div className="grid desktop:grid-cols-5 mt-1 laptop:grid-cols-3 tablet:grid-cols-2">
           <div style={styles}>
             <div
-              className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto h flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
+              className={`h-screen laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
               style={styles}
             >
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
@@ -236,7 +236,7 @@ export default function SidebarComponent() {
                 <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => setIsActive(3)}
-                    to="/sidebar/resume"
+                    to="/sidebar/createNewCV" 
                     className={({ isActive }) =>
                       [
                         "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
@@ -362,8 +362,9 @@ export default function SidebarComponent() {
               </div>
             </div>
           </div>
+
           {/* Result */}
-          <div className="col-span-4">
+          <div className="tablet:col-span-1 laptop:col-span-2 desktop:col-span-4">
             <Outlet />
           </div>
         </div>

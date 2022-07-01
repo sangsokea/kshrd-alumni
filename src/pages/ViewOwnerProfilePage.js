@@ -20,11 +20,11 @@ export default function ViewOwnerProfilePage() {
       {isEdit ? (
         <ViewOwnerProfileEdit />
       ) : (
-        <div className="mx-10 laptop:mt-5 body-font font-maven ">
+        <div className="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven">
           <div>
             {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}
             <img
-              className="w-[300px] laptop:w-full h-auto"
+              className="w-auto laptop:w-full h-auto"
               src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
               alt="Image"
             />
@@ -66,7 +66,7 @@ export default function ViewOwnerProfilePage() {
             {" "}
             Full Stack Developer
           </p>
-          <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-[300px]">
+          <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
             Hi, my name is Vong Yuoyi and I'm a senior software engineer.
             Welcome to my personal website! in frontend and backend development
             for complex scalable web apps. If you want to know how I may help
@@ -85,7 +85,7 @@ export default function ViewOwnerProfilePage() {
               What I can do{" "}
             </p>
           </div>
-          <p className="laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-[300px]">
+          <p className="laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
             I am gratuated student from HRD and have more than 2 years'
             experience building software for clients. Below is a quick overview
             of my main technical skill sets and technologies I use.{" "}
@@ -101,22 +101,22 @@ export default function ViewOwnerProfilePage() {
               <p className="text-md laptop:text-lg desktop:text-xl font-bold">
                 Java Script
               </p>
-              <p className="text-sm laptop:text-md desktop:text-lg">
+              <p className="text-sm laptop:text-md desktop:text-lg w-auto laptop:w-full">
                 Java Script is a dynamic programming language that's used for
                 web development.
               </p>
             </div>
 
-            <div className="">
+            <div className="hidden laptop:block">
               <img
                 className="w-auto h-12 mt-5"
                 src="https://res.cloudinary.com/practicaldev/image/fetch/s--zrUJwvgZ--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bupbqc9fctvw4j7r14it.png"
                 alt="Spring Boot"
               />
-              <p className="text-md laptop:text-lg desktop:text-xl font-bold">
+              <p className="text-md laptop:text-lg desktop:text-xl font-bold ">
                 Spring Boot
               </p>
-              <p className="text-sm laptop:text-md desktop:text-lg">
+              <p className="text-sm laptop:text-md desktop:text-lg w-[300px] laptop:w-full">
                 Spring Boot is a tool that makes developing web application and
                 microservices faster.
               </p>
@@ -131,7 +131,7 @@ export default function ViewOwnerProfilePage() {
               <p className="text-md laptop:text-lg desktop:text-xl font-bold">
                 Java Programming
               </p>
-              <p className="text-sm laptop:text-md desktop:text-lg">
+              <p className="text-sm laptop:text-md desktop:text-lg w-auto laptop:w-full">
                 Java is a high-level, class-based, object-oriented programming
                 language.
               </p>

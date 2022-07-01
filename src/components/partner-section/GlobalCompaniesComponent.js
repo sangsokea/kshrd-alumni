@@ -10,9 +10,9 @@ import weMB from "../../commons/images/Global Companies/WeMB.jpg";
 export default function GlobalCompaniesComponent() {
   return (
     <>
-      <div className="hidden col-span-1 laptop:col-span-2 laptop:block">
+      <div className="col-span-1 laptop:col-span-2 laptop:block">
         <div className="grid-rows-2">
-          <div className="grid grid-cols-4 ">
+          <div className="grid laptop:grid-cols-4 grid-cols-2">
             <div>
               <img src={ahnlab} alt="ahnlab"></img>
             </div>
@@ -27,7 +27,7 @@ export default function GlobalCompaniesComponent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 px-2">
+          <div className="grid laptop:grid-cols-4 grid-cols-2 px-2">
             <div>
               <img className="px-2" src={webcash} alt="webcash"></img>
             </div>

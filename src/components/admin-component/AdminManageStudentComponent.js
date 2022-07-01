@@ -51,7 +51,7 @@ export default function AdminManageStudentComponent() {
   };
   return (
     <>
-      <div className="relative flex justify-center m-5">
+      <div className="relative flex justify-center m-5 body-font font-maven">
         <SearchBar placeholder={"Search user profile..."} data={data} />
       </div>
       <div className="flex justify-center">
