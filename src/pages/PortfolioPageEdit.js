@@ -85,11 +85,11 @@ export default function PortfolioEdite() {
 
           <div className="">
             <div className="">
-              <Popover className="relative">
+            <Popover className="relative">
                 {({ open }) => (
                   <>
                     <Popover.Button>
-                      <Vector className="w-5 mr-3 mt-7"></Vector>
+                      <Vector className="w-5 mr-2 mt-7"></Vector>
                     </Popover.Button>
                     <Transition
                       as={Fragment}
@@ -100,14 +100,13 @@ export default function PortfolioEdite() {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-32 w-80 h-270 sm:px-0 lg:max-w-3xl">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative gap-8 bg-white p-7 ">
-                            {/* {solutions.map((item) => ( */}
                             <div>
                               <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                                 <div className="flex items-center">
-                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                  <p className="text-xl font-bold text-gray-900 font-maven">
                                     Show Profile
                                   </p>
                                 </div>
@@ -120,11 +119,11 @@ export default function PortfolioEdite() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven text-gray-900"
                                 >
                                   Public
                                 </label>
@@ -135,20 +134,20 @@ export default function PortfolioEdite() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven "
                                 >
                                   Private
                                 </label>
                               </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6">
+                              <div className="flex items-baseline justify-center">
+                                <button class=" mt-10 bg-[#255FAB] w-1/2 hover:bg-blue-700 text-white font-maven  mr-3 py-2 px-4  h-12 rounded mb-6">
                                   Update
                                 </button>
-                                <button class="bg-transparent  w-36 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                <button class="bg-transparent  w-1/2 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                   Cancel
                                 </button>
                               </div>
