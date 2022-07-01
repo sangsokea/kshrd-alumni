@@ -303,6 +303,7 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="username"
+                value="Alanah"
                 type="text"
                 class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
@@ -317,6 +318,7 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="emailAddress"
+                value="Bryden"
                 type="text"
                 class="block w-full  px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
@@ -327,6 +329,7 @@ export default function ViewStudentProfile() {
                 Phone Number
               </label>
               <input
+              value="010231010"
                 id="password"
                 type="number"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
@@ -356,6 +359,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="email"
+                value="abryden0@meetup.com"
                 class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -369,6 +373,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="text"
+                value="phnom penh"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -387,6 +392,7 @@ export default function ViewStudentProfile() {
               <input
                 id="username"
                 type="text"
+                value="SR"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -401,6 +407,7 @@ export default function ViewStudentProfile() {
               <input
                 id="emailAddress"
                 type="email"
+                value="G1"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -411,7 +418,8 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="password"
-                type="password"
+                type="text"
+                value="Spring"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
@@ -430,7 +438,8 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="passwordConfirmation"
-                type="password"
+                type="text"
+                value="PP"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
               />
             </div>
@@ -442,8 +451,9 @@ export default function ViewStudentProfile() {
                 Group Name
               </label>
               <input
+              value="G2"
                 id="passwordConfirmation"
-                type="password"
+                type="text"
                 class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
@@ -456,7 +466,8 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="passwordConfirmation"
-                type="password"
+                type=""
+                value="ios"
                 class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               />
             </div>
