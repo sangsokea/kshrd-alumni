@@ -7,6 +7,7 @@ import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
 import { fetchLogin } from "../../redux/actions/LoginAction";
 import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
+import { CUSTOM_ERROR } from "../../commons/notify/Notify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,11 +60,17 @@ export default function LoginPage() {
       //   console.log(values);
       console.log(data);
       //   alert(JSON.stringify(values, null, 2));
-      // dispatch(fetchLogin(email, password));
-      dispatch(fetchIsAucthenticated(true));
-      navigate("/");
+      dispatch(fetchLogin(email, password));
     },
   });
+
+  React.useEffect(() => {
+    data?.error && CUSTOM_ERROR(data.error);
+    data?.error
+      ? dispatch(fetchIsAucthenticated(false))
+      : dispatch(fetchIsAucthenticated(true));
+    !data?.error && navigate("/");
+  }, [data]);
 
   const onClickEyes = () => {
     setToggle(!toggle);

@@ -56,8 +56,23 @@ export const ERROR_DELETED = (message) =>
     position: toast.POSITION.TOP_CENTER,
   });
 
+  // custom notfication
+
+
 export const CUSTOM_WARNING = (message) => {
   toast.warn(message, {
     position: toast.POSITION.TOP_LEFT,
+  });
+}
+
+export const CUSTOM_ERROR = (message) => {
+  toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT,
+  });
+}
+
+export const CUSTOM_SUCCESSFUL = (message) => {
+  toast.success(message, {
+    position: toast.POSITION.TOP_RIGHT,
   });
 }
