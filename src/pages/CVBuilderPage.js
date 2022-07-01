@@ -14,16 +14,28 @@ import sample_image from "../commons/images/sample image.jpg";
 export default function CVBuilderPage() {
   const navigate = useNavigate();
 
-  const payload = useSelector((state) => state);
-  console.log("==> payload in CVBuilderPage");
-  console.log(payload);
+  // const payload = useSelector((state) => state);
+  // console.log("==> payload in CVBuilderPage");
+  // console.log(payload);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [summary, setSummary] = useState("");
+
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [address, setAddress] = useState();
+  const [summary, setSummary] = useState();
+
+  const [cvBuilderObject, setCvBuilderObject] = useState([
+    {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+      summary: "",
+    },
+  ]);
 
   const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
@@ -65,6 +77,25 @@ export default function CVBuilderPage() {
     formData.append("image", e.target.files[0]);
   };
 
+  const submit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    // console.log(cvBuilderObject);
+    let finalData = {
+      personalDetails : {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        address, 
+        summary
+      }
+    }
+    console.log(finalData)
+    // dispatch(fetchExperience(experience));
+  };
+
   return (
     <div className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full">
       <div className="flex flex-row ">
@@ -93,7 +124,7 @@ export default function CVBuilderPage() {
       </h1>
 
       <div>
-        <form>
+        <form onSubmit={submit}>
           <div className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
             {/* First Name */}
             <div>
@@ -104,6 +135,8 @@ export default function CVBuilderPage() {
                 First name
               </label>
               <input
+                name="firstName"
+                value={firstName}
                 className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={handleChangeFirstName}
                 type="text"
@@ -122,6 +155,8 @@ export default function CVBuilderPage() {
                 Last name
               </label>
               <input
+                name="lastName"
+                value={lastName}
                 onChange={handleChangeLastName}
                 type="text"
                 id="last_name"
@@ -140,6 +175,8 @@ export default function CVBuilderPage() {
                 Email
               </label>
               <input
+                name="email"
+                value={email}
                 onChange={handleChangeEmail}
                 type="email"
                 id="email"
@@ -158,6 +195,8 @@ export default function CVBuilderPage() {
                 Phone number
               </label>
               <input
+                name="phoneNumber"
+                value={phoneNumber}
                 onChange={handleChangePhoneNumber}
                 type="tel"
                 id="phone"
@@ -177,6 +216,8 @@ export default function CVBuilderPage() {
               Address
             </label>
             <textarea
+              name="address"
+              value={address}
               onChange={handleChangeAddress}
               type="text"
               // id="large-input"
@@ -193,6 +234,8 @@ export default function CVBuilderPage() {
               Summary
             </label>
             <textarea
+              name="summary"
+              value={summary}
               onChange={handleChangeSummary}
               type="text"
               // id="large-input-summary"
@@ -217,7 +260,8 @@ export default function CVBuilderPage() {
           <button
             className="px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
             style={styles}
-            onClick={() => navigate("/sidebar/cvTemplate")}
+            // onClick={() => navigate("/sidebar/cvTemplate")}
+            onClick={submit}
           >
             Save
           </button>
