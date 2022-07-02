@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import { useFormik } from "formik";
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage() {
   const navigate = useNavigate();
   const data = useSelector((state) => state?.email, shallowEqual);
+  const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
 
   const [toggle, setToggle] = useState(false);
 
@@ -64,12 +65,12 @@ export default function LoginPage() {
     },
   });
 
+  useEffect(() => {
+    isAuth && navigate("/");
+  }, [isAuth]);
+
   React.useEffect(() => {
     data?.error && CUSTOM_ERROR(data.error);
-    data?.error
-      ? dispatch(fetchIsAucthenticated(false))
-      : dispatch(fetchIsAucthenticated(true));
-    !data?.error && navigate("/");
   }, [data]);
 
   const onClickEyes = () => {
