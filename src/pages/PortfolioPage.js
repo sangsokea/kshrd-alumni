@@ -156,9 +156,9 @@ export default function PortfolioPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="">
+                  <div className="flex items-center">
                     <img
-                      className=" shadow-lg h-52  tablet:order-1 desktop:-ml-4 laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-80 laptop:w-80 tablet:w-80 tablet:ml-40 desktop:rounded-tl-tl-lgs laptop:rounded-tl-tl-lgs tablet:rounded-tl-tl-lgs mt-14 rounded-tl-tl-lgs"
+                      className="tablet:order-1 desktop:-ml-4 object-contain laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-fit laptop:w-fit tablet:w-fit tablet:mx-32 w-fit h-48  mt-14 rounded-tl-tl-lgs"
                       src="https://wallpaperaccess.com/full/6235574.jpg"
                       alt=""
                     />

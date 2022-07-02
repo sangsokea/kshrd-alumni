@@ -289,7 +289,7 @@ export default function PortfolioEdite() {
           <div
             className={
               file
-                ? "upload-btn-wrapper w-fit h-48   shadow-[0_1px_5px_0px_rgba(0,0,0,0.1)] rounded-tl-tl-lgs"
+                ? "upload-btn-wrapper w-fit h-48  shadow-[0_1px_5px_0px_rgba(0,0,0,0.1)] rounded-tl-tl-lgs"
                 : "upload-btn-wrapper shadow-[0_2px_5px_0px_rgba(0,0,0,0.1)] w-full   border rounded-tl-tl-lgs border-slate-100 h-40"
             }
           >
@@ -309,8 +309,8 @@ export default function PortfolioEdite() {
           </div>
         </div>
         <div className="h-1 my-14 bg-[#BDBDBD] "></div>
-        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
-          <div>
+        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-3">
+          <div className="col-span-2">
             <div className="grid grid-2">
               <div>
                 <button
@@ -374,9 +374,9 @@ export default function PortfolioEdite() {
             </div>
           </div>
 
-          <div className="laptop:flex laptop:items-center laptop:justify-end flex items-center justify-center">
+          <div className="">
             <img
-              className="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0 "
+              className="mt-3  desktop:mt-0 "
               src={img3}
             ></img>
           </div>

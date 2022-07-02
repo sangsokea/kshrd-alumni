@@ -345,7 +345,7 @@ export default function EditEducationStudent() {
           <div
             className={
               file
-                ? "upload-btn-wrapper w-full h-48 laptop:-mt-2  shadow-[0_1px_5px_0px_rgba(0,0,0,0.1)] rounded-tl-tl-lgs"
+                ? "upload-btn-wrapper w-fit h-48 shadow-[0_2px_5px_0px_rgba(0,0,0,0.1)] laptop:-mt-2  rounded-tl-tl-lgs"
                 : "upload-btn-wrapper shadow-[0_2px_5px_0px_rgba(0,0,0,0.1)] w-full  border rounded-tl-tl-lgs border-slate-100 h-40 "
             }
           >
