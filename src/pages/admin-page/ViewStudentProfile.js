@@ -294,13 +294,13 @@ export default function ViewStudentProfile() {
         <hr></hr>
 
         <section class=" p-6 mx-auto  rounded-md  ">
-          <h2 class="text-lg font-semibold  capitalize ">
+          <h2 class="text-2xl font-bold  capitalize mb-5">
             Personal Information{" "}
           </h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 ">
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 font-bold font-maven ">
             <div>
               <label class="" for="username">
-                First Name
+                First Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -312,7 +312,7 @@ export default function ViewStudentProfile() {
 
             <div>
               <label class="" for="emailAddress">
-                Last Name
+                Last Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="emailAddress"
@@ -324,7 +324,7 @@ export default function ViewStudentProfile() {
 
             <div>
               <label class="text-gray-700 " for="password">
-                Phone Number
+                Phone Number <span className="text-red-700">*</span>
               </label>
               <input
                 value="010231010"
@@ -370,11 +370,11 @@ export default function ViewStudentProfile() {
           <br></br>
           <hr></hr>
           <br></br>
-          <h2 class="text-lg font-semibold  capitalize ">Basic Course</h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3">
+          <h2 class="text-2xl font-bold  capitalize mb-5 ">Basic Course</h2>
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 font-bold mb-5">
             <div>
               <label class="" for="username">
-                Class Name
+                Class Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -386,7 +386,7 @@ export default function ViewStudentProfile() {
 
             <div>
               <label class="" for="emailAddress">
-                Group Name
+                Group Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="emailAddress"
@@ -409,11 +409,11 @@ export default function ViewStudentProfile() {
             </div>
           </div>
           <br></br>
-          <h2 class="text-lg font-semibold ">Advance Course</h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3">
+          <h2 class="text-2xl font-semibold mb-5">Advance Course</h2>
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 font-bold">
             <div>
               <label class="" for="passwordConfirmation">
-                Class Name
+                Class Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="passwordConfirmation"
@@ -424,7 +424,7 @@ export default function ViewStudentProfile() {
             </div>
             <div>
               <label class="text-gray-700 " for="passwordConfirmation">
-                Group Name
+                Group Name <span className="text-red-700">*</span>
               </label>
               <input
                 value="G2"

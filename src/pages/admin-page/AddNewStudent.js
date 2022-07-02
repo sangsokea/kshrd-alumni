@@ -27,7 +27,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Photo *
+                Photo <span className="text-red-700">*</span>
               </label>
               <div
                 className={
@@ -58,7 +58,7 @@ export default function AddNewStudent() {
                     class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
-                    First Name *
+                    First Name <span className="text-red-700">*</span>
                   </label>
                   <input
                     id="username"
@@ -72,7 +72,7 @@ export default function AddNewStudent() {
                     class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
-                    Last Name *
+                    Last Name <span className="text-red-700">*</span>
                   </label>
                   <input
                     id="username"
@@ -90,7 +90,7 @@ export default function AddNewStudent() {
                     class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
-                    Gender *
+                    Gender <span className="text-red-700">*</span>
                   </label>
                   <div class="flex justify-start mt-2">
                     <div class="form-check form-check-inline">
@@ -130,7 +130,7 @@ export default function AddNewStudent() {
                     class="text-[#303972] font-maven font-bold "
                     for="username"
                   >
-                    Course Name
+                    Course Name <span className="text-red-700">*</span>
                   </label>
                   <select
                     id="countries"
@@ -150,7 +150,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Email *
+                Email <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -164,7 +164,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Phone *
+                Phone <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -181,7 +181,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Date of Birth *
+                Date of Birth <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -194,7 +194,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Place of Birth *
+                Place of Birth <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
@@ -210,7 +210,7 @@ export default function AddNewStudent() {
                 class="text-[#303972] font-maven font-bold "
                 for="username"
               >
-                Address *
+                Address <span className="text-red-700">*</span>
               </label>
               <textarea
                 placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
