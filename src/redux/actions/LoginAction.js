@@ -1,25 +1,35 @@
 import { api } from "../../api";
 import { fetchIsAucthenticated } from "./IsAuthenticationAction";
-
+import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 
 const password = "@kshrdalumni@10generation";
 
 //  encrypt token section
 export const encryptToken = (token) => {
-  localStorage.setItem(process.env.REACT_APP_SECRET_WORD, token);
+  let ciphertext = CryptoJS.AES.encrypt(
+    token,
+    process.env.REACT_APP_SECRET_WORD,
+  ).toString();
+  alert("Encrypted token: " + ciphertext);
+  ciphertext && localStorage.setItem("accessToken", ciphertext);
 };
 
-export let decryptToken = () => {
-  const encryptedString = localStorage.getItem(
+// Decrypt
+export const decryptToken = () => {
+  const encryptedString = localStorage.getItem("accessToken");
+  let bytes = CryptoJS.AES.decrypt(
+    encryptedString,
     process.env.REACT_APP_SECRET_WORD,
   );
-  return encryptedString;
+  let originalText = bytes.toString(CryptoJS.enc.Utf8);
+  console.log("Decrypted :" + originalText);
+  return originalText;
 };
 
 //  set isAuth section
-const verifyAuthentication = (accessToken) => (dispatch) => {
-  accessToken && encryptToken(accessToken);
+const verifyAuthentication = (accessToken) => {
+  accessToken && encryptToken(accessToken); 
 };
 
 // action type
@@ -49,11 +59,20 @@ export const fetchLogin = (email, password) => (dispatch) => {
     .then((res) => {
       console.log(`--> fetch login`);
       console.log(res);
-      if (!res?.data?.payload.error) {
-        dispatch(fetchLoginSuccess(res?.data?.payload));
-        verifyAuthentication(res?.data?.payload.accessToken);
-        res?.data?.message && CUSTOM_SUCCESSFUL(res?.data?.message);
-        res?.data?.message && dispatch(fetchIsAucthenticated(true));
+      // data get from api
+      let token = res?.data?.payload.accessToken;
+      let paylod = res?.data?.payload;
+      let error = res?.data?.payload.error
+      let message =res?.data?.message
+
+      // login handle
+      if (!error) {
+        dispatch(fetchLoginSuccess(paylod));
+
+        token &&
+          verifyAuthentication(token);
+        message && CUSTOM_SUCCESSFUL(message);
+        token && dispatch(fetchIsAucthenticated(true));
       } else {
         let message = res?.response?.data?.error ?? "Unknow error!";
         dispatch(fetchLoginFailure(message));
