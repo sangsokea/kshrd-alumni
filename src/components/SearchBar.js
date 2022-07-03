@@ -176,7 +176,7 @@ function SearchBar({ placeholder, data }) {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-20 w-56 h-270 sm:px-0 lg:max-w-3xl">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative gap-8 bg-white p-7 ">
                             <div>
@@ -219,14 +219,7 @@ function SearchBar({ placeholder, data }) {
                                   Deactivate
                                 </label>
                               </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
-                                  Update
-                                </button>
-                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                  Cancel
-                                </button>
-                              </div>
+                             
                             </div>
                           </div>
                         </div>
