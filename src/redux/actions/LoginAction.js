@@ -2,6 +2,8 @@ import { api } from "../../api";
 import { fetchIsAucthenticated } from "./IsAuthenticationAction";
 import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
+import { history } from "../../History";
+import { useNavigate } from "react-router-dom";
 
 // action type
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -14,7 +16,7 @@ export const encryptToken = (token) => {
     token,
     process.env.REACT_APP_SECRET_WORD,
   ).toString();
- 
+
   ciphertext && localStorage.setItem("accessToken", ciphertext);
 };
 
@@ -32,11 +34,11 @@ export const decryptToken = () => {
 
 //  set isAuth section
 const verifyAuthentication = (accessToken) => {
-  accessToken && encryptToken(accessToken); 
+  accessToken && encryptToken(accessToken);
 };
 
-
 export const fetchLogin = (email, password) => (dispatch) => {
+ 
   console.log("--> FetchLogin");
   dispatch(fetchLoginRequest());
   api
@@ -59,17 +61,17 @@ export const fetchLogin = (email, password) => (dispatch) => {
       // data get from api
       let token = res?.data?.payload.accessToken;
       let paylod = res?.data?.payload;
-      let error = res?.data?.payload.error
-      let message =res?.data?.message
+      let error = res?.data?.error;
+      let message = res?.data?.message;
 
       // login handle
       if (!error) {
         dispatch(fetchLoginSuccess(paylod));
 
-        token &&
-          verifyAuthentication(token);
+        token && verifyAuthentication(token);
         message && CUSTOM_SUCCESSFUL(message);
         token && dispatch(fetchIsAucthenticated(true));
+       
       } else {
         let message = res?.response?.data?.error ?? "Unknow error!";
         dispatch(fetchLoginFailure(message));
@@ -95,6 +97,8 @@ const fetchLoginRequest = () => {
 };
 
 const fetchLoginSuccess = (data) => {
+  localStorage.setItem("username", data?.username);
+  localStorage.setItem("email", data?.email);
   return {
     type: LOGIN_SUCCESS,
     payload: data,

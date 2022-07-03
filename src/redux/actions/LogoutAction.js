@@ -12,6 +12,8 @@ export const fetchLogout = () => dispatch => {
 }
 
 const logout = () => {
+  localStorage.removeItem('username')
+  localStorage.removeItem('email')
     return {
       type: LOG_OUT,
     };

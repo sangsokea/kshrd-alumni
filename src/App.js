@@ -11,7 +11,7 @@ import AdminBasicRoute from "./Router/AdminBasicRoute";
 import { useLocation } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { fetchTesting } from "./redux/actions/TestingAction";
-import { decryptToken } from "./redux/actions/LoginAction";
+import { decryptToken, fetchLogin } from "./redux/actions/LoginAction";
 
 function App() {
 
@@ -19,6 +19,8 @@ function App() {
   const dispatch = useDispatch();
   const [routeName, setRouteName] = useState("");
   useEffect(() => {
+
+    
     const getIsAuth = localStorage.getItem("isAuth");
     getIsAuth && JSON.parse(getIsAuth)
       ? dispatch(fetchIsAucthenticated(true))
