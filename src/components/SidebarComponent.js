@@ -40,6 +40,7 @@ export default function SidebarComponent() {
   const dispatch = useDispatch();
 
   const logOut = () => {
+    setShowSidebar("-left-64");
     Swal.fire({
       title: "Sign Out from Moment",
       text: "Are you sure you would like to sign out from your moment account?",
@@ -48,13 +49,12 @@ export default function SidebarComponent() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sign Out",
-      customClass: 'swal-wide',
+      customClass: "swal-wide",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(fetchIsAucthenticated(false));
         localStorage.setItem("isAuth", false);
         navigate("/");
-        // Swal.fire("Cancel!", "Your have canceled!.", "success");
       }
     });
   };
@@ -157,7 +157,10 @@ export default function SidebarComponent() {
                 {/* <NavLink to="/sidebar/aboutMe"> */}
                 <div className="mt-10 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
-                    onClick={() => setIsActive(1)}
+                    onClick={() => {
+                      setIsActive(1);
+                      setShowSidebar("-left-64");
+                    }}
                     to="/sidebar/aboutMe"
                     className={({ isActive }) =>
                       [
@@ -235,8 +238,11 @@ export default function SidebarComponent() {
                 {/* <NavLink to="/sidebar/resume"> */}
                 <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
-                    onClick={() => setIsActive(3)}
-                    to="/sidebar/createNewCV" 
+                    onClick={() => {
+                      setIsActive(3);
+                      setShowSidebar("-left-64");
+                    }}
+                    to="/sidebar/createNewCV"
                     className={({ isActive }) =>
                       [
                         "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
@@ -291,7 +297,10 @@ export default function SidebarComponent() {
                 {/* <NavLink to="/sidebar/accountSetting"> */}
                 <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
-                    onClick={() => setIsActive(4)}
+                    onClick={() => {
+                      setIsActive(4);
+                      setShowSidebar("-left-64");
+                    }}
                     to="/sidebar/accountSetting"
                     className={({ isActive }) =>
                       [
@@ -330,7 +339,7 @@ export default function SidebarComponent() {
 
                 {/* Log out */}
                 <div
-                  onClick={logOut}
+                  onClick={logOut} 
                   // onClick={() => {
                   //   dispatch(fetchIsAucthenticated(false));
                   //   localStorage.setItem("isAuth", false);

@@ -39,7 +39,7 @@ export default function AddSectionComponent() {
     setSection(data);
   };
 
-  const onDropDwon = (id) => {
+  const onDropDown = (id) => {
     setSection(
       section.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
     );
@@ -85,7 +85,7 @@ export default function AddSectionComponent() {
             <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
               <div
                 className="flex flex-row mb-5"
-                onClick={() => onDropDwon(input.id)}
+                onClick={() => onDropDown(input.id)}
               >
                 {input.customSection ? input.customSection : "(Not Specified)"}
                 <span className="ml-auto">
