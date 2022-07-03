@@ -3,7 +3,10 @@ import { fetchIsAucthenticated } from "./IsAuthenticationAction";
 import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 
-const password = "@kshrdalumni@10generation";
+// action type
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 //  encrypt token section
 export const encryptToken = (token) => {
@@ -11,7 +14,7 @@ export const encryptToken = (token) => {
     token,
     process.env.REACT_APP_SECRET_WORD,
   ).toString();
-  alert("Encrypted token: " + ciphertext);
+ 
   ciphertext && localStorage.setItem("accessToken", ciphertext);
 };
 
@@ -32,12 +35,6 @@ const verifyAuthentication = (accessToken) => {
   accessToken && encryptToken(accessToken); 
 };
 
-// action type
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_REQUEST = "LOGIN_REQUEST";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-
-// action
 
 export const fetchLogin = (email, password) => (dispatch) => {
   console.log("--> FetchLogin");
