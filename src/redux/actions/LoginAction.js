@@ -1,4 +1,26 @@
 import { api } from "../../api";
+import { fetchIsAucthenticated } from "./IsAuthenticationAction";
+
+import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
+
+const password = "@kshrdalumni@10generation";
+
+//  encrypt token section
+export const encryptToken = (token) => {
+  localStorage.setItem(process.env.REACT_APP_SECRET_WORD, token);
+};
+
+export let decryptToken = () => {
+  const encryptedString = localStorage.getItem(
+    process.env.REACT_APP_SECRET_WORD,
+  );
+  return encryptedString;
+};
+
+//  set isAuth section
+const verifyAuthentication = (accessToken) => (dispatch) => {
+  accessToken && encryptToken(accessToken);
+};
 
 // action type
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -15,7 +37,7 @@ export const fetchLogin = (email, password) => (dispatch) => {
       "/authentications/login",
       {
         email,
-        password
+        password,
       },
       {
         headers: {
@@ -29,8 +51,15 @@ export const fetchLogin = (email, password) => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchLoginSuccess(res?.data?.payload));
+        verifyAuthentication(res?.data?.payload.accessToken);
+        res?.data?.message && CUSTOM_SUCCESSFUL(res?.data?.message);
+        res?.data?.message && dispatch(fetchIsAucthenticated(true));
       } else {
-        dispatch(fetchLoginFailure(res?.data?.payload.error));
+        let message = res?.response?.data?.error ?? "Unknow error!";
+        dispatch(fetchLoginFailure(message));
+        dispatch(fetchIsAucthenticated(false));
+
+        CUSTOM_ERROR(message);
       }
     })
     .catch((err) => {
@@ -38,6 +67,8 @@ export const fetchLogin = (email, password) => (dispatch) => {
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchLoginFailure(message));
+      dispatch(fetchIsAucthenticated(false));
+      CUSTOM_ERROR(message);
     });
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import { useFormik } from "formik";
@@ -7,6 +7,7 @@ import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
 import { fetchLogin } from "../../redux/actions/LoginAction";
 import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
+import { CUSTOM_ERROR } from "../../commons/notify/Notify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage() {
   const navigate = useNavigate();
   const data = useSelector((state) => state?.email, shallowEqual);
+  const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
 
   const [toggle, setToggle] = useState(false);
 
@@ -59,11 +61,17 @@ export default function LoginPage() {
       //   console.log(values);
       console.log(data);
       //   alert(JSON.stringify(values, null, 2));
-      // dispatch(fetchLogin(email, password));
-      dispatch(fetchIsAucthenticated(true));
-      navigate("/");
+      dispatch(fetchLogin(email, password));
     },
   });
+
+  useEffect(() => {
+    isAuth && navigate("/");
+  }, [isAuth]);
+
+  React.useEffect(() => {
+    data?.error && CUSTOM_ERROR(data.error);
+  }, [data]);
 
   const onClickEyes = () => {
     setToggle(!toggle);
