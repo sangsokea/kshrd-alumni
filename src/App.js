@@ -11,6 +11,7 @@ import AdminBasicRoute from "./Router/AdminBasicRoute";
 import { useLocation } from "react-router-dom";
 
 function App() {
+
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
   const dispatch = useDispatch();
   const [routeName, setRouteName] = useState("");

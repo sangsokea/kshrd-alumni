@@ -56,9 +56,9 @@ export default function ViewAlumniPage() {
   ]);
 
   return (
-    <div className="container mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
+    <div className="desktop:container desktop:mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
       <div className="grid grid-cols-4">
-        <div className="col-span-1 hidden laptop:block">
+        <div className="hidden laptop:block laptop:col-span-1">
           <div className="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
             <div className="mb-5 shrink-0 flex flex-row ">
               <img
@@ -253,14 +253,14 @@ export default function ViewAlumniPage() {
             </div>
           </div>
         </div>
-        <div className="col-span-4 laptop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
+        <div className="col-span-3 laptop:col-span-2 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
           <div className="p-5">
             <div className="mt-5 mb-3 text-2xl font-bold">Results</div>
 
             {/* card */}
             <div className="grid grid-cols-1 gap-5 desktop:grid-cols-2">
-              {data.map((item) => (
+              {data?.map((item) => (
                 <div className="w-full">
                   <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <img

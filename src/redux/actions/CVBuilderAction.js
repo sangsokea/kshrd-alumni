@@ -1,47 +1,47 @@
 import { api } from "../../api";
+import { SUCCESS_CREATED } from "../../commons/notify/Notify";
+import axios from "axios";
 
 // action type
 export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
 export const CV_BUILDER_REQUEST = "CV_BUILDER_REQUEST";
 export const CV_BUILDER_FAILURE = "CV_BUILDER_FAILURE";
 
-const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW5nc29rZWExMDlAZ21haWwuY29tIiwiaWF0IjoxNjU2NzA2MjU2LCJleHAiOjE2NTkzMzYwNTZ9.jQMzrbHK6BcYi0TG-Cu16KxRI3GZmdJzRr6YsmVWsh1h3tFDbWCY8F2xf4oPZM-Ac8Kt9qJydD9nejPCtAkewg'
+const token =
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjgyOTYyNSwiZXhwIjoxNjU5NDU5NDI1fQ.hrszo7Cb8m-8-D_UxrCe4jy2jME12Dk1z9fJpgBw4u1sm0Do-leAt6g9i-VJmgKh_Vx3CdmuUtWXaZnL5s_kRw";
 
 // action
 
+const headers = {
+  "Authorization": "Bearer " + token,
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+};
+
 export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
   console.log("--> FetchCVBuilder");
+  console.log(requestBody);
   dispatch(fetchCVBuilderRequest());
- requestBody? api
-    .post(
-      "/profiles",
-      {
-        profileDetails: requestBody,
-        public: isPublic 
-      },
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Authorization" : `Bearer ${token}`
-        },
-      },
-    )
-    .then((res) => {
-      console.log(`--> fetch cvbuilder`);
-      console.log(res);
-      if (!res?.data?.payload.error) {
-        dispatch(fetchCVBuilderSuccess(res?.data?.payload));
-      } else {
-        dispatch(fetchCVBuilderFailure(res?.data?.payload.error));
-      }
-    })
-    .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
-      console.log(`fetch cvbuilder error`);
-      console.log(err);
-      dispatch(fetchCVBuilderFailure(message));
-    }) : alert("request body empty at post profile");
+  requestBody
+    ? fetch("https://kshrdalumni.herokuapp.com/api/v1/profiles", {
+        method: "post",
+
+        headers: headers,
+        body: JSON.stringify({
+          profileDetails: requestBody,
+          public: true,
+        }),
+      })
+        .then((res) => res.json()).then(result => console.log(result))
+        .catch((err) => {
+          // let message = err?.response?.data?.error ?? "Unknow error!";
+          // console.log(`fetch cvbuilder error`);
+          // console.log(err);
+          // dispatch(fetchCVBuilderFailure(message));
+          console.log('error')
+          console.log(err);
+        })
+    : alert("request body empty at post profile");
 };
 
 const fetchCVBuilderRequest = () => {
