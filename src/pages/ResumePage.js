@@ -14,6 +14,8 @@ export default function ResumePage() {
     // savePDF(image.current, { imageResolution: 36 });
   };
 
+  const [del, setDel] = useState();
+
   return (
     <div className="mx-10 mt-5 body-font font-maven ">
       {/* content */}
@@ -34,7 +36,7 @@ export default function ResumePage() {
 
           {/* Table */}
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg list-resume">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500">
               {/* Column1 <Curriculumn Vitae */}
               <thead className="text-m text-white uppercase	background-color: rgb(2 132 199);" style={styles}>
                 <tr>
@@ -50,7 +52,7 @@ export default function ResumePage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b text-black dark:border-gray-700">
+                <tr className="bg-white border-b text-black ">
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium text-black whitespace-nowrap"
@@ -181,7 +183,7 @@ export default function ResumePage() {
                         </button>
                         <a
                           href="/CreateNewCV"
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          className="font-medium text-blue-600 hover:underline"
                         >
 
                         </a>
@@ -189,7 +191,7 @@ export default function ResumePage() {
                       <span>
                         <a
                           href="#"
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          className="font-medium text-blue-600 hover:underline"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

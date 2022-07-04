@@ -5,7 +5,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
 import { decryptToken } from "../redux/actions/LoginAction";
@@ -263,7 +265,10 @@ export default function NavbarComponent() {
               <div className="laptop:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <button
-                    onClick={() => navigate("/viewAlumni")}
+                    onClick={() => {
+                      navigate("/viewAlumni")
+                      setIsOpen(!isOpen)
+                    }}
                     className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                     aria-current="page"
                   >
@@ -303,6 +308,7 @@ export default function NavbarComponent() {
                                     isAuth
                                       ? navigate("/sidebar/createNewCV")
                                       : navigate("/login");
+                                      setIsOpen(!isOpen)
                                   }}
                                   className={classNames(
                                     active
@@ -326,6 +332,7 @@ export default function NavbarComponent() {
                                     isAuth
                                       ? navigate("/sidebar/cvTemplate")
                                       : navigate("/login");
+                                      setIsOpen(!isOpen)
                                   }}
                                   className={classNames(
                                     active
@@ -347,7 +354,9 @@ export default function NavbarComponent() {
                   <div className="px-2 py-2">
                     {isAuth ? (
                       <div
-                        onClick={() => navigate("/sidebar/aboutMe")}
+                        onClick={() => {
+                          navigate("/sidebar/aboutMe") 
+                          setIsOpen(!isOpen)}}
                         className="flex cursor-pointer"
                       >
                         <img

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import EditorContainer from "../EditorContainer";
 import { colors } from "../../commons/colors/colors";
-
+import { fetchEducation } from "../../redux/actions/localAction/EducationAction";
 export default function EducationComponent() {
   const [displayEducation, setDisplayEducation] = useState(false);
+  const dispatch = useDispatch();
 
   const [education, setEducation] = useState([
     {
@@ -20,6 +21,10 @@ export default function EducationComponent() {
       id: 0,
     },
   ]);
+
+  useEffect(()=> {
+    education? dispatch(fetchEducation(education)): alert("empty experience field")
+  },[displayEducation, education])
 
   const handleEducationChange = (index, event) => {
     console.log(event.target.value);

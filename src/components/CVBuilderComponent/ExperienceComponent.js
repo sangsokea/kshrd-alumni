@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
@@ -7,23 +7,6 @@ import { colors } from "../../commons/colors/colors";
 
 export default function ExperienceComponent() {
   const [displayExperience, setDisplayExperience] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const submit = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    console.log(experience);
-    dispatch(fetchExperience(experience));
-  };
-
-  const onDropDwon = (id) => {
-    setExperience(
-      experience.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
-    );
-  };
-
   const [experience, setExperience] = useState([
     {
       jobTitle: "",
@@ -36,6 +19,25 @@ export default function ExperienceComponent() {
       id: 0,
     },
   ]);
+
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    experience? dispatch(fetchExperience(experience)): alert("empty experience field")
+  },[displayExperience, experience])
+
+  const submit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    console.log(experience);
+  };
+
+  const onDropDwon = (id) => {
+    setExperience(
+      experience.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
+    );
+  };
 
   const handleExperienceChange = (index, event) => {
     console.log(event.target.value);
@@ -99,7 +101,10 @@ export default function ExperienceComponent() {
         {/*  Dynamic form for experience */}
         <div className={!displayExperience ? "hidden" : "block"}>
           {experience.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
+            <form
+              onSubmit={submit}
+              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+            >
               <div
                 className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
@@ -245,16 +250,16 @@ export default function ExperienceComponent() {
                   </div>
                   <div className="w-full">
                     <label
-                      for="city"
+                      for="description"
                       className="block mb-2 text-sm font-medium dark:text-black"
                     >
                       Description
                     </label>
                     <div>
                       <EditorContainer
-                        onChange={(event) =>
-                          handleExperienceChange(index, event)
-                        }
+                        // onChange={(event) =>
+                        //   handleExperienceChange(index, event)
+                        // }
                         name="description"
                         value={input.description}
                       />
@@ -262,14 +267,6 @@ export default function ExperienceComponent() {
                   </div>
                 </div>
               </div>
-
-              {/* <button
-                onClick={submit}
-                style={styles}
-                className="px-5 py-2 mr-5 text-white rounded-md"
-              >
-                Submit
-              </button> */}
 
               <button
                 onClick={() => removeFieldsExperience(index)}
@@ -279,6 +276,13 @@ export default function ExperienceComponent() {
               </button>
             </form>
           ))}
+          {/* <button
+            onClick={submit}
+            style={styles}
+            className="px-5 py-2 mr-5 text-white rounded-md"
+          >
+            Submit
+          </button> */}
         </div>
       </div>
     </>

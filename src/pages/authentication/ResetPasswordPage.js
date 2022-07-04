@@ -1,9 +1,44 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
+import { useFormik } from "formik";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { fetchEmail } from "../../redux/actions/EmailAction";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();
+  const data = useSelector((state) => state?.email, shallowEqual);
+  const dispatch = useDispatch()
+  
+  // custom validation
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "";
+    }
+
+    return errors;
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate,
+    onSubmit: ({ email }) => {
+      //   console.log(values);
+      console.log(data);
+      //   alert(JSON.stringify(values, null, 2));
+      // dispatch(fetchLogin(email, password));
+      // dispatch(fetchIsAucthenticated(true));
+      email && dispatch(fetchEmail(email));
+      email && localStorage.setItem('email', email)
+    },
+  });
 
   return (
     <body className="h-screen bg-slate-50">

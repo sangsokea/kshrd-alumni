@@ -38,7 +38,6 @@ const verifyAuthentication = (accessToken) => {
 };
 
 export const fetchLogin = (email, password) => (dispatch) => {
- 
   console.log("--> FetchLogin");
   dispatch(fetchLoginRequest());
   api
@@ -71,7 +70,6 @@ export const fetchLogin = (email, password) => (dispatch) => {
         token && verifyAuthentication(token);
         message && CUSTOM_SUCCESSFUL(message);
         token && dispatch(fetchIsAucthenticated(true));
-       
       } else {
         let message = res?.response?.data?.error ?? "Unknow error!";
         dispatch(fetchLoginFailure(message));

@@ -12,11 +12,10 @@ export const fetchTesting = () => (dispatch) => {
 
   dispatch(fetchTestingRequest());
   api
-    .post(
-      "/profiles",
+    .get(
+      "/endpoin",
       {
-        profileDetails: { user: 1 },
-        public: true,
+        
       },
       {
         headers: {

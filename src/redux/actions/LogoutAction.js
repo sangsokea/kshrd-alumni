@@ -1,6 +1,7 @@
 import { CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 import { fetchIsAucthenticated } from "./IsAuthenticationAction";
 
+// action type
 export const LOG_OUT = "LOG_OUT";
 
 export const fetchLogout = () => dispatch => {
