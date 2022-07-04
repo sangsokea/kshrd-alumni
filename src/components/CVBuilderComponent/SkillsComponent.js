@@ -1,12 +1,14 @@
 import { listIcons } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
+import { fetchSkill } from "../../redux/actions/localAction/SkillsAction";
 
 export default function SkillsComponent() {
   const [displaySkill, setDisplaySkill] = useState(false);
+  const dispatch = useDispatch();
 
   const [skill, setSkill] = useState([
     {
@@ -56,6 +58,10 @@ export default function SkillsComponent() {
     data.splice(index, 1);
     setSkill(data);
   };
+
+  useEffect(()=> {
+    skill? dispatch(fetchSkill(skill)): alert("empty field")
+  },[displaySkill, skill])
 
   return (
     <>

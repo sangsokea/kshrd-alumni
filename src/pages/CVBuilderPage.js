@@ -10,7 +10,7 @@ import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
 import { useNavigate } from "react-router-dom";
 import sample_image from "../commons/images/sample image.jpg";
-import {useSelector, useDispatch, shallowEqual} from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { fetchCVBuilder } from "../redux/actions/CVBuilderAction";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,15 +27,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CVBuilderPage() {
-  const {loading} =  useSelector(state => state.cvBuilder, shallowEqual)
-  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.cvBuilder, shallowEqual);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const experiences = useSelector(state => state?.localExperience, shallowEqual);
-  const education = useSelector(state => state?.educations, shallowEqual);
-  const license = useSelector(state => state?.licenseAndCertificate, shallowEqual);
-  const skill = useSelector(state => state?.skill, shallowEqual);
-  const section = useSelector(state => state?.addSection, shallowEqual);
-  const uploadImage = useSelector(state => state?.uploadImage, shallowEqual)
+  const experiences = useSelector(
+    (state) => state?.localExperience,
+    shallowEqual
+  );
+  const education = useSelector((state) => state?.educations, shallowEqual);
+  const license = useSelector(
+    (state) => state?.licenseAndCertificate,
+    shallowEqual
+  );
+  const skills = useSelector((state) => state?.skill, shallowEqual);
+  const section = useSelector((state) => state?.addSection, shallowEqual);
+  // const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
+
+  // const token =
+  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjgyOTYyNSwiZXhwIjoxNjU5NDU5NDI1fQ.hrszo7Cb8m-8-D_UxrCe4jy2jME12Dk1z9fJpgBw4u1sm0Do-leAt6g9i-VJmgKh_Vx3CdmuUtWXaZnL5s_kRw";
 
   // const payload = useSelector((state) => state);
   // console.log("==> payload in CVBuilderPage");
@@ -91,7 +100,7 @@ export default function CVBuilderPage() {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     console.log("FormData : ", formData.get("file"));
-    api.post("/files/single").then(res => console.log(res.payload))
+    // api.post("/files/single", formData).then((res) => console.log(res));
   };
 
   const submit = (e) => {
@@ -101,50 +110,60 @@ export default function CVBuilderPage() {
     e.nativeEvent.stopImmediatePropagation();
     // console.log(cvBuilderObject);
     let finalData = {
-      personalDetails : {
+      personalDetails: {
         firstName,
         lastName,
         email,
         phoneNumber,
-        address, 
+        address,
         summary,
-        profile : imageUrl
+        // profile: uploadImage,
       },
       employmentHistory: [
         {
-          ...experiences
-        }
+          ...experiences,
+        },
       ],
-      education : [
+
+      education: [
         {
-          ...education
-        }
+          ...education,
+        },
       ],
-      license : [
+
+      license: [
         {
-          ...license
-        }
+          // ...license
+          "school": license.school,
+          "degree": license.degree
+        },
       ],
-      skill : [
+
+      skills: [
         {
-          ...skill
-        }
+          ...skills
+          // skill: skills.skill,
+          // levelExpert: skills.levelExpert
+        },
       ],
-      addSection : [
+      
+      addSection: [
         {
           ...section
-        }
-      ]
-    }
-    console.log("==== final data =====")
-    console.log(finalData)
+          // addSection: section.addSection,
+        },
+      ],
+    };
+    console.log("==== final data =====");
+    console.log(finalData);
+    // console.log(education)
     // dispatch(fetchExperience(experience));
-    finalData && dispatch(fetchCVBuilder(finalData, true))
+    finalData && dispatch(fetchCVBuilder(finalData, true));
   };
 
   return (
     <div className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full">
-     {loading ? (
+      {loading ? (
         <div className={classes.root} style={{ marginTop: "10px" }}>
           <LinearProgress color="secondary" />
         </div>

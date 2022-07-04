@@ -1,12 +1,14 @@
 import { listIcons } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
 import sample_image from "../../commons/images/sample image.jpg"
+import { useDispatch } from "react-redux";
+import { fetchLicense } from "../../redux/actions/localAction/LicenseAndCertificateAction";
 
 export default function LicensesComponent() {
+  const dispatch = useDispatch();
   const [displayLicenses, setDisplayLicenses] = useState(false);
   const [image, setImage] = useState(
     sample_image
@@ -72,6 +74,10 @@ export default function LicensesComponent() {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
   };
+
+  useEffect(()=> {
+    licenses? dispatch(fetchLicense(licenses)): alert("empty field")
+  },[displayLicenses, licenses])
 
   return (
     <>

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { colors } from "../../commons/colors/colors";
+import { fetchAddSection } from "../../redux/actions/localAction/AddSectionAction";
+import { useDispatch } from "react-redux";
 
 export default function AddSectionComponent() {
   const [displaySection, setDisplaySection] = useState(false);
+  const dispatch = useDispatch();
 
   const [section, setSection] = useState([
     {
@@ -52,6 +55,10 @@ export default function AddSectionComponent() {
     console.log(section);
     // dispatch(fetchExperience(experience));
   };
+
+  useEffect(()=> {
+    section? dispatch(fetchAddSection(section)): alert("empty field")
+  },[displaySection, section])
 
   return (
     <>

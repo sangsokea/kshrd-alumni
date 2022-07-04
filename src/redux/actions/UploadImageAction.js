@@ -30,7 +30,7 @@ export const fetchUploadImage = (file) => (dispatch) => {
       console.log(`--> fetch upload image`);
       console.log(res);
       if (!res?.data?.payload.error) {
-        dispatch(fetchUploadImageSuccess(res?.data?.payload.url));
+        dispatch(fetchUploadImageSuccess(res?.data?.payload.fileUrl));
       } else {
         dispatch(fetchUploadImageFailure(res?.data?.payload.error));
       }
