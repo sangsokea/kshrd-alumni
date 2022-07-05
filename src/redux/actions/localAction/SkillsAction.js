@@ -1,8 +1,8 @@
-export const SKILLS = "SKILLS";
+export const SKILL = "SKILL";
 
-export const fetchSkills = (data) => {
+export const fetchSkill = (data) => {
   return {
-    type: SKILLS,
+    type: SKILL,
     payload: data,
   };
 };

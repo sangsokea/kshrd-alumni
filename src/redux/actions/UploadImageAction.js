@@ -1,17 +1,21 @@
 import { api } from "../../api";
+import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
+import { decryptToken } from "./LoginAction";
 
 // action type
 export const UPLOAD_IMAGE_SUCCESS = "UPLOAD_IMAGE_SUCCESS";
 export const UPLOAD_IMAGE_REQUEST = "UPLOAD_IMAGE_REQUEST";
 export const UPLOAD_IMAGE_FAILURE = "UPLOAD_IMAGE_FAILURE";
 
-const token =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjgyOTYyNSwiZXhwIjoxNjU5NDU5NDI1fQ.hrszo7Cb8m-8-D_UxrCe4jy2jME12Dk1z9fJpgBw4u1sm0Do-leAt6g9i-VJmgKh_Vx3CdmuUtWXaZnL5s_kRw";
-
+const token = decryptToken();
 // action
-export const fetchUploadImage = (file) => (dispatch) => {
+export const fetchUploadImage = (file, type) => (dispatch) => {
+  console.log("file in Action");
+  const formData = new FormData();
+  formData.append("file", file);
+  console.log(formData.get('file'));
   console.log("--> FetchUploadImage");
-  dispatch(fetchUploadImageRequest());
+  token && dispatch(fetchUploadImageRequest());
   api
     .post(
       "/files/single",
@@ -24,21 +28,23 @@ export const fetchUploadImage = (file) => (dispatch) => {
           Accept: "*",
           "Content-Type": "multipart/form-data",
         },
-      }
+      },
     )
     .then((res) => {
       console.log(`--> fetch upload image`);
       console.log(res);
       if (!res?.data?.payload.error) {
-        dispatch(fetchUploadImageSuccess(res?.data?.payload.url));
+        dispatch(fetchUploadImageSuccess(res?.data?.payload, type));
+        CUSTOM_SUCCESSFUL("Uploaded successfully")
       } else {
         dispatch(fetchUploadImageFailure(res?.data?.payload.error));
       }
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknown error!";
+      let message = err?.response?.data?.error ?? err?.message;
       console.log(`fetch upload image error`);
       console.log(err);
+      CUSTOM_ERROR(message)
       dispatch(fetchUploadImageFailure(message));
     });
 };
@@ -49,10 +55,11 @@ const fetchUploadImageRequest = () => {
   };
 };
 
-const fetchUploadImageSuccess = (data) => {
+const fetchUploadImageSuccess = (data ,target) => {
   return {
     type: UPLOAD_IMAGE_SUCCESS,
     payload: data,
+    target: target
   };
 };
 

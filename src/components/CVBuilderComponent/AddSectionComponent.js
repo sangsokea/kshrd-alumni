@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { colors } from "../../commons/colors/colors";
+import { fetchAddSection } from "../../redux/actions/localAction/AddSectionAction";
+import { useDispatch } from "react-redux";
 
 export default function AddSectionComponent() {
   const [displaySection, setDisplaySection] = useState(false);
+  const dispatch = useDispatch();
 
   const [section, setSection] = useState([
     {
       customSection: "",
-      isShow: false,
+      sectionValue: "",
+      isShow: true,
       id: 0,
     },
   ]);
@@ -26,14 +30,24 @@ export default function AddSectionComponent() {
     } else {
       let newData = {
         customSection: "",
-        isShow: !section.isShow,
+        sectionValue: "",
+        isShow: true,
         id: section.length,
       };
-      setSection([newData, ...section]);
+      const oldData = section.map((x) => {
+        return {
+          ...x,
+          isShow: false,
+        };
+      });
+      setSection([...oldData, newData]);
     }
   };
 
-  const removeFieldsSection = (index) => {
+  const removeFieldsSection = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     let data = [...section];
     data.splice(index, 1);
     setSection(data);
@@ -41,7 +55,7 @@ export default function AddSectionComponent() {
 
   const onDropDown = (id) => {
     setSection(
-      section.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
+      section.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x)),
     );
   };
 
@@ -52,6 +66,10 @@ export default function AddSectionComponent() {
     console.log(section);
     // dispatch(fetchExperience(experience));
   };
+
+  useEffect(() => {
+    section ? dispatch(fetchAddSection(section)) : alert("empty field");
+  }, [displaySection, section]);
 
   return (
     <>
@@ -82,7 +100,10 @@ export default function AddSectionComponent() {
         {/* Dynamic form for Licenses and Certifications */}
         <div className={!displaySection ? "hidden" : "block"}>
           {section.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
+            <form
+              onSubmit={submit}
+              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+            >
               <div
                 className="flex flex-row mb-5"
                 onClick={() => onDropDown(input.id)}
@@ -125,20 +146,35 @@ export default function AddSectionComponent() {
                 </span>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
+              <div className={!input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-5">
                   <div>
                     <label
                       for="customSection"
                       className="block mb-2 text-sm font-medium dark:text-black"
                     >
-                      Please input your title
+                      Title
+                    </label>
+                    <input
+                      className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="customSection"
+                      placeholder="Title"
+                      value={input.customSection}
+                      onChange={(event) => handleSectionChange(index, event)}
+                    ></input>
+                  </div>
+                  <div>
+                    <label
+                      for="sectionValue"
+                      className="block mt-5 mb-2 text-sm font-medium dark:text-black"
+                    >
+                      Description
                     </label>
                     <textarea
                       className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      name="customSection"
-                      placeholder="Spring Framework"
-                      value={input.customSection}
+                      name="sectionValue"
+                      placeholder="description"
+                      value={input.sectionValue}
                       onChange={(event) => handleSectionChange(index, event)}
                     />
                   </div>
@@ -153,15 +189,18 @@ export default function AddSectionComponent() {
                 Submit
               </button> */}
 
-              <button
-                onClick={() => removeFieldsSection(index)}
-                className="px-5 py-2 text-white bg-red-600 rounded-md"
+              <div
+                onClick={(e) => removeFieldsSection(index, e)}
+                className="cursor-pointer px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
-              </button>
+              </div>
             </form>
           ))}
         </div>
+        {section.length >= 1 && <div onClick={addFieldsSection} className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right">
+            + Add more section
+          </div>}
       </div>
     </>
   );

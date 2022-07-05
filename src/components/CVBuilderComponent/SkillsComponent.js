@@ -1,18 +1,20 @@
 import { listIcons } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
+import { fetchSkill } from "../../redux/actions/localAction/SkillsAction";
 
 export default function SkillsComponent() {
   const [displaySkill, setDisplaySkill] = useState(false);
+  const dispatch = useDispatch();
 
   const [skill, setSkill] = useState([
     {
       skill: "",
       levelExpert: "",
-      isShow: false,
+      isShow: true,
       id: 0,
     },
   ]);
@@ -32,10 +34,16 @@ export default function SkillsComponent() {
       let newData = {
         skill: "",
         levelExpert: "",
-        isShow: !skill.isShow,
+        isShow: true,
         id: skill.length,
       };
-      setSkill([newData, ...skill]);
+      const oldData = skill.map((x) => {
+        return {
+          ...x,
+          isShow: false,
+        };
+      });
+      setSkill([...oldData, newData]);
     }
   };
 
@@ -51,11 +59,18 @@ export default function SkillsComponent() {
     // dispatch(fetchExperience(experience));
   };
 
-  const removeFieldsSkills = (index) => {
+  const removeFieldsSkills = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     let data = [...skill];
     data.splice(index, 1);
     setSkill(data);
   };
+
+  useEffect(()=> {
+    skill? dispatch(fetchSkill(skill)): alert("empty field")
+  },[displaySkill, skill])
 
   return (
     <>
@@ -129,7 +144,7 @@ export default function SkillsComponent() {
                 </span>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
+              <div className={!input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-3 ">
                   <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
@@ -181,7 +196,7 @@ export default function SkillsComponent() {
               </button> */}
 
               <button
-                onClick={() => removeFieldsSkills(index)}
+                onClick={(e) => removeFieldsSkills(index, e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
@@ -189,6 +204,14 @@ export default function SkillsComponent() {
             </form>
           ))}
         </div>
+        {skill.length >= 1 && displaySkill && (
+          <div
+            onClick={addFieldsSkill}
+            className=" m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
+          >
+            + Add more skill
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,28 +1,38 @@
 import { listIcons } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
-import sample_image from "../../commons/images/sample image.jpg"
+import sample_image from "../../commons/images/sample image.jpg";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { fetchLicense } from "../../redux/actions/localAction/LicenseAndCertificateAction";
+import { fetchUploadImage } from "../../redux/actions/UploadImageAction";
+import { LoadingLinePrimary } from "../LoadingLine";
 
 export default function LicensesComponent() {
+  const dispatch = useDispatch();
+  const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const [displayLicenses, setDisplayLicenses] = useState(false);
-  const [image, setImage] = useState(
-    sample_image
-  );
+  const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
+  const [currentIndex, setcurrentIndex] = useState(0);
+  const [currentValue, setcurrentValue] = useState("");
+  const [currentName, setcurrentName] = useState("");
+  const inputFile = React.useRef(null);
 
   const [licenses, setLicenses] = useState([
     {
       school: "",
       degree: "",
-      isShow: false,
+      image: "",
+      isShow: true,
       id: 0,
     },
   ]);
 
   const handleLicensesChange = (index, event) => {
+    console.log("handleLicensesChange");
+    console.log(event.target.value);
     console.log(event.target.value);
     let data = [...licenses];
     data[index][event.target.name] = event.target.value;
@@ -37,10 +47,17 @@ export default function LicensesComponent() {
       let newData = {
         school: "",
         degree: "",
-        isShow: !licenses.isShow,
+        image: "",
+        isShow: true,
         id: licenses.length,
       };
-      setLicenses([newData, ...licenses]);
+      const oldData = licenses.map((x) => {
+        return {
+          ...x,
+          isShow: false,
+        };
+      });
+      setLicenses([...oldData, newData]);
     }
   };
 
@@ -49,10 +66,14 @@ export default function LicensesComponent() {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     console.log(licenses);
-    // dispatch(fetchExperience(experience));
+
+    dispatch(fetchLicense(licenses));
   };
 
-  const removeFieldsLicensesAndCertifications = (index) => {
+  const removeFieldsLicensesAndCertifications = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     let data = [...licenses];
     data.splice(index, 1);
     setLicenses(data);
@@ -60,22 +81,80 @@ export default function LicensesComponent() {
 
   const onDropDwon = (id) => {
     setLicenses(
-      licenses.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
+      licenses.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x)),
     );
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (index, e) => {
+    console.log("index ", index);
     console.log(e.target.files[0]);
+
+    setcurrentName(e.target.name);
+    setcurrentValue(e.target.value);
     console.log(URL.createObjectURL(e.target.files[0]));
     setImageUrl(URL.createObjectURL(e.target.files[0]));
 
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
+    dispatch(fetchUploadImage(e.target.files[0], "licence"));
   };
+
+  useEffect(() => {
+    licenses ? dispatch(fetchLicense(licenses)) : alert("empty field");
+  }, [displayLicenses, licenses]);
+
+  useEffect(() => {
+    let reduxImage = uploadImage?.items?.licence?.fileUrl;
+    let images = localStorage.getItem("images");
+    let localImage = JSON.parse(images);
+    let finalImage = localImage?.licence?.fileUrl;
+    let data = [...licenses];
+
+    data[currentIndex].image = reduxImage ?? finalImage?.toString();
+    console.log(currentIndex);
+    setLicenses(data);
+  }, [uploadImage, window.localStorage.onChange]);
+
+  useEffect(() => {
+    let images = localStorage.getItem("images");
+    let localImage = JSON.parse(images);
+
+    licenses.length === 0 &&
+      localImage &&
+      localStorage.setItem(
+        "images",
+        JSON.stringify({
+          ...localImage,
+          licence: "",
+        }),
+      );
+  }, [licenses]);
+
+  useEffect(() => {
+    let images = localStorage.getItem("images");
+    let localImage = JSON.parse(images);
+
+    window.onbeforeunload = function () {
+      localImage &&
+        localStorage.setItem(
+          "images",
+          JSON.stringify({
+            ...localImage,
+            licence: "",
+            profile: "",
+          }),
+        );
+      return "Are you sure you want to refresh? current data maybe losts!";
+    };
+  }, []);
+
+  console.log("Licence");
+  console.log(licenses);
 
   return (
     <>
       {/* Licenses and Certifications */}
+      {uploadImage?.loading && <LoadingLinePrimary />}
       <div className="mb-6">
         <label
           for="large-input"
@@ -101,8 +180,11 @@ export default function LicensesComponent() {
 
         {/* Dynamic form for Licenses and Certifications */}
         <div className={!displayLicenses ? "hidden" : "block"}>
-          {licenses.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
+          {licenses?.map((input, index) => (
+            <form
+              onSubmit={submit}
+              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+            >
               {/* Image and Upload Certificate Button */}
               <div onClick={() => onDropDwon(input.id)}>
                 <div className="flex flex-row mb-5">
@@ -147,26 +229,39 @@ export default function LicensesComponent() {
                 </div>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
-                <div key={index} className="mb-3 text-center">
-                  <div>
-                    <input
-                      id="upload-certificate"
-                      type="file"
-                      className="hidden"
-                      onChange={handleImageChange}
-                    />
-                    {/* <button type="button" className="border border-blue-600 shadow-md rounded-md text-blue-500 h-[50px] w-[200px]"> */}
-                    <label for="upload-certificate">
-                      {" "}
-                      <img
-                        className="m-auto mb-3 rounded-lg cursor-pointer"
-                        src={imageUrl ? imageUrl : image}
-                        alt="preview"
-                        style={{ height: "200px" , width: "300px"}}
-                      ></img>
+              <div className={!input.isShow ? "hidden" : "block"}>
+                <div key={index} className="mb-3 flex justify-center">
+                  <div
+                    onClick={() => {
+                      inputFile.current.click();
+                      setcurrentIndex(index);
+                    }}
+                    class="w-64 h-64 bg-red-100 relative rounded-2xl"
+                  >
+                    <div
+                      class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
+                      style={{
+                        backgroundImage: `url('${
+                          input.image?.toString() ?? image
+                        }')`,
+                      }}
+                    >
+                      <input
+                        type="file"
+                        ref={inputFile}
+                        className="hidden"
+                        id="upload-image"
+                        onChange={(e) => handleImageChange(index, e)}
+                      ></input>
+                    </div>
+                    <label class="rounded-2xl cursor-pointer opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-3xl bg-gray-600 bg-opacity-75 text-white font-semibold">
+                      Upload image
                     </label>
-                    {/* </button> */}
+                    {!imageUrl && (
+                      <label class="cursor-pointer opacity- absolute inset-0 z-10 flex justify-center items-center text-3xl bg-gray-600 bg-opacity-75 text-white font-semibold">
+                        Upload image
+                      </label>
+                    )}
                   </div>
                 </div>
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -214,7 +309,7 @@ export default function LicensesComponent() {
               </button> */}
 
               <button
-                onClick={() => removeFieldsLicensesAndCertifications(index)}
+                onClick={(e) => removeFieldsLicensesAndCertifications(index, e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
@@ -222,6 +317,14 @@ export default function LicensesComponent() {
             </form>
           ))}
         </div>
+        {licenses.length >= 1 && displayLicenses && (
+          <div
+            onClick={addFieldsLicensesAndCertifications}
+            className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
+          >
+            + Add more Licenses/Certifications
+          </div>
+        )}
       </div>
     </>
   );

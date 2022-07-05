@@ -23,13 +23,13 @@ export const encryptToken = (token) => {
 // Decrypt
 export const decryptToken = () => {
   const encryptedString = localStorage.getItem("accessToken");
-  let bytes = CryptoJS.AES.decrypt(
+  let bytes = encryptedString ? CryptoJS.AES.decrypt(
     encryptedString,
     process.env.REACT_APP_SECRET_WORD,
-  );
+  ) : "";
   let originalText = bytes.toString(CryptoJS.enc.Utf8);
   console.log("Decrypted :" + originalText);
-  return originalText;
+  return originalText ?? "";
 };
 
 //  set isAuth section
@@ -71,7 +71,7 @@ export const fetchLogin = (email, password) => (dispatch) => {
         message && CUSTOM_SUCCESSFUL(message);
         token && dispatch(fetchIsAucthenticated(true));
       } else {
-        let message = res?.response?.data?.error ?? "Unknow error!";
+        let message = res?.response?.data?.error ?? res?.message;
         dispatch(fetchLoginFailure(message));
         dispatch(fetchIsAucthenticated(false));
 
@@ -79,7 +79,7 @@ export const fetchLogin = (email, password) => (dispatch) => {
       }
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
+      let message = err?.response?.data?.error ?? err?.message;
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchLoginFailure(message));
