@@ -27,7 +27,7 @@ export default combineReducers({
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
-  changeCVTemplate: ChangeCVTemplateReducer,
+  // changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
   editor: EditorComponentReducer
 });
