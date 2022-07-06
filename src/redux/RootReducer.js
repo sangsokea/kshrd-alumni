@@ -4,6 +4,7 @@ import EmailReducer from "./reducer/EmailReducer";
 import IsAuthenticationReducer from "./reducer/IsAuthenticationReducer";
 import AboutMePageReducer from "./reducer/localReducer/AboutMePageReducer";
 import AddSectionReducer from "./reducer/localReducer/AddSectionReducer";
+import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer";
 import EducationReducer from "./reducer/localReducer/EducationReducer";
 import ExperienceReducer from "./reducer/localReducer/ExperienceReducer";
 import LicenseAndCertificateReducer from "./reducer/localReducer/LicenseAndCertificateReducer";
@@ -26,6 +27,7 @@ export default combineReducers({
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
+  changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
 
 });

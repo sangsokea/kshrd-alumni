@@ -155,10 +155,11 @@ export default function CVBuilderPage() {
       ],
     };
     console.log("==== final data =====");
-    console.log(finalData);
-    // console.log(education)
+    // console.log(finalData);
+    console.log()
+    // console.log(license.degree)
     // dispatch(fetchExperience(experience));
-    finalData && dispatch(fetchCVBuilder(finalData, true));
+    // finalData && dispatch(fetchCVBuilder(finalData, true));
   };
 
   return (
