@@ -38,10 +38,10 @@ export default function ConfirmPage() {
   const [showMessage, setShowMessage] = useState(false);
   const [isExpired, setisExpired] = useState();
   const [data, setData] = useState(
-    { date: Date.now(), delay: 20000 }, //60 seconds
+    { date: Date.now(), delay: 60000 }, //60 seconds
   );
 
-  const wantedDelay = 20000; //60 s
+  const wantedDelay = 60000; //60 s
 
   console.log("comfirm code " + code);
 
