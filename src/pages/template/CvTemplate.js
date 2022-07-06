@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
@@ -9,10 +9,23 @@ import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import { api } from "../../api";
 import HrdCvTemplate from "./HrdCvTemplate";
 import { fetchChangeCVTemplate } from "../../redux/actions/localAction/ChangeCVTemplateAction";
+import { decryptToken } from "../../redux/actions/LoginAction";
+import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
+// import { fetchExperience } from "../../redux/actions/FetchExperienceAction";
 
 export default function CvTemplate() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [addSection, setAddSection] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [employmentHistory, setEmploymentHistory] = useState([]);
+  const [license, setLicense] = useState([]);
+  const [skill, setSkill] = useState([]);
+  const [personalDetails, setPersonalDetails] = useState("");
+
+  const ownProfiles = useSelector((state) => state?.ownProfiles);
+
+  console.log("OwnProfiles: ", ownProfiles);
 
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
@@ -23,17 +36,46 @@ export default function CvTemplate() {
   };
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.changeCVTemplate, shallowEqual);
+  // const state = useSelector((state) => state.changeCVTemplate, shallowEqual);
+
+  // listen route
+  const location = useLocation();
 
   useEffect(() => {
-    setChangeTemplate(state);
-  }, [state]);
+    dispatch(fetchOwnProfiles());
+  }, [location]);
 
-  const [changeTemplate, setChangeTemplate] = useState(state);
+  useEffect(() => {
+    setData(ownProfiles?.items);
+    {
+      data.map((arr) => {
+        setAddSection(arr?.profileDetails?.addSection);
+        setEducation(arr?.profileDetails?.education);
+        setEmploymentHistory(arr?.profileDetails?.employmentHistory);
+        setLicense(arr?.profileDetails?.license);
+        setSkill(arr.profileDetails.skill);
+        setPersonalDetails(arr?.profileDetails?.personalDetails);
+      });
+    }
+  }, [ownProfiles]);
+
+  console.log("OwnProfiles Data :", ownProfiles);
+  // console.log(
+  //   "EmploymentHistory",
+  //   ownProfiles?.items[0]?.profileDetails?.employmentHistory
+  // );
+
+  // useEffect(() => {
+  //   setChangeTemplate(state);
+  // }, [state]);
+
+  // const [changeTemplate, setChangeTemplate] = useState(state);
 
   // const [data, setData] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
+
+  // const token =
+  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
+  const token = decryptToken();
   useEffect(() => {
     api
       .get(
@@ -47,20 +89,21 @@ export default function CvTemplate() {
           },
         }
       )
-      .then((res) => setData(res.data.payload))
+      .then((res) => console.log(res.data.payload))
       .catch((response) => console.log(response.data));
   }, []);
 
   return (
-    <div className="h-full mb-10">
-      <div class="ml-5 laptop:ml-20">
-        <div class="grid grid-cols-8">
-          <div class="col-span-6">
-            {changeTemplate ? (
+    <>
+      {/* {data.map((parentItems, i) => ( */}
+      <div className="h-full mb-10">
+        <div class="ml-5 laptop:ml-20">
+          <div class="grid grid-cols-8">
+            <div class="col-span-6">
+              {/* {changeTemplate ? (
               <HrdCvTemplate />
-            ) : (
+            ) : ( */}
               <PDFExport ref={pdfExportComponent} paperSize="A4">
-                {/* {data.map((item, index) => {})} */}
                 <center>
                   <div className="shadow w-350 laptop:w-222 mt-10">
                     <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
@@ -88,21 +131,29 @@ export default function CvTemplate() {
                           </div>
                         </div>
                       </div>
-                      <div className="laptop:col-span-2 bg-white">
-                        <div className="mt-1 ml-5 text-left laptop:mt-12">
-                          <span className="text-4xl font-bold font-maven ">
-                            Kong{" "}
-                          </span>
-                          &nbsp;
-                          <span className="text-3xl font-bold font-maven text-regal-bg"></span>
-                        </div>
-                        <div>
-                          <h2 className="ml-5 text-xl text-left font-maven">
-                            UI Designer
-                          </h2>
+                      <div>
+                        <div className="laptop:col-span-2 bg-white">
+                          <div className="mt-1 ml-5 text-left laptop:mt-12">
+                            <span className="text-4xl font-bold font-maven ">
+                              {personalDetails?.lastName}
+                            </span>
+                            &nbsp;
+                            <span className="text-3xl font-bold font-maven text-regal-bg">
+                              {personalDetails?.firstName}
+                            </span>
+                          </div>
+
+                          <div>
+                            {/* {skill?.map((sk) => { */}
+                            <h2 className="ml-5 text-xl text-left font-maven">
+                              {personalDetails?.summary}
+                            </h2>
+                            {/* })} */}
+                          </div>
                         </div>
                       </div>
                     </div>
+
                     <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
                       <div className=" laptop:bg-regal-gg">
                         <div className="mb-4">
@@ -111,15 +162,16 @@ export default function CvTemplate() {
                               Details
                             </h2>
                           </div>
+
                           <div className="mt-2 ml-5 text-xs text-left font-maven">
                             <p>
-                              <span>SS Sterrt City, </span>
-                              <span>phnom penh, </span>
-                              <span className="break-words">Cambodia</span>
+                              <span>{personalDetails?.address}, </span>
+                              {/* <span>phnom penh, </span>
+                              <span className="break-words">Cambodia</span> */}
                             </p>
-                            <p>086236671</p>
+                            <p>{personalDetails?.phoneNumber}</p>
                             <p className="mb-2 break-words text-regal-blue">
-                              kongsachakyarith@gmail.com
+                              {personalDetails?.email}
                             </p>
                             <p className="font-bold">Nationality</p>
                             <p>khmer</p>
@@ -158,15 +210,19 @@ export default function CvTemplate() {
                               Education
                             </h2>
                           </div>
+
+                          {/* {education?.map((edu) => { */}
                           <div className="mt-2 ml-5 text-xs text-left font-maven">
                             <div>
                               <div className="w-20 h-4 text-left rounded bg-[#8CC0DE]">
                                 <center>
-                                  <span className="font-bold">2019-2020</span>
+                                  <span className="font-bold">
+                                    {/* ({edu?.startDate}) - ({edu?.endDate}) */}
+                                  </span>
                                 </center>
                               </div>
                               <p className="mt-1">
-                                <span>Master, </span>
+                                {/* <span>{edu?.degree}, </span> */}
                                 <span>Rupp, </span>
                                 <span>phnom penh</span>
                               </p>
@@ -196,6 +252,9 @@ export default function CvTemplate() {
                               </p>
                             </div>
                           </div>
+
+                          {/* })} */}
+
                           {/* End  Education */}
 
                           {/* start Links */}
@@ -221,78 +280,81 @@ export default function CvTemplate() {
                               Skills
                             </h2>
                           </div>
-                          <div className="mt-2 ml-5 text-xs text-left font-maven">
-                            <div className="grid grid-cols-3 gap-4">
-                              <div class="">
-                                <p>jQuery</p>
-                              </div>
-                              <div class="col-span-2">
-                                <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+
+                          {skill?.map((sk) => {
+                            <div className="mt-2 ml-5 text-xs text-left font-maven">
+                              <div className="grid grid-cols-3 gap-4">
+                                <div class="">
+                                  <p>{sk?.skill}</p>
+                                </div>
+                                <div class="col-span-2">
+                                  <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-4 mt-3">
-                              <div class="...">
-                                <p>Docker</p>
-                              </div>
-                              <div class="col-span-2">
-                                <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                              <div class="grid grid-cols-3 gap-4 mt-3">
+                                <div class="...">
+                                  <p>Docker</p>
+                                </div>
+                                <div class="col-span-2">
+                                  <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-4 mt-3">
-                              <div class="...">
-                                <p>Node js</p>
-                              </div>
-                              <div class="col-span-2">
-                                <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div class="grid grid-cols-3 gap-4 mt-3">
+                                <div class="...">
+                                  <p>Node js</p>
+                                </div>
+                                <div class="col-span-2">
+                                  <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-4 mt-3">
-                              <div class="...">
-                                <p>Python</p>
-                              </div>
-                              <div class="col-span-2">
-                                <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                              <div class="grid grid-cols-3 gap-4 mt-3">
+                                <div class="...">
+                                  <p>Python</p>
+                                </div>
+                                <div class="col-span-2">
+                                  <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-4 mt-3">
-                              <div class="...">
-                                <p>HTML5</p>
-                              </div>
-                              <div class="col-span-2 justify-items-end">
-                                <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                  <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                              <div class="grid grid-cols-3 gap-4 mt-3">
+                                <div class="...">
+                                  <p>HTML5</p>
+                                </div>
+                                <div class="col-span-2 justify-items-end">
+                                  <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
+                            </div>;
+                          })}
                         </div>
 
                         {/* End Skills  */}
@@ -303,69 +365,71 @@ export default function CvTemplate() {
                             Employment History
                           </h2>
                         </div>
-                        <div className="mt-4 ml-5 font-maven">
-                          <div className="mb-1 text-left">
-                            <span>Web devloper, </span> &nbsp;&nbsp;
-                            <span>employer, </span> &nbsp;&nbsp;
-                            <span>phnom penh</span>
-                          </div>
-                          <div className="text-left">
-                            <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                              <center>
-                                <span className="font-bold">
-                                  JANUARY 2019 - MARCH 2020
-                                </span>
-                              </center>
+
+                        {employmentHistory?.map((item) => (
+                          <div className="mt-4 ml-5 font-maven">
+                            <div className="mb-1 text-left">
+                              <span>{item?.jobTitle},</span> &nbsp;&nbsp;
+                              <span>{item?.employee},</span> &nbsp;&nbsp;
+                              <span>{item?.city}</span>
                             </div>
-                            <p className="mt-3 text-xs">
-                              Combine these samples with our templates and
-                              coverccc letter builder tool to finish your
-                              application in minutes.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-4 ml-5 font-maven">
-                          <div className="mb-1 text-left">
-                            <span>Web devloper, </span> &nbsp;&nbsp;
-                            <span>employer, </span> &nbsp;&nbsp;
-                            <span>phnom penh</span>
-                          </div>
-                          <div className="text-left">
-                            <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                              <center>
-                                <span className="font-bold">
-                                  JANUARY 2019 - MARCH 2020
-                                </span>
-                              </center>
+                            <div className="text-left">
+                              <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                                <center>
+                                  <span className="font-bold">
+                                    ({item?.startDate}) - ({item?.endDate})
+                                  </span>
+                                </center>
+                              </div>
+                              <p className="mt-3 text-xs">
+                                {item?.description}
+                              </p>
                             </div>
-                            <p className="mt-3 text-xs">
-                              Combine these samples with our templates and
-                              coverccc letter builder tool to finish your
-                              application in minutes.
-                            </p>
                           </div>
+                        ))}
+
+                        {/* <div className="mt-4 ml-5 font-maven">
+                        <div className="mb-1 text-left">
+                          <span>Web devloper, </span> &nbsp;&nbsp;
+                          <span>employer, </span> &nbsp;&nbsp;
+                          <span>phnom penh</span>
                         </div>
-                        <div className="mt-4 ml-5 font-maven">
-                          <div className="mb-1 text-left">
-                            <span>Web devloper, </span> &nbsp;&nbsp;
-                            <span>employer, </span> &nbsp;&nbsp;
-                            <span>phnom penh</span>
+                        <div className="text-left">
+                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                            <center>
+                              <span className="font-bold">
+                                JANUARY 2019 - MARCH 2020
+                              </span>
+                            </center>
                           </div>
-                          <div className="text-left">
-                            <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                              <center>
-                                <span className="font-bold">
-                                  JANUARY 2019 - MARCH 2020
-                                </span>
-                              </center>
-                            </div>
-                            <p className="mt-3 text-xs">
-                              Combine these samples with our templates and
-                              coverccc letter builder tool to finish your
-                              application in minutes.
-                            </p>
-                          </div>
+                          <p className="mt-3 text-xs">
+                            Combine these samples with our templates and
+                            coverccc letter builder tool to finish your
+                            application in minutes.
+                          </p>
                         </div>
+                      </div> */}
+                        {/* <div className="mt-4 ml-5 font-maven">
+                        <div className="mb-1 text-left">
+                          <span>Web devloper, </span> &nbsp;&nbsp;
+                          <span>employer, </span> &nbsp;&nbsp;
+                          <span>phnom penh</span>
+                        </div>
+                        <div className="text-left">
+                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                            <center>
+                              <span className="font-bold">
+                                JANUARY 2019 - MARCH 2020
+                              </span>
+                            </center>
+                          </div>
+                          <p className="mt-3 text-xs">
+                            Combine these samples with our templates and
+                            coverccc letter builder tool to finish your
+                            application in minutes.
+                          </p>
+                        </div>
+                      </div> */}
                         <div className="mt-7">
                           <h2 class="font-maven text-left ml-5 font-bold text-xl">
                             Hobbies
@@ -388,11 +452,11 @@ export default function CvTemplate() {
                   </div>
                 </center>
               </PDFExport>
-            )}
-          </div>
+              {/* )} */}
+            </div>
 
-          <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-            {/* <button
+            <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
+              {/* <button
               class="mb-5 py-2 text-white text-lg rounded-lg w-full"
               style={styles}
               onClick={handleExportWithComponent}
@@ -400,44 +464,46 @@ export default function CvTemplate() {
               Export as PDF
             </button> */}
 
+              <button
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                style={styles}
+                onClick={() => dispatch(fetchChangeCVTemplate(true))}
+              >
+                Change Template
+              </button>
+
+              <button
+                class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                style={styles}
+                onClick={() => dispatch(fetchChangeCVTemplate(false))}
+              >
+                Rollback Template
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-row ">
+          <div className="laptop:ml-auto">
             <button
-              class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+              className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
-              onClick={() => dispatch(fetchChangeCVTemplate(true))}
+              onClick={() => navigate("/sidebar/resume")}
             >
-              Change Template
+              Finish
             </button>
 
             <button
-              class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
-              style={styles}
-              onClick={() => dispatch(fetchChangeCVTemplate(false))}
+              className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+              onClick={() => navigate("/sidebar/createNewCV")}
             >
-              Rollback Template
+              Cancel
             </button>
           </div>
         </div>
       </div>
-
-      <div className="flex flex-row ">
-        <div className="laptop:ml-auto">
-          <button
-            className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
-            style={styles}
-            onClick={() => navigate("/sidebar/resume")}
-          >
-            Finish
-          </button>
-
-          <button
-            className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
-            onClick={() => navigate("/sidebar/createNewCV")}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
+      {/* ))} */}
+    </>
     // </div>
   );
 }

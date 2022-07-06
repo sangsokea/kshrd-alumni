@@ -58,8 +58,6 @@ export default function ExperienceComponent() {
     description && setExperience(data);
   }, [description]);
 
-
-
   const addFieldsExperience = () => {
     setDisplayExperience(true);
     if (!displayExperience) {

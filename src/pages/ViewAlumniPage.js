@@ -99,7 +99,7 @@ export default function ViewAlumniPage() {
               </div>
             </form>
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <button
                 id="menu-btn"
                 className="flex py-2 mb-2 rounded text-md desktop:text-lg"
@@ -238,22 +238,12 @@ export default function ViewAlumniPage() {
                   Backend
                 </p>
               </div>
-            </div>
+            </div> */}
 
-            <div className="mt-5">
-              <div className="flex flex-row text-md desktop:text-lg">
-                Generation
-                <span className="ml-auto">
-                  <input
-                    type="text"
-                    className="w-16 p-2 border border-black rounded-md bg-gray-50 focus:outline-none focus:ring-blue-600 focus:ring-2 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  ></input>
-                </span>
-              </div>
-            </div>
+          
           </div>
         </div>
-        <div className="col-span-3 laptop:col-span-2 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
+        <div className="col-span-3 laptop:col-span-2 desktop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
           <img src={view_alumni} alt="view alumni logo"></img>
           <div className="p-5">
             <div className="mt-5 mb-3 text-2xl font-bold">Results</div>
