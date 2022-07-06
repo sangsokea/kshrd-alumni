@@ -36,7 +36,7 @@ export default function AdminBasicRoute() {
     <div className="min-h-screen flex flex-col justify-between">
       <div>
         {isAuth ? (
-          <Routes>
+          <Routes>  
             {isAuth ? null : (
               <Route path="/admin/login" element={<AdminLogInPage />} />
             )}

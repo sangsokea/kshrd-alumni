@@ -121,43 +121,48 @@ function SearchBar({ placeholder, data }) {
               <table class="w-full text-sm text-left ">
                 <thead class="text-xs  uppercase bg-gray-50 ">
                   <tr>
-                    <th scope="col" class="px-6 py-3">
-                      Fist Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Last Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Gender
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Generation
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Email
-                    </th>
-
-                    <th scope="col" class="px-6 py-3">
-                      Skill
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Action
-                      <span class="sr-only">Action</span>
-                    </th>
+                  <th scope="col" class="px-6 py-3">
+                    Fist Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Last Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Gender
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                   CVs
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Portfolio
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Action
+                    <span class="sr-only">Action</span>
+                  </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredData.length ===0 ? <> {data.slice(0, 10).map((item, key) => (
+                  {filteredData.length ===0 ? <> {data&&data?.map((item, key) => (
                     <tr
                       key={key}
                       class="bg-white border-b hover:bg-gray-50 "
                     >
-                      <td class="px-6 py-4">{item.first_name}</td>
-                      <td class="px-6 py-4">{item.last_name}</td>
-                      <td class="px-6 py-4">{item.gender}</td>
-                      <td class="px-6 py-4">{item.generation}</td>
-                      <td class="px-6 py-4">{item.email}</td>
-                      <td class="px-6 py-4">{item.skill}</td>
+                     <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.firstName}
+                      </td>
+                      <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.lastName}
+                      </td>
+                      <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.sex}
+                      </td>
+                      <td class="px-6 py-4">
+                       1
+                      </td>
+                      <td class="px-6 py-4">
+                      2
+                      </td>
                       <td class="px-6 py-4 text-right flex justify-between">
                        Enable
 
@@ -189,36 +194,18 @@ function SearchBar({ placeholder, data }) {
                               </div>
                             </div>
                             <div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-1"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven "
-                                >
+                              <button class="flex items-center mt-3 ml-7"
+                              >
+                                
                                   Activate
-                                </label>
-                              </div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-2"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven "
-                                >
+                                  
+                               
+                              </button>
+                              <button class="flex items-center mt-3 ml-7">
+                                
                                   Deactivate
-                                </label>
-                              </div>
+                                
+                              </button>
                              
                             </div>
                           </div>
@@ -230,17 +217,26 @@ function SearchBar({ placeholder, data }) {
               </Popover>
                       </td>
                     </tr>
-                  )) }</>: <> {filteredData.slice(0, 10).map((item, key) => (
+                  )) }</>: <> {filteredData.map((item, key) => (
                     <tr
                       key={key}
                       class="bg-white border-b hover:bg-gray-50 "
                     >
-                      <td class="px-6 py-4">{item.first_name}</td>
-                      <td class="px-6 py-4">{item.last_name}</td>
-                      <td class="px-6 py-4">{item.gender}</td>
-                      <td class="px-6 py-4">{item.generation}</td>
-                      <td class="px-6 py-4">{item.email}</td>
-                      <td class="px-6 py-4">{item.skill}</td>
+                      <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.firstName}
+                      </td>
+                      <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.lastName}
+                      </td>
+                      <td class="px-6 py-4">
+                        {item?.profileDetails?.personalDetails?.sex}
+                      </td>
+                      <td class="px-6 py-4">
+                       1
+                      </td>
+                      <td class="px-6 py-4">
+                      2
+                      </td>
                       <td class="px-6 py-4 text-right flex justify-between">
                        Enable
 
