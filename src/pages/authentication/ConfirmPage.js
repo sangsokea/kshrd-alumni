@@ -2,21 +2,66 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import OtpInput from "react-otp-input";
+import Countdown from "react-countdown";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 // import OTPInput from "otp-input-react";
 import { ToastContainer, toast } from "react-toastify";
+import { fetchEmail } from "../../redux/actions/EmailAction";
+import { CUSTOM_ERROR } from "../../commons/notify/Notify";
+import { LoadingLinePrimary } from "../../components/LoadingLine";
+
+const Completionist = () => <span>Code is expired!</span>;
+const renderer = ({ hours, minutes, seconds, completed }) => {
+  if (completed) {
+    // Render a complete state
+    return <Completionist />;
+  } else {
+    // Render a countdown
+    return (
+      <span>
+        {hours}:{minutes}:{seconds}
+      </span>
+    );
+  }
+};
+const getLocalStorageValue = (s) => localStorage.getItem(s);
 
 export default function ConfirmPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { loading, items } = useSelector((state) => state?.email, shallowEqual);
 
   const [inputSecretCode, setInputSecretCode] = useState("");
   const [resendCode, setResendCode] = useState();
-  const [code, setCode] = useState();
+  const [code, setCode] = useState(localStorage.getItem("verifycode"));
   const [showMessage, setShowMessage] = useState(false);
+  const [isExpired, setisExpired] = useState();
+  const [data, setData] = useState(
+    { date: Date.now(), delay: 60000 }, //60 seconds
+  );
+
+  const wantedDelay = 60000; //60 s
+
+  console.log("comfirm code " + code);
 
   useEffect(() => {
-    setCode(717273);
-    setInputSecretCode(717273);
+    const savedDate = getLocalStorageValue("end_date");
+
+    if (savedDate != null && !isNaN(savedDate)) {
+      const currentTime = Date.now();
+      const delta = parseInt(savedDate, 10) - currentTime;
+
+      //Do you reach the end?
+      if (delta > wantedDelay) {
+        //Yes we clear uour saved end date
+        if (localStorage.getItem("end_date").length > 0)
+          localStorage.removeItem("end_date");
+      } else {
+        //No update the end date
+        setData({ date: currentTime, delay: delta });
+      }
+    }
   }, []);
 
   // method
@@ -32,6 +77,12 @@ export default function ConfirmPage() {
     e.nativeEvent.stopImmediatePropagation();
 
     if (code == inputSecretCode) {
+      if (localStorage.getItem("end_date") != null)
+        localStorage.removeItem("end_date");
+
+      localStorage.removeItem("verifycode");
+      setCode(0);
+      localStorage.setItem("confirmCode", true);
       navigate("/formRegister");
     } else {
       toast.error("Code Incorrect !", {
@@ -42,18 +93,26 @@ export default function ConfirmPage() {
 
   // --> validate code between input and code from api
 
-  const onIncorrectValidation = () => {};
+  const onResendCode = () => {
+    const email = localStorage.getItem("email");
+    email && isExpired && dispatch(fetchEmail(email));
+  };
 
-  // useEffect(() => {
-  //   const oldData = location.state?.data?.verifyCode;
-  //   console.log(`====> /ConfirmPage: data from registerPage`);
-  //   console.log(location.state?.data);
-  //   oldData ? setCode(oldData) : setCode(0);
-  // }, [navigate]);
+  useEffect(() => {
+    isExpired && window.location.reload();
+  }, [items]);
+
+  useEffect(() => {
+    const oldData = location.state?.data?.verifyCode;
+    console.log(`====> /ConfirmPage: data from registerPage`);
+    console.log(location.state?.data);
+    setCode(localStorage.getItem("verifycode"));
+  }, [navigate, items]);
 
   return (
     <body className="h-screen bg-slate-50">
       <ToastContainer />
+      {loading && <LoadingLinePrimary />}
       <form
         onSubmit={(e) => onValidateCode(e)}
         stopPropagation
@@ -122,7 +181,32 @@ export default function ConfirmPage() {
                 <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
                 <div className="pt-3 pb-1 border-b-2 border-b-black"></div>
               </div>
-              <p className="mt-6 text-blue-800">code expires in 00:56</p>
+              <p className="mt-6 text-blue-800">
+                <div>
+                  {!isExpired && "Code will be expire in "}
+                  <Countdown
+                    date={data.date + data.delay}
+                    renderer={renderer}
+                    onStart={(delta) => {
+                      //Save the end date
+                      setisExpired(false);
+                      if (localStorage.getItem("end_date") == null)
+                        localStorage.setItem(
+                          "end_date",
+                          JSON.stringify(data.date + data.delay),
+                        );
+                    }}
+                    onComplete={() => {
+                      if (localStorage.getItem("end_date") != null)
+                        localStorage.removeItem("end_date");
+
+                      localStorage.removeItem("verifycode");
+                      setCode(0);
+                      setisExpired(true);
+                    }}
+                  />
+                </div>
+              </p>
               <button
                 style={styles}
                 className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
@@ -152,9 +236,13 @@ export default function ConfirmPage() {
               </button>
               <p className="mt-8">
                 Didn't get the code?{" "}
-                <a href="#" className="text-blue-800 underline underline-offset-1">
+                <button
+                  type="button"
+                  onClick={() => onResendCode()}
+                  className="text-blue-800 underline underline-offset-1"
+                >
                   Resend code
-                </a>
+                </button>
               </p>
             </div>
           </div>

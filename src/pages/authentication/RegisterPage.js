@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../../commons/colors/colors";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchEmail } from "../../redux/actions/EmailAction";
@@ -25,12 +25,10 @@ export default function RegisterPage() {
 
   const navigate = useNavigate();
 
+  const location = useLocation()
+
   const classes = useStyles();
-  {
-    console.log(
-      `items ${data.items}, loading ${data.loading}, error ${data.error}`,
-    );
-  }
+ 
 
   // custom validation
   const validate = (values) => {
@@ -57,16 +55,17 @@ export default function RegisterPage() {
       //   alert(JSON.stringify(values, null, 2));
       // dispatch(fetchLogin(email, password));
       // dispatch(fetchIsAucthenticated(true));
-      navigate("/confirm");
+      email && dispatch(fetchEmail(email));
+      email && localStorage.setItem('email', email)
     },
   });
 
   // console.log();
-  // useEffect(() => {
-  //   data.items
-  //     ? navigate("/confirm", { state: { data: data?.items ?? null } })
-  //     : navigate("/register");
-  // }, [data]);
+  useEffect(() => {
+    data.items
+      ? navigate("/confirm", { state: { data: data?.items ?? null } })
+      : navigate("/register");
+  }, [data]);
   return (
     <body className="h-screen bg-slate-50">
       {data.loading ? (

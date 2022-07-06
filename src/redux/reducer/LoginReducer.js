@@ -3,6 +3,8 @@ import {
     LOGIN_REQUEST,
     LOGIN_FAILURE,
   } from "../actions/LoginAction";
+
+  import { LOG_OUT } from "../actions/LogoutAction";
   
   const initialState = {
     loading: false,
@@ -30,6 +32,9 @@ import {
           items: "",
           error: action.payload,
         };
+
+        case LOG_OUT: 
+        return state
   
       default:
         return state;

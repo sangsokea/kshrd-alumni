@@ -1,4 +1,5 @@
 import { api } from "../../api";
+import { fetchLogin } from "./LoginAction";
 
 // action type
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -31,6 +32,7 @@ export const fetchRegister = (email, username, password) => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchRegisterSuccess(res?.data?.payload));
+        dispatch(fetchLogin(email, password))
       } else {
         dispatch(fetchRegisterFailure(res?.data?.payload.error));
       }

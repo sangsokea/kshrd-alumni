@@ -7,6 +7,7 @@ import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
 import ReNavbarComponent from "./ReNavbarComponent";
 import Swal from "sweetalert2";
+import { fetchLogout } from "../redux/actions/LogoutAction";
 
 const ButtonMailto = ({ mailto, children }) => {
   return (
@@ -52,8 +53,7 @@ export default function SidebarComponent() {
       customClass: "swal-wide",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(fetchIsAucthenticated(false));
-        localStorage.setItem("isAuth", false);
+        dispatch(fetchLogout())
         navigate("/");
       }
     });

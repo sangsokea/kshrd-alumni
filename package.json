@@ -1,6 +1,8 @@
 {
   "name": "kshrd-alumni",
   "version": "0.1.0",
+  "proxy": "https://kshrdalumni.herokuapp.com/api/v1",
+  "homepage": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^34.1.0",
@@ -23,9 +25,14 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    
     "axios": "^0.27.2",
+<<<<<<< HEAD
     "daisyui": "^2.17.0",
+=======
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "daisyui": "^2.15.4",
+>>>>>>> e9c56da8e89261b7edfdc718ff1637145696269b
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "draftjs-to-markdown": "^0.6.0",
@@ -34,15 +41,18 @@
     "formik": "^2.2.9",
     "google-map-react": "^2.1.10",
     "html2canvas": "^1.4.1",
+    "http-proxy-middleware": "^2.0.6",
     "jspdf": "^2.5.1",
     "otp-input-react": "^0.3.0",
     "react": "^18.1.0",
     "react-animated-cursor": "^2.5.1",
     "react-axios": "^2.0.6",
+    "react-countdown": "^2.3.2",
     "react-dom": "^18.1.0",
     "react-draft-wysiwyg": "^1.14.7",
     "react-error-boundary": "^3.1.4",
     "react-highlight-words": "^0.18.0",
+    "react-loading-overlay": "^1.0.1",
     "react-minimal-side-navigation": "^1.9.2",
     "react-otp-input": "^2.4.0",
     "react-redux": "^8.0.2",
