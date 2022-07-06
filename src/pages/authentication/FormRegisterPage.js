@@ -7,6 +7,8 @@ import { fetchRegister } from "../../redux/actions/RegisterAction";
 import { LinearProgress, makeStyles } from "@material-ui/core";
 import { fetchIsAucthenticated } from "../../redux/actions/IsAuthenticationAction";
 import { LoadingLinePrimary } from "../../components/LoadingLine";
+import { CUSTOM_ERROR, CUSTOM_WARNING } from "../../commons/notify/Notify";
+import e from "cors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function FormRegisterPage() {
   const navigate = useNavigate();
   const data = useSelector((state) => state?.email, shallowEqual);
-  const isAuth = useSelector(state=> state.isAuth)
+  const isAuth = useSelector((state) => state.isAuth);
   const [isConfirmCode, setisConfirmCode] = useState(
     localStorage.getItem("confirmCode"),
   );
@@ -68,13 +70,24 @@ export default function FormRegisterPage() {
     },
     validate,
     onSubmit: (values) => {
+      let localEmail = localStorage.getItem("email");
+      let email = data?.items?.email;
       // console.log(values);
       // console.log(data);
-      data?.items?.email
-        ? dispatch(
-            fetchRegister(data.items.email, values.username, values.password),
-          )
-        : navigate("/formRegister");
+      if (localEmail || email) {
+        email
+          ? dispatch(fetchRegister(email, values.username, values.password))
+          : dispatch(
+              fetchRegister(localEmail, values.username, values.password),
+            );
+        localStorage.removeItem("confirmCode");
+        return;
+      } else {
+        CUSTOM_ERROR("Unknown error during register");
+        navigate("/register");
+        CUSTOM_WARNING("Please Register again!");
+        navigate("/register");
+      }
     },
   });
 
@@ -89,7 +102,7 @@ export default function FormRegisterPage() {
     <>
       {isConfirmCode ? (
         <body className="h-screen bg-slate-50">
-          {data?.items.loading && <LoadingLinePrimary/>}
+          {data?.items.loading && <LoadingLinePrimary />}
 
           <form
             onSubmit={formik.handleSubmit}
