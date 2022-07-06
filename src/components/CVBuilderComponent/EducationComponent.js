@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import EditorContainer from "../EditorContainer";
 import { colors } from "../../commons/colors/colors";
 import { fetchEducation } from "../../redux/actions/localAction/EducationAction";
 export default function EducationComponent() {
   const [displayEducation, setDisplayEducation] = useState(false);
+
+  const [currentIndex, setcurrentIndex] = useState(0);
   const dispatch = useDispatch();
+  const [description, setdescription] = useState("");
 
   const [education, setEducation] = useState([
     {
@@ -17,21 +20,31 @@ export default function EducationComponent() {
       endDate: "",
       city: "",
       description: "",
-      isShow: false,
+      isShow: true,
       id: 0,
     },
   ]);
 
-  useEffect(()=> {
-    education? dispatch(fetchEducation(education)): alert("empty experience field")
-  },[displayEducation, education])
+  useEffect(() => {
+    education
+      ? dispatch(fetchEducation(education))
+      : alert("empty experience field");
+  }, [displayEducation, education]);
 
   const handleEducationChange = (index, event) => {
+    setcurrentIndex(index);
     console.log(event.target.value);
     let data = [...education];
     data[index][event.target.name] = event.target.value;
     setEducation(data);
   };
+
+  useEffect(() => {
+    let data = [...education];
+    if (description) data[currentIndex].description = description;
+
+    description && setEducation(data);
+  }, [description]);
 
   const addFieldsEducation = () => {
     setDisplayEducation(true);
@@ -45,10 +58,16 @@ export default function EducationComponent() {
         endDate: "",
         city: "",
         description: "",
-        isShow: !education.isShow,
+        isShow: true,
         id: education.length,
       };
-      setEducation([newData, ...education]);
+      const oldData = education.map((x) => {
+        return {
+          ...x,
+          isShow: false,
+        };
+      });
+      setEducation([...oldData, newData]);
     }
   };
 
@@ -60,7 +79,10 @@ export default function EducationComponent() {
     // dispatch(fetchExperience(experience));
   };
 
-  const removeFieldsEducation = (index) => {
+  const removeFieldsEducation = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     let data = [...education];
     data.splice(index, 1);
     setEducation(data);
@@ -68,7 +90,7 @@ export default function EducationComponent() {
 
   const onDropDwon = (id) => {
     setEducation(
-      education.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
+      education.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x)),
     );
   };
 
@@ -101,7 +123,10 @@ export default function EducationComponent() {
         {/* Dynamic form for Education */}
         <div className={!displayEducation ? "hidden" : "block"}>
           {education.map((input, index) => (
-            <form onSubmit={submit} className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg">
+            <form
+              onSubmit={submit}
+              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+            >
               <div
                 className="flex flex-row mb-5"
                 onClick={() => onDropDwon(input.id)}
@@ -144,7 +169,7 @@ export default function EducationComponent() {
                 </span>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
+              <div className={!input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-3 ">
                   <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
@@ -253,7 +278,19 @@ export default function EducationComponent() {
                       Description
                     </label>
                     <div>
-                      <EditorContainer onChange={(event) => handleEducationChange(index, event)}/>
+                      {/* <EditorContainer onChange={(value)=>{
+                          setdescription(value)
+                        }}/> */}
+                      <textarea
+                        value={input.description}
+                        onChange={(event) =>
+                          handleEducationChange(index, event)
+                        }
+                        type="text"
+                        name="description"
+                        className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
+                      />
                     </div>
                   </div>
                   {/* <Button onClick={() => removeFields(index)} variant="danger">
@@ -271,13 +308,16 @@ export default function EducationComponent() {
               </button> */}
 
               <button
-                onClick={() => removeFieldsEducation(index)}
+                onClick={(e) => removeFieldsEducation(index,e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>
             </form>
           ))}
+          {education.length >= 1 && <div onClick={addFieldsEducation} className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right">
+            + Add more education
+          </div>}
         </div>
       </div>
     </>

@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { colors, myStyles } from "../commons/colors/colors";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import logo from "../commons/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import { decryptToken } from "../redux/actions/LoginAction";
 
 function classNames(...classNamees) {
   return classNamees.filter(Boolean).join(" ");
 }
 
 export default function NavbarComponent() {
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const login = useSelector((state) => state?.login.items);
 
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
   const isAuth = useSelector((state) => state.isAuth);
 
-  // const dispatch = useDispatch();
-  // const selector = useSelector();
-
-  // const onNavbarClose = () => {
-  //   setIsOpen(!isOpen ? "hidden" : "block")
-  // }
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    username && JSON.parse && setUsername(username);
+  }, [username]);
 
   return (
     <div style={logoBackground}>
@@ -105,7 +108,7 @@ export default function NavbarComponent() {
                                     onClick={() => {
                                       !isAuth &&
                                         CUSTOM_WARNING(
-                                          "Please! login to access more feature"
+                                          "Please! login to access more feature",
                                         );
                                       isAuth
                                         ? navigate("/sidebar/createNewCV")
@@ -115,7 +118,7 @@ export default function NavbarComponent() {
                                       active
                                         ? "bg-gray-100 text-gray-900"
                                         : "text-gray-700 bg-white rounded",
-                                      "block px-4 py-2 text-sm"
+                                      "block px-4 py-2 text-sm",
                                     )}
                                   >
                                     Create New CV
@@ -128,7 +131,7 @@ export default function NavbarComponent() {
                                     onClick={() => {
                                       !isAuth &&
                                         CUSTOM_WARNING(
-                                          "Please! login to access more feature"
+                                          "Please! login to access more feature",
                                         );
                                       isAuth
                                         ? navigate("/sidebar/cvTemplate")
@@ -138,7 +141,7 @@ export default function NavbarComponent() {
                                       active
                                         ? "bg-gray-100 text-gray-900"
                                         : "text-gray-700 bg-white rounded",
-                                      "block px-4 py-2 text-sm"
+                                      "block px-4 py-2 text-sm",
                                     )}
                                   >
                                     CV Templates
@@ -163,7 +166,7 @@ export default function NavbarComponent() {
                             alt="Rounded avatar"
                           ></img>
                           <p className="inline-flex items-center justify-between px-2 py-1 text-white rounded-md">
-                            Vong Yuoyi
+                            {login ? login?.username : username}
                           </p>
                         </div>
                       ) : (
@@ -300,7 +303,7 @@ export default function NavbarComponent() {
                                   onClick={() => {
                                     !isAuth &&
                                       CUSTOM_WARNING(
-                                        "Please! login to access more feature"
+                                        "Please! login to access more feature",
                                       );
                                     isAuth
                                       ? navigate("/sidebar/createNewCV")
@@ -311,7 +314,7 @@ export default function NavbarComponent() {
                                     active
                                       ? "bg-gray-100 text-gray-900"
                                       : "text-gray-700 bg-white rounded",
-                                    "block px-4 py-2 text-sm"
+                                    "block px-4 py-2 text-sm",
                                   )}
                                 >
                                   Create New CV
@@ -324,7 +327,7 @@ export default function NavbarComponent() {
                                   onClick={() => {
                                     !isAuth &&
                                       CUSTOM_WARNING(
-                                        "Please! login to access more feature"
+                                        "Please! login to access more feature",
                                       );
                                     isAuth
                                       ? navigate("/sidebar/cvTemplate")
@@ -335,7 +338,7 @@ export default function NavbarComponent() {
                                     active
                                       ? "bg-gray-100 text-gray-900"
                                       : "text-gray-700 bg-white rounded",
-                                    "block px-4 py-2 text-sm"
+                                    "block px-4 py-2 text-sm",
                                   )}
                                 >
                                   CV Templates
@@ -362,7 +365,7 @@ export default function NavbarComponent() {
                           alt="Rounded avatar"
                         ></img>
                         <p className="inline-flex items-center justify-between px-2 py-1 text-white rounded-md">
-                          Vong Yuoyi
+                          {login ? login?.username : username}
                         </p>
                       </div>
                     ) : (
@@ -398,7 +401,6 @@ export default function NavbarComponent() {
               </div>
             )}
           </Transition>
-
         </nav>
       </div>
     </div>

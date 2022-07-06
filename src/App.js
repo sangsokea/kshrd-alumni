@@ -9,9 +9,11 @@ import { ToastContainer, toast } from "react-toastify";
 import SokeaRoute from "./Router/SokeaRoute";
 import AdminBasicRoute from "./Router/AdminBasicRoute";
 import { useLocation } from "react-router-dom";
+import { Button } from "@material-ui/core";
+import { fetchTesting } from "./redux/actions/TestingAction";
+import { decryptToken, fetchLogin } from "./redux/actions/LoginAction";
 
 function App() {
-
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
   const dispatch = useDispatch();
   const [routeName, setRouteName] = useState("");
@@ -24,11 +26,11 @@ function App() {
 
   // listen route
   const location = useLocation();
-  
-    useEffect(() => {
-      console.log(location.pathname)
-      setRouteName(location.pathname)
-    }, [location]);
+
+  useEffect(() => {
+    console.log(location.pathname);
+    setRouteName(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     isAuth ? localStorage.setItem("isAuth", true) : console.log("");
@@ -39,7 +41,7 @@ function App() {
       {/* {console.log(`runing on ${process.env.NODE_ENV}`)}
       {console.log(` ${process.env.REACT_APP_BASE_URL}`)} */}
       <ToastContainer />
-
+      {/* <Button onClick={() => onSubmit()}>Submit</Button> */}
       {routeName.includes("/admin") ? <AdminBasicRoute /> : <BasicRoute />}
       {/* <SokeaRoute /> */}
       {/* {console.log( `runing on ${process.env.NODE_ENV}`)}

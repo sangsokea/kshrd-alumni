@@ -1,47 +1,50 @@
 import { api } from "../../api";
-import { SUCCESS_CREATED } from "../../commons/notify/Notify";
+import {
+  CUSTOM_ERROR,
+  CUSTOM_SUCCESSFUL,
+  SUCCESS_CREATED,
+} from "../../commons/notify/Notify";
 import axios from "axios";
+import { decryptToken } from "./LoginAction";
 
 // action type
 export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
 export const CV_BUILDER_REQUEST = "CV_BUILDER_REQUEST";
 export const CV_BUILDER_FAILURE = "CV_BUILDER_FAILURE";
 
-const token =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
-
+const token = decryptToken();
 // action
-
-const headers = {
-  "Authorization": "Bearer " + token,
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-};
 
 export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
   console.log("--> FetchCVBuilder");
-  console.log(requestBody);
-  dispatch(fetchCVBuilderRequest());
-  requestBody
-    ? fetch("https://kshrdalumni.herokuapp.com/api/v1/profiles", {
-        method: "post",
 
-        headers: headers,
-        body: JSON.stringify({
-          profileDetails: requestBody,
-          public: true,
-        }),
-      })
-        .then((res) => res.json()).then(result => console.log(result))
-        .catch((err) => {
-          // let message = err?.response?.data?.error ?? "Unknow error!";
-          // console.log(`fetch cvbuilder error`);
-          // console.log(err);
-          // dispatch(fetchCVBuilderFailure(message));
-          console.log('error')
-          console.log(err);
-        })
-    : alert("request body empty at post profile");
+  dispatch(fetchCVBuilderRequest());
+  api
+    .post(
+      "/profiles",
+      {
+        profileDetails: requestBody,
+        public: isPublic,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      },
+    )
+    .then((res) => {
+      dispatch(fetchCVBuilderSuccess('Created successfully'))
+      CUSTOM_SUCCESSFUL("Created successfully");
+    })
+    .catch((err) => {
+      let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message;
+      console.log(`fetch cvBuilder error`);
+      console.log(err);
+      dispatch(fetchCVBuilderFailure(message));
+      CUSTOM_ERROR(message);
+    });
 };
 
 const fetchCVBuilderRequest = () => {

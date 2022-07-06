@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useDispatch } from "react-redux";
+
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import EditorContainer from "../EditorContainer";
 import { colors } from "../../commons/colors/colors";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 export default function ExperienceComponent() {
   const [displayExperience, setDisplayExperience] = useState(false);
+  const [description, setdescription] = useState("")
+  const [currentIndex, setcurrentIndex] = useState(0);
   const [experience, setExperience] = useState([
     {
       jobTitle: "",
@@ -15,7 +18,7 @@ export default function ExperienceComponent() {
       endDate: "",
       city: "",
       description: "",
-      isShow: false,
+      isShow: true,
       id: 0,
     },
   ]);
@@ -40,11 +43,22 @@ export default function ExperienceComponent() {
   };
 
   const handleExperienceChange = (index, event) => {
+    setcurrentIndex(index)
     console.log(event.target.value);
     let data = [...experience];
     data[index][event.target.name] = event.target.value;
     setExperience(data);
   };
+
+  useEffect(() => {
+    let data = [...experience];
+    if (description)
+      data[currentIndex].description = description;
+
+    description && setExperience(data);
+  }, [description]);
+
+
 
   const addFieldsExperience = () => {
     setDisplayExperience(true);
@@ -58,14 +72,24 @@ export default function ExperienceComponent() {
         endDate: "",
         city: "",
         description: "",
-        isShow: !experience.isShow,
+        isShow: true,
         id: experience.length,
       };
-      setExperience([newData, ...experience]);
+  
+      const oldData = experience.map((x) => {
+        return {
+          ...x,
+          isShow: false,
+        };
+      });
+      setExperience([...oldData, newData]);
     }
   };
 
-  const removeFieldsExperience = (index) => {
+  const removeFieldsExperience = (index,e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     let data = [...experience];
     data.splice(index, 1);
     setExperience(data);
@@ -147,7 +171,7 @@ export default function ExperienceComponent() {
                 </span>
               </div>
 
-              <div className={input.isShow ? "hidden" : "block"}>
+              <div className={!input.isShow ? "hidden" : "block"}>
                 <div key={index} className="mb-3 ">
                   <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
@@ -256,12 +280,22 @@ export default function ExperienceComponent() {
                       Description
                     </label>
                     <div>
-                      <EditorContainer
-                        // onChange={(event) =>
-                        //   handleExperienceChange(index, event)
-                        // }
+                      {/* <EditorContainer
+                        onChange={(value)=>{
+                          setdescription(value)
+                        }}
                         name="description"
                         value={input.description}
+                      /> */}
+                      <textarea
+                        value={input.description}
+                        onChange={(event) =>
+                          handleExperienceChange(index, event)
+                        }
+                        type="text"
+                        name="description"
+                        className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
                       />
                     </div>
                   </div>
@@ -269,7 +303,7 @@ export default function ExperienceComponent() {
               </div>
 
               <button
-                onClick={() => removeFieldsExperience(index)}
+                onClick={(e) => removeFieldsExperience(index,e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
@@ -284,6 +318,9 @@ export default function ExperienceComponent() {
             Submit
           </button> */}
         </div>
+        {experience.length >= 1 && displayExperience && <div onClick={addFieldsExperience} className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right">
+            + Add more experience
+          </div>}
       </div>
     </>
   );
