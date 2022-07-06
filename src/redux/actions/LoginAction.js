@@ -2,7 +2,7 @@ import { api } from "../../api";
 import { fetchIsAucthenticated } from "./IsAuthenticationAction";
 import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
-import { history } from "../../History";
+import { history } from "../../Router/History";
 import { useNavigate } from "react-router-dom";
 
 // action type

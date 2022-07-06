@@ -6,6 +6,7 @@ import {
 } from "../../commons/notify/Notify";
 import axios from "axios";
 import { decryptToken } from "./LoginAction";
+import { myHistory } from "../../Router/History";
 
 // action type
 export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
@@ -37,6 +38,7 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
     .then((res) => {
       dispatch(fetchCVBuilderSuccess('Created successfully'))
       CUSTOM_SUCCESSFUL("Created successfully");
+      myHistory.replace('/sidebar/aboutMe')
     })
     .catch((err) => {
       let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message;
