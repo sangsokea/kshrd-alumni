@@ -26,13 +26,9 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
-<<<<<<< HEAD
-    "daisyui": "^2.17.0",
-=======
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "daisyui": "^2.15.4",
->>>>>>> e9c56da8e89261b7edfdc718ff1637145696269b
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "draftjs-to-markdown": "^0.6.0",

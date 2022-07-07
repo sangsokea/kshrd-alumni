@@ -1,4 +1,5 @@
 import { api } from "../../api";
+import { decryptToken } from "./LoginAction";
 
 // action type
 export const UPDATE_STATUS_USER_SUCCESS = "UPDATE_STATUS_USER_SUCCESS";
@@ -7,22 +8,26 @@ export const UPDATE_STATUS_USER_FAILURE = "UPDATE_STATUS_USER_FAILURE";
 
 // action
 
-const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYW5nc29rZWExMDlAZ21haWwuY29tIiwiaWF0IjoxNjU2OTM2NTMwLCJleHAiOjE2NTk1NjYzMzB9.YLX-9gDDsgwGwcmLI-V23ViEX1FAoFvTdIzSOsvtBvZH_QWAO5tC32MJmmjFj6jz9nP2Cyw3x0dssZGHlmemNw'
+const token = decryptToken()
 
-export const fetchUpdateStatusUser = (status, id) => (dispatch) => {
+export const fetchUpdateStatusUser = (id,status) => (dispatch) => {
+  alert(status)
+  console.log("Auth ID : ", id)
+  console.log("Status : ", status)
+  console.log(token)
   console.log("--> FetchUpdateStatusUser");
   dispatch(fetchUpdateStatusUserRequest());
   api
-    .get(
-      `/admin/user/${id}?${status}`,
+    .put(
+      `/admin/user/${id}/${status}`,{},
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { 
+          Authorization: `Bearer ${token}`
+        }
       }
     )
     .then((res) => {
-      console.log(`--> fetch access token`);
+      console.log(`--> fetch upadte status`);
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchUpdateStatusUserSuccess(res?.data?.payload));

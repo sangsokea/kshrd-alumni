@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import AccessTokenReducer from "./reducer/GetUserProfileReducer";
+import AccessTokenReducer from "./reducer/GetAuthUserProfileReducer";
 import CVBuilderReducer from "./reducer/CVBuilderReducer";
 import EmailReducer from "./reducer/EmailReducer";
 import IsAuthenticationReducer from "./reducer/IsAuthenticationReducer";
@@ -13,9 +13,10 @@ import PortfolioPageReducer from "./reducer/localReducer/PortfolioPageReducer";
 import SkillsReducer from "./reducer/localReducer/SkillsReducer";
 import LoginReducer from "./reducer/LoginReducer";
 import RegisterReducer from "./reducer/RegisterReducer";
-import GetUserProfileReducer from "./reducer/GetUserProfileReducer";
-import UpdateProfileStatusReducer from "./reducer/UpdateProfileStatusReducer";
 import UploadImageReducer from "./reducer/UploadImageReducer";
+import UpdateStatusUserReducer from "./reducer/UpdateStatusUserReducer";
+import GetAuthUserProfileReducer from "./reducer/GetAuthUserProfileReducer";
+import GetAllUserProfileReducer from "./reducer/GetAllUserProfileReducer";
 
 export default combineReducers({
   register: RegisterReducer,
@@ -25,13 +26,14 @@ export default combineReducers({
   localExperience: ExperienceReducer,
   aboutMePage: AboutMePageReducer,
   portfolioPage: PortfolioPageReducer,
-  getuserProfile: GetUserProfileReducer,
-  updatestatusUser : UpdateProfileStatusReducer,
+  getauthuserProfile: GetAuthUserProfileReducer,
+  updatestatusUser : UpdateStatusUserReducer,
   cvBuilder: CVBuilderReducer,
   educations: EducationReducer,
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
   uploadImage: UploadImageReducer,
-  editor: EditorComponentReducer
+  editor: EditorComponentReducer,
+  getalluserProfile: GetAllUserProfileReducer,
 });

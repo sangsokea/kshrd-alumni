@@ -1,8 +1,8 @@
 import {
-  GET_USER_PROFILE_SUCCESS,
-  GET_USER_PROFILE_REQUEST,
-  GET_USER_PROFILE_FAILURE,
-} from "../actions/GetUserProfileAction";
+  GET_AUTH_USER_PROFILE_SUCCESS,
+  GET_AUTH_USER_PROFILE_REQUEST,
+  GET_AUTH_USER_PROFILE_FAILURE,
+} from "../actions/GetAuthUserProfileAction";
 
 const initialState = {
   loading: false,
@@ -12,19 +12,19 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER_PROFILE_REQUEST:
+    case GET_AUTH_USER_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case GET_USER_PROFILE_SUCCESS:
+    case GET_AUTH_USER_PROFILE_SUCCESS:
       return {
         loading: false,
         items: action.payload,
         error: "",
       };
 
-    case GET_USER_PROFILE_FAILURE:
+    case GET_AUTH_USER_PROFILE_FAILURE:
       return {
         loading: false,
         items: "",

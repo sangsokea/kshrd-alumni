@@ -4,7 +4,8 @@ import AdminPagination from "./AdminPagination";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import ButtonAddNewStudent from "./ButtonAddNewStudent";
-import { fetchGetUserProfile } from "../../redux/actions/GetUserProfileAction";
+import { fetchGetUserProfile } from "../../redux/actions/GetAuthUserProfileAction";
+import { fetchGetAllUserProfle } from "../../redux/actions/GetAllUserProfileAction";
 
 export default function AdminHome() {
   // const [data, setData] = useState();
@@ -28,9 +29,9 @@ export default function AdminHome() {
     }
     
   ]; 
-  const data = useSelector((state) => state?.getuserProfile?.items);
+  const data = useSelector((state) => state?.getalluserProfile?.items);
   useEffect(() => {
-    dispatch(fetchGetUserProfile(10, 1));
+    dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
   console.log(data);
 
@@ -198,7 +199,7 @@ export default function AdminHome() {
                         {item?.profileDetails?.personalDetails?.lastName}
                       </td>
                       <td class="px-6 py-4">
-                        {item?.profileDetails?.personalDetails?.sex}
+                        {item?.profileDetails?.personalDetails?.gender}
                       </td>
                       <td class="px-6 py-4">
                         {arr.length}
