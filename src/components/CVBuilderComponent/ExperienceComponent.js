@@ -58,8 +58,6 @@ export default function ExperienceComponent() {
     description && setExperience(data);
   }, [description]);
 
-
-
   const addFieldsExperience = () => {
     setDisplayExperience(true);
     if (!displayExperience) {
@@ -224,7 +222,9 @@ export default function ExperienceComponent() {
                             handleExperienceChange(index, event)
                           }
                           value={input.startDate}
-                          type="date"
+                          type="number"
+                          min="1900"
+                          max="2099"
                           name="startDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="dd/mm/yy"
@@ -243,7 +243,9 @@ export default function ExperienceComponent() {
                             handleExperienceChange(index, event)
                           }
                           value={input.endDate}
-                          type="date"
+                          type="number"
+                          min="1900"
+                          max="2099"
                           name="endDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="dd/mm/yy"

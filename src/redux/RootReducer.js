@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import AccessTokenReducer from "./reducer/GetAuthUserProfileReducer";
 import CVBuilderReducer from "./reducer/CVBuilderReducer";
 import EmailReducer from "./reducer/EmailReducer";
+import FetchExperienceReducer from "./reducer/OwnProfilesReducer";
 import IsAuthenticationReducer from "./reducer/IsAuthenticationReducer";
 import AboutMePageReducer from "./reducer/localReducer/AboutMePageReducer";
 import AddSectionReducer from "./reducer/localReducer/AddSectionReducer";
@@ -18,6 +19,8 @@ import UpdateStatusUserReducer from "./reducer/UpdateStatusUserReducer";
 import GetAuthUserProfileReducer from "./reducer/GetAuthUserProfileReducer";
 import GetAllUserProfileReducer from "./reducer/GetAllUserProfileReducer";
 import GetUserProfileByIdReducer from "./reducer/GetUserProfileByIdReducer";
+import OwnProfilesReducer from "./reducer/OwnProfilesReducer";
+import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer"
 
 export default combineReducers({
   register: RegisterReducer,
@@ -34,8 +37,11 @@ export default combineReducers({
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
+  changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
   editor: EditorComponentReducer,
   getalluserProfile: GetAllUserProfileReducer,
   getUserProfileById: GetUserProfileByIdReducer,
+  ownProfiles : OwnProfilesReducer
+
 });
