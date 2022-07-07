@@ -1,4 +1,5 @@
 import { api } from "../../api";
+import { CUSTOM_ERROR } from "../../commons/notify/Notify";
 import { fetchLogin } from "./LoginAction";
 
 // action type
@@ -39,6 +40,7 @@ export const fetchRegister = (email, username, password) => (dispatch) => {
     })
     .catch((err) => {
       let message = err?.response?.data?.error ?? "Unknow error!";
+      CUSTOM_ERROR(message)
       console.log(`fetch register error`);
       console.log(err);
       dispatch(fetchRegisterFailure(message));

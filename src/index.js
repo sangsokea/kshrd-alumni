@@ -7,21 +7,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { render } from "react-dom";
-import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { HistoryRouter } from "./Router/HistoryRouter";
+import { myHistory } from "./Router/History";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const history = createBrowserHistory({ window });
 
 root.render(
   <React.StrictMode>
-    {/* <HistoryRouter history={history}> */}
-    <Provider store={store}>
-      <BrowserRouter>
+    <HistoryRouter history={myHistory}>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </Provider>
-    {/* </HistoryRouter> */}
+      </Provider>
+    </HistoryRouter>
   </React.StrictMode>,
   document.getElementById("root"),
 );
