@@ -6,6 +6,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import ButtonAddNewStudent from "./ButtonAddNewStudent";
 import { fetchGetUserProfile } from "../../redux/actions/GetAuthUserProfileAction";
 import { fetchGetAllUserProfle } from "../../redux/actions/GetAllUserProfileAction";
+import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
 
 export default function AdminHome() {
   // const [data, setData] = useState();
@@ -33,6 +34,7 @@ export default function AdminHome() {
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
+
   console.log(data);
 
   const navigate = useNavigate();
@@ -210,9 +212,13 @@ export default function AdminHome() {
                       <td class="px-6 py-4">
                         <button
                           onClick={() => {
-                            navigate("/admin/view", { state: { item } });
+                            // navigate("/admin/view", { state: { item } })
+                            console.log(item.authUserId)
+                            dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
+                            
                           }}
                           className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
+                          
                         >
                           View
                         </button>

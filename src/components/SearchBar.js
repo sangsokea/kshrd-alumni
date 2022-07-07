@@ -14,19 +14,11 @@ import { ReactComponent as More } from "../commons/icon/More.svg";
 import { fetchUpdateStatusUser } from "../redux/actions/UpdateStatusUserAction";
 import { useDispatch, useSelector } from "react-redux";
 import { ExclamationIcon } from "@heroicons/react/solid";
+import { fetchGetAuthUserProfile } from "../redux/actions/GetAuthUserProfileAction";
 
 function SearchBar({ placeholder, data }) {
-  const [cart, setCart] = useState([]);
-
-  function addItemToCart(e) {
-    const item = e.target.value;
-    console.log(item);
-    setCart([...cart, item]);
-  }
+  
   const dispatch = useDispatch();
-  const datas = useSelector((state) => state?.updatestatusProfile?.items);
-  console.log(datas);
-
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [items, setItems] = useState(data);
@@ -241,7 +233,9 @@ function SearchBar({ placeholder, data }) {
                                                     type="button"
                                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3 sm:w-auto sm:text-sm"
                                                     onClick={() =>
-                                                      setOpen(false)
+                                                      {setOpen(false)
+                                                        dispatch(fetchUpdateStatusUser(item.id, false))
+                                                        }
                                                     }
                                                   >
                                                     Disable
@@ -250,7 +244,10 @@ function SearchBar({ placeholder, data }) {
                                                     type="button"
                                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  sm:ml-3 sm:w-auto sm:text-sm"
                                                     onClick={() =>
-                                                      setOpen(false)
+                                                      {setOpen(false)
+                                                      dispatch(fetchUpdateStatusUser(item.id, true))
+                                                      }
+                                                      
                                                     }
                                                     ref={cancelButtonRef}
                                                   >

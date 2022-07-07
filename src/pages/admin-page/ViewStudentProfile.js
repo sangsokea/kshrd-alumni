@@ -1,11 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Add } from "../../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 import { Transition, Popover } from "@headlessui/react";
+import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ViewStudentProfile() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state?.getUserProfileById?.items);
+  useEffect(() => {
+    dispatch(fetchGetUserProfileById(data.authUserId,10, 1));
+  }, [dispatch]);
+  console.log(data);
   const [addSkill, setAddSkill] = useState("");
   const [display, setDisplay] = useState(false);
   const [vall, setTitle] = useState(true);

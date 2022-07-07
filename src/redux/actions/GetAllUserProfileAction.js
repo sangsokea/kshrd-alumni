@@ -1,5 +1,7 @@
 import { api } from "../../api";
 import { decryptToken } from "./LoginAction";
+import { myHistory } from "../../Router/History";
+import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL, SUCCESS_CREATED } from "../../commons/notify/Notify";
 
 // action type
 export const GET_ALL_USER_PROFILE_SUCCESS = "GET_ALL_USER_PROFILE_SUCCESS";
@@ -27,6 +29,8 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchGetAllUserProfleSuccess(res?.data?.payload));
+        SUCCESS_CREATED("Date successfully");
+        myHistory.replace('/admin/home')
       } else {
         let message = res?.response?.data?.error ?? "Unknow error!";
         dispatch(fetchGetAllUserProfleFailure(message));
@@ -37,6 +41,7 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchGetAllUserProfleFailure(message));
+      CUSTOM_ERROR(message);
     });
 };
 

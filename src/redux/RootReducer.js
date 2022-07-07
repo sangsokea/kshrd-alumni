@@ -17,6 +17,7 @@ import UploadImageReducer from "./reducer/UploadImageReducer";
 import UpdateStatusUserReducer from "./reducer/UpdateStatusUserReducer";
 import GetAuthUserProfileReducer from "./reducer/GetAuthUserProfileReducer";
 import GetAllUserProfileReducer from "./reducer/GetAllUserProfileReducer";
+import GetUserProfileByIdReducer from "./reducer/GetUserProfileByIdReducer";
 
 export default combineReducers({
   register: RegisterReducer,
@@ -36,4 +37,5 @@ export default combineReducers({
   uploadImage: UploadImageReducer,
   editor: EditorComponentReducer,
   getalluserProfile: GetAllUserProfileReducer,
+  getUserProfileById: GetUserProfileByIdReducer,
 });
