@@ -1,12 +1,12 @@
 import { api } from "../../api";
 import { decryptToken } from "./LoginAction";
+import { decryptTokenSecond } from "./UploadImageAction";
 
 // action type
 export const OWN_PROFILES_SUCCESS = "OWN_PROFILES_SUCCESS";
 export const OWN_PROFILES_REQUEST = "OWN_PROFILES_REQUEST";
 export const OWN_PROFILES_FAILURE = "OWN_PROFILES_FAILURE";
 
-const token = decryptToken();
 
 // action
 export const fetchOwnProfiles = () => (dispatch) => {
@@ -21,7 +21,7 @@ export const fetchOwnProfiles = () => (dispatch) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
         },
       }
     )
@@ -30,6 +30,7 @@ export const fetchOwnProfiles = () => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchOwnProfilesSuccess(res?.data?.payload));
+        localStorage.setItem("ownProfile", JSON.stringify(res?.data?.payload?.at(-1)));
       } else {
         dispatch(fetchOwnProfilesFailure(res?.data?.payload.error));
       }

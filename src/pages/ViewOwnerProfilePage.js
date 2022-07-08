@@ -24,6 +24,11 @@ export default function ViewOwnerProfilePage() {
       const localData = localStorage.getItem("view");
       const itemFromAlumni = JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
+    }else{
+      const localData = localStorage.getItem("ownProfile");
+      const itemFromAlumni = JSON.parse(localData);
+      setDataFromViewAlumni(itemFromAlumni?.profileDetails);
+
     }
   }, [location]);
 
