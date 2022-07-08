@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
 import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
@@ -8,12 +8,28 @@ import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction
 export default function ViewOwnerProfilePage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
+  const [fromViewAlumni, setFromViewAlumni] = useState(false);
+  const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
+
+  const location = useLocation();
 
   useEffect(() => {
     setIsEdit(state);
   }, [state]);
 
+  useEffect(() => {
+    let isFromAlumni = location?.state?.fromViewAlumni;
+    setFromViewAlumni(isFromAlumni);
+    if (isFromAlumni) {
+      const localData = localStorage.getItem("view");
+      const itemFromAlumni = JSON.parse(localData);
+      isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
+    }
+  }, [location]);
+
   const [isEdit, setIsEdit] = useState(state);
+
+  console.log(dataFromViewAlumni);
 
   return (
     <>
@@ -30,12 +46,22 @@ export default function ViewOwnerProfilePage() {
             />
           </div>
           <div className="flex laptop:justify-between mt-8 laptop:w-full">
-            <p
-              className="text-lg laptop:text-2xl desktop:text-4xl font-bold"
-              style={styles}
-            >
-              Vong Yuoyi
-            </p>
+            {dataFromViewAlumni?.personalDetails ? (
+              <p
+                className="text-lg laptop:text-2xl desktop:text-4xl font-bold"
+                style={styles}
+              >
+                {dataFromViewAlumni?.personalDetails?.firstName}{" "}
+                {dataFromViewAlumni?.personalDetails?.lastName}
+              </p>
+            ) : (
+              <p
+                className="text-lg laptop:text-2xl desktop:text-4xl font-bold"
+                style={styles}
+              >
+                Name is empty
+              </p>
+            )}
 
             <button
               type="button"
@@ -64,15 +90,19 @@ export default function ViewOwnerProfilePage() {
 
           <p className="mt-3 text-md laptop:text-lg desktop:text-2xl">
             {" "}
-            Full Stack Developer
+            My summary Below
           </p>
-          <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
-            Hi, my name is Vong Yuoyi and I'm a senior software engineer.
-            Welcome to my personal website! in frontend and backend development
-            for complex scalable web apps. If you want to know how I may help
-            your project? Check out my project portfolio and online resume.
-          </p>
+          {dataFromViewAlumni?.personalDetails?.summary ? (
+            <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+              {dataFromViewAlumni?.personalDetails?.summary}
+            </p>
+          ) : (
+            <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+              summary is empty
+            </p>
+          )}
           <p class="border-[1px] border-solid border-bgSkill laptop:w-full mt-12 w-[300px]"></p>
+          {/* education */}
           <div class="flex mt-12 laptop:mb-10 mb-5">
             <p
               class="border border-solid h-10 border-3"
@@ -82,14 +112,218 @@ export default function ViewOwnerProfilePage() {
               class="font-bold ml-4 text-lg laptop:text-2xl desktop:text-4xl "
               style={styles}
             >
-              What I can do{" "}
+              Education{" "}
             </p>
           </div>
-          <p className="laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
-            I am gratuated student from HRD and have more than 2 years'
-            experience building software for clients. Below is a quick overview
-            of my main technical skill sets and technologies I use.{" "}
-          </p>
+          {dataFromViewAlumni?.education ? (
+            <>
+              {dataFromViewAlumni?.education?.map((obj, i) => (
+                <div className="rounded-md p-5 my-5 bg-gray-100">
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ School
+                    <span className="block w-1/2">: {obj?.school}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ City <span className="block w-1/2">: {obj?.city}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Degree{" "}
+                    <span className="block w-1/2">: {obj?.degree}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full mr-2">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">: {obj?.startDate}</span>{" "}
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">
+                      : {obj?.endDate ? obj?.endDate : "present"}
+                    </span>
+                  </h4>
+
+                  {obj?.description && (
+                    <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+                      {obj.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </>
+          ) : (
+            "Empty"
+          )}
+          {/* employee history */}
+          <div class="flex mt-12 laptop:mb-10 mb-5">
+            <p
+              class="border border-solid h-10 border-3"
+              style={borderStyle}
+            ></p>
+            <p
+              class="font-bold ml-4 text-lg laptop:text-2xl desktop:text-4xl "
+              style={styles}
+            >
+              Experienced{" "}
+            </p>
+          </div>
+          {dataFromViewAlumni?.employmentHistory ? (
+            <>
+              {dataFromViewAlumni?.employmentHistory?.map((obj, i) => (
+                <div className="rounded-md p-5 my-5 bg-gray-100">
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Company
+                    <span className="block w-1/2">: {obj?.employee}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ City <span className="block w-1/2">: {obj?.city}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Position{" "}
+                    <span className="block w-1/2">: {obj?.jobTitle}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full mr-2">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">: {obj?.startDate}</span>{" "}
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">
+                      : {obj?.endDate ? obj?.endDate : "present"}
+                    </span>
+                  </h4>
+
+                  {obj?.description && (
+                    <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+                      {obj.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </>
+          ) : (
+            "Empty"
+          )}
+
+          {/* Skill */}
+          <div class="flex mt-12 laptop:mb-10 mb-5">
+            <p
+              class="border border-solid h-10 border-3"
+              style={borderStyle}
+            ></p>
+            <p
+              class="font-bold ml-4 text-lg laptop:text-2xl desktop:text-4xl "
+              style={styles}
+            >
+              Skills{" "}
+            </p>
+          </div>
+          {dataFromViewAlumni?.skill ? (
+            <>
+              {dataFromViewAlumni?.skill?.map((obj, i) => (
+                <div className="rounded-md p-5 my-5 bg-gray-100">
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Skill
+                    <span className="block w-1/2">: {obj?.skill}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Level{" "}
+                    <span className="block w-1/2">: {obj?.levelExpert}</span>
+                  </h4>
+
+                  {obj?.description && (
+                    <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+                      {obj.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </>
+          ) : (
+            "Empty"
+          )}
+
+          {/* Licenses & Cerifications */}
+          <div class="flex mt-12 laptop:mb-10 mb-5">
+            <p
+              class="border border-solid h-10 border-3"
+              style={borderStyle}
+            ></p>
+            <p
+              class="font-bold ml-4 text-lg laptop:text-2xl desktop:text-4xl "
+              style={styles}
+            >
+              Licenses & Cerifications{" "}
+            </p>
+          </div>
+          {dataFromViewAlumni?.education ? (
+            <>
+              {dataFromViewAlumni?.education?.map((obj, i) => (
+                <div className="rounded-md p-5 my-5 bg-gray-100">
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ School
+                    <span className="block w-1/2">: {obj?.school}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ City <span className="block w-1/2">: {obj?.city}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Degree{" "}
+                    <span className="block w-1/2">: {obj?.degree}</span>
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full mr-2">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">: {obj?.startDate}</span>{" "}
+                  </h4>
+                  <h4 className="flex justify-between tablet:w-1/2 w-full">
+                    ➡️ Start Date{" "}
+                    <span className="block w-1/2">
+                      : {obj?.endDate ? obj?.endDate : "present"}
+                    </span>
+                  </h4>
+
+                  {obj?.description && (
+                    <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+                      {obj.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </>
+          ) : (
+            "Empty"
+          )}
+
+          {dataFromViewAlumni?.addSection ? (
+            <>
+              {dataFromViewAlumni?.addSection?.map((obj, i) => (
+                <>
+                  {/* Section */}
+                  <div class="flex mt-12 laptop:mb-10 mb-5">
+                    <p
+                      class="border border-solid h-10 border-3"
+                      style={borderStyle}
+                    ></p>
+                    <p
+                      class="font-bold ml-4 text-lg laptop:text-2xl desktop:text-4xl "
+                      style={styles}
+                    >
+                      {obj?.customSection}
+                    </p>
+                  </div>
+                  <div className="rounded-md bg-gray-100">
+                   
+
+                    {obj?.sectionValue && (
+                      <p className="p-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
+                        {obj.sectionValue}
+                      </p>
+                    )}
+                  </div>
+                </>
+              ))}
+            </>
+          ) : (
+            "Empty"
+          )}
 
           <div className="grid grid-cols-1 gap-5 laptop:grid-cols-3 justify-between mx-3 laptop:mt-10 mt-5">
             <div className="">
