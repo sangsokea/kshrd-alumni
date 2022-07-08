@@ -7,11 +7,12 @@ import "../commons/styles/text.css";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import alumni2 from "../commons/images/Alumni/alumni2.jpg";
 import alumni3 from "../commons/images/Alumni/alumni3.jpg";
-import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import alumni4 from "../commons/images/Alumni/alumni4.webp";
 import alumni5 from "../commons/images/Alumni/alumni5.jpg";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import axios from "axios";
+import { Pagination } from "@mui/material";
 // import alumni6 from "../commons/images/Alumni/alumni6.jpg";
 
 export default function ViewAlumniPage() {
@@ -41,7 +42,7 @@ export default function ViewAlumniPage() {
     axios(config)
       .then(({ data }) => {
         console.log(data?.hits?.total?.value);
-        setTotalHits(data?.hits?.value);
+        setTotalHits(data?.hits?.total?.value);
         setElasticData(data?.hits?.hits);
       })
       .catch(function (error) {
@@ -49,53 +50,45 @@ export default function ViewAlumniPage() {
       });
   };
 
-  const [data, setData] = useState([
-    {
-      profile: alumni1,
-      name: "Mr. Sang Sokea",
-      bio: "Experienced programmer with serveral successful projects under my belt.",
-    },
-    {
-      profile: alumni4,
-      name: "Ms. Vong Yuoyi",
-      bio: "I've been working in one of the BIG 4 companies for seven years, climbing ...",
-    },
-    {
-      profile: alumni2,
-      name: "Ms. Pol Paradis",
-      bio: "I dream of working at Google, working on applications billions of people use ...",
-    },
-    {
-      profile: alumni3,
-      name: "Mr. Kong Sachayarith",
-      bio: "Passionate coder, responsible father, best colleague ever.",
-    },
-    {
-      profile: alumni3,
-      name: "Mr. Em Boonlin",
-      bio: "Well, I've been working on mobile app development for four years now, ...",
-    },
-    {
-      profile: alumni5,
-      name: "Ms. Stranger Khatia",
-      bio: "Looking for a part time job I can do while still at school, ideally working ...",
-    },
-  ]);
-
-  const handleView =(item) => {
-    localStorage.setItem('view', JSON.stringify(item))
-    navigate("/sidebar/aboutMe", {state: {
-      fromViewAlumni: true
-    }})
-  }
+  const handleView = (item) => {
+    localStorage.setItem("view", JSON.stringify(item));
+    navigate("/sidebar/aboutMe", {
+      state: {
+        fromViewAlumni: true,
+      },
+    });
+  };
 
   React.useEffect(() => {
     let username = localStorage.getItem("username");
     setUsername(username);
-  }, []);
+    var config = {
+      method: "get",
+      url: `http://18.142.237.124:9200/person/_search?pretty=true&q=*:*&from=${from}&size=${size}`,
+      headers: {
+        Authorization: "Basic ZWxhc3RpYzpLZHB2eFM5aVRaUzJkb0prQ0JYbw==",
+      },
+    };
 
+    axios(config)
+      .then(({ data }) => {
+        console.log(data?.hits?.total?.value);
+        setTotalHits(data?.hits?.total?.value);
+        setElasticData(data?.hits?.hits);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [size]);
+
+  const handleChange = (event, value) => {
+    setSize(value);
+  };
+
+  console.log(size)
+  console.log(totalHits)
   return (
-    <div className="desktop:container desktop:mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
+    <div className="desktop:container h-full desktop:mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
       <div className="grid grid-cols-4">
         {/* <div className="laptop:block laptop:col-span-1">
           <div className="flex flex-col w-auto h-screen px-4 py-8 overflow-y-auto border-r ">
@@ -115,9 +108,13 @@ export default function ViewAlumniPage() {
       <div className="col-span-3 laptop:col-span-2 desktop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
         <img src={view_alumni} alt="view alumni logo"></img>
         <div className="p-5">
-          <div className="mt-5 mb-3 text-2xl font-bold">Results</div>
+        <div>
+          <h4 className="p-1 text-blue-900 font-light">➡️ Set number of cards to display :</h4>
+        <Pagination defaultPage={10} value={size} count={20} onChange={handleChange} variant="outlined" color="primary" />
+        </div>
+          <div className="mt-5 mb-3 text-2xl font-bold">Results ({totalHits})</div>
           <form>
-            <div className="relative mb-5 focus:border-none desktop::w-1/3 laptop:w-1/3 tablet:w-1/2 w-1/2">
+            <div className="relative mb-5 focus:border-none desktop::w-1/3 laptop:w-1/3 tablet:w-1/2 w-full">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -145,22 +142,26 @@ export default function ViewAlumniPage() {
             </div>
           </form>
           {/* card */}
-          <div className="flex flex-wrap overflow-auto">
-            {elasticData?.map(({ _source: { object: item } }, index) => (
-              <div className="desktop:w-1/2 laptop:w-1/2 tablet:w-full flex-1 mt-3 mx-2 ">
+          <div className="grid gap-2 grid-cols-1 desktop:grid-cols-2 desktop:gap-2 laptop:grid-cols-2 laptop:gap-2 tablet:grid-cols-2 tablet:gap-2 ">
+            {elasticData?.slice(0, size).map(({ _source: { object: item } }, index) => (
+              <div className="w-full">
                 <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
-                  <img
-                    className="w-24 h-24 rounded-full"
-                    src={item?.personalDetails?.profile}
-                    alt="alumni"
-                  />
+                  <div className="tablet:h-32 h-24 w-36">
+                    <img
+                      className=" desktop:h-32 tablet:h-32 desktop:w-36 laptop:w-36 laptop:32 h-24 w-24 rounded"
+                      src={item?.personalDetails?.profile ?? alumni4}
+                      alt="alumni"
+                    />
+                  </div>
                   <div className="flex flex-col justify-between mt-5 ml-5 leading-normal w-full">
                     <h6 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
                       {item?.personalDetails?.firstName}{" "}
                       {item?.personalDetails?.lastName}
                     </h6>
                     <p className="text-sm laptop:text-md desktop:text-lg mb-7 font-normal text-black textLine w-52">
-                      {item?.personalDetails?.summary? item?.personalDetails?.summary: "No Summary"}
+                      {item?.personalDetails?.summary
+                        ? item?.personalDetails?.summary
+                        : "No Summary"}
                     </p>
                   </div>
                   <button
@@ -176,7 +177,6 @@ export default function ViewAlumniPage() {
           </div>
         </div>
       </div>
-      <PaginationComponent />
     </div>
   );
 }
