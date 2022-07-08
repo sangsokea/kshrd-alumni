@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { fetchTesting } from "./redux/actions/TestingAction";
 import { decryptToken, fetchLogin } from "./redux/actions/LoginAction";
+import { fetchOwnProfiles } from "./redux/actions/OwnProfilesAction";
 
 function App() {
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
@@ -30,11 +31,15 @@ function App() {
   useEffect(() => {
     console.log(location.pathname);
     setRouteName(location.pathname);
+    if(localStorage.getItem('ownProfile') === null)
+    location.pathname.includes('/sidebar/aboutMe') && isAuth && dispatch(fetchOwnProfiles())
   }, [location]);
 
   useEffect(() => {
     isAuth ? localStorage.setItem("isAuth", true) : console.log("");
   }, [isAuth]);
+
+
 
   return (
     <>
