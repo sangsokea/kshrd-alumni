@@ -12,13 +12,13 @@ export const GET_USER_PROFILE_BY_ID_FAILURE = "GET_USER_PROFILE_BY_ID_FAILURE";
 
 const token = decryptToken()
 
-export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => {
+export const fetchGetUserProfileById = (id,limit,page) => (dispatch) => {
   console.log("--> FetchGetUserProfileById");
   dispatch(fetchGetUserProfileByIdRequest());
-  console.log(authUserId)
+  console.log(id)
   api
     .get(
-      `/admin/${authUserId}?limit=${limit}&page=${page}`,
+      `/admin/${id}?limit=${limit}&page=${page}`,
       {
         headers: { 
           Authorization: `Bearer ${token}`
@@ -28,17 +28,19 @@ export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => 
     .then((res) => {
       console.log(`--> fetch get user profile by id`);
       console.log(res);
-      if (!res?.data?.payload.error) {
+      if (res?.data?.payload) {
         dispatch(fetchGetUserProfileByIdSuccess(res?.data?.payload));
-        SUCCESS_CREATED("Date successfully");
-        myHistory.replace(`/admin/view/${authUserId}?limit=${limit}&page=${page}`)
+        SUCCESS_CREATED(res.data.message);
+        setTimeout(()=>{
+          myHistory.replace('/admin/view')
+        },100)
       } else {
-        let message = res?.response?.data?.error ?? "Unknow error!";
+        let message = res?.response?.data?.error ?? res.message;
         dispatch(fetchGetUserProfileByIdFailure(message));
       }
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
+      let message = err?.response?.data?.error ?? err.message;
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchGetUserProfileByIdFailure(message));

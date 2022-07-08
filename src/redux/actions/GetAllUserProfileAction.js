@@ -29,7 +29,7 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload.error) {
         dispatch(fetchGetAllUserProfleSuccess(res?.data?.payload));
-        SUCCESS_CREATED("Date successfully");
+        // SUCCESS_CREATED("Date successfully");
         myHistory.replace('/admin/home')
       } else {
         let message = res?.response?.data?.error ?? "Unknow error!";

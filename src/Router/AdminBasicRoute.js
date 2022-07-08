@@ -21,10 +21,10 @@ export default function AdminBasicRoute() {
   const [isAuth, setIsAuth] = useState();
 
   const location = useLocation();
-  console.log(JSON.parse(localStorage.getItem("adminAuth")));
-  console.log(isAuth);
+  // console.log(JSON.parse(localStorage.getItem("adminAuth")));
+  // console.log(isAuth);
   useEffect(() => {
-    console.log(location.pathname);
+    // console.log(location.pathname);
     setRouteName(location.pathname);
   }, [location]);
 
@@ -52,7 +52,7 @@ export default function AdminBasicRoute() {
               ></Route>
               <Route path="filterAlumin" element={<AdminHomePage />}></Route>
               <Route path="manageCV" element={<AdminManageCV />}></Route>
-              <Route path="view/:authUserId" element={<ViewStudentProfile/>}/>
+              <Route path="view" element={<ViewStudentProfile/>}/>
               <Route path="view/edite" element={<EditEducationStudent/>}/>
               <Route path="view/editem" element={<EditEmploymentHistoryStudent/>}/>
             </Route>

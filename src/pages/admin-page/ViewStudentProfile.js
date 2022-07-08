@@ -9,10 +9,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function ViewStudentProfile() {
   const dispatch = useDispatch();
+  const [state, setState] = useState({
+
+  })
   const data = useSelector((state) => state?.getUserProfileById?.items);
-  useEffect(() => {
-    dispatch(fetchGetUserProfileById(data.authUserId,10, 1));
-  }, [dispatch]);
+  useEffect(()=> {
+    if (data) {
+      setState({...data})
+    }
+  }, [data]);
   console.log(data);
   const [addSkill, setAddSkill] = useState("");
   const [display, setDisplay] = useState(false);
@@ -159,7 +164,7 @@ export default function ViewStudentProfile() {
         </div>
         <div className="mt-19 ml-11  font-maven grid grid-cols-6 font-bold text-ch text-xl">
           <div className="col-span-5">
-            <p className="mb-3">Vong Yuoyi</p>
+            <p className="mb-3"></p>
             <div class="flex items-center">
               <div class="">
                 <label
@@ -169,14 +174,18 @@ export default function ViewStudentProfile() {
                   ID :
                 </label>
               </div>
-              <div class="">
+              {data?.map((item, key) => (
+                <div class="" key={key}>
                 <input
                   class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   id="inline-full-name"
                   type="text"
-                  value="10"
+                  placeholder={item.id}
+                 
                 />
               </div>
+              ))}
+              
             </div>
           </div>
           <div className="flex items-center justify-end flex-col">
@@ -312,7 +321,7 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="username"
-                value="Alanah"
+                value=""
                 type="text"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
@@ -324,7 +333,7 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="emailAddress"
-                value="Bryden"
+                value=""
                 type="text"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
@@ -335,7 +344,7 @@ export default function ViewStudentProfile() {
                 Phone Number <span className="text-red-700">*</span>
               </label>
               <input
-                value="010231010"
+                value=""
                 id=""
                 type="tel"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -359,7 +368,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="email"
-                value="abryden0@meetup.com"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -370,7 +379,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="text"
-                value="phnom penh"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -387,7 +396,7 @@ export default function ViewStudentProfile() {
               <input
                 id="username"
                 type="text"
-                value="SR"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -399,7 +408,7 @@ export default function ViewStudentProfile() {
               <input
                 id="emailAddress"
                 type="email"
-                value="G1"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -411,7 +420,7 @@ export default function ViewStudentProfile() {
               <input
                 id="password"
                 type="text"
-                value="Spring"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -426,7 +435,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="text"
-                value="PP"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -435,7 +444,7 @@ export default function ViewStudentProfile() {
                 Group Name <span className="text-red-700">*</span>
               </label>
               <input
-                value="G2"
+                value=""
                 id="passwordConfirmation"
                 type="text"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -448,7 +457,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type=""
-                value="ios"
+                value=""
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
