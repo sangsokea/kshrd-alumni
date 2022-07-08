@@ -12,13 +12,13 @@ export const GET_USER_PROFILE_BY_ID_FAILURE = "GET_USER_PROFILE_BY_ID_FAILURE";
 
 const token = decryptToken()
 
-export const fetchGetUserProfileById = (id,limit,page) => (dispatch) => {
+export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => {
   console.log("--> FetchGetUserProfileById");
   dispatch(fetchGetUserProfileByIdRequest());
-  console.log(id)
+  console.log(authUserId)
   api
     .get(
-      `/admin/${id}?limit=${limit}&page=${page}`,
+      `/admin/${authUserId}?limit=${limit}&page=${page}`,
       {
         headers: { 
           Authorization: `Bearer ${token}`

@@ -180,7 +180,7 @@ export default function ViewStudentProfile() {
                   class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   id="inline-full-name"
                   type="text"
-                  placeholder={item.id}
+                  placeholder={item?.authUserId}
                  
                 />
               </div>
