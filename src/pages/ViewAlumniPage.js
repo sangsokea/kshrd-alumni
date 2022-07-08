@@ -83,8 +83,10 @@ export default function ViewAlumniPage() {
   ]);
 
   const handleView =(item) => {
-    // localStorage.setItem
-    navigate("/sidebar/aboutMe", {state: {item}})
+    localStorage.setItem('view', JSON.stringify(item))
+    navigate("/sidebar/aboutMe", {state: {
+      fromViewAlumni: true
+    }})
   }
 
   React.useEffect(() => {
