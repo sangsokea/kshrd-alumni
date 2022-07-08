@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import CVBuilderReducer from "./reducer/CVBuilderReducer";
 import EmailReducer from "./reducer/EmailReducer";
+import FetchExperienceReducer from "./reducer/OwnProfilesReducer";
 import IsAuthenticationReducer from "./reducer/IsAuthenticationReducer";
 import AboutMePageReducer from "./reducer/localReducer/AboutMePageReducer";
 import AddSectionReducer from "./reducer/localReducer/AddSectionReducer";
@@ -13,6 +14,8 @@ import SkillsReducer from "./reducer/localReducer/SkillsReducer";
 import LoginReducer from "./reducer/LoginReducer";
 import RegisterReducer from "./reducer/RegisterReducer";
 import UploadImageReducer from "./reducer/UploadImageReducer";
+import OwnProfilesReducer from "./reducer/OwnProfilesReducer";
+import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer"
 
 export default combineReducers({
   register: RegisterReducer,
@@ -27,6 +30,9 @@ export default combineReducers({
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
+  changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
-  editor: EditorComponentReducer
+  editor: EditorComponentReducer,
+  ownProfiles : OwnProfilesReducer
+
 });

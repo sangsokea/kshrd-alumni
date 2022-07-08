@@ -62,6 +62,8 @@ export default function CVBuilderPage() {
   const [formData, setformData] = useState("");
   const [gender, setgender] = useState("other");
   const [generation, setgeneration] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [placeOfBirth, setPlaceOfBirth] = useState("");
   const [isPublic, setIsPublic] = useState(true);
 
   const handleChangeFirstName = (e) => {
@@ -92,6 +94,16 @@ export default function CVBuilderPage() {
   const handleChangeGeneration = (e) => {
     console.log(e.target.value);
     setgeneration(e.target.value);
+  };
+
+  const handleChangeDateOfBirth = (e) => {
+    console.log(e.target.value);
+    setDateOfBirth(e.target.value);
+  };
+
+  const handleChangePlaceOfBirth = (e) => {
+    console.log(e.target.value);
+    setPlaceOfBirth(e.target.value);
   };
 
   const handleChangeAddress = (e) => {
@@ -173,6 +185,8 @@ export default function CVBuilderPage() {
             lastName,
             gender,
             generation,
+            dateOfBirth,
+            placeOfBirth,
             email,
             phoneNumber,
             address,
@@ -383,6 +397,46 @@ export default function CVBuilderPage() {
                   id="generation"
                   className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="10"
+                />
+              </div>
+
+              {/* Date of Birth */}
+              <div>
+                <label
+                  for="dob"
+                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                >
+                  Date of Birth
+                </label>
+                <input
+                  name="dateOfBirth"
+                  value={dateOfBirth}
+                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={handleChangeDateOfBirth}
+                  type="date"
+                  id="dob"
+                  placeholder="dd/mm/yy"
+                  required
+                />
+              </div>
+
+              {/* Place of Birth */}
+              <div>
+                <label
+                  for="placeOfBirth"
+                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                >
+                  Place of Birth
+                </label>
+                <input
+                  name="placeOfBirth"
+                  value={placeOfBirth}
+                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={handleChangePlaceOfBirth}
+                  type="text"
+                  id="placeOfBirth"
+                  placeholder="phnom penh"
+                  required
                 />
               </div>
 

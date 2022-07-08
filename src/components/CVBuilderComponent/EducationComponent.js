@@ -90,7 +90,7 @@ export default function EducationComponent() {
 
   const onDropDwon = (id) => {
     setEducation(
-      education.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x)),
+      education.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
     );
   };
 
@@ -222,10 +222,12 @@ export default function EducationComponent() {
                             handleEducationChange(index, event)
                           }
                           value={input.startDate}
-                          type="date"
+                          type="number"
+                          min="1900"
+                          max="2099"
                           name="startDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="dd/mm/yy"
+                          placeholder="yy"
                           required
                         />
                       </div>
@@ -241,10 +243,12 @@ export default function EducationComponent() {
                             handleEducationChange(index, event)
                           }
                           value={input.endDate}
-                          type="date"
+                          type="number"
+                          min="1900"
+                          max="2099"
                           name="endDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="dd/mm/yy"
+                          placeholder="yy"
                           required
                         />
                       </div>
@@ -308,16 +312,21 @@ export default function EducationComponent() {
               </button> */}
 
               <button
-                onClick={(e) => removeFieldsEducation(index,e)}
+                onClick={(e) => removeFieldsEducation(index, e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
               </button>
             </form>
           ))}
-          {education.length >= 1 && <div onClick={addFieldsEducation} className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right">
-            + Add more education
-          </div>}
+          {education.length >= 1 && (
+            <div
+              onClick={addFieldsEducation}
+              className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
+            >
+              + Add more education
+            </div>
+          )}
         </div>
       </div>
     </>
