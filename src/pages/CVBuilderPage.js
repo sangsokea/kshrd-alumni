@@ -64,6 +64,7 @@ export default function CVBuilderPage() {
   const [generation, setgeneration] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [placeOfBirth, setPlaceOfBirth] = useState("");
+  const [nationality, setNationality] = useState("");
   const [isPublic, setIsPublic] = useState(true);
 
   const handleChangeFirstName = (e) => {
@@ -115,6 +116,11 @@ export default function CVBuilderPage() {
     console.log(e.target.value);
     setSummary(e.target.value);
   };
+
+  const handleChangeNationality = (e) => {
+    console.log(e.target.value);
+    setNationality(e.target.value);
+  }
 
   const handleImageChange = (e) => {
     console.log("e.target.files[0] " + e.target.files[0]);
@@ -187,6 +193,7 @@ export default function CVBuilderPage() {
             generation,
             dateOfBirth,
             placeOfBirth,
+            nationality,
             email,
             phoneNumber,
             address,
@@ -397,6 +404,26 @@ export default function CVBuilderPage() {
                   id="generation"
                   className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="10"
+                />
+              </div>
+
+              {/* Nationality */}
+              <div>
+                <label
+                  for="nationality"
+                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                >
+                  Nationality
+                </label>
+                <input
+                  name="nationality"
+                  value={nationality}
+                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={handleChangeNationality}
+                  type="text"
+                  id="nationality"
+                  placeholder="Khmer"
+                  required
                 />
               </div>
 
