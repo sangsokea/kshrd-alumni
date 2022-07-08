@@ -60,12 +60,7 @@ export default function RegisterPage() {
     },
   });
 
-  // console.log();
-  useEffect(() => {
-    data.items
-      ? navigate("/confirm", { state: { data: data?.items ?? null } })
-      : navigate("/register");
-  }, [data]);
+
   return (
     <body className="h-screen bg-slate-50">
       {data.loading ? (

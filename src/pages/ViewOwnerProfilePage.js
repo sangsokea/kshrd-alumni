@@ -254,10 +254,17 @@ export default function ViewOwnerProfilePage() {
               Licenses & Cerifications{" "}
             </p>
           </div>
-          {dataFromViewAlumni?.education ? (
+          {dataFromViewAlumni?.license ? (
             <>
-              {dataFromViewAlumni?.education?.map((obj, i) => (
+              {dataFromViewAlumni?.license?.map((obj, i) => (
                 <div className="rounded-md p-5 my-5 bg-gray-100">
+                  <div class="mb-4">
+                    <img
+                      src={obj?.image}
+                      class="max-w-full h-auto rounded-lg"
+                      alt=""
+                    />
+                  </div>
                   <h4 className="flex justify-between tablet:w-1/2 w-full">
                     ➡️ School
                     <span className="block w-1/2">: {obj?.school}</span>
@@ -310,8 +317,6 @@ export default function ViewOwnerProfilePage() {
                     </p>
                   </div>
                   <div className="rounded-md bg-gray-100">
-                   
-
                     {obj?.sectionValue && (
                       <p className="p-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
                         {obj.sectionValue}
