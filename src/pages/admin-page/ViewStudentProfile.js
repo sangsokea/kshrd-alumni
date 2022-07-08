@@ -8,16 +8,7 @@ import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAc
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ViewStudentProfile() {
-  const dispatch = useDispatch();
-  const [state, setState] = useState({
-
-  })
   const data = useSelector((state) => state?.getUserProfileById?.items);
-  useEffect(()=> {
-    if (data) {
-      setState({...data})
-    }
-  }, [data]);
   console.log(data);
   const [addSkill, setAddSkill] = useState("");
   const [display, setDisplay] = useState(false);
@@ -174,7 +165,7 @@ export default function ViewStudentProfile() {
                   ID :
                 </label>
               </div>
-              {data?.map((item, key) => (
+              {data?.id?.map((item, key) => (
                 <div class="" key={key}>
                 <input
                   class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
