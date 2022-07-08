@@ -207,7 +207,7 @@ export default function SkillsComponent() {
         {skill.length >= 1 && displaySkill && (
           <div
             onClick={addFieldsSkill}
-            className=" m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
+            className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
           >
             + Add more skill
           </div>
