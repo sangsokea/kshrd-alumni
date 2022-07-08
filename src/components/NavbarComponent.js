@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
-import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import alumni4 from "../commons/images/Alumni/alumni4.webp";
 import { decryptToken } from "../redux/actions/LoginAction";
 
 function classNames(...classNamees) {

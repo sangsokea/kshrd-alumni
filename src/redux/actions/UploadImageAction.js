@@ -1,13 +1,23 @@
 import { api } from "../../api";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 import { decryptToken } from "./LoginAction";
+import CryptoJS from "crypto-js";
 
 // action type
 export const UPLOAD_IMAGE_SUCCESS = "UPLOAD_IMAGE_SUCCESS";
 export const UPLOAD_IMAGE_REQUEST = "UPLOAD_IMAGE_REQUEST";
 export const UPLOAD_IMAGE_FAILURE = "UPLOAD_IMAGE_FAILURE";
 
-const token = decryptToken();
+
+export const decryptTokenSecond = () => {
+  const encryptedString = localStorage.getItem("accessToken");
+  let bytes = CryptoJS.AES.decrypt(
+    encryptedString,
+    process.env.REACT_APP_SECRET_WORD,
+  ) ;
+  return  bytes.toString(CryptoJS.enc.Utf8);
+  }
+
 // action
 export const fetchUploadImage = (file, type) => (dispatch) => {
   console.log("file in Action");
@@ -15,7 +25,7 @@ export const fetchUploadImage = (file, type) => (dispatch) => {
   formData.append("file", file);
   console.log(formData.get('file'));
   console.log("--> FetchUploadImage");
-  token && dispatch(fetchUploadImageRequest());
+   dispatch(fetchUploadImageRequest());
   api
     .post(
       "/files/single",
@@ -24,7 +34,7 @@ export const fetchUploadImage = (file, type) => (dispatch) => {
       },
       {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
           Accept: "*",
           "Content-Type": "multipart/form-data",
         },

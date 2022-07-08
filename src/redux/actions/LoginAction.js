@@ -18,15 +18,16 @@ export const encryptToken = (token) => {
   ).toString();
 
   ciphertext && localStorage.setItem("accessToken", ciphertext);
+  ciphertext && decryptToken()
 };
 
 // Decrypt
 export const decryptToken = () => {
   const encryptedString = localStorage.getItem("accessToken");
-  let bytes = encryptedString ? CryptoJS.AES.decrypt(
+  let bytes =  CryptoJS.AES.decrypt(
     encryptedString,
     process.env.REACT_APP_SECRET_WORD,
-  ) : "";
+  );
   let originalText = bytes.toString(CryptoJS.enc.Utf8);
   console.log("Decrypted :" + originalText);
   return originalText ?? "";

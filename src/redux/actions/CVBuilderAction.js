@@ -7,13 +7,14 @@ import {
 import axios from "axios";
 import { decryptToken } from "./LoginAction";
 import { myHistory } from "../../Router/History";
+import { decryptTokenSecond } from "./UploadImageAction";
 
 // action type
 export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
 export const CV_BUILDER_REQUEST = "CV_BUILDER_REQUEST";
 export const CV_BUILDER_FAILURE = "CV_BUILDER_FAILURE";
 
-const token = decryptToken();
+
 // action
 
 export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
@@ -31,7 +32,7 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
         },
       },
     )
@@ -41,11 +42,12 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
       myHistory.replace('/sidebar/aboutMe')
     })
     .catch((err) => {
-      let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message;
+      let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message?? err;
       console.log(`fetch cvBuilder error`);
       console.log(err);
-      dispatch(fetchCVBuilderFailure(message));
       CUSTOM_ERROR(message);
+      dispatch(fetchCVBuilderFailure(message));
+      
     });
 };
 

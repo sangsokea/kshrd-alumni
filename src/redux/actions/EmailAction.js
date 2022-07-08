@@ -1,5 +1,6 @@
 import { api } from "../../api";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
+import { myHistory } from "../../Router/History";
 
 // action type
 export const EMAIL_SUCCESS = "EMAIL_SUCCESS";
@@ -21,11 +22,17 @@ export const fetchEmail = (email) => (dispatch) => {
       let code = res?.data?.payload?.verifyCode
       payload && dispatch(fetchEmailSuccess(payload));
       payload && CUSTOM_SUCCESSFUL("Verify code has been sent to " + email)
+      if(payload){
+        if (localStorage.getItem("end_date") != null)
+        localStorage.removeItem("end_date");
+
+        myHistory.replace('/confirm')
+      }
       error && CUSTOM_ERROR(error?? "Unknown")
       code && localStorage.setItem("verifycode", code)
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
+      let message = err?.response?.data?.error ?? err?.message ?? "Unknon Error";
       console.log(`fetch send-email error`);
       console.log(err);
       CUSTOM_ERROR(message?? "Unknown")

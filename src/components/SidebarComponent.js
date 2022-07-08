@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
 import alumni4 from "../commons/images/Alumni/alumni4.jpg";
@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { fetchLogout } from "../redux/actions/LogoutAction";
 
 const ButtonMailto = ({ mailto, children }) => {
+  
   return (
     <Link
       to="/alumni"
@@ -35,6 +36,7 @@ const ButtonMailto = ({ mailto, children }) => {
 export default function SidebarComponent() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
   const [isActive, setIsActive] = useState(1);
+  const isAuth = useSelector(state => state?.isAuth, shallowEqual)
 
   const navigate = useNavigate();
 
@@ -236,7 +238,7 @@ export default function SidebarComponent() {
 
                 {/* Link to create new cv page */}
                 {/* <NavLink to="/sidebar/resume"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                {isAuth && <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => {
                       setIsActive(3);
@@ -290,12 +292,12 @@ export default function SidebarComponent() {
                       </svg>
                     </span>
                   </NavLink>
-                </div>
+                </div>}
                 {/* </NavLink> */}
 
                 {/* Link to account setting page */}
                 {/* <NavLink to="/sidebar/accountSetting"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                {isAuth && <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                   <NavLink
                     onClick={() => {
                       setIsActive(4);
@@ -334,11 +336,11 @@ export default function SidebarComponent() {
 
                     <div className="ml-5">Account Setting</div>
                   </NavLink>
-                </div>
+                </div>}
                 {/* </NavLink> */}
 
                 {/* Log out */}
-                <div
+                {isAuth && <div
                   onClick={logOut} 
                   // onClick={() => {
                   //   dispatch(fetchIsAucthenticated(false));
@@ -367,7 +369,7 @@ export default function SidebarComponent() {
                     </svg>
                   </span>
                   <p className="ml-5">Log Out</p>
-                </div>
+                </div>}
               </div>
             </div>
           </div>
