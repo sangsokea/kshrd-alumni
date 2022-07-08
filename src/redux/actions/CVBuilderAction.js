@@ -14,7 +14,7 @@ export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
 export const CV_BUILDER_REQUEST = "CV_BUILDER_REQUEST";
 export const CV_BUILDER_FAILURE = "CV_BUILDER_FAILURE";
 
-const token = decryptToken() ?? decryptTokenSecond();
+
 // action
 
 export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
@@ -32,7 +32,7 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token ?? decryptTokenSecond(),
+          Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
         },
       },
     )

@@ -11,13 +11,13 @@ export const UPLOAD_IMAGE_FAILURE = "UPLOAD_IMAGE_FAILURE";
 
 export const decryptTokenSecond = () => {
   const encryptedString = localStorage.getItem("accessToken");
-  let bytes = encryptedString ? CryptoJS.AES.decrypt(
+  let bytes = CryptoJS.AES.decrypt(
     encryptedString,
     process.env.REACT_APP_SECRET_WORD,
-  ) : "";
+  ) ;
   return  bytes.toString(CryptoJS.enc.Utf8);
   }
-const token = decryptToken()? decryptToken() : decryptTokenSecond();
+
 // action
 export const fetchUploadImage = (file, type) => (dispatch) => {
   console.log("file in Action");
@@ -25,7 +25,7 @@ export const fetchUploadImage = (file, type) => (dispatch) => {
   formData.append("file", file);
   console.log(formData.get('file'));
   console.log("--> FetchUploadImage");
-  token && dispatch(fetchUploadImageRequest());
+   dispatch(fetchUploadImageRequest());
   api
     .post(
       "/files/single",
@@ -34,7 +34,7 @@ export const fetchUploadImage = (file, type) => (dispatch) => {
       },
       {
         headers: {
-          Authorization: "Bearer " + token ?? decryptTokenSecond(),
+          Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
           Accept: "*",
           "Content-Type": "multipart/form-data",
         },
