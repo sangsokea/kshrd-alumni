@@ -292,7 +292,7 @@ export default function FormRegisterPage() {
         </body>
       ) : (
         <div className="h-screen m-auto flex justify-center items-center">
-          <h1 className=" top-auto text-4xl">Can't access this endpoint!</h1>
+          <h1 className=" top-auto text-4xl">Not allow access this endpoint manual!</h1>
         </div>
       )}
     </>

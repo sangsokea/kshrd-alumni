@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
-import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import alumni4 from "../commons/images/Alumni/alumni4.webp";
 import { decryptToken } from "../redux/actions/LoginAction";
 
 function classNames(...classNamees) {
@@ -19,6 +19,7 @@ function classNames(...classNamees) {
 export default function NavbarComponent() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const login = useSelector((state) => state?.login.items);
+  const [localImage, setLocalImage] = useState();
 
   const navigate = useNavigate();
 
@@ -26,9 +27,15 @@ export default function NavbarComponent() {
   const isAuth = useSelector((state) => state.isAuth);
 
   useEffect(() => {
+    const localObj = localStorage.getItem("ownProfile");
+    if (localObj !== null) {
+      const profile = JSON?.parse(localObj);
+      profile?.profileDetails &&
+        setLocalImage(profile?.profileDetails?.personalDetails?.profile);
+    }
     const username = localStorage.getItem("username");
     username && JSON.parse && setUsername(username);
-  }, [username]);
+  }, []);
 
   return (
     <div style={logoBackground}>
@@ -162,7 +169,7 @@ export default function NavbarComponent() {
                         >
                           <img
                             className="w-10 h-10 rounded-full"
-                            src={alumni4}
+                            src={localImage ? localImage : alumni4}
                             alt="Rounded avatar"
                           ></img>
                           <p className="inline-flex items-center justify-between px-2 py-1 text-white rounded-md">
@@ -266,8 +273,8 @@ export default function NavbarComponent() {
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <button
                     onClick={() => {
-                      navigate("/viewAlumni")
-                      setIsOpen(!isOpen)
+                      navigate("/viewAlumni");
+                      setIsOpen(!isOpen);
                     }}
                     className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                     aria-current="page"
@@ -308,7 +315,7 @@ export default function NavbarComponent() {
                                     isAuth
                                       ? navigate("/sidebar/createNewCV")
                                       : navigate("/login");
-                                      setIsOpen(!isOpen)
+                                    setIsOpen(!isOpen);
                                   }}
                                   className={classNames(
                                     active
@@ -332,7 +339,7 @@ export default function NavbarComponent() {
                                     isAuth
                                       ? navigate("/sidebar/cvTemplate")
                                       : navigate("/login");
-                                      setIsOpen(!isOpen)
+                                    setIsOpen(!isOpen);
                                   }}
                                   className={classNames(
                                     active
@@ -355,13 +362,14 @@ export default function NavbarComponent() {
                     {isAuth ? (
                       <div
                         onClick={() => {
-                          navigate("/sidebar/aboutMe") 
-                          setIsOpen(!isOpen)}}
+                          navigate("/sidebar/aboutMe");
+                          setIsOpen(!isOpen);
+                        }}
                         className="flex cursor-pointer"
                       >
                         <img
                           className="w-10 h-10 rounded-full"
-                          src={alumni4}
+                          src={localImage ? localImage : alumni4}
                           alt="Rounded avatar"
                         ></img>
                         <p className="inline-flex items-center justify-between px-2 py-1 text-white rounded-md">

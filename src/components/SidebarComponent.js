@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { colors } from "../commons/colors/colors";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
@@ -10,7 +16,6 @@ import Swal from "sweetalert2";
 import { fetchLogout } from "../redux/actions/LogoutAction";
 
 const ButtonMailto = ({ mailto, children }) => {
-  
   return (
     <Link
       to="/alumni"
@@ -36,7 +41,20 @@ const ButtonMailto = ({ mailto, children }) => {
 export default function SidebarComponent() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
   const [isActive, setIsActive] = useState(1);
-  const isAuth = useSelector(state => state?.isAuth, shallowEqual)
+  const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
+  const [personalDetails, setPersonalDetails] = useState({});
+  React.useEffect(() => {
+    const localObj = localStorage.getItem("ownProfile");
+    const localViewObj = localStorage.getItem("view");
+    if (localObj !== null) {
+      const profile = JSON?.parse(localObj);
+      profile?.profileDetails &&
+        setPersonalDetails(profile?.profileDetails?.personalDetails);
+    } else if (localViewObj !== null) {
+      const profile = JSON?.parse(localViewObj);
+      profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
+    }
+  }, []);
 
   const navigate = useNavigate();
 
@@ -55,7 +73,7 @@ export default function SidebarComponent() {
       customClass: "swal-wide",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(fetchLogout())
+        dispatch(fetchLogout());
         navigate("/");
       }
     });
@@ -81,13 +99,15 @@ export default function SidebarComponent() {
             >
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
                 <div className="flex justify-center mt-5">
-                  <img className="p-5 rounded-full" src={alumni4} />
+                  <img
+                    className="p-5 rounded-tl-lgs"
+                    src={
+                      personalDetails?.profile
+                        ? personalDetails?.profile
+                        : alumni4
+                    }
+                  />
                 </div>
-
-                <p className="p-5">
-                  Hi, my name is Vong Yuoyi and I'm a senior software engineer.
-                  Welcome to my personal website!
-                </p>
                 {/* <p className="divide-y-3"></p> */}
                 <hr className="mt-10"></hr>
                 <p className="mt-5">Contact school’s info:</p>
@@ -238,82 +258,122 @@ export default function SidebarComponent() {
 
                 {/* Link to create new cv page */}
                 {/* <NavLink to="/sidebar/resume"> */}
-                {isAuth && <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                  <NavLink
-                    onClick={() => {
-                      setIsActive(3);
-                      setShowSidebar("-left-64");
-                    }}
-                    to="/sidebar/createNewCV"
-                    className={({ isActive }) =>
-                      [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                        isActive
-                          ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                          : null,
-                      ]
-                        .filter(Boolean)
-                        .join(" ")
-                    }
-                  >
-                    <span>
-                      <svg
-                        className="w-6 h-auto"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        {" "}
-                        <polygon points="19 20 9 12 19 4 19 20" />{" "}
-                        <line x1="5" y1="19" x2="5" y2="5" />
-                      </svg>
-                    </span>
-                    <p className="ml-5">Resume</p>
-                    <span className="ml-auto">
-                      <svg
-                        className="w-6 h-auto"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-width="1"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        {" "}
-                        <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                        <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                        <circle cx="12" cy="16" r="1" />{" "}
-                        <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                      </svg>
-                    </span>
-                  </NavLink>
-                </div>}
+                {isAuth && (
+                  <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                    <NavLink
+                      onClick={() => {
+                        setIsActive(3);
+                        setShowSidebar("-left-64");
+                      }}
+                      to="/sidebar/createNewCV"
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
+                          isActive
+                            ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
+                    >
+                      <span>
+                        <svg
+                          className="w-6 h-auto"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          {" "}
+                          <polygon points="19 20 9 12 19 4 19 20" />{" "}
+                          <line x1="5" y1="19" x2="5" y2="5" />
+                        </svg>
+                      </span>
+                      <p className="ml-5">Resume</p>
+                      <span className="ml-auto">
+                        <svg
+                          className="w-6 h-auto"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="1"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          {" "}
+                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                          <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
+                          <circle cx="12" cy="16" r="1" />{" "}
+                          <path d="M8 11v-5a4 4 0 0 1 8 0" />
+                        </svg>
+                      </span>
+                    </NavLink>
+                  </div>
+                )}
                 {/* </NavLink> */}
 
                 {/* Link to account setting page */}
                 {/* <NavLink to="/sidebar/accountSetting"> */}
-                {isAuth && <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                  <NavLink
-                    onClick={() => {
-                      setIsActive(4);
-                      setShowSidebar("-left-64");
-                    }}
-                    to="/sidebar/accountSetting"
-                    className={({ isActive }) =>
-                      [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                        isActive
-                          ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                          : null,
-                      ]
-                        .filter(Boolean)
-                        .join(" ")
-                    }
+                {isAuth && (
+                  <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                    <NavLink
+                      onClick={() => {
+                        setIsActive(4);
+                        setShowSidebar("-left-64");
+                      }}
+                      to="/sidebar/accountSetting"
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
+                          isActive
+                            ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
+                    >
+                      <span>
+                        <svg
+                          className="w-6 h-auto"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="1"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          {" "}
+                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                          <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />{" "}
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      </span>
+
+                      <div className="ml-5">Account Setting</div>
+                    </NavLink>
+                  </div>
+                )}
+                {/* </NavLink> */}
+
+                {/* Log out */}
+                {isAuth && (
+                  <div
+                    onClick={logOut}
+                    // onClick={() => {
+                    //   dispatch(fetchIsAucthenticated(false));
+                    //   localStorage.setItem("isAuth", false);
+                    //   navigate("/");
+
+                    // }}
+                    className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
                   >
                     <span>
                       <svg
@@ -329,47 +389,13 @@ export default function SidebarComponent() {
                       >
                         {" "}
                         <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />{" "}
-                        <circle cx="12" cy="12" r="3" />
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />{" "}
+                        <path d="M7 12h14l-3 -3m0 6l3 -3" />
                       </svg>
                     </span>
-
-                    <div className="ml-5">Account Setting</div>
-                  </NavLink>
-                </div>}
-                {/* </NavLink> */}
-
-                {/* Log out */}
-                {isAuth && <div
-                  onClick={logOut} 
-                  // onClick={() => {
-                  //   dispatch(fetchIsAucthenticated(false));
-                  //   localStorage.setItem("isAuth", false);
-                  //   navigate("/");
-
-                  // }}
-                  className="flex text-sm laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
-                >
-                  <span>
-                    <svg
-                      className="w-6 h-auto"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      stroke-width="1"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      {" "}
-                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />{" "}
-                      <path d="M7 12h14l-3 -3m0 6l3 -3" />
-                    </svg>
-                  </span>
-                  <p className="ml-5">Log Out</p>
-                </div>}
+                    <p className="ml-5">Log Out</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

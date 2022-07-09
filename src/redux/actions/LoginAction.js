@@ -2,8 +2,8 @@ import { api } from "../../api";
 import { fetchIsAucthenticated } from "./IsAuthenticationAction";
 import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
-import { history } from "../../Router/History";
-import { useNavigate } from "react-router-dom";
+import { history, myHistory } from "../../Router/History";
+import { fetchOwnProfiles } from "./OwnProfilesAction";
 
 // action type
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -71,6 +71,8 @@ export const fetchLogin = (email, password) => (dispatch) => {
         token && verifyAuthentication(token);
         message && CUSTOM_SUCCESSFUL(message);
         token && dispatch(fetchIsAucthenticated(true));
+        token && dispatch(fetchOwnProfiles())
+        token && myHistory.replace('/')
       } else {
         let message = res?.response?.data?.error ?? res?.message;
         dispatch(fetchLoginFailure(message));
