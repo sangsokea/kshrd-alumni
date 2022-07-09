@@ -7,9 +7,9 @@ import { fetchEmail } from "../../redux/actions/EmailAction";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();
-  const data = useSelector((state) => state?.email, shallowEqual);
-  const dispatch = useDispatch()
-  
+  const {loading} = useSelector((state) => state?.email, shallowEqual);
+  const dispatch = useDispatch();
+
   // custom validation
   const validate = (values) => {
     const errors = {};
@@ -30,19 +30,27 @@ export default function ResetPasswordPage() {
     },
     validate,
     onSubmit: ({ email }) => {
-      //   console.log(values);
-      console.log(data);
-      //   alert(JSON.stringify(values, null, 2));
-      // dispatch(fetchLogin(email, password));
-      // dispatch(fetchIsAucthenticated(true));
       email && dispatch(fetchEmail(email));
-      email && localStorage.setItem('email', email)
+      email && localStorage.setItem("email", email);
+      email && localStorage.setItem('isForgetPassword', true)
     },
   });
 
   return (
-    <body className="h-screen bg-slate-50">
-      <form className="flex items-center justify-center w-full">
+    <>
+     {(loading) && (
+        <div className="absolute top-2/4 left-2/4">
+          <img src="https://i.stack.imgur.com/hzk6C.gif" />
+        </div>
+      )}
+    <body style={{
+      opacity: loading? "20%" : "100%",
+    }} className="h-screen bg-slate-50">
+     
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex items-center justify-center w-full"
+      >
         <section className="text-gray-600 body-font font-maven">
           <div className="container w-full max-w-xl mx-auto">
             <div className="mt-24 row">
@@ -88,7 +96,10 @@ export default function ResetPasswordPage() {
                       <input
                         className="w-full px-3 py-1 text-center text-gray-700 focus:outline-none bg-slate-50"
                         id="email"
+                        name="email"
                         type="email"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
                         placeholder="Email"
                       />
                     </div>
@@ -96,9 +107,9 @@ export default function ResetPasswordPage() {
                 </div>
               </h1>
               <button
+                type="submit"
                 style={styles}
                 className="inline-flex content-center justify-between px-10 py-2 mt-16 text-white rounded-md"
-                onClick={() => navigate("/createNewPassword")}
               >
                 Reset Password{" "}
                 <span>
@@ -126,6 +137,8 @@ export default function ResetPasswordPage() {
         </section>
       </form>
     </body>
+    </>
+    
   );
 }
 

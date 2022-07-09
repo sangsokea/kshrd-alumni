@@ -36,6 +36,7 @@ export default function ConfirmPage() {
   const [resendCode, setResendCode] = useState();
   const [code, setCode] = useState(localStorage.getItem("verifycode"));
   const [showMessage, setShowMessage] = useState(false);
+  const [isForgetPassword, setIsForgetPassword] = useState(false)
   const [isExpired, setisExpired] = useState();
   const [data, setData] = useState(
     { date: Date.now(), delay: 60000 }, //60 seconds
@@ -47,7 +48,8 @@ export default function ConfirmPage() {
 
   useEffect(() => {
     const savedDate = getLocalStorageValue("end_date");
-
+    const isForgetPassword =  localStorage.getItem('isForgetPassword')
+    isForgetPassword && setIsForgetPassword(isForgetPassword)
     if (savedDate != null && !isNaN(savedDate)) {
       const currentTime = Date.now();
       const delta = parseInt(savedDate, 10) - currentTime;
@@ -83,7 +85,7 @@ export default function ConfirmPage() {
       localStorage.removeItem("verifycode");
       setCode(0);
       localStorage.setItem("confirmCode", true);
-      navigate("/formRegister");
+     isForgetPassword?navigate('/createNewPassword') : navigate("/formRegister");
     } else {
       toast.error("Code Incorrect !", {
         position: toast.POSITION.TOP_RIGHT,
