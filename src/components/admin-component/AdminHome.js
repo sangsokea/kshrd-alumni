@@ -11,26 +11,18 @@ import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAc
 export default function AdminHome() {
   // const [data, setData] = useState();
   const dispatch = useDispatch();
-  const arr = [
-    {
-      "id": 1,
-      "template": "CV_HRD",
-    },
-    {
-      "id": 2,
-      "template": "CV_ALUMNI",
-    },
-    
-  ]; 
-  const portfolio = [
-    {
-      "id": 1,
-      "template": "PORTFOLIO_ALUMNI",
-
-    }
-    
-  ]; 
   const data = useSelector((state) => state?.getalluserProfile?.items);
+  
+const hello = [...data]
+const result = hello.reduce(function (r, a) {
+  r[a.authUserId] = r[a.authUserId] || [];
+  r[a.authUserId].push(a);
+  return r;
+}, Object.create(null));
+console.log(result);
+
+console.log(hello)
+
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
@@ -170,13 +162,11 @@ export default function AdminHome() {
               <thead class="text-xs text-gray-700  bg-gray-50 ">
                 <tr>
                   <th scope="col" class="px-6 py-3">
-                    Fist Name
+                    Username
                   </th>
+                 
                   <th scope="col" class="px-6 py-3">
-                    Last Name
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Gender
+                    Email
                   </th>
                   <th scope="col" class="px-6 py-3">
                    CVs
@@ -189,32 +179,32 @@ export default function AdminHome() {
                     <span class="sr-only">Action</span>
                   </th>
                 </tr>
+                
               </thead>
               <tbody>
+                
                 {data &&
-                  data?.map((item, key) => (
-                    <tr key={key} class="bg-white border-b hover:bg-gray-50 ">
+                  data.map((item) => (
+                    <tr key={item.authUserId} class="bg-white border-b hover:bg-gray-50 ">
+                      
                       <td class="px-6 py-4">
-                        {item?.profileDetails?.personalDetails?.firstName}
+                        {item?.username}
                       </td>
                       <td class="px-6 py-4">
-                        {item?.profileDetails?.personalDetails?.lastName}
+                        {item?.email}
                       </td>
-                      <td class="px-6 py-4">
-                        {item?.profileDetails?.personalDetails?.gender}
-                      </td>
-                      <td class="px-6 py-4">
+                      {/* <td class="px-6 py-4">
                         {arr.length}
                       </td>
                       <td class="px-6 py-4">
                       {portfolio.length}
-                      </td>
+                      </td> */}
                       <td class="px-6 py-4">
                         <button
                           onClick={() => {
                             // navigate("/admin/view", { state: { item } })
                             console.log(item.authUserId)
-                            dispatch(fetchGetUserProfileById(item?.authUserId, 10, 1))
+                            dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
                             
                           }}
                           className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"

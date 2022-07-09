@@ -27,9 +27,11 @@ export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => 
     )
     .then((res) => {
       console.log(`--> fetch get user profile by id`);
-      console.log(res);
+      const longeur = res.data.length;
+      console.log(longeur);
       if (res?.data?.payload) {
         dispatch(fetchGetUserProfileByIdSuccess(res?.data?.payload));
+        const longeur = res.length
         SUCCESS_CREATED(res.data.message);
         setTimeout(()=>{
           myHistory.replace('/admin/view')
