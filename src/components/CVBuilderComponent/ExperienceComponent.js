@@ -215,7 +215,7 @@ export default function ExperienceComponent() {
                           for="start_date"
                           className="block mb-2 text-sm font-medium dark:text-black"
                         >
-                          Start Date
+                          Start years
                         </label>
                         <input
                           onChange={(event) =>
@@ -227,7 +227,7 @@ export default function ExperienceComponent() {
                           max="2099"
                           name="startDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="yyyy"
+                          placeholder="2019"
                           required
                         />
                       </div>
@@ -236,7 +236,7 @@ export default function ExperienceComponent() {
                           for="end_date"
                           className="block mb-2 text-sm font-medium dark:text-black"
                         >
-                          End Date
+                          End years
                         </label>
                         <input
                           onChange={(event) =>
@@ -248,7 +248,7 @@ export default function ExperienceComponent() {
                           max="2099"
                           name="endDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="yyyy"
+                          placeholder="2022"
                           required
                         />
                       </div>

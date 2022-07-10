@@ -22,9 +22,56 @@ import { fetchUploadImage } from "../redux/actions/UploadImageAction";
 import Swal from "sweetalert2";
 import LanguageComponent from "../components/CVBuilderComponent/LanguageComponent";
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
+import moment from "moment";
+
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { YouTube } from "@material-ui/icons";
+
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const SignupSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  generation: Yup.number()
+    .min(1, "value > 1")
+    .max(50, "invalid generation")
+    .required("Required"),
+  dob: Yup.string()
+    .required("DOB is Required")
+    .test("DOB", "Please choose a valid date of birth", (value) => {
+      return moment().diff(moment(value), "years") >= 10;
+    }),
+  pob: Yup.string()
+    .min(4, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  nationality: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  phoneNumber: Yup.string()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .required("Required"),
+  address: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+});
 
 export default function CVBuilderPage() {
   const inputFile = React.useRef(null);
+  const inputFistNameRef = React.useRef(null);
+  const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
+  const executeScroll = () => scrollToRef(inputFistNameRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const experiences = useSelector(
@@ -55,67 +102,21 @@ export default function CVBuilderPage() {
   const [imageUrl, setImageUrl] = useState(
     JSON.parse(localStorage.getItem("images"))?.profile,
   );
-  const [formData, setformData] = useState("");
+
   const [gender, setgender] = useState("other");
-  const [generation, setgeneration] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [placeOfBirth, setPlaceOfBirth] = useState("");
-  const [nationality, setNationality] = useState("");
+
   const [isPublic, setIsPublic] = useState(true);
 
-  const handleChangeFirstName = (e) => {
-    console.log(e.target.value);
-    setFirstName(e.target.value);
-  };
-
-  const handleChangeLastName = (e) => {
-    console.log(e.target.value);
-    setLastName(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-
-  const handleChangePhoneNumber = (e) => {
-    console.log(e.target.value);
-    setPhoneNumber(e.target.value);
-  };
+  const [finalData, setFinalData] = useState({});
 
   const handleChangeGender = (e) => {
     console.log(e.target.value);
     setgender(e.target.value);
   };
 
-  const handleChangeGeneration = (e) => {
-    console.log(e.target.value);
-    setgeneration(e.target.value);
-  };
-
-  const handleChangeDateOfBirth = (e) => {
-    console.log(e.target.value);
-    setDateOfBirth(e.target.value);
-  };
-
-  const handleChangePlaceOfBirth = (e) => {
-    console.log(e.target.value);
-    setPlaceOfBirth(e.target.value);
-  };
-
-  const handleChangeAddress = (e) => {
-    console.log(e.target.value);
-    setAddress(e.target.value);
-  };
-
   const handleChangeSummary = (e) => {
     console.log(e.target.value);
     setSummary(e.target.value);
-  };
-
-  const handleChangeNationality = (e) => {
-    console.log(e.target.value);
-    setNationality(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -163,63 +164,51 @@ export default function CVBuilderPage() {
       }
     });
   };
-  const submit = (e) => {
-    // navigate("/sidebar/cvTemplate")
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    // console.log(cvBuilderObject);
+  const handleSubmit = () => {
 
-    Swal.fire({
-      title: "Save!",
-      text: "Are you sure? You would like to submit this data",
-      // icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Save",
-      customClass: "swal-wide",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        let finalData = {
-          personalDetails: {
-            firstName,
-            lastName,
-            gender,
-            generation,
-            dateOfBirth,
-            placeOfBirth,
-            nationality,
-            email,
-            phoneNumber,
-            address,
-            summary,
-            profile: imageUrl,
-          },
-
-          employmentHistory: experiences,
-
-          education: education,
-
-          license: license,
-
-          skill: skills,
-
-          languages: languages,
-
-          addSection: section,
-        };
-        console.log("==== final data =====");
-        console.log(finalData);
-        // console.log(education)
-        // dispatch(fetchExperience(experience));
-        // if (finalData.personalDetails.firstName) {
-        // } else {
-        //   CUSTOM_WARNING("Please fill up first name");
-        // }
-        finalData && dispatch(fetchCVBuilder(finalData, isPublic));
-      }
-    });
+    if(imageUrl){
+      Swal.fire({
+        title: "Save!",
+        text: "Are you sure? You would like to submit this data",
+        // icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Save",
+        customClass: "swal-wide",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          let result = {
+            personalDetails: {
+              gender,
+              ...finalData,
+              summary,
+              profile: imageUrl,
+            },
+  
+            employmentHistory: experiences,
+  
+            education: education,
+  
+            license: license,
+  
+            skill: skills,
+  
+            languages: languages,
+  
+            addSection: section,
+          };
+          console.log("==== final data result =====", result);
+          
+          // console.log(education)
+          // dispatch(fetchExperience(experience));
+  
+          result && dispatch(fetchCVBuilder(result, isPublic));
+        }
+      });
+    }else{
+      CUSTOM_WARNING("Please upload your profile!")
+    }
   };
 
   // useEffect(() => {
@@ -229,6 +218,8 @@ export default function CVBuilderPage() {
   //       })
   //     : navigate("/sidebar/createNewCV");
   // }, [cvBuilder]);
+
+  console.log("finalData", finalData);
 
   return (
     <>
@@ -328,258 +319,282 @@ export default function CVBuilderPage() {
           )}
         </div>
 
-        <div>
-          <form onSubmit={submit}>
-            <div className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
-              {/* First Name */}
-              <div>
-                <label
-                  for="first_name"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  First name
-                </label>
-                <input
-                  name="firstName"
-                  value={firstName}
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  onChange={handleChangeFirstName}
-                  type="text"
-                  id="first_name"
-                  placeholder="John"
-                  required
-                />
-              </div>
+        <Formik
+          ref={inputFistNameRef}
+          initialValues={{
+            firstName: "",
+            lastName: "",
+            generation: "",
+            dob: "",
+            pob: "",
+            email: "",
+            nationality: "",
+            phoneNumber: "",
+            address: "",
+          }}
+          validationSchema={SignupSchema}
+          onSubmit={(values) => {
+            // same shape as initial values
+            console.log(values);
+            setFinalData({ ...values });
+            handleSubmit()
+            
+          }}
+        >
+          {({ errors, touched }) => (
+            <>
+              <Form className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
+                {/* firt name */}
+                <div>
+                  <label
+                    for="first_name"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    First name
+                  </label>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="firstName"
+                  />
+                  {errors.firstName && touched.firstName ? (
+                    <div className="text-red-600">{errors.firstName}</div>
+                  ) : null}
+                </div>
 
-              {/* Last Name */}
-              <div>
-                <label
-                  for="last_name"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Last name
-                </label>
-                <input
-                  name="lastName"
-                  value={lastName}
-                  onChange={handleChangeLastName}
-                  type="text"
-                  id="last_name"
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Doe"
-                  required
-                />
-              </div>
+                {/* last name */}
+                <div>
+                  <label
+                    for="last_name"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Last name
+                  </label>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="lastName"
+                  />
+                  {errors.lastName && touched.lastName ? (
+                    <div className="text-red-600">{errors.lastName}</div>
+                  ) : null}
+                </div>
 
-              {/* gender */}
-              <div>
-                <label
-                  for="gender"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Gender
-                </label>
+                <div>
+                  {/* gender */}
+                  <label
+                    for="gender"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Gender
+                  </label>
+                  <select
+                    value={gender}
+                    onChange={handleChangeGender}
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option selected>other</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
 
-                <select
-                  value={gender}
-                  onChange={handleChangeGender}
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>other</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
+                {/* generation */}
+                <div>
+                  <label
+                    for="generation"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Generation
+                  </label>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="generation"
+                    type="number"
+                    placeholder="10"
+                  />
+                  {errors.generation && touched.generation ? (
+                    <div className="text-red-600">{errors.generation}</div>
+                  ) : null}
+                </div>
 
-              {/* generation */}
-              <div>
-                <label
-                  for="generation"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Generation
-                </label>
-                <input
-                  name="generation"
-                  value={generation}
-                  onChange={handleChangeGeneration}
-                  type="number"
-                  id="generation"
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="10"
-                />
-              </div>
+                {/* date of birth */}
+                <div>
+                  <label
+                    for="dob"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Date of Birth
+                  </label>
 
-              {/* Date of Birth */}
-              <div>
-                <label
-                  for="dob"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Date of Birth
-                </label>
-                <input
-                  name="dateOfBirth"
-                  value={dateOfBirth}
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  onChange={handleChangeDateOfBirth}
-                  type="date"
-                  id="dob"
-                  placeholder="dd/mm/yy"
-                  required
-                />
-              </div>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="dob"
+                    type="date"
+                  />
+                  {errors.dob && touched.dob ? (
+                    <div className="text-red-600">{errors.dob}</div>
+                  ) : null}
+                </div>
 
-              {/* Place of Birth */}
-              <div>
-                <label
-                  for="placeOfBirth"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Place of Birth
-                </label>
-                <input
-                  name="placeOfBirth"
-                  value={placeOfBirth}
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  onChange={handleChangePlaceOfBirth}
-                  type="text"
-                  id="placeOfBirth"
-                  placeholder="phnom penh"
-                  required
-                />
-              </div>
+                {/* Place of Birth */}
+                <div>
+                  <label
+                    for="placeOfBirth"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Place of Birth
+                  </label>
 
-              {/* Email */}
-              <div>
-                <label
-                  for="email"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Email
-                </label>
-                <input
-                  name="email"
-                  value={email}
-                  onChange={handleChangeEmail}
-                  type="email"
-                  id="email"
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="john.doe@company.com"
-                  required
-                />
-              </div>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="pob"
+                    type="text"
+                    placeholder="Pailin"
+                  />
+                  {errors.pob && touched.pob ? (
+                    <div className="text-red-600">{errors.pob}</div>
+                  ) : null}
+                </div>
 
-              {/* Phone Number */}
-              <div>
-                <label
-                  for="phone"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Phone number
-                </label>
-                <input
-                  name="phoneNumber"
-                  value={phoneNumber}
-                  onChange={handleChangePhoneNumber}
-                  type="number"
-                  id="phone"
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="123-45-678"
-                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                />
-              </div>
+                {/* Email */}
+                <div>
+                  <label
+                    for="email"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Email
+                  </label>
 
-              {/* Nationality */}
-              <div>
-                <label
-                  for="nationality"
-                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                >
-                  Nationality
-                </label>
-                <input
-                  name="nationality"
-                  value={nationality}
-                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  onChange={handleChangeNationality}
-                  type="text"
-                  id="nationality"
-                  placeholder="Khmer"
-                  required
-                />
-              </div>
-            </div>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="email"
+                    type="text"
+                    placeholder="example@gmail.com"
+                  />
+                  {errors.email && touched.email ? (
+                    <div className="text-red-600">{errors.email}</div>
+                  ) : null}
+                </div>
 
-            {/* Address */}
-            <div className="mb-6">
-              <label
-                // for="large-input"
-                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-              >
-                Address
-              </label>
-              <textarea
-                name="address"
-                value={address}
-                onChange={handleChangeAddress}
-                type="text"
-                // id="large-input"
-                className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-            </div>
+                {/* phone number */}
+                <div>
+                  <label
+                    for="phone"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Phone number
+                  </label>
 
-            {/* Summary */}
-            <div className="mb-6">
-              <label
-                // for="large-input-summary"
-                className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-              >
-                Summary
-              </label>
-              <textarea
-                name="summary"
-                value={summary}
-                onChange={handleChangeSummary}
-                type="text"
-                // id="large-input-summary"
-                className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-            </div>
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="phoneNumber"
+                    type="number"
+                    placeholder="0987654321"
+                  />
+                  {errors.phoneNumber && touched.phoneNumber ? (
+                    <div className="text-red-600">{errors.phoneNumber}</div>
+                  ) : null}
+                </div>
 
-            <ExperienceComponent />
+                {/* Nationality */}
+                <div>
+                  <label
+                    for="nationality"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Nationality
+                  </label>
 
-            <EducationComponent />
+                  <Field
+                    className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="nationality"
+                    type="text"
+                    placeholder="Khmer"
+                  />
+                  {errors.nationality && touched.nationality ? (
+                    <div className="text-red-600">{errors.nationality}</div>
+                  ) : null}
+                </div>
 
-            <LicensesComponent />
+                <div></div>
 
-            <SkillsComponent />
+                {/* address */}
+                <div className="mb-6">
+                  <label
+                    // for="large-input"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Address
+                  </label>
 
-            <LanguageComponent />
+                  <Field
+                    className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="address"
+                    type="text"
+                    placeholder="No.12, St 2004, Khan sansok, Phnom Penh"
+                  />
+                  {errors.address && touched.address ? (
+                    <div className="text-red-600">{errors.address}</div>
+                  ) : null}
+                </div>
 
-            <AddSectionComponent />
-          </form>
-        </div>
+                <div></div>
 
-        <div className="flex flex-row">
-          <div className="laptop:ml-auto">
-            <button
-              className="px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
-              style={styles}
-              // onClick={() => navigate("/sidebar/cvTemplate")}
-              onClick={submit}
-            >
-              Save
-            </button>
+                {/* summary */}
+                <div className="mb-6">
+                  <label
+                    // for="large-input-summary"
+                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                  >
+                    Summary
+                  </label>
+                  <textarea
+                    name="summary"
+                    value={summary}
+                    onChange={handleChangeSummary}
+                    type="text"
+                    // id="large-input-summary"
+                    className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  />
+                </div>
 
-            <button
-              className="px-10 py-2 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
-              onClick={(e) => handleCancel(e)}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+                <div></div>
+
+                {/* component */}
+                <ExperienceComponent />
+
+                <EducationComponent />
+
+                <LicensesComponent />
+
+                <SkillsComponent />
+
+                <LanguageComponent />
+
+                <AddSectionComponent />
+
+                <div className="">
+                  <div className="laptop:ml-auto">
+                    <button
+                      className="px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+                      style={styles}
+                      // onClick={() => navigate("/sidebar/cvTemplate")}
+                      type="submit"
+                    >
+                      Save
+                    </button>
+
+                    <button
+                      className="px-10 py-2 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+                      onClick={(e) => handleCancel(e)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </Form>
+            </>
+          )}
+        </Formik>
       </div>
     </>
   );
