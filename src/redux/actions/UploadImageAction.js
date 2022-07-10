@@ -11,11 +11,15 @@ export const UPLOAD_IMAGE_FAILURE = "UPLOAD_IMAGE_FAILURE";
 
 export const decryptTokenSecond = () => {
   const encryptedString = localStorage.getItem("accessToken");
-  let bytes = CryptoJS.AES.decrypt(
-    encryptedString,
-    process.env.REACT_APP_SECRET_WORD,
-  ) ;
-  return  bytes.toString(CryptoJS.enc.Utf8);
+  const isAuth = localStorage.getItem('isAuth')
+  if(encryptedString !== null){
+    let bytes = CryptoJS.AES.decrypt(
+      encryptedString,
+      process.env.REACT_APP_SECRET_WORD,
+    ) ;
+    return  bytes.toString(CryptoJS.enc.Utf8);
+  }
+  return ''
   }
 
 // action

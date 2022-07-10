@@ -1,12 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Add } from "../../commons/icon/add.svg";
 import { ReactComponent as Removed } from "../../commons/icon/removed.svg";
 import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 import { Transition, Popover } from "@headlessui/react";
-import SkillsComponent from "../../components/CVBuilderComponent/SkillsComponent";
+import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ViewStudentProfile() {
+  const data = useSelector((state) => state?.getUserProfileById?.items);
+  console.log(data);
   const [addSkill, setAddSkill] = useState("");
   const [display, setDisplay] = useState(false);
   const [vall, setTitle] = useState(true);
@@ -112,7 +115,7 @@ export default function ViewStudentProfile() {
   };
   const navigate = useNavigate();
   return (
-    <div className="body-font font-maven">
+    <div className="body-font font-maven container mx-auto">
       <div>
         <div className="mt-10 w-full h-40 bg-[#255FAB] ">
           <div className="flex items-end justify-end ">
@@ -150,9 +153,9 @@ export default function ViewStudentProfile() {
             alt="Bordered avatar"
           />
         </div>
-        <div className="mt-19 ml-11 font-maven grid grid-cols-6 font-bold text-ch text-xl">
+        <div className="mt-19 ml-11  font-maven grid grid-cols-6 font-bold text-ch text-xl">
           <div className="col-span-5">
-            <p className="mb-3">Vong Yuoyi</p>
+            <p className="mb-3"></p>
             <div class="flex items-center">
               <div class="">
                 <label
@@ -162,14 +165,18 @@ export default function ViewStudentProfile() {
                   ID :
                 </label>
               </div>
-              <div class="">
+              {data?.id?.map((item, key) => (
+                <div class="" key={key}>
                 <input
-                  class="block w-20 h-10 bg-[#F5F5F6] px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                  class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   id="inline-full-name"
                   type="text"
-                  value="10"
+                  placeholder={item?.authUserId}
+                 
                 />
               </div>
+              ))}
+              
             </div>
           </div>
           <div className="flex items-center justify-end flex-col">
@@ -251,8 +258,9 @@ export default function ViewStudentProfile() {
                               </svg>
                             </div>
 
-                            <button className="font-maven text-md text-[#035397] font-bold" 
-                            onClick={() => navigate("edite")}
+                            <button
+                              className="font-maven text-md text-[#035397] font-bold"
+                              onClick={() => navigate("edite")}
                             >
                               Education
                             </button>
@@ -274,8 +282,9 @@ export default function ViewStudentProfile() {
                               </svg>
                             </div>
 
-                            <button className="ml-1 font-maven text-md text-[#035397] font-bold"
-                             onClick={() => navigate("editem")}
+                            <button
+                              className="ml-1 font-maven text-md text-[#035397] font-bold"
+                              onClick={() => navigate("editem")}
                             >
                               Employment
                             </button>
@@ -293,178 +302,159 @@ export default function ViewStudentProfile() {
         <hr></hr>
 
         <section class=" p-6 mx-auto  rounded-md  ">
-          <h2 class="text-lg font-semibold  capitalize ">
+          <h2 class="text-2xl font-bold  capitalize mb-5">
             Personal Information{" "}
           </h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3  font-maven ">
             <div>
-              <label class="" for="username">
-                First Name
+              <label class="font-bold" for="username">
+                First Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
+                value=""
                 type="text"
-                class="block w-full bg-[#F5F5F6] px-4 py-2 mt-2  border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 
             <div>
-              <label
-                class=""
-                for="emailAddress"
-              >
-                Last Name
+              <label class="font-bold" for="emailAddress">
+                Last Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="emailAddress"
+                value=""
                 type="text"
-                class="block w-full  px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 
             <div>
-              <label class="text-gray-700 " for="password">
-                Phone Number
+              <label class="text-gray-700 font-bold" for="password">
+                Phone Number <span className="text-red-700">*</span>
               </label>
               <input
-                id="password"
-                type="number"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                value=""
+                id=""
+                type="tel"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 
             <div>
-              <label
-                class=""
-                for="passwordConfirmation"
-              >
+              <label class="font-bold" for="passwordConfirmation">
                 Date of Birth
               </label>
               <input
                 id="passwordConfirmation"
                 type="date"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                class="block w-full border p-2 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div>
-              <label
-                class=""
-                for="passwordConfirmation"
-              >
+              <label class="font-bold" for="passwordConfirmation">
                 Email
               </label>
               <input
                 id="passwordConfirmation"
                 type="email"
-                class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div>
-              <label
-                class="text-gray-700 "
-                for="passwordConfirmation"
-              >
+              <label class="font-bold " for="passwordConfirmation">
                 Place of Birth
               </label>
               <input
                 id="passwordConfirmation"
                 type="text"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>
           <br></br>
           <hr></hr>
           <br></br>
-          <h2 class="text-lg font-semibold  capitalize ">
-            Basic Course
-          </h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
+          <h2 class="text-2xl font-bold  capitalize mb-5 ">Basic Course</h2>
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 mb-5">
             <div>
-              <label class="" for="username">
-                Class Name
+              <label class="font-bold" for="username">
+                Class Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="username"
                 type="text"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 
             <div>
-              <label
-                class=""
-                for="emailAddress"
-              >
-                Group Name
+              <label class="font-bold" for="emailAddress">
+                Group Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="emailAddress"
                 type="email"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
 
             <div>
-              <label class="" for="password">
+              <label class="font-bold" for="password">
                 Subject Name
               </label>
               <input
                 id="password"
-                type="password"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                type="text"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>
           <br></br>
-          <h2 class="text-lg font-semibold ">
-            Advance Course
-          </h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 tablet:grid-cols-3">
+          <h2 class="text-2xl font-semibold mb-5">Advance Course</h2>
+          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 ">
             <div>
-              <label
-                class=""
-                for="passwordConfirmation"
-              >
-                Class Name
+              <label class="font-bold" for="passwordConfirmation">
+                Class Name <span className="text-red-700">*</span>
               </label>
               <input
                 id="passwordConfirmation"
-                type="password"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                type="text"
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div>
-              <label
-                class="text-gray-700 "
-                for="passwordConfirmation"
-              >
-                Group Name
+              <label class="font-bold" for="passwordConfirmation">
+                Group Name <span className="text-red-700">*</span>
               </label>
               <input
+                value=""
                 id="passwordConfirmation"
-                type="password"
-                class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                type="text"
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
             <div>
-              <label
-                class=""
-                for="passwordConfirmation"
-              >
+              <label class="font-bold" for="passwordConfirmation">
                 Subject Name
               </label>
               <input
                 id="passwordConfirmation"
-                type="password"
-                class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                type=""
+                value=""
+                class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
           </div>{" "}
           <br></br>
-          <h2 class="text-lg  text-[#A098AE] capitalize  mb-3">
-            About
-          </h2>
+          <h2 class="text-lg  text-[#A098AE] capitalize  mb-3">About</h2>
           <div className="grid grid-2">
             <div>
               <button
@@ -485,7 +475,7 @@ export default function ViewStudentProfile() {
                 <div className="grid grid-cols-1">
                   <div className="">
                     <textarea
-                      class="block w-full px-4 py-2 mt-2  bg-[#F5F5F6] border border-[#255FAB] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                      class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       id="password"
                       name="summary"
                       value={summary}
@@ -521,7 +511,7 @@ export default function ViewStudentProfile() {
                 <div className="grid grid-cols-1">
                   <div className="">
                     <textarea
-                      class="block w-full px-4 py-2 mt-2 bg-[#F5F5F6] border border-[#255FAB] rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                      class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       id="password"
                       name="title"
                       value={title}
@@ -533,72 +523,81 @@ export default function ViewStudentProfile() {
               )}
             </div>
             <div>
-            <button
-              class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center mt-3"
-              onClick={() => setAddSkill((Prev) => !Prev)}
-            >
-              {addSkill ? (
-                <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
+              <button
+                class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center mt-3"
+                onClick={() => setAddSkill((Prev) => !Prev)}
+              >
+                {addSkill ? (
+                  <Add className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Add>
                 ) : (
                   <Removed className="w-6 mt-1 laptop:mr-1 desktop:mr-2"></Removed>
                 )}
-              Skills{""}
-            </button>
+                Skills{""}
+              </button>
 
-            <div className="mt-3">
-              {addSkill ? null : (
-                <div>
-                  <div className="flex laptop:flex-row laptop:gap-2 flex-col">
-                    {major.map((item, index) => (
-                      <div className="mb-5">
-                        <button
-                          key={index}
-                          className="border bg-bgSkill text-center rounded-lg py-2 px-2"
-                          onClick={() => addInputFields(item)}
-                        >
-                          {item.data}
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div
-                    className="flex flex-col"
-                    onClick={!display ? "hidden" : "block"}
-                  >
-                    {inputField.map((input, index) => (
-                      <form onSubmit={(e) => removeInputField(index, e)}>
-                        {/* return ( */}
-                        <div
-                          key={index}
-
-                         
-                        >
-                          <div className={!input.isShow ? "hidden" : "block"}>
-                            <button type="submit" className="float-right">
-                              <Remove className="w-5"></Remove>
-                            </button>
-                            <textarea
-                              className="mb-3 border border-[#255FAB] bg-bgText text-sm laptop:text-md desktop:text-lg rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 block w-full p-2.5 "
-                              name="newMajor"
-                              placeholder={input.newMajor}
-                              // value={input.newMajor}
-                              onChange={(event) =>
-                                handleInputFieldChange(index, event)
-                              }
-                            ></textarea>
-                          </div>
+              <div className="mt-3">
+                {addSkill ? null : (
+                  <div>
+                    <div className="flex laptop:flex-row laptop:gap-2 flex-col">
+                      {major.map((item, index) => (
+                        <div className="mb-5">
+                          <button
+                            key={index}
+                            className="border bg-bgSkill text-center rounded-lg py-2 px-2"
+                            onClick={() => addInputFields(item)}
+                          >
+                            {item.data}
+                          </button>
                         </div>
-                        {/* ); */}
-                      </form>
-                    ))}
+                      ))}
+                    </div>
+
+                    <div
+                      className="flex flex-col"
+                      onClick={!display ? "hidden" : "block"}
+                    >
+                      {inputField.map((input, index) => (
+                        <form onSubmit={(e) => removeInputField(index, e)}>
+                          {/* return ( */}
+                          <div key={index}>
+                            <div className={!input.isShow ? "hidden" : "block"}>
+                              <button type="submit" className="float-right">
+                                <Remove className="w-5"></Remove>
+                              </button>
+                              <textarea
+                                className="mblock w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                                name="newMajor"
+                                placeholder={input.newMajor}
+                                // value={input.newMajor}
+                                onChange={(event) =>
+                                  handleInputFieldChange(index, event)
+                                }
+                              ></textarea>
+                            </div>
+                          </div>
+                          {/* ); */}
+                        </form>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-           
-            
+          <div classname="">
+            <div className="flex items-center laptop:justify-end justify-center ">
+              <button
+                class="hover:border-transparent mt-6 hover:bg-[#194f95] bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
+                onClick={() => navigate("/admin/manageStudent")}
+              >
+                Save
+              </button>
+              <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              onClick={() => navigate("/admin/manageStudent")}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </section>
       </div>

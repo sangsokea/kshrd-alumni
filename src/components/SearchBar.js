@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import "../commons/styles/SearchBar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
@@ -8,27 +8,33 @@ import AdminHome from "./admin-component/AdminHome";
 import PaginationComponent from "./PaginationComponent";
 import TableComponent from "./TableComponent";
 import Modal from "./Modal";
-import { useNavigate } from "react-router-dom";
-import { Transition, Popover } from "@headlessui/react";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { Transition, Popover, Dialog } from "@headlessui/react";
 import { ReactComponent as More } from "../commons/icon/More.svg";
-
+import { fetchUpdateStatusUser } from "../redux/actions/UpdateStatusUserAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ExclamationIcon } from "@heroicons/react/solid";
+import { fetchGetAuthUserProfile } from "../redux/actions/GetAuthUserProfileAction";
 
 function SearchBar({ placeholder, data }) {
+  
+  const dispatch = useDispatch();
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [items, setItems] = useState(data);
 
   const navigate = useNavigate();
+  const [open, setOpen] = useState(true);
 
+  const cancelButtonRef = useRef(null);
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
 
     const newFilter = data.filter((item) =>
       Object.keys(item).some((key) =>
-        String(item[key]).toLowerCase().includes(wordEntered.toLowerCase()),
-      ),
+        String(item[key]).toLowerCase().includes(wordEntered.toLowerCase())
+      )
     );
 
     if (searchWord === "") {
@@ -43,16 +49,16 @@ function SearchBar({ placeholder, data }) {
   const onChangeStatus = (isEnable, id) => {
     if (filteredData === 0) {
       setItems(
-        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x)),
+        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x))
       );
     } else {
       setFilteredData(
         filteredData.map((x) =>
-          x.id === id ? { ...x, isEnable: !isEnable } : x,
-        ),
+          x.id === id ? { ...x, isEnable: !isEnable } : x
+        )
       );
       setItems(
-        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x)),
+        items.map((x) => (x.id === id ? { ...x, isEnable: !isEnable } : x))
       );
     }
   };
@@ -65,7 +71,7 @@ function SearchBar({ placeholder, data }) {
   return (
     <>
       <div class="relative container w-full shadow-md tablet:rounded-lg body-font font-maven">
-        <div >
+        <div>
           <div class="p-4">
             <label for="table-search" class="sr-only">
               Search
@@ -112,7 +118,7 @@ function SearchBar({ placeholder, data }) {
               />
             </div>
           </div>
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+          <div class="relative overflow-x-auto shadow-md tablet:rounded-lg mt-8">
             <div className="text-xl px-6 py-4 text-ccon font-bold border border-md  bg-white ">
               List of Students
             </div>
@@ -122,23 +128,16 @@ function SearchBar({ placeholder, data }) {
                 <thead class="text-xs  uppercase bg-gray-50 ">
                   <tr>
                     <th scope="col" class="px-6 py-3">
-                      Fist Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Last Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Gender
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Generation
+                      Username
                     </th>
                     <th scope="col" class="px-6 py-3">
                       Email
                     </th>
-
                     <th scope="col" class="px-6 py-3">
-                      Skill
+                      CVs
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      Portfolio
                     </th>
                     <th scope="col" class="px-6 py-3">
                       Action
@@ -147,187 +146,227 @@ function SearchBar({ placeholder, data }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredData.length ===0 ? <> {data.slice(0, 10).map((item, key) => (
-                    <tr
-                      key={key}
-                      class="bg-white border-b hover:bg-gray-50 "
-                    >
-                      <td class="px-6 py-4">{item.first_name}</td>
-                      <td class="px-6 py-4">{item.last_name}</td>
-                      <td class="px-6 py-4">{item.gender}</td>
-                      <td class="px-6 py-4">{item.generation}</td>
-                      <td class="px-6 py-4">{item.email}</td>
-                      <td class="px-6 py-4">{item.skill}</td>
-                      <td class="px-6 py-4 text-right flex justify-between">
-                       Enable
+                  {filteredData.length === 0 ? (
+                    <>
+                      {" "}
+                      {data &&
+                        data?.map((item, key) => (
+                          <tr
+                            key={key}
+                            class="bg-white border-b hover:bg-gray-50 "
+                          >
+                            <td class="px-6 py-4">{item?.username}</td>
+                            <td class="px-6 py-4">{item?.email}</td>
+                            <td class="px-6 py-4">1</td>
+                            <td class="px-6 py-4">2</td>
+                            <td class="px-6 py-4 text-right flex justify-between">
+                              {item?.status ? "Enable" : "Disable"}
 
-                       <Popover className="relative">
-                {({ open }) => (
-                  <>
-                    <Popover.Button>
-                      <More className="w-5 mr-2"></More>
-                    </Popover.Button>
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0 translate-y-1"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 translate-y-1"
-                    >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
-                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                          <div className="relative gap-8 bg-white p-7 ">
-                            <div>
-                              <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                                <div className="flex items-center">
-                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
-                                    Action
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-1"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven "
-                                >
-                                  Activate
-                                </label>
-                              </div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-2"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven "
-                                >
-                                  Deactivate
-                                </label>
-                              </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
-                                  Update
-                                </button>
-                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Popover.Panel>
-                    </Transition>
-                  </>
-                )}
-              </Popover>
-                      </td>
-                    </tr>
-                  )) }</>: <> {filteredData.slice(0, 10).map((item, key) => (
-                    <tr
-                      key={key}
-                      class="bg-white border-b hover:bg-gray-50 "
-                    >
-                      <td class="px-6 py-4">{item.first_name}</td>
-                      <td class="px-6 py-4">{item.last_name}</td>
-                      <td class="px-6 py-4">{item.gender}</td>
-                      <td class="px-6 py-4">{item.generation}</td>
-                      <td class="px-6 py-4">{item.email}</td>
-                      <td class="px-6 py-4">{item.skill}</td>
-                      <td class="px-6 py-4 text-right flex justify-between">
-                       Enable
+                              <Popover className="relative">
+                                {({ open }) => (
+                                  <>
+                                    <Popover.Button>
+                                      <More className="w-5 mr-2"></More>
+                                    </Popover.Button>
+                                    <Transition.Root show={open} as={Fragment}>
+                                      <Dialog
+                                        as="div"
+                                        className="relative z-10"
+                                        initialFocus={cancelButtonRef}
+                                        onClose={setOpen}
+                                      >
+                                        <Transition.Child
+                                          as={Fragment}
+                                          enter="ease-out duration-300"
+                                          enterFrom="opacity-0"
+                                          enterTo="opacity-100"
+                                          leave="ease-in duration-200"
+                                          leaveFrom="opacity-100"
+                                          leaveTo="opacity-0"
+                                        >
+                                          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                                        </Transition.Child>
 
-                       <Popover className="relative">
-                {({ open }) => (
-                  <>
-                    <Popover.Button>
-                      <More className="w-5 mr-2"></More>
-                    </Popover.Button>
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0 translate-y-1"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 translate-y-1"
-                    >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
-                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                          <div className="relative gap-8 bg-white p-7 ">
-                            <div>
-                              <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                                <div className="flex items-center">
-                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
-                                    Show Profile
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-1"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven "
-                                >
-                                  Public
-                                </label>
-                              </div>
-                              <div class="flex items-center mt-3 ml-7">
-                                <input
-                                  id="default-radio-2"
-                                  type="radio"
-                                  value=""
-                                  name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
-                                />
-                                <label
-                                  for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
-                                >
-                                  Private
-                                </label>
-                              </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
-                                  Update
-                                </button>
-                                <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Popover.Panel>
-                    </Transition>
-                  </>
-                )}
-              </Popover>
-                      </td>
-                    </tr>
-                  ))} </>}
+                                        <div className="fixed z-10 inset-0 overflow-y-auto">
+                                          <div className="flex items-center tablet:items-center justify-center min-h-full p-4 text-center tablet:p-0">
+                                            <Transition.Child
+                                              as={Fragment}
+                                              enter="ease-out duration-300"
+                                              enterFrom="opacity-0 translate-y-4 translate-y-0 scale-95"
+                                              enterTo="opacity-100 translate-y-0 scale-100"
+                                              leave="ease-in duration-200"
+                                              leaveFrom="opacity-100 translate-y-0 scale-100"
+                                              leaveTo="opacity-0 translate-y-4 translate-y-0 scale-95"
+                                            >
+                                              <Dialog.Panel className="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all tablet:my-8 max-w-lg tablet:w-full">
+                                                <div className="bg-white px-4 pt-5 pb-4 p-6 tablet:pb-4">
+                                                  <div className="tablet:flex tablet:items-start">
+                                                    <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 ">
+                                                      <ExclamationIcon
+                                                        className="h-6 w-6 text-red-600"
+                                                        aria-hidden="true"
+                                                      />
+                                                    </div>
+                                                    <div className="mt-3 text-center  tablet:ml-4 tablet:text-left">
+                                                      <Dialog.Title
+                                                        as="h3"
+                                                        className="text-lg leading-6 font-medium text-gray-900"
+                                                      >
+                                                        Deactivate account
+                                                      </Dialog.Title>
+                                                      <div className="mt-2">
+                                                        <p className="text-sm text-gray-500">
+                                                          Are you sure you want
+                                                          to deactivate your
+                                                          account? All of your
+                                                          data will be
+                                                          permanently removed.
+                                                          This action cannot be
+                                                          undone.
+                                                        </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div className="bg-gray-50 px-4 py-3 tablet:px-6 flex flex-row-reverse">
+                                                  <button
+                                                    type="button"
+                                                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3 sm:w-auto sm:text-sm"
+                                                    onClick={() =>
+                                                      {setOpen(false)
+                                                        dispatch(fetchUpdateStatusUser(item.id, false))
+                                                        }
+                                                    }
+                                                  >
+                                                    Disable
+                                                  </button>
+                                                  <button
+                                                    type="button"
+                                                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  sm:ml-3 sm:w-auto sm:text-sm"
+                                                    onClick={() =>
+                                                      {setOpen(false)
+                                                      dispatch(fetchUpdateStatusUser(item.id, true))
+                                                      }
+                                                      
+                                                    }
+                                                    ref={cancelButtonRef}
+                                                  >
+                                                    Enable
+                                                  </button>
+                                                </div>
+                                              </Dialog.Panel>
+                                            </Transition.Child>
+                                          </div>
+                                        </div>
+                                      </Dialog>
+                                    </Transition.Root>
+                                  </>
+                                )}
+                              </Popover>
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      {filteredData.map((item, key) => (
+                        <tr
+                          key={key}
+                          class="bg-white border-b hover:bg-gray-50 "
+                        >
+                          <td class="px-6 py-4">
+                            {item?.profileDetails?.personalDetails?.firstName}
+                          </td>
+                          <td class="px-6 py-4">
+                            {item?.profileDetails?.personalDetails?.lastName}
+                          </td>
+                          <td class="px-6 py-4">
+                            {item?.profileDetails?.personalDetails?.gender}
+                          </td>
+                          <td class="px-6 py-4">1</td>
+                          <td class="px-6 py-4">2</td>
+                          <td class="px-6 py-4 text-right flex justify-between">
+                            Enable
+                            <Popover className="relative">
+                              {({ open }) => (
+                                <>
+                                  <Popover.Button>
+                                    <More className="w-5 mr-2"></More>
+                                  </Popover.Button>
+                                  <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-200"
+                                    enterFrom="opacity-0 translate-y-1"
+                                    enterTo="opacity-100 translate-y-0"
+                                    leave="transition ease-in duration-150"
+                                    leaveFrom="opacity-100 translate-y-0"
+                                    leaveTo="opacity-0 translate-y-1"
+                                  >
+                                    <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                        <div className="relative gap-8 bg-white p-7 ">
+                                          <div>
+                                            <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                              <div className="flex items-center">
+                                                <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                                  Show Profile
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div>
+                                            <div class="flex items-center mt-3 ml-7">
+                                              <input
+                                                id="default-radio-1"
+                                                type="radio"
+                                                value=""
+                                                name="default-radio"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
+                                              />
+                                              <label
+                                                for="default-radio-1"
+                                                class="ml-2 text-xl font-bold font-maven "
+                                              >
+                                                Public
+                                              </label>
+                                            </div>
+                                            <div class="flex items-center mt-3 ml-7">
+                                              <input
+                                                id="default-radio-2"
+                                                type="radio"
+                                                value=""
+                                                name="default-radio"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
+                                              />
+                                              <label
+                                                for="default-radio-2"
+                                                class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                              >
+                                                Private
+                                              </label>
+                                            </div>
+                                            <div className="text-center">
+                                              <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven w-28 mr-3 py-2 px-4  h-12 rounded mb-6">
+                                                Update
+                                              </button>
+                                              <button class="bg-transparent  w-28 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                                Cancel
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </Popover.Panel>
+                                  </Transition>
+                                </>
+                              )}
+                            </Popover>
+                          </td>
+                        </tr>
+                      ))}{" "}
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>

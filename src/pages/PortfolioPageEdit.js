@@ -85,11 +85,11 @@ export default function PortfolioEdite() {
 
           <div className="">
             <div className="">
-              <Popover className="relative">
+            <Popover className="relative">
                 {({ open }) => (
                   <>
                     <Popover.Button>
-                      <Vector className="w-5 mr-3 mt-7"></Vector>
+                      <Vector className="w-5 mr-2 mt-7"></Vector>
                     </Popover.Button>
                     <Transition
                       as={Fragment}
@@ -100,14 +100,13 @@ export default function PortfolioEdite() {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-40 w-423 h-270 sm:px-0 lg:max-w-3xl">
+                      <Popover.Panel className="absolute z-10 max-w-sm px-4 mt-3 transform -translate-x-1/2 -left-32 w-80 h-270 sm:px-0 lg:max-w-3xl">
                         <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                           <div className="relative gap-8 bg-white p-7 ">
-                            {/* {solutions.map((item) => ( */}
                             <div>
                               <div className="flow-root px-2 py-2 -mt-4 transition duration-150 ease-in-out rounded-md focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                                 <div className="flex items-center">
-                                  <p className="text-xl font-extrabold text-gray-900 font-maven">
+                                  <p className="text-xl font-bold text-gray-900 font-maven">
                                     Show Profile
                                   </p>
                                 </div>
@@ -120,11 +119,11 @@ export default function PortfolioEdite() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-1"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven text-gray-900"
                                 >
                                   Public
                                 </label>
@@ -135,20 +134,20 @@ export default function PortfolioEdite() {
                                   type="radio"
                                   value=""
                                   name="default-radio"
-                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 "
                                 />
                                 <label
                                   for="default-radio-2"
-                                  class="ml-2 text-xl font-bold font-maven text-gray-900"
+                                  class="ml-2 text-md font-light font-maven "
                                 >
                                   Private
                                 </label>
                               </div>
-                              <div className="text-center">
-                                <button class=" mt-10 bg-blue-500 hover:bg-blue-700 text-white font-maven mr-3 py-2 px-4 w-36 h-12 rounded mb-6">
+                              <div className="flex items-baseline justify-center">
+                                <button class=" mt-10 bg-[#255FAB] w-1/2 hover:bg-blue-700 text-white font-maven  mr-3 py-2 px-4  h-12 rounded mb-6">
                                   Update
                                 </button>
-                                <button class="bg-transparent  w-36 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                <button class="bg-transparent  w-1/2 h-12 hover:bg-blue-500 text-blue-700 font-semibold font-maven hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                                   Cancel
                                 </button>
                               </div>
@@ -172,9 +171,9 @@ export default function PortfolioEdite() {
         </div>
       </div>
 
-      <section class=" p-6 mx-auto  rounded-md shadow-2xl laptop:px-20">
-        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
-          <div>
+      <section class=" p-6 mx-auto  rounded-md shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:px-20">
+        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-3">
+          <div className="col-span-2">
             <div className="grid grid-2">
               <div>
                 <button
@@ -195,7 +194,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full  px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         name="title"
                         value={title}
@@ -232,7 +231,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <textarea
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         value={desc}
                         name="desc"
@@ -269,7 +268,7 @@ export default function PortfolioEdite() {
                   <div className="grid grid-cols-12">
                     <div className="col-span-11">
                       <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-[#F5F5F6] border border-[#255FAB] rounded-md  dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                        class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="password"
                         name="status"
                         value={status}
@@ -290,14 +289,14 @@ export default function PortfolioEdite() {
           <div
             className={
               file
-                ? "upload-btn-wrapper  border-dashed laptop:ml-72  "
-                : "upload-btn-wrapper  shadow-md laptop:w-1/2 tablet:w-1/2  h-40 laptop:ml-72 "
+                ? "upload-btn-wrapper w-fit h-48  shadow-[0_1px_5px_0px_rgba(0,0,0,0.1)] rounded-tl-tl-lgs"
+                : "upload-btn-wrapper shadow-[0_2px_5px_0px_rgba(0,0,0,0.1)] w-full   border rounded-tl-tl-lgs border-slate-100 h-40"
             }
           >
             {file ? (
-              <button class="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
+              <button class="desktop:-ml-56 laptop:-ml-20 desktop:mt-0"></button>
             ) : (
-              <button class=" mt-12 flex items-center justify-start ml-14 font-maven text-xl ">
+              <button class="object-contain w-full h-40 rounded-tl-tl-lgs">
                 <Img className="w-6 inline-flex  mr-2 -mt-1 rounded-lg"></Img>+
                 Click to add image
               </button>
@@ -305,13 +304,13 @@ export default function PortfolioEdite() {
             <input type="file" name="myfile" onChange={handleChange} />
             <img
               src={file}
-              className={file ? "shadow-lg h-52  rounded-tl-tl-lgs" : null}
+              className={file ? "object-contain w-full h-48 laptop:-mt-6 rounded-tl-tl-lgs" : null}
             />
           </div>
         </div>
         <div className="h-1 my-14 bg-[#BDBDBD] "></div>
-        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-2">
-          <div>
+        <div class="grid grid-cols-1 gap-6 mt-4 desktop:grid-cols-3">
+          <div className="col-span-2">
             <div className="grid grid-2">
               <div>
                 <button
@@ -355,7 +354,7 @@ export default function PortfolioEdite() {
                     <div className="grid grid-cols-12">
                       <div className="col-span-11 mb-5">
                         <textarea
-                          class="outline w-full h-32 outline-offset-2 outline-1 laptop:py-1 desktop:py-2 px-3 py-1 rounded text-gray-700 leading-tight focus:outline-blue-700 focus:shadow-outline bg-slate-50 text-left inline-flex justify-between content-center"
+                          class="block w-full h-40 border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           id="password"
                           type="text"
                           name="technology"
@@ -375,9 +374,9 @@ export default function PortfolioEdite() {
             </div>
           </div>
 
-          <div className="laptop:flex laptop:items-center laptop:justify-end flex items-center justify-center">
+          <div className="">
             <img
-              className="mt-3 desktop:-ml-56 laptop:-ml-20 desktop:mt-0 "
+              className="mt-3  desktop:mt-0 "
               src={img3}
             ></img>
           </div>
