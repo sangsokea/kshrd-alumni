@@ -20,6 +20,8 @@ import LoadingOverlay from "react-loading-overlay";
 import { api } from "../api";
 import { fetchUploadImage } from "../redux/actions/UploadImageAction";
 import Swal from "sweetalert2";
+import LanguageComponent from "../components/CVBuilderComponent/LanguageComponent";
+import { CUSTOM_WARNING } from "../commons/notify/Notify";
 
 export default function CVBuilderPage() {
   const inputFile = React.useRef(null);
@@ -35,16 +37,10 @@ export default function CVBuilderPage() {
     shallowEqual,
   );
   const skills = useSelector((state) => state?.skill, shallowEqual);
+  const languages = useSelector((state) => state?.languages, shallowEqual);
   const section = useSelector((state) => state?.addSection, shallowEqual);
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const cvBuilder = useSelector((state) => state?.cvBuilder, shallowEqual);
-
-  // const token =
-  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjgyOTYyNSwiZXhwIjoxNjU5NDU5NDI1fQ.hrszo7Cb8m-8-D_UxrCe4jy2jME12Dk1z9fJpgBw4u1sm0Do-leAt6g9i-VJmgKh_Vx3CdmuUtWXaZnL5s_kRw";
-
-  // const payload = useSelector((state) => state);
-  // console.log("==> payload in CVBuilderPage");
-  // console.log(payload);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -64,6 +60,7 @@ export default function CVBuilderPage() {
   const [generation, setgeneration] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [placeOfBirth, setPlaceOfBirth] = useState("");
+  const [nationality, setNationality] = useState("");
   const [isPublic, setIsPublic] = useState(true);
 
   const handleChangeFirstName = (e) => {
@@ -114,6 +111,11 @@ export default function CVBuilderPage() {
   const handleChangeSummary = (e) => {
     console.log(e.target.value);
     setSummary(e.target.value);
+  };
+
+  const handleChangeNationality = (e) => {
+    console.log(e.target.value);
+    setNationality(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -187,12 +189,14 @@ export default function CVBuilderPage() {
             generation,
             dateOfBirth,
             placeOfBirth,
+            nationality,
             email,
             phoneNumber,
             address,
             summary,
             profile: imageUrl,
           },
+
           employmentHistory: experiences,
 
           education: education,
@@ -201,12 +205,18 @@ export default function CVBuilderPage() {
 
           skill: skills,
 
+          languages: languages,
+
           addSection: section,
         };
         console.log("==== final data =====");
         console.log(finalData);
         // console.log(education)
         // dispatch(fetchExperience(experience));
+        // if (finalData.personalDetails.firstName) {
+        // } else {
+        //   CUSTOM_WARNING("Please fill up first name");
+        // }
         finalData && dispatch(fetchCVBuilder(finalData, isPublic));
       }
     });
@@ -479,6 +489,26 @@ export default function CVBuilderPage() {
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 />
               </div>
+
+              {/* Nationality */}
+              <div>
+                <label
+                  for="nationality"
+                  className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                >
+                  Nationality
+                </label>
+                <input
+                  name="nationality"
+                  value={nationality}
+                  className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={handleChangeNationality}
+                  type="text"
+                  id="nationality"
+                  placeholder="Khmer"
+                  required
+                />
+              </div>
             </div>
 
             {/* Address */}
@@ -524,6 +554,8 @@ export default function CVBuilderPage() {
             <LicensesComponent />
 
             <SkillsComponent />
+
+            <LanguageComponent />
 
             <AddSectionComponent />
           </form>

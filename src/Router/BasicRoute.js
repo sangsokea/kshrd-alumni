@@ -29,6 +29,7 @@ import ResumePage from "../pages/ResumePage";
 import ChangeTemplatePage from "../pages/ChangeTemplatePage";
 import PortfolioPage from "../pages/PortfolioPage";
 import CvTemplate from "../pages/template/CvTemplate";
+import HrdCvTemplate from "../pages/template/HrdCvTemplate";
 
 function BasicRoute() {
   return (
@@ -44,6 +45,7 @@ function BasicRoute() {
           {/* <Route path="aboutMeEdit" element={<ViewOwnerProfileEdit />}></Route> */}
           {/* <Route path="portfolio" element={<PortfolioPage/>}></Route> */}
           <Route path="cvTemplate" element={<CvTemplate/>}></Route>
+          <Route path="hrdCvTemplate" element={<HrdCvTemplate/>}></Route>
 
           {/* <Route path="changeCVTemplate" element={<ChangeTemplatePage/>}></Route> */}
         </Route>

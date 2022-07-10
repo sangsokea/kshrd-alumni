@@ -29,6 +29,7 @@ export default function HrdCvTemplate() {
   const [license, setLicense] = useState([]);
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
+  const [language, setLanguage] = useState([]);
 
   const ownProfiles = useSelector((state) => state?.ownProfiles);
 
@@ -52,7 +53,8 @@ export default function HrdCvTemplate() {
           setEducation(arr?.profileDetails?.education);
           setEmploymentHistory(arr?.profileDetails?.employmentHistory);
           setLicense(arr?.profileDetails?.license);
-          setSkill(arr.profileDetails.skill);
+          setSkill(arr?.profileDetails.skill);
+          setLanguage(arr?.profileDetails.languages)
           setPersonalDetails(arr?.profileDetails?.personalDetails);
         });
     }
@@ -121,9 +123,9 @@ export default function HrdCvTemplate() {
                   <div class="tablet:mt-10 mt-10">
                     <div>
                       <img
-                        src={alumni1}
+                        src={personalDetails?.profile}
                         className="w-87 h-100 tablet:-ml-14"
-                        alt=""
+                        alt="user profile"
                       />
                     </div>
                   </div>
@@ -220,7 +222,9 @@ export default function HrdCvTemplate() {
                         <p>:</p>
                       </div>
                       <div className="tablet:col-span-4">
-                        <p className="-ml-16">{personalDetails?.placeOfBirth}</p>
+                        <p className="-ml-16">
+                          {personalDetails?.placeOfBirth}
+                        </p>
                       </div>
                     </div>
                     <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-1 tablet:ml-10 font-maven text-tinys">
@@ -231,7 +235,7 @@ export default function HrdCvTemplate() {
                         <p>:</p>
                       </div>
                       <div className="tablet:col-span-4">
-                        <p className="-ml-16">Khmer</p>
+                        <p className="-ml-16">{personalDetails?.nationality}</p>
                       </div>
                     </div>
                     <div className="mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-4 text-regal-color_hrd tablet:ml-10 font-maven text-tinys">
@@ -266,15 +270,15 @@ export default function HrdCvTemplate() {
                       return (
                         <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                           <div className="font-extrabold">
-                            <p>{item?.startDate} - {item?.endDate}</p>
+                            <p>
+                              {item?.startDate} - {item?.endDate}
+                            </p>
                           </div>
                           <div className="font-extrabold">
                             <p>:</p>
                           </div>
                           <div className="tablet:col-span-4">
-                            <p className="-ml-16">
-                              {item?.description}
-                            </p>
+                            <p className="-ml-16">{item?.description}</p>
                           </div>
                         </div>
                       );
@@ -284,31 +288,26 @@ export default function HrdCvTemplate() {
                       <span>4. </span>
                       <span>LANGUAGES</span>
                     </div>
-                    <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
-                      <div className="font-extrabold">
-                        <p>Khmer</p>
-                      </div>
-                      <div className="font-extrabold">
-                        <p>:</p>
-                      </div>
-                      <div className="tablet:col-span-4">
-                        <p className="-ml-16">Native Speaker</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-1 tablet:ml-10 font-maven text-tinys">
-                      <div className="font-extrabold">
-                        <p>English</p>
-                      </div>
-                      <div className="font-extrabold">
-                        <p>:</p>
-                      </div>
-                      <div className="tablet:col-span-4">
-                        <p className="-ml-16">Highly proficient</p>
-                      </div>
-                    </div>
+
+                    {language?.map((langua) => {
+                      return (
+                        <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
+                          <div className="font-extrabold">
+                            <p>{langua?.lang}</p>
+                          </div>
+                          <div className="font-extrabold">
+                            <p>:</p>
+                          </div>
+                          <div className="tablet:col-span-4">
+                            <p className="-ml-16">{langua?.languageLevel}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+
                     <div className="mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-4 text-regal-color_hrd tablet:ml-10 font-maven text-tinys">
                       <span>5. </span>
-                      <span>LANGUAGES</span>
+                      <span>REFERENCES</span>
                     </div>
                     <div className="text-sm laptop:text-md desktop:text-lg mt-2 ml-2 font-extrabold text-left uppercase tablet:mt-3 tablet:ml-10 font-maven">
                       <span className="capitalize">Mr. </span>
