@@ -5,7 +5,7 @@ import AdminHome from "./AdminHome";
 import AdminNavbarComponent from "./AdminNavbarComponent";
 
 export default function AdminSidebarsComponent() {
-  const [showSidebar, setShowSidebar] = useState("-left-[330px]");
+  const [showSidebar, setShowSidebar] = useState("-left-72");
   const [routeName, setRouteName] = useState("");
   const [isActive, setIsActive] = useState(1);
 
@@ -19,7 +19,7 @@ export default function AdminSidebarsComponent() {
   return (
     <>
       <div
-        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-[#255FAB]  w-[330px] z-10 py-4 px-6 transition-all duration-300 order-last`}
+        className={`h-screen fixed top-0 tablet:left-0 ${showSidebar} overflow-y-auto h flex-row flex-nowrap overflow-hidden shadow-xl bg-[#255FAB]  w-72 z-10 py-4 px-6 transition-all duration-300 order-last`}
       >
         <div className="body-font font-maven flex-col items-stretch min-h-full  flex-nowrap px-0 relative">
           <div className="flex flex-col">
@@ -173,7 +173,7 @@ export default function AdminSidebarsComponent() {
                 </NavLink>
               </li>
               <li className=" text-xs text-white">
-                KSHRD ALUMNI - School Admission Dashboard Made with ♥ by 10th
+                KSHRD ALUMNI - School Admission Dashboard Made with <soan className="text-red-600">♥</soan> by 10th
                 generation
               </li>
             </ul>
@@ -181,11 +181,11 @@ export default function AdminSidebarsComponent() {
         </div>
       </div>
       {routeName.includes("/home") ? (
-        <div className=" laptop:ml-[340px] laptop:mr-3 tablet:ml-[330px]  desktop:py-32 tablet:py-32  py-32 px-4">
+        <div className=" laptop:ml-72  tablet:ml-72  desktop:py-32 tablet:py-32  py-32 px-4">
           <AdminHome />
         </div>
       ) : (
-        <div className="laptop:ml-[340px] laptop:mr-3 tablet:ml-[330px]  desktop:py-32 tablet:py-32  py-32 px-4 rl">
+        <div className="laptop:ml-72 tablet:ml-72  desktop:py-32 tablet:py-32  py-32 px-4 rl">
           <Outlet />
         </div>
       )}

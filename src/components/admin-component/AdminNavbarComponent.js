@@ -5,7 +5,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
   const [show, setshow] = useState(false);
   const navigate = useNavigate()
   return (
-    <div className="body-font font-maven bg-gradient-to-b from-blue-200 to-white  laptop:ml-[330px]   tablet:ml-[330px]">
+    <div className="body-font font-maven bg-gradient-to-b from-blue-200 to-white  laptop:ml-72   tablet:ml-72">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
         <div className="tablet:hidden">
           <button
@@ -34,7 +34,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
           </button>
           <div
             className={`absolute top-2 tablet:hidden ${
-              showSidebar === "left-0" ? "left-[330px]" : "-left-[330px]"
+              showSidebar === "left-0" ? "left-72" : "-left-72"
             } z-50 transition-all duration-300`}
           >
             <button
@@ -45,7 +45,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               rounded
               ripple="light"
               className="animate-pulse"
-              onClick={() => setShowSidebar("-left-[330px]")}
+              onClick={() => setShowSidebar("-left-72")}
             >
               <svg
                 class="h-8 w-8 text-red-500"
@@ -194,7 +194,8 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               <div className="mr-2">
                 <button
                   type="button"
-                  class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  onClick={() => navigate('accunt')}
                 >
                   <span class="sr-only">View notifications</span>
 

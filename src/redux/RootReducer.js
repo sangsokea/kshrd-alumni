@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import AccessTokenReducer from "./reducer/GetAuthUserProfileReducer";
 import CVBuilderReducer from "./reducer/CVBuilderReducer";
 import EmailReducer from "./reducer/EmailReducer";
 import FetchExperienceReducer from "./reducer/OwnProfilesReducer";
@@ -14,6 +15,10 @@ import SkillsReducer from "./reducer/localReducer/SkillsReducer";
 import LoginReducer from "./reducer/LoginReducer";
 import RegisterReducer from "./reducer/RegisterReducer";
 import UploadImageReducer from "./reducer/UploadImageReducer";
+import UpdateStatusUserReducer from "./reducer/UpdateStatusUserReducer";
+import GetAuthUserProfileReducer from "./reducer/GetAuthUserProfileReducer";
+import GetAllUserProfileReducer from "./reducer/GetAllUserProfileReducer";
+import GetUserProfileByIdReducer from "./reducer/GetUserProfileByIdReducer";
 import OwnProfilesReducer from "./reducer/OwnProfilesReducer";
 import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer"
 import LanguageReducer from "./reducer/localReducer/LanguageReducer";
@@ -26,6 +31,8 @@ export default combineReducers({
   localExperience: ExperienceReducer,
   aboutMePage: AboutMePageReducer,
   portfolioPage: PortfolioPageReducer,
+  getauthuserProfile: GetAuthUserProfileReducer,
+  updatestatusUser : UpdateStatusUserReducer,
   cvBuilder: CVBuilderReducer,
   educations: EducationReducer,
   licenseAndCertificate: LicenseAndCertificateReducer,
@@ -35,6 +42,8 @@ export default combineReducers({
   changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
   editor: EditorComponentReducer,
+  getalluserProfile: GetAllUserProfileReducer,
+  getUserProfileById: GetUserProfileByIdReducer,
   ownProfiles : OwnProfilesReducer
 
 });

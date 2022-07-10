@@ -21,10 +21,10 @@ export default function AdminBasicRoute() {
   const [isAuth, setIsAuth] = useState();
 
   const location = useLocation();
-  console.log(JSON.parse(localStorage.getItem("adminAuth")));
-  console.log(isAuth);
+  // console.log(JSON.parse(localStorage.getItem("adminAuth")));
+  // console.log(isAuth);
   useEffect(() => {
-    console.log(location.pathname);
+    // console.log(location.pathname);
     setRouteName(location.pathname);
   }, [location]);
 
@@ -36,7 +36,7 @@ export default function AdminBasicRoute() {
     <div className="min-h-screen flex flex-col justify-between">
       <div>
         {isAuth ? (
-          <Routes>
+          <Routes>  
             {isAuth ? null : (
               <Route path="/admin/login" element={<AdminLogInPage />} />
             )}
