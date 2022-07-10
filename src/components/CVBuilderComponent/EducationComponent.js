@@ -227,7 +227,7 @@ export default function EducationComponent() {
                           max="2099"
                           name="startDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="yy"
+                          placeholder="yyyy"
                           required
                         />
                       </div>
@@ -248,7 +248,7 @@ export default function EducationComponent() {
                           max="2099"
                           name="endDate"
                           className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="yy"
+                          placeholder="yyyy"
                           required
                         />
                       </div>

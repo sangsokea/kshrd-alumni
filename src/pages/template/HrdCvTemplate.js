@@ -105,6 +105,7 @@ export default function HrdCvTemplate() {
                 <div class="tablet:gap-4 h-44 tablet:grid tablet:grid-cols-5 grid grid-cols-3 ">
                   <div className="mt-10">
                     <img src={img1} className="w-89 h-69 tablet:ml-10" alt="" />
+                    <div onClick={handleExportWithComponent} className="cursor-pointer">Download as PDF</div>
                   </div>
                   <div class="tablet:col-span-3 col-span-2 border-b-4 text-sm laptop:text-md desktop:text-lg">
                     <p className="mt-10 font-bold text-tiny font-Maven tablet:mt-28 mb-5">
@@ -346,7 +347,7 @@ export default function HrdCvTemplate() {
                         <p>:</p>
                       </div>
                       <div className="tablet:col-span-4">
-                        <p className="-ml-16">Phirum.gm@gmail.com</p>
+                        <p className="-ml-16">phirum.gm@gmail.com</p>
                       </div>
                     </div>
                   </div>
@@ -356,23 +357,23 @@ export default function HrdCvTemplate() {
           </PDFExport>
         </div>
 
-        {/* <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
+        <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
             <button
               class="mb-5 py-2 text-white text-lg rounded-lg w-full"
               style={styles}
               onClick={handleExportWithComponent}
             >
-              Export as PDF
+              Download as PDF
             </button>
 
-            <button
+            {/* <button
               class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
               style={styles}
               onClick={() => dispatch(fetchChangeCVTemplate(false))}
             >
               Rollback Template
-            </button>
-          </div> */}
+            </button> */}
+          </div>
         {/* </div> */}
       </div>
     </div>

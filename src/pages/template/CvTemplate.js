@@ -31,9 +31,10 @@ export default function CvTemplate() {
   const image = useRef(null);
 
   const handleExportWithComponent = (event) => {
-    pdfExportComponent.current.save();
+
     if (image.current) {
-      savePDF(image.current);
+      // savePDF(image.current);
+      pdfExportComponent.current.save();
     }
     // savePDF(image.current, { imageResolution: 36 });
   };
@@ -130,7 +131,7 @@ export default function CvTemplate() {
               {changeTemplate ? (
                 <HrdCvTemplate />
               ) : (
-                <PDFExport ref={pdfExportComponent} paperSize="A4">
+                <PDFExport ref={pdfExportComponent} paperSize="A4" >
                   <center>
                     <div className="shadow w-350 laptop:w-222 mt-10">
                       <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
@@ -150,7 +151,7 @@ export default function CvTemplate() {
                                 <img
                                   ref={image}
                                   className="absolute bg-gray-500 rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
-                                  src={personalDetails?.profile} 
+                                  src={personalDetails?.profile}
                                   alt="user profile"
                                 />
                                 <div className="absolute rounded-full bg-regal-rgb laptop:h-14 laptop:w-14 laptop:left-20"></div>
@@ -242,7 +243,7 @@ export default function CvTemplate() {
                                     <div className="w-32 h-4 text-left rounded bg-[#8CC0DE]">
                                       <center>
                                         <span className="font-bold">
-                                          ({edu?.startDate}) - ({edu?.endDate})
+                                          {edu?.startDate} - {edu?.endDate}
                                         </span>
                                       </center>
                                     </div>
@@ -323,7 +324,7 @@ export default function CvTemplate() {
                                 <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                                   <center>
                                     <span className="font-bold">
-                                      ({item?.startDate}) - ({item?.endDate})
+                                      {item?.startDate} - {item?.endDate}
                                     </span>
                                   </center>
                                 </div>
@@ -362,15 +363,15 @@ export default function CvTemplate() {
 
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-              <button
+              {/* <button
               class="mb-5 py-2 text-white text-lg rounded-lg w-full"
               style={styles}
               onClick={handleExportWithComponent}
             >
               Export as PDF
-            </button>
+            </button> */}
 
-              <button
+              {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={(e) => handleNextCv(e)}
@@ -384,7 +385,7 @@ export default function CvTemplate() {
                 onClick={(e) => handlePreviousCv(e)}
               >
                 back
-              </button>
+              </button> */}
 
               <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
