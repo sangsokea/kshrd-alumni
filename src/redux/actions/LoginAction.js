@@ -24,13 +24,17 @@ export const encryptToken = (token) => {
 // Decrypt
 export const decryptToken = () => {
   const encryptedString = localStorage.getItem("accessToken");
-  let bytes =  CryptoJS.AES.decrypt(
+  const isAuth = localStorage.getItem('isAuth')
+ if(!isAuth){
+  let bytes =  CryptoJS?.AES.decrypt(
     encryptedString,
     process.env.REACT_APP_SECRET_WORD,
   );
-  let originalText = bytes.toString(CryptoJS.enc.Utf8);
+  let originalText = bytes?.toString(CryptoJS.enc.Utf8);
   console.log("Decrypted :" + originalText);
   return originalText ?? "";
+ }
+ return ''
 };
 
 //  set isAuth section
