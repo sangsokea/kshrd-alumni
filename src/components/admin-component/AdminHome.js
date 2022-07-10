@@ -162,9 +162,6 @@ export default function AdminHome() {
                    CVs
                   </th>
                   <th scope="col" class="px-6 py-3">
-                  Portfolio
-                  </th>
-                  <th scope="col" class="px-6 py-3">
                     Action
                     <span class="sr-only">Action</span>
                   </th>
@@ -183,20 +180,17 @@ export default function AdminHome() {
                       <td class="px-6 py-4">
                         {item?.email}
                       </td>
-                      {/* <td class="px-6 py-4">
-                        {arr.length}
+                      <td class="px-6 py-4">
+                        {item?.cv}
                       </td>
                       <td class="px-6 py-4">
-                      {portfolio.length}
-                      </td> */}
-                      <td class="px-6 py-4">
                         <button
-                          // onClick={() => {
-                          //   // navigate("/admin/view", { state: { item } })
-                          //   console.log(item.authUserId)
-                          //   dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
+                          onClick={() => {
+                            // navigate("/admin/view", { state: { item } })
+                            console.log(item.authUserId)
+                            dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
                             
-                          // }}
+                          }}
                           className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
                           
                         >
