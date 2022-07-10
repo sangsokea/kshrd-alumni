@@ -213,11 +213,11 @@ export default function CVBuilderPage() {
         console.log(finalData);
         // console.log(education)
         // dispatch(fetchExperience(experience));
-        if (finalData.personalDetails.firstName) {
-        } else {
-          CUSTOM_WARNING("Please fill up first name");
-        }
-        // finalData && dispatch(fetchCVBuilder(finalData, isPublic));
+        // if (finalData.personalDetails.firstName) {
+        // } else {
+        //   CUSTOM_WARNING("Please fill up first name");
+        // }
+        finalData && dispatch(fetchCVBuilder(finalData, isPublic));
       }
     });
   };
