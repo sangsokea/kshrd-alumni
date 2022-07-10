@@ -21,6 +21,7 @@ import { api } from "../api";
 import { fetchUploadImage } from "../redux/actions/UploadImageAction";
 import Swal from "sweetalert2";
 import LanguageComponent from "../components/CVBuilderComponent/LanguageComponent";
+import { CUSTOM_WARNING } from "../commons/notify/Notify";
 
 export default function CVBuilderPage() {
   const inputFile = React.useRef(null);
@@ -36,7 +37,7 @@ export default function CVBuilderPage() {
     shallowEqual,
   );
   const skills = useSelector((state) => state?.skill, shallowEqual);
-  const languages = useSelector((state) => state?.languages, shallowEqual)
+  const languages = useSelector((state) => state?.languages, shallowEqual);
   const section = useSelector((state) => state?.addSection, shallowEqual);
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const cvBuilder = useSelector((state) => state?.cvBuilder, shallowEqual);
@@ -115,7 +116,7 @@ export default function CVBuilderPage() {
   const handleChangeNationality = (e) => {
     console.log(e.target.value);
     setNationality(e.target.value);
-  }
+  };
 
   const handleImageChange = (e) => {
     console.log("e.target.files[0] " + e.target.files[0]);
@@ -205,14 +206,18 @@ export default function CVBuilderPage() {
           skill: skills,
 
           languages: languages,
-          
+
           addSection: section,
         };
         console.log("==== final data =====");
         console.log(finalData);
         // console.log(education)
         // dispatch(fetchExperience(experience));
-        finalData && dispatch(fetchCVBuilder(finalData, isPublic));
+        if (finalData.personalDetails.firstName) {
+        } else {
+          CUSTOM_WARNING("Please fill up first name");
+        }
+        // finalData && dispatch(fetchCVBuilder(finalData, isPublic));
       }
     });
   };
@@ -485,8 +490,8 @@ export default function CVBuilderPage() {
                 />
               </div>
 
-                 {/* Nationality */}
-                 <div>
+              {/* Nationality */}
+              <div>
                 <label
                   for="nationality"
                   className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
@@ -553,7 +558,6 @@ export default function CVBuilderPage() {
             <LanguageComponent />
 
             <AddSectionComponent />
-
           </form>
         </div>
 
