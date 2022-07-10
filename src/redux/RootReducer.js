@@ -22,6 +22,7 @@ import GetUserProfileByIdReducer from "./reducer/GetUserProfileByIdReducer";
 import OwnProfilesReducer from "./reducer/OwnProfilesReducer";
 import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer"
 import LanguageReducer from "./reducer/localReducer/LanguageReducer";
+import UpdateUserByUuidReducer from "./reducer/UpdateUserByUuidReducer";
 
 export default combineReducers({
   register: RegisterReducer,
@@ -44,6 +45,6 @@ export default combineReducers({
   editor: EditorComponentReducer,
   getalluserProfile: GetAllUserProfileReducer,
   getUserProfileById: GetUserProfileByIdReducer,
-  ownProfiles : OwnProfilesReducer
-
+  ownProfiles : OwnProfilesReducer,
+  updateUserByUuid : UpdateUserByUuidReducer,
 });

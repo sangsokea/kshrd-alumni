@@ -39,6 +39,7 @@ function BasicRoute() {
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
+          <Route path="editNewCV" element={<CVBuilderPage />}></Route>
           <Route path="resume" element={<ResumePage />}></Route>
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>

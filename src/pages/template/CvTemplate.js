@@ -11,6 +11,7 @@ import HrdCvTemplate from "./HrdCvTemplate";
 import { fetchChangeCVTemplate } from "../../redux/actions/localAction/ChangeCVTemplateAction";
 import { decryptToken } from "../../redux/actions/LoginAction";
 import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
+import { fetchUpdateUserByUuid } from "../../redux/actions/UpdateUserByUuidAction";
 // import { fetchExperience } from "../../redux/actions/FetchExperienceAction";
 
 export default function CvTemplate() {
@@ -395,12 +396,29 @@ export default function CvTemplate() {
               </button>
 
               <button
-                class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={() => dispatch(fetchChangeCVTemplate(false))}
               >
                 Previous Template
               </button>
+             
+             
+                <button
+                class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                style={styles}
+               
+                onClick={() => {
+                  
+                  console.log(ownProfiles?.items[currentCv].uuid)
+                  // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[2].uuid))
+                }
+                }
+              >
+               Edit
+              </button>
+                
+              
             </div>
           </div>
         </div>
