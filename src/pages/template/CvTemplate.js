@@ -41,6 +41,30 @@ export default function CvTemplate() {
   // listen route
   const location = useLocation();
 
+  //*********** TR.DAYAN's code
+
+  const [currentCv, setCurrentCv] = useState(0);
+  console.log(currentCv);
+  console.log("current profile is: ", ownProfiles?.items[currentCv]);
+
+  const handleNextCv = (e) => {
+    console.log(ownProfiles?.items);
+    if (currentCv < ownProfiles?.items.length - 1) {
+      const tmp = currentCv + 1;
+      setCurrentCv(tmp);
+    }
+  };
+
+  const handlePreviousCv = (e) => {
+    console.log(ownProfiles?.items);
+    if (currentCv > 0) {
+      const tmp = currentCv - 1;
+      setCurrentCv(tmp);
+    }
+  };
+
+  //**************** */
+
   useEffect(() => {
     dispatch(fetchOwnProfiles());
   }, [location]);
@@ -94,8 +118,20 @@ export default function CvTemplate() {
       .catch((response) => console.log(response.data));
   }, []);
 
+// const currentTemplateId = ownProfiles?.items[currentCv].templateId
+
   return (
     <>
+      {/* <p>{JSON.stringify(ownProfiles?.items[currentCv])}</p>
+
+      {currentTemplateId == 1 ? (
+        <h1>Show Cv Template</h1>
+      ) : currentTemplateId == 0 ? (
+        <h1>Show HRD CV Template</h1>
+      ) : (
+        <h1>Others</h1>
+      )} */}
+
       {/* {data.map((parentItems, i) => ( */}
       <div className="h-full mb-10">
         <div class="ml-5 laptop:ml-20">
@@ -127,8 +163,8 @@ export default function CvTemplate() {
                                 <img
                                   ref={image}
                                   className="absolute bg-gray-500 rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
-                                  src="https://wallpaperaccess.com/full/6235574.jpg"
-                                  alt=""
+                                  src={personalDetails?.profile} 
+                                  alt="user profile"
                                 />
                                 <div className="absolute rounded-full bg-regal-rgb laptop:h-14 laptop:w-14 laptop:left-20"></div>
                               </div>
@@ -148,17 +184,11 @@ export default function CvTemplate() {
                             </div>
 
                             <div>
-                              {skill?.map((sk) => {
-                                {
-                                  /* console.log("Skill", sk); */
-                                }
-                                return (
-                                  <h2 className="ml-5 text-xl text-left font-maven">
-                                    {/* {personalDetails?.summary} */}
-                                    {sk?.skill}
-                                  </h2>
-                                );
-                              })}
+                              {skill && (
+                                <h2 className="ml-5 text-xl text-left font-maven">
+                                  {skill[0]?.skill}
+                                </h2>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -463,6 +493,22 @@ export default function CvTemplate() {
             >
               Export as PDF
             </button> */}
+
+              {/* <button
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                style={styles}
+                onClick={(e) => handleNextCv(e)}
+              >
+                next
+              </button>
+
+              <button
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                style={styles}
+                onClick={(e) => handlePreviousCv(e)}
+              >
+                back
+              </button> */}
 
               <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"

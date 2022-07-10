@@ -2,60 +2,61 @@ import React, { useState, useEffect } from "react";
 import { colors } from "../../commons/colors/colors";
 import { fetchAddSection } from "../../redux/actions/localAction/AddSectionAction";
 import { useDispatch } from "react-redux";
+import { fetchLanguage } from "../../redux/actions/localAction/LanguageAction";
 
-export default function AddSectionComponent() {
-  const [displaySection, setDisplaySection] = useState(false);
+export default function LanguageComponent() {
+  const [displayLanguage, setDisplayLanguage] = useState(false);
   const dispatch = useDispatch();
 
-  const [section, setSection] = useState([
+  const [language, setLanguage] = useState([
     {
-      customSection: "",
-      sectionValue: "",
+      lang: "",
+      languageLevel: "",
       isShow: true,
       id: 0,
     },
   ]);
 
-  const handleSectionChange = (index, event) => {
+  const handleLanguageChange = (index, event) => {
     console.log(event.target.value);
-    let data = [...section];
+    let data = [...language];
     data[index][event.target.name] = event.target.value;
-    setSection(data);
+    setLanguage(data);
   };
 
-  const addFieldsSection = () => {
-    setDisplaySection(true);
-    if (!displaySection) {
+  const addFieldsLanguage = () => {
+    setDisplayLanguage(true);
+    if (!displayLanguage) {
       console.log("Hidden true");
     } else {
       let newData = {
-        customSection: "",
-        sectionValue: "",
+        lang: "",
+        languageLevel: "",
         isShow: true,
-        id: section.length,
+        id: language.length,
       };
-      const oldData = section.map((x) => {
+      const oldData = language.map((x) => {
         return {
           ...x,
           isShow: false,
         };
       });
-      setSection([...oldData, newData]);
+      setLanguage([...oldData, newData]);
     }
   };
 
-  const removeFieldsSection = (index, e) => {
+  const removeFieldsLanguage = (index, e) => {
     e.preventDefault();
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    let data = [...section];
+    let data = [...language];
     data.splice(index, 1);
-    setSection(data);
+    setLanguage(data);
   };
 
   const onDropDown = (id) => {
-    setSection(
-      section.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
+    setLanguage(
+      language.map((x) => (x.id == id ? { ...x, isShow: !x.isShow } : x))
     );
   };
 
@@ -63,13 +64,13 @@ export default function AddSectionComponent() {
     e.preventDefault();
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    console.log(section);
+    console.log(language);
     // dispatch(fetchExperience(experience));
   };
 
   useEffect(() => {
-    section ? dispatch(fetchAddSection(section)) : alert("empty field");
-  }, [displaySection, section]);
+    language ? dispatch(fetchLanguage(language)) : alert("empty field");
+  }, [displayLanguage, language]);
 
   return (
     <>
@@ -79,8 +80,8 @@ export default function AddSectionComponent() {
           for="large-input"
           className="flex flex-row mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black items-center"
         >
-          Add Section
-          <span onClick={addFieldsSection}>
+          Languages
+          <span onClick={addFieldsLanguage}>
             <svg
               className="w-4 latpop:w-6 h-auto ml-2 text-black"
               fill="none"
@@ -98,8 +99,8 @@ export default function AddSectionComponent() {
         </label>
 
         {/* Dynamic form for Licenses and Certifications */}
-        <div className={!displaySection ? "hidden" : "block"}>
-          {section.map((input, index) => (
+        <div className={!displayLanguage ? "hidden" : "block"}>
+          {language.map((input, index) => (
             <form
               onSubmit={submit}
               className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
@@ -108,7 +109,7 @@ export default function AddSectionComponent() {
                 className="flex flex-row mb-5"
                 onClick={() => onDropDown(input.id)}
               >
-                {input.customSection ? input.customSection : "(Not Specified)"}
+                {input.lang ? input.lang : "(Not Specified)"}
                 <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
@@ -150,47 +151,47 @@ export default function AddSectionComponent() {
                 <div key={index} className="mb-5">
                   <div>
                     <label
-                      for="customSection"
+                      for="lang"
                       className="block mb-2 text-sm font-medium dark:text-black"
                     >
-                      Title
+                      Language
                     </label>
                     <input
                       className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      name="customSection"
+                      name="lang"
                       placeholder="Title"
-                      value={input.customSection}
-                      onChange={(event) => handleSectionChange(index, event)}
+                      value={input.lang}
+                      onChange={(event) => handleLanguageChange(index, event)}
                     ></input>
                   </div>
                   <div>
                     <label
-                      for="sectionValue"
+                      for="languageLevel"
                       className="block mt-5 mb-2 text-sm font-medium dark:text-black"
                     >
                       Description
                     </label>
                     <textarea
                       className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      name="sectionValue"
+                      name="languageLevel"
                       placeholder="description"
-                      value={input.sectionValue}
-                      onChange={(event) => handleSectionChange(index, event)}
+                      value={input.languageLevel}
+                      onChange={(event) => handleLanguageChange(index, event)}
                     />
                   </div>
                 </div>
               </div>
 
               {/* <button
-                onClick={submit}
-                style={styles}
-                className="px-5 py-2 mr-5 text-white rounded-md"
-              >
-                Submit
-              </button> */}
+                  onClick={submit}
+                  style={styles}
+                  className="px-5 py-2 mr-5 text-white rounded-md"
+                >
+                  Submit
+                </button> */}
 
               <button
-                onClick={(e) => removeFieldsSection(index, e)}
+                onClick={(e) => removeFieldsLanguage(index, e)}
                 className="px-5 py-2 text-white bg-red-600 rounded-md"
               >
                 Remove
@@ -198,12 +199,12 @@ export default function AddSectionComponent() {
             </form>
           ))}
         </div>
-        {section.length >= 1 && displaySection && (
+        {language.length >= 1 && displayLanguage && (
           <div
-            onClick={addFieldsSection}
+            onClick={addFieldsLanguage}
             className="m-2 w-full cursor-pointer text-blue-900 hover:text-blue-500 font-bold text-right"
           >
-            + Add more section
+            + Add more language
           </div>
         )}
       </div>

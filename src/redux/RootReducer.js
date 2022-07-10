@@ -16,6 +16,7 @@ import RegisterReducer from "./reducer/RegisterReducer";
 import UploadImageReducer from "./reducer/UploadImageReducer";
 import OwnProfilesReducer from "./reducer/OwnProfilesReducer";
 import ChangeCVTemplateReducer from "./reducer/localReducer/ChangeCVTemplateReducer"
+import LanguageReducer from "./reducer/localReducer/LanguageReducer";
 
 export default combineReducers({
   register: RegisterReducer,
@@ -30,6 +31,7 @@ export default combineReducers({
   licenseAndCertificate: LicenseAndCertificateReducer,
   skill: SkillsReducer,
   addSection: AddSectionReducer,
+  languages: LanguageReducer,
   changeCVTemplate: ChangeCVTemplateReducer,
   uploadImage: UploadImageReducer,
   editor: EditorComponentReducer,
