@@ -13,16 +13,6 @@ export default function AdminHome() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.getalluserProfile?.items);
   
-const hello = [...data]
-const result = hello.reduce(function (r, a) {
-  r[a.authUserId] = r[a.authUserId] || [];
-  r[a.authUserId].push(a);
-  return r;
-}, Object.create(null));
-console.log(result);
-
-console.log(hello)
-
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
@@ -184,8 +174,8 @@ console.log(hello)
               <tbody>
                 
                 {data &&
-                  data.map((item) => (
-                    <tr key={item.authUserId} class="bg-white border-b hover:bg-gray-50 ">
+                  data.map((item,key) => (
+                    <tr key={key} class="bg-white border-b hover:bg-gray-50 ">
                       
                       <td class="px-6 py-4">
                         {item?.username}
@@ -201,12 +191,12 @@ console.log(hello)
                       </td> */}
                       <td class="px-6 py-4">
                         <button
-                          onClick={() => {
-                            // navigate("/admin/view", { state: { item } })
-                            console.log(item.authUserId)
-                            dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
+                          // onClick={() => {
+                          //   // navigate("/admin/view", { state: { item } })
+                          //   console.log(item.authUserId)
+                          //   dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
                             
-                          }}
+                          // }}
                           className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
                           
                         >
