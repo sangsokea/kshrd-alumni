@@ -222,14 +222,6 @@ export default function CVBuilderPage() {
     });
   };
 
-  // useEffect(() => {
-  //   cvBuilder.items
-  //     ? navigate("/sidebar/aboutMe", {
-  //         state: { cvBuilder: cvBuilder?.items ?? null },
-  //       })
-  //     : navigate("/sidebar/createNewCV");
-  // }, [cvBuilder]);
-
   return (
     <>
       {(uploadImage?.loading || cvBuilder?.loading) && (

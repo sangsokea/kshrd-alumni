@@ -33,7 +33,7 @@ export default function NavbarComponent() {
       profile?.profileDetails &&
         setLocalImage(profile?.profileDetails?.personalDetails?.profile);
     }
-    const username = localStorage.getItem("username");
+    const username = JSON.parse(localStorage.getItem("username"));
     username && JSON.parse && setUsername(username);
   }, []);
 

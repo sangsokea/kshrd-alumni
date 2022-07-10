@@ -32,6 +32,9 @@ export default function CvTemplate() {
 
   const handleExportWithComponent = (event) => {
     pdfExportComponent.current.save();
+    if (image.current) {
+      savePDF(image.current);
+    }
     // savePDF(image.current, { imageResolution: 36 });
   };
 
@@ -48,14 +51,19 @@ export default function CvTemplate() {
   console.log("current profile is: ", ownProfiles?.items[currentCv]);
 
   const handleNextCv = (e) => {
-    console.log(ownProfiles?.items);
+    console.log("Next CV is : ");
+    // console.log(ownProfiles?.items );
     if (currentCv < ownProfiles?.items.length - 1) {
       const tmp = currentCv + 1;
       setCurrentCv(tmp);
+      setData(ownProfiles?.items + tmp);
+      console.log("Next CV is : ");
+      console.log(ownProfiles?.items + tmp)
     }
   };
 
   const handlePreviousCv = (e) => {
+    console.log("Previous CV is :")
     console.log(ownProfiles?.items);
     if (currentCv > 0) {
       const tmp = currentCv - 1;
@@ -78,17 +86,13 @@ export default function CvTemplate() {
           setEducation(arr?.profileDetails?.education);
           setEmploymentHistory(arr?.profileDetails?.employmentHistory);
           setLicense(arr?.profileDetails?.license);
-          setSkill(arr.profileDetails.skill);
+          setSkill(arr?.profileDetails?.skill);
           setPersonalDetails(arr?.profileDetails?.personalDetails);
         });
     }
   }, [ownProfiles]);
 
   console.log("OwnProfiles Data :", ownProfiles);
-  // console.log(
-  //   "EmploymentHistory",
-  //   ownProfiles?.items[0]?.profileDetails?.employmentHistory
-  // );
 
   useEffect(() => {
     setChangeTemplate(state1);
@@ -96,10 +100,6 @@ export default function CvTemplate() {
 
   const [changeTemplate, setChangeTemplate] = useState(state1);
 
-  // const [data, setData] = useState([]);
-
-  // const token =
-  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
   const token = decryptToken();
   useEffect(() => {
     api
@@ -118,21 +118,8 @@ export default function CvTemplate() {
       .catch((response) => console.log(response.data));
   }, []);
 
-// const currentTemplateId = ownProfiles?.items[currentCv].templateId
-
   return (
     <>
-      {/* <p>{JSON.stringify(ownProfiles?.items[currentCv])}</p>
-
-      {currentTemplateId == 1 ? (
-        <h1>Show Cv Template</h1>
-      ) : currentTemplateId == 0 ? (
-        <h1>Show HRD CV Template</h1>
-      ) : (
-        <h1>Others</h1>
-      )} */}
-
-      {/* {data.map((parentItems, i) => ( */}
       <div className="h-full mb-10">
         <div class="ml-5 laptop:ml-20">
           <div class="grid grid-cols-8">
@@ -214,7 +201,7 @@ export default function CvTemplate() {
                                 {personalDetails?.email}
                               </p>
                               <p className="font-bold">Nationality</p>
-                              <p>khmer</p>
+                              <p>{personalDetails?.nationality}</p>
                             </div>
                           </div>
                         </div>
@@ -226,10 +213,7 @@ export default function CvTemplate() {
                           </div>
                           <div>
                             <p className="mt-2 ml-5 text-xs text-left font-maven">
-                              Our free expert guides are packed with useful tips
-                              and the best practices for getting hired in dozens
-                              of industries. Combine these samples with our
-                              templates to finish your application in minutes.{" "}
+                              {personalDetails?.summary}
                             </p>
                           </div>
                         </div>
@@ -265,7 +249,6 @@ export default function CvTemplate() {
                                     <p className="mt-1">
                                       <span>{edu?.degree}, </span>
                                       <span>{edu?.school}, </span>
-                                      {/* <span>phnom penh</span> */}
                                     </p>
                                   </div>
                                 </div>
@@ -315,62 +298,6 @@ export default function CvTemplate() {
                                       </div>
                                     </div>
                                   </div>
-                                  {/* <div class="grid grid-cols-3 gap-4 mt-3">
-                                  <div class="...">
-                                    <p>Docker</p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-4 mt-3">
-                                  <div class="...">
-                                    <p>Node js</p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-4 mt-3">
-                                  <div class="...">
-                                    <p>Python</p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-4 mt-3">
-                                  <div class="...">
-                                    <p>HTML5</p>
-                                  </div>
-                                  <div class="col-span-2 justify-items-end">
-                                    <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                      <div className="w-3 h-3 rounded-full bg-[#D9D9D9]"></div>
-                                    </div>
-                                  </div>
-                                </div> */}
                                 </div>
                               );
                             })}
@@ -407,48 +334,6 @@ export default function CvTemplate() {
                             </div>
                           ))}
 
-                          {/* <div className="mt-4 ml-5 font-maven">
-                        <div className="mb-1 text-left">
-                          <span>Web devloper, </span> &nbsp;&nbsp;
-                          <span>employer, </span> &nbsp;&nbsp;
-                          <span>phnom penh</span>
-                        </div>
-                        <div className="text-left">
-                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                            <center>
-                              <span className="font-bold">
-                                JANUARY 2019 - MARCH 2020
-                              </span>
-                            </center>
-                          </div>
-                          <p className="mt-3 text-xs">
-                            Combine these samples with our templates and
-                            coverccc letter builder tool to finish your
-                            application in minutes.
-                          </p>
-                        </div>
-                      </div> */}
-                          {/* <div className="mt-4 ml-5 font-maven">
-                        <div className="mb-1 text-left">
-                          <span>Web devloper, </span> &nbsp;&nbsp;
-                          <span>employer, </span> &nbsp;&nbsp;
-                          <span>phnom penh</span>
-                        </div>
-                        <div className="text-left">
-                          <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                            <center>
-                              <span className="font-bold">
-                                JANUARY 2019 - MARCH 2020
-                              </span>
-                            </center>
-                          </div>
-                          <p className="mt-3 text-xs">
-                            Combine these samples with our templates and
-                            coverccc letter builder tool to finish your
-                            application in minutes.
-                          </p>
-                        </div>
-                      </div> */}
                           <div className="mt-7">
                             <h2 class="font-maven text-left ml-5 font-bold text-xl">
                               Hobbies
@@ -465,11 +350,6 @@ export default function CvTemplate() {
                                   </ui>
                                 );
                               })}
-
-                              {/* <ui className="ml-20">
-                                  <li class="fff">Mountain biking</li>
-                                  <li class="fff">Writting</li>
-                                </ui> */}
                             </div>
                           </div>
                         </div>
@@ -479,22 +359,18 @@ export default function CvTemplate() {
                 </PDFExport>
               )}
             </div>
-            {/* );
-              })} */}
 
-            {/* );
-            })} */}
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-              {/* <button
+              <button
               class="mb-5 py-2 text-white text-lg rounded-lg w-full"
               style={styles}
               onClick={handleExportWithComponent}
             >
               Export as PDF
-            </button> */}
+            </button>
 
-              {/* <button
+              <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={(e) => handleNextCv(e)}
@@ -508,7 +384,7 @@ export default function CvTemplate() {
                 onClick={(e) => handlePreviousCv(e)}
               >
                 back
-              </button> */}
+              </button>
 
               <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
