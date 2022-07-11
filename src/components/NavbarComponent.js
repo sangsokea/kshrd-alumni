@@ -19,6 +19,7 @@ function classNames(...classNamees) {
 export default function NavbarComponent() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const login = useSelector((state) => state?.login.items);
+  const user = useSelector((state) => state?.user, shallowEqual);
   const [localImage, setLocalImage] = useState();
 
   const navigate = useNavigate();
@@ -27,11 +28,11 @@ export default function NavbarComponent() {
   const isAuth = useSelector((state) => state.isAuth);
 
   useEffect(() => {
-    const localObj = localStorage.getItem("ownProfile");
-    if (localObj !== null) {
-      const profile = JSON?.parse(localObj);
-      profile?.profileDetails &&
-        setLocalImage(profile?.profileDetails?.personalDetails?.profile);
+    const item = localStorage.getItem("user");
+    let userItem = item && JSON.parse(item);
+    if (userItem?.username) {
+      setUsername(userItem.username);
+      setLocalImage(userItem.profile);
     }
     const username = localStorage.getItem("username");
     username && setUsername(username);

@@ -117,7 +117,7 @@ export default function LicensesComponent() {
 
   useEffect(() => {
     let images = localStorage.getItem("images");
-    let localImage = JSON.parse(images);
+    let localImage = images && JSON.parse(images);
 
     licenses.length === 0 &&
       localImage &&

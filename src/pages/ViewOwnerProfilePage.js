@@ -4,12 +4,18 @@ import { colors } from "../commons/colors/colors";
 import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction";
+import ScrollToTop from "react-scroll-up";
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCente);
 export default function ViewOwnerProfilePage() {
+  const scrollRef = React.useRef(null);
+  const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
   const [fromViewAlumni, setFromViewAlumni] = useState(false);
   const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
+
+  const [backToTop, setBackToTop] = useState(false);
 
   const location = useLocation();
 
@@ -24,13 +30,22 @@ export default function ViewOwnerProfilePage() {
       const localData = localStorage.getItem("view");
       const itemFromAlumni = JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
-    }else{
+    } else {
       const localData = localStorage.getItem("ownProfile");
       const itemFromAlumni = JSON.parse(localData);
       setDataFromViewAlumni(itemFromAlumni?.profileDetails);
-
     }
   }, [location]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        setBackToTop(true);
+      } else {
+        setBackToTop(false);
+      }
+    });
+  }, []);
 
   const [isEdit, setIsEdit] = useState(state);
 
@@ -41,7 +56,10 @@ export default function ViewOwnerProfilePage() {
       {isEdit ? (
         <ViewOwnerProfileEdit />
       ) : (
-        <div className="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven">
+        <div
+          ref={scrollRef}
+          className="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven"
+        >
           <div>
             {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}
             <img
@@ -67,30 +85,6 @@ export default function ViewOwnerProfilePage() {
                 Name is empty
               </p>
             )}
-
-            <button
-              type="button"
-              onClick={() => dispatch(fetchAboutMePage(true))}
-              className="ml-auto"
-            >
-              {/* <NavLink to=""> */}
-              <span className="">
-                <svg
-                  className="w-6 h-auto"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1"
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  />
-                </svg>
-              </span>
-              {/* </NavLink> */}
-            </button>
           </div>
 
           <p className="mt-3 text-md laptop:text-lg desktop:text-2xl">
@@ -140,7 +134,7 @@ export default function ViewOwnerProfilePage() {
                     <span className="block w-1/2">: {obj?.startDate}</span>{" "}
                   </h4>
                   <h4 className="flex justify-between tablet:w-1/2 w-full">
-                    ➡️ Start Date{" "}
+                    ➡️ End Date{" "}
                     <span className="block w-1/2">
                       : {obj?.endDate ? obj?.endDate : "present"}
                     </span>
@@ -190,7 +184,7 @@ export default function ViewOwnerProfilePage() {
                     <span className="block w-1/2">: {obj?.startDate}</span>{" "}
                   </h4>
                   <h4 className="flex justify-between tablet:w-1/2 w-full">
-                    ➡️ Start Date{" "}
+                    ➡️ End Date{" "}
                     <span className="block w-1/2">
                       : {obj?.endDate ? obj?.endDate : "present"}
                     </span>
@@ -274,23 +268,13 @@ export default function ViewOwnerProfilePage() {
                     ➡️ School
                     <span className="block w-1/2">: {obj?.school}</span>
                   </h4>
-                  <h4 className="flex justify-between tablet:w-1/2 w-full">
-                    ➡️ City <span className="block w-1/2">: {obj?.city}</span>
-                  </h4>
+                  
                   <h4 className="flex justify-between tablet:w-1/2 w-full">
                     ➡️ Degree{" "}
                     <span className="block w-1/2">: {obj?.degree}</span>
                   </h4>
-                  <h4 className="flex justify-between tablet:w-1/2 w-full mr-2">
-                    ➡️ Start Date{" "}
-                    <span className="block w-1/2">: {obj?.startDate}</span>{" "}
-                  </h4>
-                  <h4 className="flex justify-between tablet:w-1/2 w-full">
-                    ➡️ Start Date{" "}
-                    <span className="block w-1/2">
-                      : {obj?.endDate ? obj?.endDate : "present"}
-                    </span>
-                  </h4>
+                 
+                 
 
                   {obj?.description && (
                     <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">
@@ -381,6 +365,34 @@ export default function ViewOwnerProfilePage() {
               </p>
             </div>
           </div>
+          {backToTop && (
+            <ScrollToTop showUnder={0} duration={1000}>
+              <div className="animate-bounce fixed bottom-10 right-10">
+                <button
+                  type="button"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                  class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+                  id="btn-back-to-top"
+                >
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    class="w-4 h-4"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </ScrollToTop>
+          )}
         </div>
       )}
     </>

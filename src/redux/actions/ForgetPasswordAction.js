@@ -1,5 +1,5 @@
 import { api } from "../../api";
-import { CUSTOM_ERROR } from "../../commons/notify/Notify";
+import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 import { fetchLogin } from "./LoginAction";
 
 // action type
@@ -9,7 +9,7 @@ export const FORGOT_PASSWORD_FAILURE = "FORGOT_PASSWORD_FAILURE";
 
 // action
 
-export const fetchforgotPassword = (email, password) => (dispatch) => {
+export const fetchforgotPassword = (email, password, isLogin = true) => (dispatch) => {
   console.log("--> FetchforgotPassword");
   dispatch(fetchforgotPasswordRequest());
   api
@@ -30,7 +30,8 @@ export const fetchforgotPassword = (email, password) => (dispatch) => {
       console.log(res);
       if (!res?.data?.payload?.error) {
         dispatch(fetchforgotPasswordSuccess(res?.data?.payload));
-        dispatch(fetchLogin(email, password))
+       isLogin && dispatch(fetchLogin(email, password))
+       !isLogin && CUSTOM_SUCCESSFUL(res.data.message)
       } else {
         dispatch(fetchforgotPasswordFailure(res?.data?.payload.error));
       }

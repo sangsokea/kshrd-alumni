@@ -28,9 +28,10 @@ export const fetchOwnProfiles = () => (dispatch) => {
     .then((res) => {
       console.log(`--> fetch experience`);
       console.log(res);
-      if (!res?.data?.payload.error) {
+      let payload = res?.data?.payload
+      if (payload) {
         dispatch(fetchOwnProfilesSuccess(res?.data?.payload));
-        localStorage.setItem("ownProfile", JSON.stringify(res?.data?.payload?.at(-1)));
+        payload?.length > 0 && localStorage.setItem("ownProfile", JSON.stringify(payload?.at(-1)));
       } else {
         dispatch(fetchOwnProfilesFailure(res?.data?.payload.error));
       }
