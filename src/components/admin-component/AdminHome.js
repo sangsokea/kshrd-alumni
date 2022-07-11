@@ -13,16 +13,6 @@ export default function AdminHome() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.getalluserProfile?.items);
   
-const hello = [...data]
-const result = hello.reduce(function (r, a) {
-  r[a.authUserId] = r[a.authUserId] || [];
-  r[a.authUserId].push(a);
-  return r;
-}, Object.create(null));
-console.log(result);
-
-console.log(hello)
-
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
@@ -172,9 +162,6 @@ console.log(hello)
                    CVs
                   </th>
                   <th scope="col" class="px-6 py-3">
-                  Portfolio
-                  </th>
-                  <th scope="col" class="px-6 py-3">
                     Action
                     <span class="sr-only">Action</span>
                   </th>
@@ -184,8 +171,8 @@ console.log(hello)
               <tbody>
                 
                 {data &&
-                  data.map((item) => (
-                    <tr key={item.authUserId} class="bg-white border-b hover:bg-gray-50 ">
+                  data.map((item,key) => (
+                    <tr key={key} class="bg-white border-b hover:bg-gray-50 ">
                       
                       <td class="px-6 py-4">
                         {item?.username}
@@ -193,12 +180,9 @@ console.log(hello)
                       <td class="px-6 py-4">
                         {item?.email}
                       </td>
-                      {/* <td class="px-6 py-4">
-                        {arr.length}
-                      </td>
                       <td class="px-6 py-4">
-                      {portfolio.length}
-                      </td> */}
+                        {item?.cv}
+                      </td>
                       <td class="px-6 py-4">
                         <button
                           onClick={() => {

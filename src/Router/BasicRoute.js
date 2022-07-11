@@ -30,6 +30,7 @@ import ChangeTemplatePage from "../pages/ChangeTemplatePage";
 import PortfolioPage from "../pages/PortfolioPage";
 import CvTemplate from "../pages/template/CvTemplate";
 import HrdCvTemplate from "../pages/template/HrdCvTemplate";
+import EditCVBuilderPage from "../pages/EditCVBuilderPage";
 
 function BasicRoute() {
   return (
@@ -39,6 +40,7 @@ function BasicRoute() {
       <Routes>
         <Route path="/sidebar" element={<SidebarComponent />}>
           <Route path="createNewCV" element={<CVBuilderPage />}></Route>
+          <Route path="editNewCV/:uuid" element={<EditCVBuilderPage />}></Route>
           <Route path="resume" element={<ResumePage />}></Route>
           <Route path="accountSetting" element={<AccountSettingPage />}></Route>
           <Route path="aboutMe" element={<ViewOwnerProfilePage />}></Route>

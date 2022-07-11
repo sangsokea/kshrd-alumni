@@ -17,7 +17,7 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
   dispatch(fetchGetAllUserProfleRequest());
   api
     .get(
-      `/admin/users/profiles?limit=${limit}&page=${page}`,
+      `/admin/users/info?limit=${limit}&page=${page}`,
       {
         headers: { 
           Authorization: `Bearer ${token}`

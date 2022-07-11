@@ -8,7 +8,7 @@ import EducationComponent from "../components/CVBuilderComponent/EducationCompon
 import LicensesComponent from "../components/CVBuilderComponent/LicensesComponent";
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import sample_image from "../commons/images/sample image.jpg";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -27,6 +27,7 @@ import moment from "moment";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { YouTube } from "@material-ui/icons";
+import { fetchUpdateUserByUuid } from "../redux/actions/UpdateUserByUuidAction";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
 const phoneRegExp =
@@ -67,7 +68,17 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export default function CVBuilderPage() {
+export default function EditCVBuilderPage() {
+  const { uuid } = useParams();
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   dispatch(fetchUpdateUserByUuid(uuid));
+  // }, [dispatch]);
+  useEffect(()=>{
+    setEmail(location.state.email)
+console.log("Data : ", location.state);
+  })
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
@@ -138,12 +149,10 @@ export default function CVBuilderPage() {
     let images = localStorage.getItem("images");
     let localImage = JSON.parse(images);
 
-    if (localImage) {
-      let finalImage = localImage?.profile?.fileUrl;
-      console.log("reduxImage: " + reduxImage);
-      console.log("localImage: " + finalImage);
-      setImageUrl(reduxImage ?? finalImage);
-    }
+    let finalImage = localImage?.profile?.fileUrl;
+    console.log("reduxImage: " + reduxImage);
+    console.log("localImage: " + finalImage);
+    setImageUrl(reduxImage ?? finalImage);
   }, [uploadImage, imageUrl, window.localStorage.onChange]);
 
   console.log(imageUrl);
@@ -166,8 +175,9 @@ export default function CVBuilderPage() {
       }
     });
   };
-  const handleSubmit = (values) => {
-    if (imageUrl) {
+  const handleSubmit = () => {
+
+    if(imageUrl){
       Swal.fire({
         title: "Save!",
         text: "Are you sure? You would like to submit this data",
@@ -182,33 +192,33 @@ export default function CVBuilderPage() {
           let result = {
             personalDetails: {
               gender,
-              ...values,
+              ...finalData,
               summary,
               profile: imageUrl,
             },
-
+  
             employmentHistory: experiences,
-
+  
             education: education,
-
+  
             license: license,
-
+  
             skill: skills,
-
+  
             languages: languages,
-
+  
             addSection: section,
           };
           console.log("==== final data result =====", result);
-
+          
           // console.log(education)
           // dispatch(fetchExperience(experience));
-
+  
           result && dispatch(fetchCVBuilder(result, isPublic));
         }
       });
-    } else {
-      CUSTOM_WARNING("Please upload your profile!");
+    }else{
+      CUSTOM_WARNING("Please upload your profile!")
     }
   };
 
@@ -338,7 +348,8 @@ export default function CVBuilderPage() {
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-            handleSubmit(values);
+            handleSubmit()
+            
           }}
         >
           {({ errors, touched }) => (
@@ -349,13 +360,13 @@ export default function CVBuilderPage() {
                   <label
                     for="first_name"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                    name=""
                   >
                     First name
                   </label>
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="firstName"
+                    value={firstName}
                   />
                   {errors.firstName && touched.firstName ? (
                     <div className="text-red-600">{errors.firstName}</div>
@@ -469,6 +480,7 @@ export default function CVBuilderPage() {
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="email"
                     type="text"
+                    value={email}
                     placeholder="example@gmail.com"
                   />
                   {errors.email && touched.email ? (
