@@ -138,10 +138,12 @@ export default function CVBuilderPage() {
     let images = localStorage.getItem("images");
     let localImage = JSON.parse(images);
 
-    let finalImage = localImage?.profile?.fileUrl;
-    console.log("reduxImage: " + reduxImage);
-    console.log("localImage: " + finalImage);
-    setImageUrl(reduxImage ?? finalImage);
+    if (localImage) {
+      let finalImage = localImage?.profile?.fileUrl;
+      console.log("reduxImage: " + reduxImage);
+      console.log("localImage: " + finalImage);
+      setImageUrl(reduxImage ?? finalImage);
+    }
   }, [uploadImage, imageUrl, window.localStorage.onChange]);
 
   console.log(imageUrl);
@@ -165,8 +167,7 @@ export default function CVBuilderPage() {
     });
   };
   const handleSubmit = () => {
-
-    if(imageUrl){
+    if (imageUrl) {
       Swal.fire({
         title: "Save!",
         text: "Are you sure? You would like to submit this data",
@@ -185,29 +186,29 @@ export default function CVBuilderPage() {
               summary,
               profile: imageUrl,
             },
-  
+
             employmentHistory: experiences,
-  
+
             education: education,
-  
+
             license: license,
-  
+
             skill: skills,
-  
+
             languages: languages,
-  
+
             addSection: section,
           };
           console.log("==== final data result =====", result);
-          
+
           // console.log(education)
           // dispatch(fetchExperience(experience));
-  
+
           result && dispatch(fetchCVBuilder(result, isPublic));
         }
       });
-    }else{
-      CUSTOM_WARNING("Please upload your profile!")
+    } else {
+      CUSTOM_WARNING("Please upload your profile!");
     }
   };
 
@@ -337,8 +338,7 @@ export default function CVBuilderPage() {
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-            handleSubmit()
-            
+            handleSubmit();
           }}
         >
           {({ errors, touched }) => (
