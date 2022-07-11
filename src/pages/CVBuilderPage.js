@@ -166,7 +166,7 @@ export default function CVBuilderPage() {
       }
     });
   };
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     if (imageUrl) {
       Swal.fire({
         title: "Save!",
@@ -182,7 +182,7 @@ export default function CVBuilderPage() {
           let result = {
             personalDetails: {
               gender,
-              ...finalData,
+              ...values,
               summary,
               profile: imageUrl,
             },
@@ -338,7 +338,7 @@ export default function CVBuilderPage() {
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-            handleSubmit();
+            handleSubmit(values);
           }}
         >
           {({ errors, touched }) => (

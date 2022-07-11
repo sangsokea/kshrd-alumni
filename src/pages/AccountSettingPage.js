@@ -193,7 +193,7 @@ export default function AccountSettingPage() {
               ACCOUNT SETTING
             </p>
 
-            <div className="mt-5 laptop:mt-20 flex flex-col justify-between h-1/3 ">
+            <div className="mt-5 laptop:mt-20 flex flex-col justify-between h-1/3 laptop:w-1/2">
               <button
                 onClick={() => {
                   setisChangePass(false);
@@ -204,7 +204,7 @@ export default function AccountSettingPage() {
                 class={
                   !isChangeUsername
                     ? "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
-                    : "animate-bounce text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
+                    : " text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
                 }
               >
                 Change Username
@@ -219,7 +219,7 @@ export default function AccountSettingPage() {
                 class={
                   !isChangePass
                     ? "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
-                    : "animate-bounce text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
+                    : " text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
                 }
               >
                 Change Password
@@ -234,7 +234,7 @@ export default function AccountSettingPage() {
                 class={
                   !isChangeProfile
                     ? "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
-                    : "animate-bounce text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
+                    : " text-white bg-blue-800 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800 active:bg-blue-800 focus:bg-blue-800 focus:text-white"
                 }
               >
                 Change Profile
