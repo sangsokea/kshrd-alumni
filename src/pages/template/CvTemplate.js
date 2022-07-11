@@ -12,6 +12,7 @@ import HrdCvTemplate from "./HrdCvTemplate";
 import { fetchChangeCVTemplate } from "../../redux/actions/localAction/ChangeCVTemplateAction";
 import { decryptToken } from "../../redux/actions/LoginAction";
 import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
+import { fetchChangeTemplate } from "../../redux/actions/ChangeTemplateAction";
 // import { fetchExperience } from "../../redux/actions/FetchExperienceAction";
 
 export default function CvTemplate() {
@@ -24,16 +25,23 @@ export default function CvTemplate() {
   const [license, setLicense] = useState([]);
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
-  const [currenIndex, setCurrenIndex] = useState(0);
+  const [currenIndex, setCurrenIndex] = useState(localStorage.getItem('currentIndex')??0);
   const ownProfiles = useSelector((state) => state?.ownProfiles);
+  const [isHrdTemplate, setIsHrdTemplate] = useState(false);
+  const [isAlumniTemplate, setIsAlumniTemplate] = useState(false);
 
   console.log("OwnProfiles: ", ownProfiles);
 
   const testChangeTemplate = () => {
     console.log("Change template");
-    {ownProfiles?.items[0]?.templateId === 1 ? console.log("CV_HRD") : ownProfiles?.items[0]?.templateId === 2 ? console.log("CV_ALUMNI") : console.log("PORTFOLIO")}
-  }
-
+    {
+      ownProfiles?.items[3]?.templateId === 1
+        ? console.log("CV_HRD")
+        : ownProfiles?.items[3]?.templateId === 2
+        ? console.log("CV_ALUMNI")
+        : console.log("PORTFOLIO");
+    }
+  };
 
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
@@ -91,9 +99,20 @@ export default function CvTemplate() {
   }, [location]);
 
   useEffect(() => {
-    setData(ownProfiles?.items);
-    setCurrentData(ownProfiles?.items[0]);
-    {
+    const obj = localStorage.getItem("ownProfiles");
+    if (obj) {
+      const data = JSON.parse(obj);
+      setData(data);
+      setCurrentData(data[localStorage.getItem('currentIndex')??0]);
+      if (data[localStorage.getItem('currentIndex')??0].templateId === 1) {
+        setIsHrdTemplate(true);
+        setIsAlumniTemplate(false);
+      } else if (data[localStorage.getItem('currentIndex')??0].templateId === 2) {
+        setIsHrdTemplate(false);
+        setIsAlumniTemplate(true);
+      }
+      setCurrenIndex(localStorage.getItem('currentIndex')??0)
+
       data &&
         data?.map((arr) => {
           setAddSection(arr?.profileDetails?.addSection);
@@ -104,7 +123,7 @@ export default function CvTemplate() {
           setPersonalDetails(arr?.profileDetails?.personalDetails);
         });
     }
-  }, [ownProfiles]);
+  }, [ownProfiles, localStorage.onChange]);
 
   console.log("OwnProfiles Data :", ownProfiles);
 
@@ -114,57 +133,74 @@ export default function CvTemplate() {
 
   const [changeTemplate, setChangeTemplate] = useState(state1);
 
-  const token = decryptToken();
-  useEffect(() => {
-    api
-      .get(
-        "/profiles/ownProfiles",
-        // {},
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
-      .then((res) => console.log(res.data.payload))
-      .catch((response) => console.log(response.data));
-  }, []);
+  // // end point change template
+  // useEffect(() => {
+  //   api
+  //     .put(
+  //       "/profiles/template/{uuid}",
+  //       // {},
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + token,
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => console.log(res.data.payload))
+  //     .catch((response) => console.log(response.data));
+  // }, []);
+
+  React.useEffect(()=>{
+    setCurrenIndex(localStorage.getItem('currentIndex'))
+  },[])
+
+  const onChangeTemplate = (uuid) =>{
+    isAlumniTemplate && dispatch(fetchChangeTemplate(uuid,2))
+    isHrdTemplate && dispatch(fetchChangeTemplate(uuid,1))
+  }
 
   const handleChange = (event, value) => {
-    setCurrenIndex(value);
+   localStorage.setItem('currentIndex', value-1)
     setCurrentData(data[value - 1]);
+    if (data[value - 1]?.templateId === 1) {
+      setIsHrdTemplate(true);
+      setIsAlumniTemplate(false);
+    } else if (data[value - 1]?.templateId === 2) {
+      setIsHrdTemplate(false);
+      setIsAlumniTemplate(true);
+    }
   };
+  
+
+  console.log("currentData: ", currentData)
 
   return (
     <>
       <div className="h-full mb-10">
         <div class="ml-5 laptop:ml-20">
+          <div>
+            <h4 className="p-1 text-blue-900 font-light mt-5">
+              ➡️ Choose the current CV that you want to display :
+            </h4>
+            <Pagination
+              defaultPage={currenIndex+1}
+              value={currenIndex + 1}
+              count={data.length}
+              onChange={handleChange}
+              variant="outlined"
+              color="primary"
+            />
+          </div>
           <div class="grid grid-cols-8">
             {/* {data &&
               data?.map(() => {
                 return ( */}
-                
-            <div class="col-span-6">
-              {changeTemplate ? (
-                <HrdCvTemplate />
-              ) : (
-                <div>
-                  <div>
-                    <h4 className="p-1 text-blue-900 font-light mt-5">
-                      ➡️ Choose the current CV that you want to display :
-                    </h4>
-                    <Pagination
-                      defaultPage={1}
-                      value={currenIndex + 1}
-                      count={data.length}
-                      onChange={handleChange}
-                      variant="outlined"
-                      color="primary"
-                    />
-                  </div>
 
+            <div class="col-span-6">
+              {isHrdTemplate && <HrdCvTemplate object={currentData} />}
+              {isAlumniTemplate && (
+                <div>
                   <PDFExport ref={pdfExportComponent} paperSize="A4">
                     {currentData && (
                       <center>
@@ -455,12 +491,12 @@ export default function CvTemplate() {
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
               <button
-              class="mb-5 py-2 text-white text-lg rounded-lg w-full"
-              style={styles}
-              onClick={handleExportWithComponent}
-            >
-              Export as PDF
-            </button>
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full"
+                style={styles}
+                onClick={handleExportWithComponent}
+              >
+                Export as PDF
+              </button>
 
               {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
@@ -481,8 +517,8 @@ export default function CvTemplate() {
               <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
-                // onClick={() => dispatch(fetchChangeCVTemplate(true))}
-                onClick={testChangeTemplate}
+                onClick={()=>onChangeTemplate(currentData?.uuid)}
+                // onClick={testChangeTemplate}
               >
                 Change Template
               </button>

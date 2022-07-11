@@ -46,6 +46,6 @@ export default combineReducers({
   getalluserProfile: GetAllUserProfileReducer,
   getUserProfileById: GetUserProfileByIdReducer,
   ownProfiles : OwnProfilesReducer,
-  user: GetUserReducer
+  user: GetUserReducer,
 
 });
