@@ -30,6 +30,12 @@ export default function CvTemplate() {
 
   console.log("OwnProfiles: ", ownProfiles);
 
+  const testChangeTemplate = () => {
+    console.log("Change template");
+    {ownProfiles?.items[0]?.templateId === 1 ? console.log("CV_HRD") : ownProfiles?.items[0]?.templateId === 2 ? console.log("CV_ALUMNI") : console.log("PORTFOLIO")}
+  }
+
+
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
 
@@ -449,13 +455,13 @@ export default function CvTemplate() {
             </div>
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-              {/* <button
+              <button
               class="mb-5 py-2 text-white text-lg rounded-lg w-full"
               style={styles}
               onClick={handleExportWithComponent}
             >
               Export as PDF
-            </button> */}
+            </button>
 
               {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
@@ -476,7 +482,8 @@ export default function CvTemplate() {
               <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
-                onClick={() => dispatch(fetchChangeCVTemplate(true))}
+                // onClick={() => dispatch(fetchChangeCVTemplate(true))}
+                onClick={testChangeTemplate}
               >
                 Change Template
               </button>
