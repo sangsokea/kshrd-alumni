@@ -410,8 +410,9 @@ export default function CvTemplate() {
                
                 onClick={() => {
                   
-                  console.log(ownProfiles?.items[currentCv].uuid)
-                  // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[2].uuid))
+                  console.log(ownProfiles?.items[currentCv])
+                  navigate(`/sidebar/editNewCV/${ownProfiles?.items[currentCv].uuid}`, {state: {...ownProfiles?.items[currentCv]}})
+                  // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[currentCv].uuid))
                 }
                 }
               >

@@ -349,6 +349,7 @@ export default function CVBuilderPage() {
                   <label
                     for="first_name"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                    name=""
                   >
                     First name
                   </label>
