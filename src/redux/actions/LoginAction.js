@@ -4,6 +4,7 @@ import CryptoJS from "crypto-js";
 import { CUSTOM_ERROR, CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 import { history, myHistory } from "../../Router/History";
 import { fetchOwnProfiles } from "./OwnProfilesAction";
+import { fetchUser } from "./GetUserAction";
 
 // action type
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -76,6 +77,7 @@ export const fetchLogin = (email, password) => (dispatch) => {
         message && CUSTOM_SUCCESSFUL(message);
         token && dispatch(fetchIsAucthenticated(true));
         token && dispatch(fetchOwnProfiles())
+        token && dispatch(fetchUser())
         token && myHistory.replace('/')
       } else {
         let message = res?.response?.data?.error ?? res?.message;
