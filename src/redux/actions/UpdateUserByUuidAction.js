@@ -11,13 +11,18 @@ export const UPDATE_USER_BY_UUID_FAILURE = "UPDATE_USER_BY_UUID_FAILURE";
 
 const token = decryptToken()
 
-export const fetchUpdateUserByUuid = (uuid) => (dispatch) => {
-  console.log(token)
+export const fetchUpdateUserByUuid = (requestBody, isPublic, uuid) => (dispatch) => {
+  alert(uuid)
+  console.log("Auth uuid : ", uuid)
   console.log("--> FetchUpdateUserByUuid");
   dispatch(fetchUpdateUserByUuidRequest());
   api
-    .get(
+    .put(
       `/profiles/${uuid}`,
+      {
+        profileDetails: requestBody,
+        public: isPublic,
+      },
       {
         headers: { 
           Authorization: `Bearer ${token}`

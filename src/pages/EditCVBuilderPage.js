@@ -28,6 +28,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { YouTube } from "@material-ui/icons";
 import { fetchUpdateUserByUuid } from "../redux/actions/UpdateUserByUuidAction";
+import EditExperienceComponent from "../components/EditCVBuilderComponent/EditExperienceComponent";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
 const phoneRegExp =
@@ -69,16 +70,10 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function EditCVBuilderPage() {
-  const { uuid } = useParams();
-  const location = useLocation();
-
-  // useEffect(() => {
-  //   dispatch(fetchUpdateUserByUuid(uuid));
-  // }, [dispatch]);
-  useEffect(()=>{
-    setEmail(location.state.email)
-console.log("Data : ", location.state);
-  })
+  
+  const data = useSelector((state) => state?.updateUserByUuid?.items);
+  const uuid = [...data]
+  console.log(uuid)
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
@@ -99,8 +94,12 @@ console.log("Data : ", location.state);
   const section = useSelector((state) => state?.addSection, shallowEqual);
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const cvBuilder = useSelector((state) => state?.cvBuilder, shallowEqual);
+  
 
   const [firstName, setFirstName] = useState("");
+  const [generation, setgeneration] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [pob, setpob] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -114,7 +113,9 @@ console.log("Data : ", location.state);
     JSON.parse(localStorage.getItem("images"))?.profile,
   );
 
-  const [gender, setgender] = useState("other");
+  const [gender, setgender] = useState("");
+
+  const [dob, setdob] = useState("");
 
   const [isPublic, setIsPublic] = useState(true);
 
@@ -143,6 +144,25 @@ console.log("Data : ", location.state);
     // formData && setformData(formData)
     // api.post("/files/single", formData).then((res) => console.log(res));
   };
+
+  const location = useLocation();
+
+  useEffect(()=>{
+    setEmail(location.state.email)
+    setFirstName(location.state.profileDetails?.personalDetails?.firstName)
+    setLastName(location.state.profileDetails?.personalDetails?.lastName)
+    setgender(location.state.profileDetails?.personalDetails?.gender)
+    setdob(location.state.profileDetails?.personalDetails?.dob)
+    setpob(location.state.profileDetails?.personalDetails?.pob)
+    setgeneration(location.state.profileDetails?.personalDetails?.generation)
+    setPhoneNumber(location.state.profileDetails?.personalDetails?.phoneNumber)
+    setAddress(location.state.profileDetails?.personalDetails?.address)
+    setNationality(location.state.profileDetails?.personalDetails?.nationality)
+    setSummary(location.state.profileDetails?.personalDetails?.summary)
+    setImage(location.state.profileDetails?.personalDetails?.profile);
+
+console.log("Data : ", location.state);
+  },[location])
 
   useEffect(() => {
     let reduxImage = uploadImage?.items?.profile?.fileUrl;
@@ -175,7 +195,7 @@ console.log("Data : ", location.state);
       }
     });
   };
-  const handleSubmit = () => {
+  const handleSubmit = (uuid) => {
 
     if(imageUrl){
       Swal.fire({
@@ -213,8 +233,7 @@ console.log("Data : ", location.state);
           
           // console.log(education)
           // dispatch(fetchExperience(experience));
-  
-          result && dispatch(fetchCVBuilder(result, isPublic));
+          result && dispatch(fetchUpdateUserByUuid(result, isPublic, location.state?.uuid));
         }
       });
     }else{
@@ -247,7 +266,7 @@ console.log("Data : ", location.state);
       >
         <div className="flex flex-row">
           <h1 className="text-2xl font-bold hidden laptop:block">
-            Create New Curriculum Vitae
+            Edit Curriculum Vitae
           </h1>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
@@ -274,7 +293,7 @@ console.log("Data : ", location.state);
               <label class="rounded-2xl cursor-pointer opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-3xl bg-gray-600 bg-opacity-75 text-white font-semibold">
                 image 3x4/4x6
               </label>
-              {!imageUrl && (
+              {imageUrl && (
                 <label class="rounded-2xl  cursor-pointer opacity- absolute inset-0 z-10 flex justify-center items-center text-3xl bg-gray-600 bg-opacity-75 text-white font-semibold">
                   image 3x4/4x6
                 </label>
@@ -331,28 +350,30 @@ console.log("Data : ", location.state);
         </div>
 
         <Formik
+        
           ref={inputFistNameRef}
+          enableReinitialize
           initialValues={{
-            firstName: "",
-            lastName: "",
-            generation: "",
-            dob: "",
-            pob: "",
-            email: "",
-            nationality: "",
-            phoneNumber: "",
-            address: "",
+            firstName: firstName,
+            lastName: lastName,
+            generation: generation,
+            dob: dob,
+            pob: pob,
+            email: email,
+            nationality: nationality,
+            phoneNumber: phoneNumber,
+            address: address,
           }}
           validationSchema={SignupSchema}
           onSubmit={(values) => {
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-            handleSubmit()
+              handleSubmit()
             
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, values }) => (
             <>
               <Form className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
                 {/* firt name */}
@@ -366,7 +387,6 @@ console.log("Data : ", location.state);
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="firstName"
-                    value={firstName}
                   />
                   {errors.firstName && touched.firstName ? (
                     <div className="text-red-600">{errors.firstName}</div>
@@ -441,6 +461,7 @@ console.log("Data : ", location.state);
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="dob"
                     type="date"
+                    
                   />
                   {errors.dob && touched.dob ? (
                     <div className="text-red-600">{errors.dob}</div>
@@ -480,7 +501,6 @@ console.log("Data : ", location.state);
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="email"
                     type="text"
-                    value={email}
                     placeholder="example@gmail.com"
                   />
                   {errors.email && touched.email ? (
@@ -520,6 +540,7 @@ console.log("Data : ", location.state);
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="nationality"
+                    value={nationality}
                     type="text"
                     placeholder="Khmer"
                   />
@@ -542,6 +563,7 @@ console.log("Data : ", location.state);
                   <Field
                     className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="address"
+                    value={address}
                     type="text"
                     placeholder="No.12, St 2004, Khan sansok, Phnom Penh"
                   />
@@ -573,7 +595,7 @@ console.log("Data : ", location.state);
                 <div></div>
 
                 {/* component */}
-                <ExperienceComponent />
+                <EditExperienceComponent />
 
                 <EducationComponent />
 
