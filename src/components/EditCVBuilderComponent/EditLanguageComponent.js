@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 
 export default function EditLanguageComponent() {
   const location = useLocation();
-  const [displayLanguage, setDisplayLanguage] = useState(false);
+  const [displayLanguage, setDisplayLanguage] = useState(location.state.profileDetails?.languages.length? true:false);
   const dispatch = useDispatch();
 
   const [language, setLanguage] = useState([
@@ -22,7 +22,7 @@ export default function EditLanguageComponent() {
   const handleLanguageChange = (index, event) => {
     console.log(event.target.value);
     let data = [...language];
-    setLanguage(location.state.profileDetails?.employmentHistory);
+    setLanguage(location.state.profileDetails?.language);
     data[index][event.target.name] = event.target.value;
     setLanguage(data);
   };
@@ -47,6 +47,10 @@ export default function EditLanguageComponent() {
       setLanguage([...oldData, newData]);
     }
   };
+
+  useEffect(() => {
+    setLanguage(location.state.profileDetails?.languages)
+  }, [location]);
 
   const removeFieldsLanguage = (index, e) => {
     e.preventDefault();

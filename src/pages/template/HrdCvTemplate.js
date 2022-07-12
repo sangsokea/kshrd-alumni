@@ -257,7 +257,7 @@ React.useEffect(()=>{
                         <span>Education</span>
                       </div>
 
-                      {currentData?.profileDetails?.education?.map((edu) => {
+                      {currentData?.profileDetails?.education.map((edu) => {
                         return (
                           <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                             <div className="font-extrabold">

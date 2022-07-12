@@ -32,16 +32,6 @@ export default function CvTemplate() {
 
   console.log("OwnProfiles: ", ownProfiles);
 
-  const testChangeTemplate = () => {
-    console.log("Change template");
-    {
-      ownProfiles?.items[3]?.templateId === 1
-        ? console.log("CV_HRD")
-        : ownProfiles?.items[3]?.templateId === 2
-        ? console.log("CV_ALUMNI")
-        : console.log("PORTFOLIO");
-    }
-  };
 
   const pdfExportComponent = useRef(null);
   const image = useRef(null);

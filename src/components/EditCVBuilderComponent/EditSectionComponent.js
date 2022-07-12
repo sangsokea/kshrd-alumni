@@ -4,9 +4,9 @@ import { fetchAddSection } from "../../redux/actions/localAction/AddSectionActio
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-export default function EidtSectionComponent() {
+export default function EditSectionComponent() {
   const location = useLocation();
-  const [displaySection, setDisplaySection] = useState(false);
+  const [displaySection, setDisplaySection] = useState(location.state.profileDetails?.addSection.length?true:false);
   const dispatch = useDispatch();
 
   const [section, setSection] = useState([
@@ -21,11 +21,12 @@ export default function EidtSectionComponent() {
   const handleSectionChange = (index, event) => {
     console.log(event.target.value);
     let data = [...section];
-    setSection(location.state.profileDetails?.employmentHistory);
     data[index][event.target.name] = event.target.value;
     setSection(data);
   };
-
+  useEffect(() => {
+    setSection(location.state.profileDetails?.addSection)
+  }, [location]);
   const addFieldsSection = () => {
     setDisplaySection(true);
     if (!displaySection) {

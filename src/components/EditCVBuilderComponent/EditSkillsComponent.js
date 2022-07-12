@@ -9,7 +9,8 @@ import { useLocation } from "react-router-dom";
 
 export default function EditSkillsComponent() {
   const location = useLocation();
-  const [displaySkill, setDisplaySkill] = useState(false);
+
+  const [displaySkill, setDisplaySkill] = useState(location.state.profileDetails?.skill.length?true:false);
   const dispatch = useDispatch();
 
   const [skill, setSkill] = useState([
@@ -27,6 +28,10 @@ export default function EditSkillsComponent() {
     data[index][event.target.name] = event.target.value;
     setSkill(data);
   };
+
+  useEffect(() => {
+    setSkill(location.state.profileDetails?.skill)
+  }, [location]);
 
   const addFieldsSkill = () => {
     setDisplaySkill(true);

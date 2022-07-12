@@ -1,4 +1,5 @@
 import { api } from "../../api";
+import { CUSTOM_SUCCESSFUL } from "../../commons/notify/Notify";
 import { myHistory } from "../../Router/History";
 import { decryptToken } from "./LoginAction";
 
@@ -32,16 +33,19 @@ export const fetchUpdateUserByUuid = (requestBody, isPublic, uuid) => (dispatch)
     .then((res) => {
       console.log(`--> fetch upadte status`);
       console.log(res);
-      if (!res?.data?.payload.error) {
-        dispatch(fetchUpdateUserByUuidSuccess(res?.data?.payload));
-        myHistory.replace('/sidebar/editNewCV')
+      let payload = res?.data?.payload;
+      let message = res?.data?.message;
+      if (payload) {
+        dispatch(fetchUpdateUserByUuidSuccess(payload));
+        CUSTOM_SUCCESSFUL(message)
+        myHistory.replace('/sidebar/CvTemplate')
       } else {
-        let message = res?.response?.data?.error ?? "Unknow error!";
-        dispatch(fetchUpdateUserByUuidFailure(message));
+        let errmessage = res?.response?.data?.error ?? res?.message;
+        dispatch(fetchUpdateUserByUuidFailure(errmessage));
       }
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
+      let message = err?.response?.data?.error ?? err?.message;
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchUpdateUserByUuidFailure(message));

@@ -8,11 +8,13 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchLicense } from "../../redux/actions/localAction/LicenseAndCertificateAction";
 import { fetchUploadImage } from "../../redux/actions/UploadImageAction";
 import { LoadingLinePrimary } from "../LoadingLine";
+import { useLocation } from "react-router-dom";
 
 export default function EditLicensesComponent() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
-  const [displayLicenses, setDisplayLicenses] = useState(false);
+  const [displayLicenses, setDisplayLicenses] = useState(location.state.profileDetails?.license.length? true:false);
   const [image, setImage] = useState(sample_image);
   const [imageUrl, setImageUrl] = useState("");
   const [currentIndex, setcurrentIndex] = useState(0);
@@ -148,8 +150,10 @@ export default function EditLicensesComponent() {
     };
   }, []);
 
-  console.log("Licence");
-  console.log(licenses);
+
+  useEffect(() => {
+    setLicenses(location.state.profileDetails?.license)
+  }, [location]);
 
   return (
     <>
@@ -242,7 +246,7 @@ export default function EditLicensesComponent() {
                       class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
                       style={{
                         backgroundImage: `url('${
-                          input.image?.toString() ?? image
+                          input?.image?.toString() ?? image
                         }')`,
                       }}
                     >

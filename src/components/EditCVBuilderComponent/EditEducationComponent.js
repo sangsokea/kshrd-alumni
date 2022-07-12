@@ -8,7 +8,7 @@ import { fetchEducation } from "../../redux/actions/localAction/EducationAction"
 import { useLocation } from "react-router-dom";
 export default function EditEducationComponent() {
   const location = useLocation();
-  const [displayEducation, setDisplayEducation] = useState(false);
+  const [displayEducation, setDisplayEducation] = useState(location.state.profileDetails?.education.length ?true:false);
 
   const [currentIndex, setcurrentIndex] = useState(0);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export default function EditEducationComponent() {
 
   useEffect(() => {
     let data = [...education];
-    setEducation(location.state.profileDetails?.employmentHistory);
+    setEducation(location.state.profileDetails?.education);
     if (description) data[currentIndex].description = description;
 
     description && setEducation(data);

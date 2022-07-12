@@ -8,7 +8,8 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 export default function EditExperienceComponent() {
-  const [displayExperience, setDisplayExperience] = useState(true);
+  const location = useLocation();
+  const [displayExperience, setDisplayExperience] = useState(location.state.profileDetails?.employmentHistory.length? true:false);
   const [description, setdescription] = useState("")
   const [currentIndex, setcurrentIndex] = useState(0);
   const [experience, setExperience] = useState([
@@ -24,7 +25,8 @@ export default function EditExperienceComponent() {
     },
   ]);
 
-  const location = useLocation();
+  
+  const dispatch = useDispatch()
 
 
   const submit = (e) => {
@@ -50,12 +52,21 @@ export default function EditExperienceComponent() {
 
   useEffect(() => {
     let data = [...experience];
-    setExperience(location.state.profileDetails?.employmentHistory)
     if (description)
       data[currentIndex].description = description;
 
     description && setExperience(data);
   }, [description]);
+
+  useEffect(() => {
+    experience
+      ? dispatch(fetchExperience(experience))
+      : alert("empty experience field");
+  }, [displayExperience, experience]);
+
+  useEffect(()=>{
+    setExperience(location.state.profileDetails?.employmentHistory)
+  },[location])
 
   const addFieldsExperience = () => {
     setDisplayExperience(true);
