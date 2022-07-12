@@ -3,8 +3,10 @@ import { colors } from "../../commons/colors/colors";
 import { fetchAddSection } from "../../redux/actions/localAction/AddSectionAction";
 import { useDispatch } from "react-redux";
 import { fetchLanguage } from "../../redux/actions/localAction/LanguageAction";
+import { useLocation } from "react-router-dom";
 
 export default function EditLanguageComponent() {
+  const location = useLocation();
   const [displayLanguage, setDisplayLanguage] = useState(false);
   const dispatch = useDispatch();
 
@@ -20,6 +22,7 @@ export default function EditLanguageComponent() {
   const handleLanguageChange = (index, event) => {
     console.log(event.target.value);
     let data = [...language];
+    setLanguage(location.state.profileDetails?.employmentHistory);
     data[index][event.target.name] = event.target.value;
     setLanguage(data);
   };

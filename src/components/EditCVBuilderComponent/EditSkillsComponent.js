@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { fetchExperience } from "../../redux/actions/localAction/ExperienceAction";
 import { colors } from "../../commons/colors/colors";
 import { fetchSkill } from "../../redux/actions/localAction/SkillsAction";
+import { useLocation } from "react-router-dom";
 
 export default function EditSkillsComponent() {
+  const location = useLocation();
   const [displaySkill, setDisplaySkill] = useState(false);
   const dispatch = useDispatch();
 

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { colors } from "../../commons/colors/colors";
 import { fetchAddSection } from "../../redux/actions/localAction/AddSectionAction";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 export default function EidtSectionComponent() {
+  const location = useLocation();
   const [displaySection, setDisplaySection] = useState(false);
   const dispatch = useDispatch();
 
@@ -19,6 +21,7 @@ export default function EidtSectionComponent() {
   const handleSectionChange = (index, event) => {
     console.log(event.target.value);
     let data = [...section];
+    setSection(location.state.profileDetails?.employmentHistory);
     data[index][event.target.name] = event.target.value;
     setSection(data);
   };

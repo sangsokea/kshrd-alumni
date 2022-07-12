@@ -5,7 +5,9 @@ import { fetchExperience } from "../../redux/actions/localAction/ExperienceActio
 import EditorContainer from "../EditorContainer";
 import { colors } from "../../commons/colors/colors";
 import { fetchEducation } from "../../redux/actions/localAction/EducationAction";
+import { useLocation } from "react-router-dom";
 export default function EditEducationComponent() {
+  const location = useLocation();
   const [displayEducation, setDisplayEducation] = useState(false);
 
   const [currentIndex, setcurrentIndex] = useState(0);
@@ -41,7 +43,7 @@ export default function EditEducationComponent() {
 
   useEffect(() => {
     let data = [...education];
-    setExperience(location.state.profileDetails?.employmentHistory);
+    setEducation(location.state.profileDetails?.employmentHistory);
     if (description) data[currentIndex].description = description;
 
     description && setEducation(data);
