@@ -188,7 +188,7 @@ export default function AdminHome() {
                           onClick={() => {
                             // navigate("/admin/view", { state: { item } })
                             console.log(item.authUserId)
-                            dispatch(fetchGetUserProfileById(item.authUserId, 10, 1))
+                            dispatch(fetchGetUserProfileById(item.id, 10, 1))
                             
                           }}
                           className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"

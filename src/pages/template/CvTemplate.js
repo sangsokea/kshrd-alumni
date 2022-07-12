@@ -54,7 +54,7 @@ export default function CvTemplate() {
 
   //*********** TR.DAYAN's code
 
-  // const [currentCv, setCurrentCv] = useState(0);
+  const [currentCv, setCurrentCv] = useState(0);
   // console.log(currentCv);
   // console.log("current profile is: ", ownProfiles?.items[currentCv]);
 
