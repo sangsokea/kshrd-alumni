@@ -13,8 +13,6 @@ export const UPDATE_USER_BY_UUID_FAILURE = "UPDATE_USER_BY_UUID_FAILURE";
 const token = decryptToken()
 
 export const fetchUpdateUserByUuid = (requestBody, isPublic, uuid) => (dispatch) => {
-  alert(uuid)
-  console.log("Auth uuid : ", uuid)
   console.log("--> FetchUpdateUserByUuid");
   dispatch(fetchUpdateUserByUuidRequest());
   api
