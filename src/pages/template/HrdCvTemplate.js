@@ -12,7 +12,7 @@ import { api } from "../../api";
 import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
 import { Pagination } from "@mui/material";
 
-export default function HrdCvTemplate() {
+export default function HrdCvTemplate({object}) {
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
 
@@ -20,6 +20,8 @@ export default function HrdCvTemplate() {
     pdfExportComponent.current.save();
     // savePDF(image.current, { imageResolution: 36 });
   };
+
+  console.log("In HrdTemplate ", object)
 
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ export default function HrdCvTemplate() {
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
   const [languages, setLanguage] = useState([]);
-  const [currentData, setCurrentData] = useState({});
+  const [currentData, setCurrentData] = useState(object);
   const [currenIndex, setCurrenIndex] = useState(0);
 
   const ownProfiles = useSelector((state) => state?.ownProfiles);
@@ -39,30 +41,10 @@ export default function HrdCvTemplate() {
   console.log("OwnProfiles: ", ownProfiles);
 
   // const state1 = useSelector((state1) => state1.changeCVTemplate, shallowEqual);
+React.useEffect(()=>{
+  setCurrentData(object)
+},[object])
 
-  // listen route
-  const location = useLocation();
-
-  useEffect(() => {
-    dispatch(fetchOwnProfiles());
-  }, [location]);
-
-  useEffect(() => {
-    setData(ownProfiles?.items);
-    setCurrentData(ownProfiles?.items[0]);
-    {
-      data &&
-        data?.map((arr) => {
-          setAddSection(arr?.profileDetails?.addSection);
-          setEducation(arr?.profileDetails?.education);
-          setEmploymentHistory(arr?.profileDetails?.employmentHistory);
-          setLicense(arr?.profileDetails?.license);
-          setSkill(arr?.profileDetails.skill);
-          setLanguage(arr?.profileDetails.languages);
-          setPersonalDetails(arr?.profileDetails?.personalDetails);
-        });
-    }
-  }, [ownProfiles]);
 
   console.log("OwnProfiles Data :", ownProfiles);
   console.log("Language", currentData?.profileDetails?.languages)
@@ -81,35 +63,14 @@ export default function HrdCvTemplate() {
 
   // const token =
   //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
-  const token = decryptToken();
-  useEffect(() => {
-    api
-      .get(
-        "/profiles/ownProfiles",
-        // {},
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
-      .then((res) => console.log(res.data.payload))
-      .catch((response) => console.log(response.data));
-  }, []);
 
-  const handleChange = (event, value) => {
-    setCurrenIndex(value);
-    setCurrentData(data[value - 1]);
-  };
 
   return (
     <div className="h-full mb-10">
       <div>
         {/* <div className="grid grid-cols-8"> */}
         <div className="col-span-6">
-          <div>
+          {/* <div>
             <h4 className="p-1 text-blue-900 font-light mt-5">
               ➡️ Choose the current CV that you want to display :
             </h4>
@@ -121,7 +82,7 @@ export default function HrdCvTemplate() {
               variant="outlined"
               color="primary"
             />
-          </div>
+          </div> */}
           <PDFExport ref={pdfExportComponent} paperSize="A4">
             {currentData && (
               <center>
