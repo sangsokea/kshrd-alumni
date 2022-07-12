@@ -27,8 +27,10 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
     .then((res) => {
       console.log(`--> fetch get all user profile`);
       console.log(res);
-      if (!res?.data?.payload.error) {
-        dispatch(fetchGetAllUserProfleSuccess(res?.data?.payload));
+      let payload = res?.data?.payload
+      if (payload) {
+        dispatch(fetchGetAllUserProfleSuccess(payload));
+        localStorage.setItem('userInfo', JSON.stringify(payload))
         // SUCCESS_CREATED("Date successfully");
         myHistory.replace('/admin/home')
       } else {
@@ -37,7 +39,7 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
       }
     })
     .catch((err) => {
-      let message = err?.response?.data?.error ?? "Unknow error!";
+      let message = err?.response?.data?.error ?? err?.message;
       console.log(`fetch login error`);
       console.log(err);
       dispatch(fetchGetAllUserProfleFailure(message));

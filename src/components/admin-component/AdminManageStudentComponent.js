@@ -7,33 +7,16 @@ import PaginationComponent from "../PaginationComponent";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 // import ButtonAddNewStudent from "./ButtonAddNewStudent";
 import AdminPagination from "./AdminPagination";
-import { fetchGetAuthUserProfile } from "../../redux/actions/GetAuthUserProfileAction";
-
+import { fetchGetAllUserProfle } from "../../redux/actions/GetAllUserProfileAction";
 
 export default function AdminManageStudentComponent() {
   
    
-  const data = useSelector((state) => state?.getauthuserProfile?.items);
+  const data = useSelector((state) => state?.getalluserProfile?.items);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchGetAuthUserProfile(10, 1));
-  }, [dispatch]);
-  console.log(data);
-  // const [data, setData] = useState(
-  //   profileDetail.map((item) => {
-  //     return {
-  //       ...item,
-  //       isEnable: true,
-  //     };
-  //   }),
-  // );
-  const [value, setValue] = useState([]);
 
-  useEffect(() => {
-    // fetch("https://jsonplaceholder.typicode.com/users")
-    //   .then((response) => response.json())
-    //   .then((json) => setData(json));
-  }, []);
+  const [value, setValue] = useState([]);
+  const [localData , setLocalData] = useState([])
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -43,6 +26,12 @@ export default function AdminManageStudentComponent() {
   const HiItems = (items) => {
     console.log(items);
   };
+
+  useEffect(()=>{
+    const obj = localStorage.getItem('userInfo')
+    const object = obj && JSON.parse(obj)
+    setLocalData(object?object : [])
+  },[localStorage])
 
   // const getItemsAsync = (searchValue, cb) => {
   //   let url = `https://api.github.com/search/repositories?q=${searchValue}&language=javascript`;
@@ -63,7 +52,7 @@ export default function AdminManageStudentComponent() {
   return (
     <>
       <div className="relative shadow-[0_4px_100px_10px_rgba(0,0,0,0.2)] flex justify-center m-5 body-font font-maven">
-        <SearchBar placeholder={"Search user profile..."} data={data}/>
+        <SearchBar placeholder={"Search user profile..."} data={data?data: localData}/>
       </div>
       <div className="flex justify-center">
         <AdminPagination />

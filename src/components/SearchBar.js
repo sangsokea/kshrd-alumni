@@ -17,7 +17,6 @@ import { ExclamationIcon } from "@heroicons/react/solid";
 import { fetchGetAuthUserProfile } from "../redux/actions/GetAuthUserProfileAction";
 
 function SearchBar({ placeholder, data }) {
-  
   const dispatch = useDispatch();
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -137,9 +136,6 @@ function SearchBar({ placeholder, data }) {
                       CVs
                     </th>
                     <th scope="col" class="px-6 py-3">
-                      Portfolio
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                       Action
                       <span class="sr-only">Action</span>
                     </th>
@@ -157,8 +153,7 @@ function SearchBar({ placeholder, data }) {
                           >
                             <td class="px-6 py-4">{item?.username}</td>
                             <td class="px-6 py-4">{item?.email}</td>
-                            <td class="px-6 py-4">1</td>
-                            <td class="px-6 py-4">2</td>
+                            <td class="px-6 py-4">{item?.cv}</td>
                             <td class="px-6 py-4 text-right flex justify-between">
                               {item?.status ? "Enable" : "Disable"}
 
@@ -232,23 +227,30 @@ function SearchBar({ placeholder, data }) {
                                                   <button
                                                     type="button"
                                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3 sm:w-auto sm:text-sm"
-                                                    onClick={() =>
-                                                      {setOpen(false)
-                                                        dispatch(fetchUpdateStatusUser(item.id, false))
-                                                        }
-                                                    }
+                                                    onClick={() => {
+                                                      setOpen(false);
+                                                      dispatch(
+                                                        fetchUpdateStatusUser(
+                                                          item.id,
+                                                          false
+                                                        )
+                                                      );
+                                                    }}
                                                   >
                                                     Disable
                                                   </button>
                                                   <button
                                                     type="button"
                                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  sm:ml-3 sm:w-auto sm:text-sm"
-                                                    onClick={() =>
-                                                      {setOpen(false)
-                                                      dispatch(fetchUpdateStatusUser(item.id, true))
-                                                      }
-                                                      
-                                                    }
+                                                    onClick={() => {
+                                                      setOpen(false);
+                                                      dispatch(
+                                                        fetchUpdateStatusUser(
+                                                          item.id,
+                                                          true
+                                                        )
+                                                      );
+                                                    }}
                                                     ref={cancelButtonRef}
                                                   >
                                                     Enable

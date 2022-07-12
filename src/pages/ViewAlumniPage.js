@@ -85,8 +85,8 @@ export default function ViewAlumniPage() {
     setSize(value);
   };
 
-  console.log(size)
-  console.log(totalHits)
+  console.log(size);
+  console.log(totalHits);
   return (
     <div className="desktop:container h-full desktop:mx-auto mt-5 rounded-md shadow-lg body-font font-maven">
       <div className="grid grid-cols-4">
@@ -108,11 +108,22 @@ export default function ViewAlumniPage() {
       <div className="col-span-3 laptop:col-span-2 desktop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
         <img src={view_alumni} alt="view alumni logo"></img>
         <div className="p-5">
-        <div>
-          <h4 className="p-1 text-blue-900 font-light">➡️ Set number of cards to display :</h4>
-        <Pagination defaultPage={10} value={size} count={20} onChange={handleChange} variant="outlined" color="primary" />
-        </div>
-          <div className="mt-5 mb-3 text-2xl font-bold">Results ({totalHits})</div>
+          <div>
+            <h4 className="p-1 text-blue-900 font-light">
+              ➡️ Set number of cards to display :
+            </h4>
+            <Pagination
+              defaultPage={10}
+              value={size}
+              count={20}
+              onChange={handleChange}
+              variant="outlined"
+              color="primary"
+            />
+          </div>
+          <div className="mt-5 mb-3 text-2xl font-bold">
+            Results ({totalHits})
+          </div>
           <form>
             <div className="relative mb-5 focus:border-none desktop::w-1/3 laptop:w-1/3 tablet:w-1/2 w-full">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -143,37 +154,40 @@ export default function ViewAlumniPage() {
           </form>
           {/* card */}
           <div className="grid gap-2 grid-cols-1 desktop:grid-cols-2 desktop:gap-2 laptop:grid-cols-2 laptop:gap-2 tablet:grid-cols-2 tablet:gap-2 ">
-            {elasticData?.slice(0, size).map(({ _source: { object: item } }, index) => (
-              <div className="w-full">
-                <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
-                  <div className="tablet:h-32 h-24 w-36">
-                    <img
-                      className=" desktop:h-32 tablet:h-32 desktop:w-36 laptop:w-36 laptop:32 h-24 w-24 rounded"
-                      src={item?.personalDetails?.profile ?? alumni4}
-                      alt="alumni"
-                    />
+            {elasticData
+              ?.slice(0, size)
+              .map(({ _source: { object: item } }, index) => (
+                <div className="w-full">
+                  <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
+                    <div className="tablet:h-32 h-24 w-36">
+                      <img
+                        className=" desktop:h-32 tablet:h-32 desktop:w-36 laptop:w-36 laptop:32 h-24 w-24 rounded object-cover"
+                        src={item?.personalDetails?.profile ?? alumni4}
+                        alt="alumni"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between mt-5 ml-5 leading-normal w-full">
+                      <h6 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                        {item?.personalDetails?.firstName}{" "}
+                        {item?.personalDetails?.lastName}
+                      </h6>
+                      <p className="text-sm laptop:text-md desktop:text-lg mb-7 font-normal text-black textLine w-52">
+                        {item?.personalDetails?.summary
+                          ? item?.personalDetails?.summary
+                          : "No Summary"}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleView(item)}
+                      class="ml-[-70px] mb-1 mt-auto  pl-5 pr-5 laptop:ml-auto rounded  overflow-hidden group bg-[#255FAB] relative hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-600 text-white hover:ring-2 hover:ring-offset-2 hover:ring-blue-600 transition-all ease-out duration-300"
+                    >
+                      <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                      <span class="relative mr-5">View</span>
+                    </button>
+                    
                   </div>
-                  <div className="flex flex-col justify-between mt-5 ml-5 leading-normal w-full">
-                    <h6 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                      {item?.personalDetails?.firstName}{" "}
-                      {item?.personalDetails?.lastName}
-                    </h6>
-                    <p className="text-sm laptop:text-md desktop:text-lg mb-7 font-normal text-black textLine w-52">
-                      {item?.personalDetails?.summary
-                        ? item?.personalDetails?.summary
-                        : "No Summary"}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => handleView(item)}
-                    style={{ backgroundColor: colors.footer, color: "white" }}
-                    className="ml-[-70px] mb-1 mt-auto rounded pl-5 pr-5 laptop:ml-auto"
-                  >
-                    View
-                  </button>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
