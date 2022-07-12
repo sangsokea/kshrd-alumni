@@ -16,7 +16,6 @@ export const fetchOwnProfiles = () => (dispatch) => {
   api
     .get(
       "/profiles/ownProfiles",
-
       {
         headers: {
           Accept: "application/json",
@@ -32,6 +31,8 @@ export const fetchOwnProfiles = () => (dispatch) => {
       if (payload) {
         dispatch(fetchOwnProfilesSuccess(res?.data?.payload));
         payload?.length > 0 && localStorage.setItem("ownProfile", JSON.stringify(payload?.at(-1)));
+        let sortPayload = payload.sort((a,b)=>(a.id > b.id)? 1: (b.id > a.id)? -1: 0)
+        payload?.length > 0 && localStorage.setItem("ownProfiles", JSON.stringify(sortPayload));
       } else {
         dispatch(fetchOwnProfilesFailure(res?.data?.payload.error));
       }
