@@ -194,8 +194,8 @@ export default function PortfolioPage() {
           <center>
             <div className="rounded shadow-[0_4px_100px_10px_rgba(0,0,0,0.2)] w-350 desktop:w-1341 min-h-1079 laptop:w-1200 laptop:rounded-2xl  tablet:w-900  ">
               <div className="flex flex-wrap-reverse desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3">
-                <div className="mt-10 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:mt-5 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
-                  <ul className="mt-10 text-2xl font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl tablet:text-4xl text-1xl">
+                <div className="mt-5 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
+                  <ul className="laptop:mt-10 font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl">
                     <li className="flex flex-row">
                       {currentData?.profileDetails?.skill
                         ?.slice(0, 3)
@@ -250,7 +250,7 @@ export default function PortfolioPage() {
                       <>
                         {i % 2 == 0 ? (
                           <div className="">
-                            <div className="ml-3 desktop:ml-16 laptop:-ml-2 desktop:min-h-1/24 laptop:min-h-1/24">
+                            <div className="border-blue-800 border-l-4 desktop:ml-16 laptop:-ml-2 desktop:min-h-1/24 laptop:min-h-1/24">
                               <p className="w-64 mt-20 ml-8 text-sm text-left break-words font-maven desktop:ml-3 laptop:ml-16 desktop:mt-0 laptop:mt-0">
                                 {edu?.school}
                               </p>
@@ -265,8 +265,8 @@ export default function PortfolioPage() {
 
                             {/* circle */}
                             <div className="flex laptop:ml-19 desktop:ml-19 -ml-80 w-full items-center">
-                              <div className="w-6 h-5 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
-                              <div className="w-full -mt-5 border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
+                              <div className="w-6 h-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
+                              <div className="w-full border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
                             </div>
                           </div>
                         ) : (
@@ -276,7 +276,7 @@ export default function PortfolioPage() {
                               <div className="w-full border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
                             </div>
 
-                            <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
+                            <div className="border-blue-800 border-l-4 -mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
                               <p className="w-28 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
                                 {edu?.startDate} -{" "}
                                 {edu?.endDate ? edu?.endDate : "present"}
@@ -296,7 +296,7 @@ export default function PortfolioPage() {
                 )}
                 <div className="">
                   <div>
-                    <p className="mt-2 text-xl font-bold text-left desktop:mt-25 laptop:mt-25 tablet:ml-24 desktop:text-2xl font-maven">
+                    <p className="hidden laptop:block mt-2 text-xl font-bold text-left desktop:mt-25 laptop:mt-25 tablet:ml-24 desktop:text-2xl font-maven">
                       TIMELINE
                     </p>
                   </div>
