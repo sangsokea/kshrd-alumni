@@ -1,62 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { colors } from "../../commons/colors/colors";
-import Search from "react-search";
-import SearchBar from "../SearchBar";
-import profileDetail from "../../Data.json";
-import PaginationComponent from "../PaginationComponent";
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
+import Tables, {  ActionPsill, StatusPill } from '../SearchBar'  
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import ButtonAddNewStudent from "./ButtonAddNewStudent";
-import AdminPagination from "./AdminPagination";
-import { fetchGetAllUserProfle } from "../../redux/actions/GetAllUserProfileAction";
+import { fetchGetAllUserProfle } from '../../redux/actions/GetAllUserProfileAction';
+ 
 
-export default function AdminManageStudentComponent() {
-  
-   
-  const data = useSelector((state) => state?.getalluserProfile?.items);
+function AdminManageStudentComponent() {
   const dispatch = useDispatch();
+  const location = useLocation()
+  const data = useSelector((state) => state?.getalluserProfile?.items);
+  const [localData , setLocalData] = useState([data])
 
-  const [value, setValue] = useState([]);
-  const [localData , setLocalData] = useState([])
 
-  const handleChange = (event) => {
-    const { value } = event.target;
-    this.setState({ value });
-  };
 
-  const HiItems = (items) => {
-    console.log(items);
-  };
+  const columns = React.useMemo(() => localData? [
+    {
+      Header: "UserName",
+      accessor: 'username',
+    },
+    {
+      Header: "Email",
+      accessor: 'email',
+    },
+    {
+      Header: "Status",
+      accessor: 'status',
+      Cell: StatusPill
+      
+    },
+    {
+      Header: "CV",
+      accessor: 'cv',
+    },
+    {
+      Header: "Action",
+      accessor: 'action',
+      Cell: ActionPsill,
+    },
+  ]:[], [])
+
 
   useEffect(()=>{
     const obj = localStorage.getItem('userInfo')
     const object = obj && JSON.parse(obj)
-    setLocalData(object?object : [])
-  },[localStorage])
-
-  // const getItemsAsync = (searchValue, cb) => {
-  //   let url = `https://api.github.com/search/repositories?q=${searchValue}&language=javascript`;
-  //   fetch(url)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((results) => {
-  //       if (results.items != undefined) {
-  //         let items = results.items.map((res, i) => {
-  //           return { id: i, value: res.full_name };
-  //         });
-  //         setData(items);
-  //         cb(searchValue);
-  //       }
-  //     });
-  // };
+    let dumData = object && object.map(x => {
+      return {
+        username: x.username,
+        email: x.email,
+        status: x.status? 'Enabled':"Disabled",
+        cv: x.cv,
+        action: x.id
+      }
+    })
+    setLocalData(object?dumData : [])
+  },[data, location])
   return (
     <>
-      <div className="relative shadow-[0_4px_100px_10px_rgba(0,0,0,0.2)] flex justify-center m-5 body-font font-maven">
-        <SearchBar placeholder={"Search user profile..."} data={data?data: localData}/>
-      </div>
-      <div className="flex justify-center">
-        <AdminPagination />
-      </div>
+    <div className=" text-gray-900">
+      <main className="w-full container mx-auto  ">
+        <div className="">
+        </div>
+        <div className="mt-6 ">
+        {localData && <Tables columns={columns} data={localData} />}
+        </div>
+      </main>
+    </div>
     </>
   );
 }
+
+export default AdminManageStudentComponent;

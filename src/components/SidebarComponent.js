@@ -100,7 +100,7 @@ export default function SidebarComponent() {
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
                 <div className="flex justify-center mt-5">
                   <img
-                    className="p-5 rounded-tl-lgs"
+                    className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
                     src={
                       personalDetails?.profile
                         ? personalDetails?.profile

@@ -15,6 +15,7 @@ import EditEmploymentHistoryStudent from "../pages/admin-page/EditEmploymentHist
 import AccuntSettingPage from "../pages/admin-page/AccuntSettingPage";
 import AccountChangePassword from "../pages/admin-page/AccountChangePassword";
 import AddNewStudent from "../pages/admin-page/AddNewStudent";
+import Apsp from "../components/admin-component/ManageStudentComponent/Apsp";
 
 export default function AdminBasicRoute() {
   const [routeName, setRouteName] = useState("");
@@ -43,7 +44,7 @@ export default function AdminBasicRoute() {
 
             <Route path="/admin" element={<AdminSidebarsComponent />}>
               <Route path="home" element={<AdminHomePage />}></Route>
-              <Route path="addStudent" element={<AddNewStudent />}></Route>
+              <Route path="addStudent" element={<Apsp />}></Route>
               <Route path="accunt" element={<AccuntSettingPage/>}></Route>
               <Route path="accunt/accuntchange" element={<AccountChangePassword/>}/>
               <Route

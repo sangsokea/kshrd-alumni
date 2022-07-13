@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Tables, {  ActionPsill, StatusPill } from './AdminTables' 
 import DATA from "../../Data.json";
 import AdminPagination from "./AdminPagination";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import ButtonAddNewStudent from "./ButtonAddNewStudent";
 import { fetchGetUserProfile } from "../../redux/actions/GetAuthUserProfileAction";
@@ -12,6 +13,50 @@ export default function AdminHome() {
   // const [data, setData] = useState();
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.getalluserProfile?.items);
+  const location = useLocation()
+  const [localData , setLocalData] = useState([data])
+
+  const columns = React.useMemo(() => localData? [
+    {
+      Header: "UserName",
+      accessor: 'username',
+    },
+    {
+      Header: "Email",
+      accessor: 'email',
+    },
+    {
+      Header: "Status",
+      accessor: 'status',
+      Cell: StatusPill
+      
+    },
+    {
+      Header: "CV",
+      accessor: 'cv',
+    },
+    {
+      Header: "Action",
+      accessor: 'action',
+      Cell: ActionPsill,
+    },
+  ]:[], [])
+
+
+  useEffect(()=>{
+    const obj = localStorage.getItem('userInfo')
+    const object = obj && JSON.parse(obj)
+    let dumData = object && object.map(x => {
+      return {
+        username: x.username,
+        email: x.email,
+        status: x.status? 'Enabled':"Disabled",
+        cv: x.cv,
+        action: x.id
+      }
+    })
+    setLocalData(object?dumData : [])
+  },[data, location])
   
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
@@ -142,70 +187,21 @@ export default function AdminHome() {
           </a>
         </div>
 
-        <div class="relative overflow-x-auto rounded-3xl shadow-[0px_5px_100px_10px_rgba(0,0,0,0.2)] mt-8">
-          <div className="text-xl px-6 py-4 text-ccon font-bold border border-md  bg-white ">
+        <div class="relative overflow-x-auto ml-4 mt-8">
+          <div className=" text-2xl text-ccon  font-bold  min-w-full ">
             Total Alumni
           </div>
 
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 ">
-              <thead class="text-xs text-gray-700  bg-gray-50 ">
-                <tr>
-                  <th scope="col" class="px-6 py-3">
-                    Username
-                  </th>
-                 
-                  <th scope="col" class="px-6 py-3">
-                    Email
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                   CVs
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Action
-                    <span class="sr-only">Action</span>
-                  </th>
-                </tr>
-                
-              </thead>
-              <tbody>
-                
-                {data &&
-                  data.map((item,key) => (
-                    <tr key={key} class="bg-white border-b hover:bg-gray-50 ">
-                      
-                      <td class="px-6 py-4">
-                        {item?.username}
-                      </td>
-                      <td class="px-6 py-4">
-                        {item?.email}
-                      </td>
-                      <td class="px-6 py-4">
-                        {item?.cv}
-                      </td>
-                      <td class="px-6 py-4">
-                        <button
-                          onClick={() => {
-                            // navigate("/admin/view", { state: { item } })
-                            console.log(item.authUserId)
-                            dispatch(fetchGetUserProfileById(item.id, 10, 1))
-                            
-                          }}
-                          className="border rounded-lg bg-ccon  py-2 px-5 text-white hover:bg-cfoo"
-                          
-                        >
-                          View
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
         </div>
-        <div className="flex justify-center my-5">
-          <AdminPagination />
+        <div className="px-4 text-gray-900">
+      <main className="">
+        <div className="">
         </div>
+        <div className="">
+        {localData && <Tables columns={columns} data={localData} />}
+        </div>
+      </main>
+    </div>
       </div>
     </>
   );

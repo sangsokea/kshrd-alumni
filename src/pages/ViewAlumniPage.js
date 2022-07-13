@@ -110,7 +110,7 @@ export default function ViewAlumniPage() {
         <div className="p-5">
           <div>
             <h4 className="p-1 text-blue-900 font-light">
-              ➡️ Set number of cards to display :
+               Set number of cards to display :
             </h4>
             <Pagination
               defaultPage={10}

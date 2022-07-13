@@ -1,7 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
-import { Transition, Popover, Dialog } from "@headlessui/react";
-import { ReactComponent as More } from "../commons/icon/More.svg";
-import { fetchUpdateStatusUser } from "../redux/actions/UpdateStatusUserAction";
+import React from "react";
 import {
   useTable,
   useFilters,
@@ -15,44 +12,15 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronDoubleRightIcon,
-  ExclamationIcon,
 } from "@heroicons/react/solid";
-import { Button, PageButton } from "../../src/shared/Button";
-import { classNames } from "../../src/shared/Utils";
-import { SortIcon, SortUpIcon, SortDownIcon } from "../../src/shared/Icons";
+import { Button, PageButton } from "../../shared/Button";
+import { classNames } from "../../shared/Utils";
+import { SortIcon, SortUpIcon, SortDownIcon } from "../../shared/Icons";
 import { data } from "autoprefixer";
+import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
 import { useDispatch, useSelector } from "react-redux";
 
 // Define a default UI for filtering
-function GlobalFilter({
-  preGlobalFilteredRows,
-  globalFilter,
-  setGlobalFilter,
-}) {
-  const dispatch = useDispatch();
-  const count = preGlobalFilteredRows.length;
-  const [value, setValue] = React.useState(globalFilter);
-  const onChange = useAsyncDebounce((value) => {
-    setGlobalFilter(value || undefined);
-  }, 200);
-
-  return (
-    <label className="flex gap-x-2 items-baseline">
-      <span className="text-gray-700 font-bold font-maven text-xl">Search: </span>
-      <input
-        type="text"
-        className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        value={value || ""}
-        onChange={(e) => {
-          setValue(e.target.value);
-          onChange(e.target.value);
-        }}
-        placeholder={`${count} records...`}
-      />
-     
-    </label>
-  );
-}
 
 export function StatusPill({ value }) {
   const status = value ? value?.toLowerCase() : "unknown";
@@ -71,110 +39,45 @@ export function StatusPill({ value }) {
 }
 
 export function ActionPsill({ value }) {
-  const [open, setOpen] = useState(true);
-  const cancelButtonRef = useRef(null);
   const dispatch = useDispatch();
   const active = value;
 
   return (
     <div>
-      <Popover className="relative">
-        {({ open }) => (
-          <>
-            <Popover.Button>
-              <More className="w-5 mr-2"></More>
-            </Popover.Button>
-            <Transition.Root show={open} as={Fragment}>
-              <Dialog
-                as="div"
-                className="relative z-10"
-                initialFocus={cancelButtonRef}
-                onClose={setOpen}
-              >
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                </Transition.Child>
-
-                <div className="fixed z-10 inset-0 overflow-y-auto">
-                  <div className="flex items-center tablet:items-center justify-center min-h-full p-4 text-center tablet:p-0">
-                    <Transition.Child
-                      as={Fragment}
-                      enter="ease-out duration-300"
-                      enterFrom="opacity-0 translate-y-4 translate-y-0 scale-95"
-                      enterTo="opacity-100 translate-y-0 scale-100"
-                      leave="ease-in duration-200"
-                      leaveFrom="opacity-100 translate-y-0 scale-100"
-                      leaveTo="opacity-0 translate-y-4 translate-y-0 scale-95"
-                    >
-                      <Dialog.Panel className="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all tablet:my-8 max-w-lg tablet:w-full">
-                        <div className="bg-white px-4 pt-5 pb-4 p-6 tablet:pb-4">
-                          <div className="tablet:flex tablet:items-start">
-                            <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 ">
-                              <ExclamationIcon
-                                className="h-6 w-6 text-red-600"
-                                aria-hidden="true"
-                              />
-                            </div>
-                            <div className=" text-center  tablet:ml-4 tablet:text-left">
-                              <Dialog.Title
-                                as="h3"
-                                className="text-lg leading-6 tablet:mr-10 font-medium text-gray-900"
-                              >
-                                Deactivate account
-                              </Dialog.Title>
-                              <div className="mt-2 tablet:mr-20">
-                                <p className="text-sm  font-medium text-gray-900">
-                                  Are you sure you want to disable your account?
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="bg-gray-50 px-4 py-3 tablet:px-6 flex flex-row-reverse">
-                          <button
-                            type="button"
-                            className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3 sm:w-auto sm:text-sm"
-                            onClick={() => {
-                              setOpen(false);
-                              dispatch(fetchUpdateStatusUser(active, false));
-                            }}
-                          >
-                            Disable
-                          </button>
-                          <button
-                            type="button"
-                            className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  sm:ml-3 sm:w-auto sm:text-sm"
-                            onClick={() => {
-                              setOpen(false);
-                              dispatch(fetchUpdateStatusUser(active, true));
-                            }}
-                            ref={cancelButtonRef}
-                          >
-                            Enable
-                          </button>
-                        </div>
-                      </Dialog.Panel>
-                    </Transition.Child>
-                  </div>
-                </div>
-              </Dialog>
-            </Transition.Root>
-          </>
-        )}
-      </Popover>
+      <button
+        onClick={() => {
+          dispatch(fetchGetUserProfileById(active, 10, 1));
+        }}
+        class=" mb-1 mt-auto  py-2 px-5 laptop:ml-auto rounded  overflow-hidden group bg-[#255FAB] relative hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-600 text-white  hover:ring-blue-600 transition-all ease-out duration-300"
+      >
+        <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+        <span class="relative ">View</span>
+      </button>
     </div>
   );
 }
 
-function SearchBar({ columns, data }) {
+export function AvatarCell({ value, column, row }) {
+  return (
+    <div className="flex items-center">
+      <div className="flex-shrink-0 h-10 w-10">
+        <img
+          className="h-10 w-10 rounded-full"
+          src={row.original[column.imgAccessor]}
+          alt=""
+        />
+      </div>
+      <div className="ml-4">
+        <div className="text-sm font-medium text-gray-900">{value}</div>
+        <div className="text-sm text-gray-500">
+          {row.original[column.emailAccessor]}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AdminTables({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -212,11 +115,6 @@ function SearchBar({ columns, data }) {
   return (
     <>
       <div className="tablet:flex tablet:gap-x-2">
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={state.globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
@@ -228,13 +126,13 @@ function SearchBar({ columns, data }) {
         )}
       </div>
       {/* table */}
-      <div className="mt-4 flex flex-col shadow-[0px_5px_100px_10px_rgba(0,0,0,0.2)] rounded-lg">
+      <div className="mt-4 flex flex-col shadow-[0px_5px_100px_10px_rgba(0,0,0,0.2)]  rounded-lg">
         <div className="-my-2 overflow-x-auto -mx-4 tablet:-mx-6 laptop:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full tablet:px-6 laptop:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 tablet:rounded-lg">
               <table
                 {...getTableProps()}
-                className="min-w-full divide-y divide-gray-200"
+                className="min-w-full  divide-y divide-gray-200"
               >
                 <thead className="bg-gray-50 ">
                   {headerGroups.map((headerGroup) => (
@@ -244,7 +142,7 @@ function SearchBar({ columns, data }) {
                         // we can add them into the header props
                         <th
                           scope="col"
-                          className="group px-6 py-3 font-bold text-left text-xs  text-gray-500 uppercase tracking-wider"
+                          className="group px-6 font-bold py-3 text-left text-xs  text-gray-500 uppercase tracking-wider"
                           {...column.getHeaderProps(
                             column.getSortByToggleProps()
                           )}
@@ -271,7 +169,7 @@ function SearchBar({ columns, data }) {
                 </thead>
                 <tbody
                   {...getTableBodyProps()}
-                  className="bg-white divide-y divide-gray-200"
+                  className="bg-white divide-y font-maven divide-gray-200"
                 >
                   {page.map((row, i) => {
                     // new
@@ -323,7 +221,7 @@ function SearchBar({ columns, data }) {
             <label>
               <span className="sr-only">Items Per Page</span>
               <select
-                className="mt-1 block w-full rounded-md h-10 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 font-maven block w-full rounded-md h-10 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 value={state.pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
@@ -389,4 +287,4 @@ function SearchBar({ columns, data }) {
   );
 }
 
-export default SearchBar;
+export default AdminTables;
