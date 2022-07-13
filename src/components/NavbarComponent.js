@@ -10,7 +10,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
 import alumni4 from "../commons/images/Alumni/alumni4.webp";
-import { decryptToken } from "../redux/actions/LoginAction";
+import { decryptRole, decryptToken } from "../redux/actions/LoginAction";
 
 function classNames(...classNamees) {
   return classNamees.filter(Boolean).join(" ");
@@ -21,6 +21,7 @@ export default function NavbarComponent() {
   const login = useSelector((state) => state?.login.items);
   const user = useSelector((state) => state?.user, shallowEqual);
   const [localImage, setLocalImage] = useState();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,7 +37,15 @@ export default function NavbarComponent() {
     }
     const username = localStorage.getItem("username");
     username && setUsername(username);
-  }, []);
+  }, [user]);
+
+  useEffect(()=>{
+    if(isAuth){
+      let admin = decryptRole()
+      admin.toLowerCase().includes('admin') && setIsAdmin(true)
+      admin.toLowerCase().includes('admin') && localStorage.setItem("adminAuth", true);
+    }
+  },[login])
 
   return (
     <div style={logoBackground}>
@@ -77,6 +86,18 @@ export default function NavbarComponent() {
                   id="mobile-menu"
                 >
                   <ul className="w-full justify-start flex flex-col mt-4 text-sm laptop:text-md desktop:text-lg laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:font-medium laptop:items-center">
+                    {isAdmin && (
+                      <li className="">
+                        <button
+                          onClick={() => navigate("/admin/home")}
+                          className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                          aria-current="page"
+                        >
+                          DASHBOARD
+                        </button>
+                      </li>
+                    )}
+
                     <li className="">
                       <button
                         onClick={() => navigate("/viewAlumni")}
@@ -272,6 +293,19 @@ export default function NavbarComponent() {
             {(ref) => (
               <div className="laptop:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                  {isAdmin && (
+                    <button
+                      onClick={() => {
+                        navigate("/admin/home");
+                        setIsOpen(!isOpen);
+                      }}
+                      className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                      aria-current="page"
+                    >
+                      DASHBOARD
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       navigate("/viewAlumni");

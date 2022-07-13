@@ -72,7 +72,7 @@ export default function AdminHome() {
         <div className="laptop:grid laptop:grid-cols-5 grid grid-cols-1">
           <a
             href="#"
-            class="mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg1 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)] rounded-lg  hover:bg-ccon "
+            class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg1 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)] rounded-lg  hover:bg-ccon "
           >
             <p class="font-bold  text-white text-xl">560</p>
             <p className=" text-white">Total Alumni</p>
@@ -95,7 +95,7 @@ export default function AdminHome() {
           </a>
           <a
             href="#"
-            class="mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg2 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
+            class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg2 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
           >
             <p class="font-bold  text-white text-xl">53</p>
             <p className=" text-white">New Students</p>
@@ -118,7 +118,7 @@ export default function AdminHome() {
           </a>
           <a
             href="#"
-            class="mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg3 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
+            class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg3 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
           >
             <p class="font-bold  text-white text-xl">35</p>
             <p className=" text-white">Student with portfolio</p>
@@ -141,7 +141,7 @@ export default function AdminHome() {
           </a>
           <a
             href="#"
-            class="mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg4 rounded-lg  shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
+            class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg4 rounded-lg  shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)]  hover:bg-ccon "
           >
             <p class="font-bold  text-white text-xl">13</p>
             <p className=" text-white">Student with Resume</p>
@@ -164,7 +164,7 @@ export default function AdminHome() {
           </a>
           <a
             href="#"
-            class="mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg5 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)] hover:bg-ccon "
+            class="transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none mx-2 flex-1 block py-3 pl-4 pr-20 mt-5 max-w-sm bg-bg5 rounded-lg shadow-[0px_5px_5px_0px_rgba(0,0,0,0.3)] hover:bg-ccon "
           >
             <p class="font-bold  text-white text-xl">35</p>
             <p className=" text-white">Total Course</p>
