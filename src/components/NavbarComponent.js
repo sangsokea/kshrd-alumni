@@ -20,8 +20,10 @@ export default function NavbarComponent() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const login = useSelector((state) => state?.login.items);
   const user = useSelector((state) => state?.user, shallowEqual);
+  const ownProfile = useSelector((state) => state?.ownProfiles, shallowEqual);
   const [localImage, setLocalImage] = useState();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isProfileEmpty, setIsProfileEmpty] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,15 +41,16 @@ export default function NavbarComponent() {
     username && setUsername(username);
   }, [user]);
 
-  useEffect(()=>{
-    if(isAuth){
-      let admin = decryptRole()
-      admin.toLowerCase().includes('admin') && setIsAdmin(true)
-      admin.toLowerCase().includes('admin') && localStorage.setItem("adminAuth", true);
-    }else{
-      setIsAdmin(false)
+  useEffect(() => {
+    if (isAuth) {
+      let admin = decryptRole();
+      admin.toLowerCase().includes("admin") && setIsAdmin(true);
+      admin.toLowerCase().includes("admin") &&
+        localStorage.setItem("adminAuth", true);
+    } else {
+      setIsAdmin(false);
     }
-  })
+  });
 
   return (
     <div style={logoBackground}>

@@ -6,13 +6,16 @@ import { Transition, Popover } from "@headlessui/react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux/es/exports";
 import NodataImg from "../commons/images/nodata.png";
 import moment from "moment";
+import Swal from "sweetalert2";
+import { fetchDeleteUserProfile } from "../redux/actions/DeleteUseerProfileAction";
+import { CUSTOM_ERROR } from "../commons/notify/Notify";
 
 export default function ResumePage() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
-  const ownProfiles = useSelector((state) => state?.ownProfiles?.items);
+  const ownProfiles = useSelector((state) => state?.ownProfiles);
   const handleExportWithComponent = (event) => {
     pdfExportComponent.current.save();
     // savePDF(image.current, { imageResolution: 36 });
@@ -29,7 +32,42 @@ export default function ResumePage() {
     } else {
       setResumes(ownProfiles ? ownProfiles : []);
     }
-  }, [ownProfiles, ownProfiles]);
+  }, [ownProfiles, localStorage]);
+
+  React.useEffect(() => {
+    function checkUserData() {
+      const items = localStorage.getItem("ownProfiles");
+
+      if (items) {
+        setResumes(JSON.parse(items));
+      }
+    }
+
+    window.addEventListener("storage", checkUserData);
+
+    return () => {
+      window.removeEventListener("storage", checkUserData);
+    };
+  }, [ownProfiles]);
+
+  const handleDelete = (uuid) => {
+    Swal.fire({
+      title: "Delete!",
+      text: "Are you sure? You would like to delete this CV",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "",
+      confirmButtonText: "Delete",
+      customClass: "swal-wide",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        uuid
+          ? dispatch(fetchDeleteUserProfile(uuid))
+          : CUSTOM_ERROR("Error delete this profile");
+      }
+    });
+  };
 
   return (
     <div className=" tablet:mx-10 mx-0 mt-5 body-font font-maven ">
@@ -100,10 +138,16 @@ export default function ResumePage() {
                                 />
                               </svg>
                             </div>
-                            <span>{item?.profileDetails?.cvTitle??"Curriculum Vitae" + (i+1)}</span>
+                            <span>
+                              {item?.profileDetails?.cvTitle ??
+                                "Curriculum Vitae" + (i + 1)}
+                            </span>
                           </div>
                         </th>
-                        <td className="px-6 py-4">{item?.createdAt && moment(item?.createdAt).format("MMM Do YY")}</td>
+                        <td className="px-6 py-4">
+                          {item?.createdAt &&
+                            moment(item?.createdAt).format("MMM Do YY")}
+                        </td>
 
                         <td className="px-1 py-4 text-right">
                           <div className="flex flex-row cover-action">
@@ -112,23 +156,27 @@ export default function ResumePage() {
                                 <Popover className="relative">
                                   {({ open }) => (
                                     <>
-                                      <label for="my-modal-3" class="">
-                                        <svg
-                                          xmlns="https://www.basecampcountry.com/wp-content/uploads/2019/09/Downloadable-PDF-Button-PNG-HD-Image.png"
-                                          className="h-6 w-6 text-blue-600"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                          stroke-width="2"
+                                      <Popover.Button>
+                                        <label
+                                          for="my-modal-3"
+                                          class="cursor-pointer"
                                         >
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                                          />
-                                        </svg>
-                                      </label>
-                                      <Popover.Button></Popover.Button>
+                                          <svg
+                                            xmlns="https://www.basecampcountry.com/wp-content/uploads/2019/09/Downloadable-PDF-Button-PNG-HD-Image.png"
+                                            className="h-6 w-6 text-blue-600"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                          >
+                                            <path
+                                              stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                            />
+                                          </svg>
+                                        </label>
+                                      </Popover.Button>
                                       <div className="bg-cyan-700">
                                         <Transition
                                           as={Fragment}
@@ -154,7 +202,7 @@ export default function ResumePage() {
                                                   </div>
                                                 </div>
                                                 <div>
-                                                  <div className="flex text-left mt-3 ml-3">
+                                                  <div className="flex text-left mt-3 ml-3 cursor-pointer hover:text-blue-500">
                                                     <svg
                                                       xmlns="http://www.w3.org/2000/svg"
                                                       className="h-6 w-6"
@@ -187,7 +235,11 @@ export default function ResumePage() {
                             <span className="mr-3">
                               <button
                                 className=""
-                                onClick={() => navigate("/sidebar/createNewCV")}
+                                onClick={() =>
+                                  navigate(`/sidebar/editNewCV/${item?.uuid}`, {
+                                    state: { ...item },
+                                  })
+                                }
                               >
                                 <a>
                                   <svg
@@ -212,8 +264,8 @@ export default function ResumePage() {
                               ></a>
                             </span>
                             <span>
-                              <a
-                                href="#"
+                              <button
+                                onClick={() => handleDelete(item?.uuid)}
                                 className="font-medium text-blue-600 hover:underline"
                               >
                                 <svg
@@ -230,7 +282,7 @@ export default function ResumePage() {
                                     d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                                   />
                                 </svg>
-                              </a>
+                              </button>
                             </span>
                           </div>
                         </td>

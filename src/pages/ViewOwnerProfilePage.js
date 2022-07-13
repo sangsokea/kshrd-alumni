@@ -13,37 +13,50 @@ export default function ViewOwnerProfilePage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
+  const ownProfiles = useSelector((state) => state.ownProfiles, shallowEqual);
   const [fromViewAlumni, setFromViewAlumni] = useState(false);
   const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
+  const [isShowEdit, setisShowEdit] = useState(false);
 
   const [backToTop, setBackToTop] = useState(false);
 
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsEdit(state);
   }, [state]);
 
   const handleEdite = () => {
-    navigate(`/sidebar/editNewCV/61d60d81-f34a-4c46-912e-aa4edd3eec69`, {
-      state: { profileDetails: {...dataFromViewAlumni} },
-    })
-  }
+    let uuid = localStorage.getItem("currentUuid");
+    setTimeout(
+      () =>
+        navigate(`/sidebar/editNewCV/${uuid}`, {
+          state: { profileDetails: { ...dataFromViewAlumni } },
+        }),
+      10,
+    );
+  };
 
   useEffect(() => {
     let isFromAlumni = location?.state?.fromViewAlumni;
+    const isEmpty = localStorage.getItem("isProfileEmpty");
+
     setFromViewAlumni(isFromAlumni);
     if (isFromAlumni) {
+      setisShowEdit(false);
       const localData = localStorage.getItem("view");
-      const itemFromAlumni = JSON.parse(localData);
+      const itemFromAlumni = localData && JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
     } else {
+      !isEmpty && setisShowEdit(true);
       const localData = localStorage.getItem("ownProfile");
-      const itemFromAlumni = JSON.parse(localData);
-      setDataFromViewAlumni(itemFromAlumni?.profileDetails);
+      const itemFromAlumni = localData && JSON.parse(localData);
+      setDataFromViewAlumni(
+        itemFromAlumni ? itemFromAlumni?.profileDetails : {},
+      );
     }
-  }, [location]);
+  }, [location, ownProfiles]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -94,8 +107,11 @@ export default function ViewOwnerProfilePage() {
               </p>
             )}
 
-            {isAuth && (
-              <button onClick={()=>{}} className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+            {isAuth && isShowEdit && (
+              <button
+                onClick={() => handleEdite()}
+                className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"

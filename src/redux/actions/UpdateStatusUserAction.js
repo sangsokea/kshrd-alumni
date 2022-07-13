@@ -8,9 +8,10 @@ export const UPDATE_STATUS_USER_FAILURE = "UPDATE_STATUS_USER_FAILURE";
 
 // action
 
-const token = decryptToken()
+
 
 export const fetchUpdateStatusUser = (id,status) => (dispatch) => {
+  const token = decryptToken()
   console.log("Auth ID : ", id)
   console.log("Status : ", status)
   console.log(token)

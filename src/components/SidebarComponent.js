@@ -10,7 +10,7 @@ import { colors } from "../commons/colors/colors";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import alumni1 from "../commons/images/Alumni/alumni1.jpg";
 import { fetchIsAucthenticated } from "../redux/actions/IsAuthenticationAction";
-import alumni4 from "../commons/images/Alumni/alumni4.jpg";
+import alumni4 from "../commons/images/Alumni/alumni4.webp";
 import ReNavbarComponent from "./ReNavbarComponent";
 import Swal from "sweetalert2";
 import { fetchLogout } from "../redux/actions/LogoutAction";
@@ -46,8 +46,10 @@ export default function SidebarComponent() {
   const [showSidebar, setShowSidebar] = useState("-left-64");
   const [isActive, setIsActive] = useState(1);
   const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
+  const ownProfiles = useSelector((state) => state?.ownProfiles, shallowEqual);
   const [personalDetails, setPersonalDetails] = useState({});
   const [isShowImg, setIsShowImg] = useState(false);
+  const [isProfileEmpty, setIsProfileEmpty] = useState(true);
   React.useEffect(() => {
     const localObj = localStorage.getItem("ownProfile");
     let isFromAlumni = location?.state?.fromViewAlumni;
@@ -60,17 +62,28 @@ export default function SidebarComponent() {
       profile?.profileDetails &&
         setPersonalDetails(profile?.profileDetails?.personalDetails);
     }
-
-    
-  }, [isShowImg]);
+    return ()=>{
+      setIsShowImg(false)
+      setPersonalDetails({})
+    }
+  }, [location]);
 
   React.useEffect(() => {
     location.pathname.includes("/sidebar/aboutMe") && setIsShowImg(true);
-    return ()=>{
-      setIsShowImg(false)
-      
-    }
+    return () => {
+      setIsShowImg(false);
+    };
   }, [location]);
+
+  React.useEffect(() => {
+    if (isAuth) {
+      const isEmpty = localStorage.getItem("isProfileEmpty");
+     isEmpty && JSON.parse(isEmpty)? setIsProfileEmpty(false): setIsProfileEmpty(true)
+    }
+  return ()=>{
+    setIsProfileEmpty(true)
+  }
+  },[ownProfiles, location]);
 
   const logOut = () => {
     setShowSidebar("-left-64");
@@ -235,39 +248,41 @@ export default function SidebarComponent() {
 
                 {/* Link to portfolio page */}
                 {/* <NavLink to="/portfolio"> */}
-                <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                  <NavLink
-                    onClick={() => setIsActive(2)}
-                    to="/portfolio"
-                    className={({ isActive }) =>
-                      [
-                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                        isActive
-                          ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                          : null,
-                      ]
-                        .filter(Boolean)
-                        .join(" ")
-                    }
-                  >
-                    <span>
-                      <svg
-                        className="w-6 h-auto"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1"
-                          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </span>
-                    <div className="ml-5">Portfolio</div>
-                  </NavLink>
-                </div>
+                {isProfileEmpty && (
+                  <div className="mt-5 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                    <NavLink
+                      onClick={() => setIsActive(2)}
+                      to="/portfolio"
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
+                          isActive
+                            ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
+                    >
+                      <span>
+                        <svg
+                          className="w-6 h-auto"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </span>
+                      <div className="ml-5">Portfolio</div>
+                    </NavLink>
+                  </div>
+                )}
                 {/* </NavLink> */}
 
                 {/* Link to create new cv page */}

@@ -10,9 +10,10 @@ export const GET_ALL_USER_PROFILE_FAILURE = "GET_ALL_USER_PROFILE_FAILURE";
 
 // action
 
-const token = decryptToken()
+
 
 export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
+  const token = decryptToken()
   console.log("--> FetchGetAllUserProfle");
   dispatch(fetchGetAllUserProfleRequest());
   api

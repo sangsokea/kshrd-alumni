@@ -75,12 +75,13 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function EditCVBuilderPage() {
-  
+  const ref = React.useRef(null);
   const data = useSelector((state) => state?.updateUserByUuid?.items);
 
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
+
   const executeScroll = () => scrollToRef(inputFistNameRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -98,8 +99,8 @@ export default function EditCVBuilderPage() {
   const section = useSelector((state) => state?.addSection, shallowEqual);
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const cvBuilder = useSelector((state) => state?.cvBuilder, shallowEqual);
-  
 
+  const [title, setTitle] = useState("");
   const [firstName, setFirstName] = useState("");
   const [generation, setgeneration] = useState("");
   const [nationality, setNationality] = useState("");
@@ -114,7 +115,7 @@ export default function EditCVBuilderPage() {
     "https://www.publishsquare.com/wp-content/uploads/2021/12/Untitled-design36.png",
   );
   const [imageUrl, setImageUrl] = useState(
-    JSON.parse(localStorage.getItem("images"))?.profile
+    JSON.parse(localStorage.getItem("images"))?.profile,
   );
 
   const [gender, setgender] = useState("");
@@ -151,27 +152,27 @@ export default function EditCVBuilderPage() {
 
   const location = useLocation();
 
-  useEffect(()=>{
-    setEmail(location.state.email)
-    setFirstName(location.state.profileDetails?.personalDetails?.firstName)
-    setLastName(location.state.profileDetails?.personalDetails?.lastName)
-    setgender(location.state.profileDetails?.personalDetails?.gender)
-    setdob(location.state.profileDetails?.personalDetails?.dob)
-    setpob(location.state.profileDetails?.personalDetails?.pob)
-    setgeneration(location.state.profileDetails?.personalDetails?.generation)
-    setPhoneNumber(location.state.profileDetails?.personalDetails?.phoneNumber)
-    setAddress(location.state.profileDetails?.personalDetails?.address)
-    setNationality(location.state.profileDetails?.personalDetails?.nationality)
-    setSummary(location.state.profileDetails?.personalDetails?.summary)
+  useEffect(() => {
+    setEmail(location.state.profileDetails?.personalDetails?.email);
+    setTitle(location.state.profileDetails?.cvTitle);
+    setFirstName(location.state.profileDetails?.personalDetails?.firstName);
+    setLastName(location.state.profileDetails?.personalDetails?.lastName);
+    setgender(location.state.profileDetails?.personalDetails?.gender);
+    setdob(location.state.profileDetails?.personalDetails?.dob);
+    setpob(location.state.profileDetails?.personalDetails?.pob);
+    setgeneration(location.state.profileDetails?.personalDetails?.generation);
+    setPhoneNumber(location.state.profileDetails?.personalDetails?.phoneNumber);
+    setAddress(location.state.profileDetails?.personalDetails?.address);
+    setNationality(location.state.profileDetails?.personalDetails?.nationality);
+    setSummary(location.state.profileDetails?.personalDetails?.summary);
     setImage(location.state.profileDetails?.personalDetails?.profile);
-    
 
-console.log("Data : ", location.state);
-  },[location])
+    console.log("Data : ", location.state);
+  }, [location]);
 
-  useEffect(()=>{
-    setImageUrl(location.state.profileDetails?.personalDetails?.profile)
-  })
+  useEffect(() => {
+    setImageUrl(location.state.profileDetails?.personalDetails?.profile);
+  });
 
   useEffect(() => {
     let reduxImage = uploadImage?.items?.profile?.fileUrl;
@@ -205,8 +206,7 @@ console.log("Data : ", location.state);
     });
   };
   const handleSubmit = (value) => {
-
-    if(imageUrl!==null && imageUrl !== undefined){
+    if (imageUrl !== null && imageUrl !== undefined) {
       Swal.fire({
         title: "Save!",
         text: "Are you sure? You would like to submit this data",
@@ -219,33 +219,37 @@ console.log("Data : ", location.state);
       }).then((result) => {
         if (result.isConfirmed) {
           let result = {
+            cvTitle: title,
             personalDetails: {
               gender,
               ...value,
               summary,
               profile: imageUrl,
             },
-  
+
             employmentHistory: experiences,
-  
+
             education: education,
-  
+
             license: license,
-  
+
             skill: skills,
-  
+
             languages: languages,
-  
+
             addSection: section,
           };
           console.log("==== final data result =====", result);
-          
-          console.log(result, isPublic, location.state?.uuid)
-          result && dispatch(fetchUpdateUserByUuid(result, isPublic, location.state?.uuid));
+
+          console.log(result, isPublic, location.state?.uuid);
+          result &&
+            dispatch(
+              fetchUpdateUserByUuid(result, isPublic, location.state?.uuid),
+            );
         }
       });
-    }else{
-      CUSTOM_WARNING("Please upload your profile!")
+    } else {
+      CUSTOM_WARNING("Please upload your profile!");
     }
   };
 
@@ -256,7 +260,6 @@ console.log("Data : ", location.state);
   //       })
   //     : navigate("/sidebar/createNewCV");
   // }, [cvBuilder]);
-
 
   return (
     <>
@@ -272,9 +275,39 @@ console.log("Data : ", location.state);
         className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full"
       >
         <div className="flex flex-row">
-          <h1 className="text-2xl font-bold hidden laptop:block">
-            Edit Curriculum Vitae
-          </h1>
+          <form className="flex">
+            <div>
+              <input
+                ref={ref}
+                className="text-2xl font-bold hidden laptop:block mr-2 bg-transparent"
+                id="title"
+                value={title}
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <span
+              onClick={() => {
+                ref.current.focus();
+              }}
+              className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+            </span>
+          </form>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
             <div
@@ -286,7 +319,7 @@ console.log("Data : ", location.state);
               <div
                 class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
                 style={{
-                  backgroundImage: `url('${imageUrl? imageUrl:image}')`,
+                  backgroundImage: `url('${imageUrl ? imageUrl : image}')`,
                 }}
               >
                 <input
@@ -357,7 +390,6 @@ console.log("Data : ", location.state);
         </div>
 
         <Formik
-        
           ref={inputFistNameRef}
           enableReinitialize
           initialValues={{
@@ -376,8 +408,7 @@ console.log("Data : ", location.state);
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-              handleSubmit(values)
-            
+            handleSubmit(values);
           }}
         >
           {({ errors, touched, values }) => (
@@ -468,7 +499,6 @@ console.log("Data : ", location.state);
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="dob"
                     type="date"
-                    
                   />
                   {errors.dob && touched.dob ? (
                     <div className="text-red-600">{errors.dob}</div>

@@ -10,9 +10,10 @@ export const GET_USER_PROFILE_BY_ID_FAILURE = "GET_USER_PROFILE_BY_ID_FAILURE";
 
 // action
 
-const token = decryptToken()
+
 
 export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => {
+  const token = decryptToken()
   console.log("--> FetchGetUserProfileById");
   dispatch(fetchGetUserProfileByIdRequest());
   console.log(authUserId)

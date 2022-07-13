@@ -68,6 +68,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function CVBuilderPage() {
+  const refFocus = React.useRef(null);
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
@@ -168,9 +169,9 @@ export default function CVBuilderPage() {
     });
   };
   const handleSubmit = (values) => {
-    if(title.toLowerCase() === 'untitled'){
-      CUSTOM_WARNING("Please, Input title")
-      return
+    if (title.toLowerCase() === "untitled") {
+      CUSTOM_WARNING("Please, Input title");
+      return;
     }
     if (imageUrl) {
       Swal.fire({
@@ -245,6 +246,7 @@ export default function CVBuilderPage() {
           <form className="flex">
             <div>
               <input
+                ref={refFocus}
                 className="text-2xl font-bold hidden laptop:block mr-2 bg-transparent"
                 id="title"
                 value={title}
@@ -252,7 +254,12 @@ export default function CVBuilderPage() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <span className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+            <span
+              onClick={() => {
+                refFocus.current.focus();
+              }}
+              className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
