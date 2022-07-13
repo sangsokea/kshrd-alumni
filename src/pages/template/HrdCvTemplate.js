@@ -222,7 +222,7 @@ React.useEffect(()=>{
                         </div>
                         <div className="tablet:col-span-4">
                           <p className="-ml-16">
-                            {currentData?.profileDetails?.personalDetails?.dateOfBirth}
+                            {currentData?.profileDetails?.personalDetails?.dob}
                           </p>
                         </div>
                       </div>
@@ -235,7 +235,7 @@ React.useEffect(()=>{
                         </div>
                         <div className="tablet:col-span-4">
                           <p className="-ml-16">
-                            {currentData?.profileDetails?.personalDetails?.placeOfBirth}
+                            {currentData?.profileDetails?.personalDetails?.pob}
                           </p>
                         </div>
                       </div>
@@ -373,13 +373,13 @@ React.useEffect(()=>{
         </div>
 
         <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-          <button
+          {/* <button
             class="mb-5 py-2 text-white text-lg rounded-lg w-full"
             style={styles}
             onClick={handleExportWithComponent}
           >
             Download as PDF
-          </button>
+          </button> */}
 
           {/* <button
               class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"

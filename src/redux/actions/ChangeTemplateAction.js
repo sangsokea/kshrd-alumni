@@ -29,6 +29,7 @@ export const fetchChangeTemplate = (uuid, templateId) => (dispatch) => {
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: "Bearer " + decryptToken() ?? decryptTokenSecond(),
+          "Access-Control-Allow-Origin" : "*"
         },
       },
     )

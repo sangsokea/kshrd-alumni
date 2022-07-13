@@ -25,23 +25,14 @@ export default function CvTemplate() {
   const [license, setLicense] = useState([]);
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
-  const [currenIndex, setCurrenIndex] = useState(localStorage.getItem('currentIndex')??0);
+  const [currenIndex, setCurrenIndex] = useState(
+    localStorage.getItem("currentIndex") ?? 0
+  );
   const ownProfiles = useSelector((state) => state?.ownProfiles);
   const [isHrdTemplate, setIsHrdTemplate] = useState(false);
   const [isAlumniTemplate, setIsAlumniTemplate] = useState(false);
 
   console.log("OwnProfiles: ", ownProfiles);
-
-  const testChangeTemplate = () => {
-    console.log("Change template");
-    {
-      ownProfiles?.items[3]?.templateId === 1
-        ? console.log("CV_HRD")
-        : ownProfiles?.items[3]?.templateId === 2
-        ? console.log("CV_ALUMNI")
-        : console.log("PORTFOLIO");
-    }
-  };
 
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
@@ -88,12 +79,6 @@ export default function CvTemplate() {
 
   //**************** */
 
-  const { uuid } = useParams();
-
-  // useEffect(() => {
-  //   dispatch(fetchChangeCVTemplate(uuid));
-  // }, []);
-
   useEffect(() => {
     dispatch(fetchOwnProfiles());
   }, [location]);
@@ -103,15 +88,17 @@ export default function CvTemplate() {
     if (obj) {
       const data = JSON.parse(obj);
       setData(data);
-      setCurrentData(data[localStorage.getItem('currentIndex')??0]);
-      if (data[localStorage.getItem('currentIndex')??0].templateId === 1) {
+      setCurrentData(data[localStorage.getItem("currentIndex") ?? 0]);
+      if (data[localStorage.getItem("currentIndex") ?? 0].templateId === 1) {
         setIsHrdTemplate(true);
         setIsAlumniTemplate(false);
-      } else if (data[localStorage.getItem('currentIndex')??0].templateId === 2) {
+      } else if (
+        data[localStorage.getItem("currentIndex") ?? 0].templateId === 2
+      ) {
         setIsHrdTemplate(false);
         setIsAlumniTemplate(true);
       }
-      setCurrenIndex(localStorage.getItem('currentIndex')??0)
+      setCurrenIndex(localStorage.getItem("currentIndex") ?? 0);
 
       data &&
         data?.map((arr) => {
@@ -151,17 +138,17 @@ export default function CvTemplate() {
   //     .catch((response) => console.log(response.data));
   // }, []);
 
-  React.useEffect(()=>{
-    setCurrenIndex(localStorage.getItem('currentIndex'))
-  },[])
+  React.useEffect(() => {
+    setCurrenIndex(localStorage.getItem("currentIndex"));
+  }, []);
 
-  const onChangeTemplate = (uuid) =>{
-    isAlumniTemplate && dispatch(fetchChangeTemplate(uuid,2))
-    isHrdTemplate && dispatch(fetchChangeTemplate(uuid,1))
-  }
+  const onChangeTemplate = (uuid) => {
+    isAlumniTemplate && dispatch(fetchChangeTemplate(uuid, 2));
+    isHrdTemplate && dispatch(fetchChangeTemplate(uuid, 1));
+  };
 
   const handleChange = (event, value) => {
-   localStorage.setItem('currentIndex', value-1)
+    localStorage.setItem("currentIndex", value - 1);
     setCurrentData(data[value - 1]);
     if (data[value - 1]?.templateId === 1) {
       setIsHrdTemplate(true);
@@ -171,27 +158,14 @@ export default function CvTemplate() {
       setIsAlumniTemplate(true);
     }
   };
-  
 
-  console.log("currentData: ", currentData)
+  console.log("currentData: ", currentData);
 
   return (
     <>
       <div className="h-full mb-10">
         <div class="ml-5 laptop:ml-20">
-          <div>
-            <h4 className="p-1 text-blue-900 font-light mt-5">
-              ➡️ Choose the current CV that you want to display :
-            </h4>
-            <Pagination
-              defaultPage={currenIndex+1}
-              value={currenIndex + 1}
-              count={data.length}
-              onChange={handleChange}
-              variant="outlined"
-              color="primary"
-            />
-          </div>
+         
           <div class="grid grid-cols-8">
             {/* {data &&
               data?.map(() => {
@@ -239,7 +213,7 @@ export default function CvTemplate() {
                               </div>
                             </div>
                             <div>
-                              <div className="laptop:col-span-2 bg-white">
+                              <div className="laptop:col-span-2">
                                 <div className="mt-1 ml-5 text-left laptop:mt-12">
                                   <span className="text-4xl font-bold font-maven ">
                                     {
@@ -248,7 +222,7 @@ export default function CvTemplate() {
                                     }
                                   </span>
                                   &nbsp;
-                                  <span className="text-3xl font-bold font-maven text-regal-bg">
+                                  <span className="text-4xl font-bold font-maven text-regal-bg">
                                     {
                                       currentData?.profileDetails
                                         ?.personalDetails?.firstName
@@ -327,7 +301,7 @@ export default function CvTemplate() {
                             </div>
                           </div>
 
-                          <div class="laptop:grid laptop:grid-cols-3   flex flex-wrap-reverse">
+                          <div class="laptop:grid laptop:grid-cols-3 flex flex-wrap-reverse">
                             <div className="w-full min-h-1/22 laptop:bg-regal-gg bg-slate-50">
                               {/*Start CV Profile */}
 
@@ -487,16 +461,29 @@ export default function CvTemplate() {
                   </PDFExport>
                 </div>
               )}
+              {/* {changeTemplate ? (
+                <HrdCvTemplate />
+              ) : ( */}
+
+              {/* )} */}
+
+              {/* )} */}
             </div>
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-              <button
+              <p
+                onClick={() => onChangeTemplate(currentData?.uuid)}
+                className="cursor-pointer mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
+              >
+                Change Template
+              </p>
+              {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full"
                 style={styles}
                 onClick={handleExportWithComponent}
               >
                 Export as PDF
-              </button>
+              </button> */}
 
               {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
@@ -514,24 +501,47 @@ export default function CvTemplate() {
                 back
               </button> */}
 
-              <button
+              {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
-                onClick={()=>onChangeTemplate(currentData?.uuid)}
+                onClick={() => onChangeTemplate(currentData?.uuid)}
                 // onClick={testChangeTemplate}
               >
                 Change Template
-              </button>
+              </button> */}
 
-              <button
+              {/* <button
                 class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={() => dispatch(fetchChangeCVTemplate(false))}
               >
                 Previous Template
-              </button>
+              </button> */}
             </div>
           </div>
+
+           <div>
+            <h4 className="p-1 text-blue-900 font-light ">
+              ➡️ Choose the current CV that you want to display :
+            </h4>
+            <Pagination
+              defaultPage={currenIndex + 1}
+              value={currenIndex + 1}
+              count={data.length}
+              onChange={handleChange}
+              variant="outlined"
+              color="primary"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-row justify-end mt-5">
+          {/* <p
+            onClick={() => dispatch(fetchChangeCVTemplate(false))}
+            className="cursor-pointer mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
+          >
+            Previous
+          </p> */}
         </div>
 
         <div className="flex flex-row ">
