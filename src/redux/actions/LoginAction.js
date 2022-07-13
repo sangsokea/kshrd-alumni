@@ -22,7 +22,19 @@ export const encryptToken = (token) => {
   ciphertext && decryptToken()
 };
 
-// Decrypt
+// encrypt role
+//  encrypt token section
+export const encryptRole = (role) => {
+  let ciphertext = CryptoJS.AES.encrypt(
+    role,
+    process.env.REACT_APP_SECRET_WORD,
+  ).toString();
+
+  ciphertext && localStorage.setItem( process.env.REACT_APP_SECRET_ROLE, ciphertext);
+  ciphertext && decryptToken()
+};
+
+// Decrypt token
 export const decryptToken = () => {
   const encryptedString = localStorage.getItem("accessToken");
   const isAuth = localStorage.getItem('isAuth')
@@ -33,6 +45,21 @@ export const decryptToken = () => {
   );
   let originalText = bytes?.toString(CryptoJS.enc.Utf8);
   console.log("Decrypted :" + originalText);
+  return originalText ?? "";
+ }
+ return ''
+};
+
+// Decrypt role
+export const decryptRole = () => {
+  const encryptedString = localStorage.getItem(process.env.REACT_APP_SECRET_ROLE);
+  const isAuth = localStorage.getItem('isAuth')
+ if(encryptedString !== null){
+  let bytes =  CryptoJS?.AES.decrypt(
+    encryptedString,
+    process.env.REACT_APP_SECRET_WORD,
+  );
+  let originalText = bytes?.toString(CryptoJS.enc.Utf8);
   return originalText ?? "";
  }
  return ''
@@ -78,7 +105,9 @@ export const fetchLogin = (email, password) => (dispatch) => {
         token && dispatch(fetchIsAucthenticated(true));
         token && dispatch(fetchOwnProfiles())
         token && dispatch(fetchUser())
+        token && encryptRole(paylod?.roles[0])
         token && myHistory.replace('/')
+        
       } else {
         let message = res?.response?.data?.error ?? res?.message;
         dispatch(fetchLoginFailure(message));

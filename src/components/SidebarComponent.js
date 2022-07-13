@@ -39,26 +39,38 @@ const ButtonMailto = ({ mailto, children }) => {
 // }
 
 export default function SidebarComponent() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const dispatch = useDispatch();
   const [showSidebar, setShowSidebar] = useState("-left-64");
   const [isActive, setIsActive] = useState(1);
   const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
   const [personalDetails, setPersonalDetails] = useState({});
+  const [isShowImg, setIsShowImg] = useState(false);
   React.useEffect(() => {
     const localObj = localStorage.getItem("ownProfile");
+    let isFromAlumni = location?.state?.fromViewAlumni;
     const localViewObj = localStorage.getItem("view");
-    if (localObj !== null) {
+    if (localViewObj && isFromAlumni) {
+      const profile = JSON?.parse(localViewObj);
+      profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
+    } else if (localObj) {
       const profile = JSON?.parse(localObj);
       profile?.profileDetails &&
         setPersonalDetails(profile?.profileDetails?.personalDetails);
-    } else if (localViewObj !== null) {
-      const profile = JSON?.parse(localViewObj);
-      profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
     }
-  }, []);
 
-  const navigate = useNavigate();
+    
+  }, [isShowImg]);
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    location.pathname.includes("/sidebar/aboutMe") && setIsShowImg(true);
+    return ()=>{
+      setIsShowImg(false)
+      
+    }
+  }, [location]);
 
   const logOut = () => {
     setShowSidebar("-left-64");
@@ -98,16 +110,18 @@ export default function SidebarComponent() {
               style={styles}
             >
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
-                <div className="flex justify-center mt-5">
-                  <img
-                    className="p-5 rounded-tl-lgs"
-                    src={
-                      personalDetails?.profile
-                        ? personalDetails?.profile
-                        : alumni4
-                    }
-                  />
-                </div>
+                {isShowImg && (
+                  <div className="flex justify-center mt-5">
+                    <img
+                      className="p-5 rounded-tl-lgs"
+                      src={
+                        personalDetails?.profile
+                          ? personalDetails?.profile
+                          : alumni4
+                      }
+                    />
+                  </div>
+                )}
                 {/* <p className="divide-y-3"></p> */}
                 <hr className="mt-10"></hr>
                 <p className="mt-5">Contact school’s info:</p>
