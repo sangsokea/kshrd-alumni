@@ -15,6 +15,9 @@ import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
 import { fetchChangeTemplate } from "../../redux/actions/ChangeTemplateAction";
 // import { fetchExperience } from "../../redux/actions/FetchExperienceAction";
 
+import cvHrd from "../../commons/images/cvhrd.png";
+import cvAlumni from "../../commons/images/cvAlumni.png"
+
 export default function CvTemplate() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -46,6 +49,8 @@ export default function CvTemplate() {
 
   const dispatch = useDispatch();
   const state1 = useSelector((state1) => state1.changeCVTemplate, shallowEqual);
+
+  const [isChange, setIsChange] = useState(false);
 
   // listen route
   const location = useLocation();
@@ -328,7 +333,9 @@ export default function CvTemplate() {
                                             <center>
                                               <span className="font-bold">
                                                 {edu?.startDate} -{" "}
-                                                {edu?.endDate ? edu?.endDate : "present"}
+                                                {edu?.endDate
+                                                  ? edu?.endDate
+                                                  : "present"}
                                               </span>
                                             </center>
                                           </div>
@@ -416,7 +423,10 @@ export default function CvTemplate() {
                                       <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                                         <center>
                                           <span className="font-bold">
-                                            {item?.startDate} - {item?.endDate ? item?.endDate : "present"}
+                                            {item?.startDate} -{" "}
+                                            {item?.endDate
+                                              ? item?.endDate
+                                              : "present"}
                                           </span>
                                         </center>
                                       </div>
@@ -529,13 +539,27 @@ export default function CvTemplate() {
               >
                 Edit Template
               </p>
+
+              {isChange ? (
+                <img
+                  src={cvAlumni}
+                  className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
+                  onClick={() => onChangeTemplate(currentData?.uuid)}
+                ></img>
+              ) : (
+                <img
+                  src={cvHrd}
+                  className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
+                  onClick={() => onChangeTemplate(currentData?.uuid)}
+                ></img>
+              )}
             </div>
           </div>
 
-          <div>
-            <h4 className="p-1 text-blue-900 font-light ">
+          <div className="mt-5">
+            {/* <h4 className="p-1 text-blue-900 font-light ">
               ➡️ Choose the current CV that you want to display :
-            </h4>
+            </h4> */}
             <Pagination
               defaultPage={currenIndex + 1}
               value={currenIndex + 1}
@@ -561,7 +585,7 @@ export default function CvTemplate() {
             <button
               className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
-              onClick={() => navigate("/sidebar/resume")}
+              onClick={() => navigate("/aboutMe")}
             >
               Finish
             </button>
