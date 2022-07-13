@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
 import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
@@ -12,30 +12,51 @@ export default function ViewOwnerProfilePage() {
   const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
+  const isAuth = useSelector((state) => state.isAuth, shallowEqual);
+  const ownProfiles = useSelector((state) => state.ownProfiles, shallowEqual);
   const [fromViewAlumni, setFromViewAlumni] = useState(false);
   const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
+  const [isShowEdit, setisShowEdit] = useState(false);
 
   const [backToTop, setBackToTop] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsEdit(state);
   }, [state]);
 
+  const handleEdite = () => {
+    let uuid = localStorage.getItem("currentUuid");
+    setTimeout(
+      () =>
+        navigate(`/sidebar/editNewCV/${uuid}`, {
+          state: { profileDetails: { ...dataFromViewAlumni } },
+        }),
+      10,
+    );
+  };
+
   useEffect(() => {
     let isFromAlumni = location?.state?.fromViewAlumni;
+    const isEmpty = localStorage.getItem("isProfileEmpty");
+
     setFromViewAlumni(isFromAlumni);
     if (isFromAlumni) {
+      setisShowEdit(false);
       const localData = localStorage.getItem("view");
-      const itemFromAlumni = JSON.parse(localData);
+      const itemFromAlumni = localData && JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
     } else {
+      !isEmpty && setisShowEdit(true);
       const localData = localStorage.getItem("ownProfile");
-      const itemFromAlumni = JSON.parse(localData);
-      setDataFromViewAlumni(itemFromAlumni?.profileDetails);
+      const itemFromAlumni = localData && JSON.parse(localData);
+      setDataFromViewAlumni(
+        itemFromAlumni ? itemFromAlumni?.profileDetails : {},
+      );
     }
-  }, [location]);
+  }, [location, ownProfiles]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -84,6 +105,29 @@ export default function ViewOwnerProfilePage() {
               >
                 Name is empty
               </p>
+            )}
+
+            {isAuth && isShowEdit && (
+              <button
+                onClick={() => handleEdite()}
+                className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+                Edit
+              </button>
             )}
           </div>
 

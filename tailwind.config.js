@@ -16,6 +16,9 @@ module.exports = {
     },
 
     extend: {
+
+      lineClamp: ['hover'],
+
       fontFamily: {
         maven: ["MAVEN", "cursive"],
       },
@@ -132,5 +135,5 @@ module.exports = {
     },
   },
 
-  plugins: [],
-}
+  plugins: [require("@tailwindcss/line-clamp")],
+};

@@ -8,12 +8,12 @@ import axios from "axios";
 import { decryptToken } from "./LoginAction";
 import { myHistory } from "../../Router/History";
 import { decryptTokenSecond } from "./UploadImageAction";
+import { fetchOwnProfiles } from "./OwnProfilesAction";
 
 // action type
 export const CV_BUILDER_SUCCESS = "CV_BUILDER_SUCCESS";
 export const CV_BUILDER_REQUEST = "CV_BUILDER_REQUEST";
 export const CV_BUILDER_FAILURE = "CV_BUILDER_FAILURE";
-
 
 // action
 
@@ -37,17 +37,29 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
       },
     )
     .then((res) => {
-      dispatch(fetchCVBuilderSuccess('Created successfully'))
-      CUSTOM_SUCCESSFUL("Created successfully");
-      myHistory.replace('/sidebar/aboutMe')
+      let payload = res?.data?.payload;
+      if (payload) {
+        dispatch(fetchCVBuilderSuccess(payload));
+        CUSTOM_SUCCESSFUL("Created successfully");
+        localStorage.setItem("view", JSON.stringify(payload?.profileDetails));
+        localStorage.setItem("currentUuid", payload?.uuid);
+        localStorage.setItem(
+          "ownProfile",
+          JSON.stringify(payload?.profileDetails),
+        );
+        dispatch(fetchOwnProfiles());
+        myHistory.replace("/sidebar/resume");
+      }
     })
     .catch((err) => {
-      let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message?? err;
+      let message =
+        typeof err.response !== "undefined"
+          ? err.response.data.message ?? err.response.data.console.error
+          : err.message ?? err;
       console.log(`fetch cvBuilder error`);
       console.log(err);
       CUSTOM_ERROR(message);
       dispatch(fetchCVBuilderFailure(message));
-      
     });
 };
 
