@@ -532,10 +532,10 @@ export default function CvTemplate() {
             </div>
           </div>
 
-          <div>
-            <h4 className="p-1 text-blue-900 font-light ">
+          <div className="mt-5">
+            {/* <h4 className="p-1 text-blue-900 font-light ">
               ➡️ Choose the current CV that you want to display :
-            </h4>
+            </h4> */}
             <Pagination
               defaultPage={currenIndex + 1}
               value={currenIndex + 1}
@@ -561,7 +561,7 @@ export default function CvTemplate() {
             <button
               className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
               style={styles}
-              onClick={() => navigate("/sidebar/resume")}
+              onClick={() => navigate("/aboutMe")}
             >
               Finish
             </button>
