@@ -29,11 +29,11 @@ export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => 
       console.log(`--> fetch get user profile by id`);
       const longeur = res.data.length;
       console.log(longeur);
-      if (res?.data?.payload) {
-        dispatch(fetchGetUserProfileByIdSuccess(res?.data?.payload));
-        const longeur = res.length
-        SUCCESS_CREATED(res.data.message);
+      let payload = res?.data?.payload;
+      if (payload) {
+        dispatch(fetchGetUserProfileByIdSuccess(payload));
         setTimeout(()=>{
+          localStorage.setItem('studentProfile', JSON.stringify(payload))
           myHistory.replace('/admin/view')
         },100)
       } else {

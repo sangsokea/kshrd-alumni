@@ -8,7 +8,7 @@ import EducationComponent from "../components/CVBuilderComponent/EducationCompon
 import LicensesComponent from "../components/CVBuilderComponent/LicensesComponent";
 import SkillsComponent from "../components/CVBuilderComponent/SkillsComponent";
 import AddSectionComponent from "../components/CVBuilderComponent/AddSectionComponent";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import sample_image from "../commons/images/sample image.jpg";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -27,6 +27,13 @@ import moment from "moment";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { YouTube } from "@material-ui/icons";
+import { fetchUpdateUserByUuid } from "../redux/actions/UpdateUserByUuidAction";
+import EditExperienceComponent from "../components/EditCVBuilderComponent/EditExperienceComponent";
+import EditEducationComponent from "../components/EditCVBuilderComponent/EditEducationComponent";
+import EditLanguageComponent from "../components/EditCVBuilderComponent/EditLanguageComponent";
+import EditSkillsComponent from "../components/EditCVBuilderComponent/EditSkillsComponent";
+import EditLicensesComponent from "../components/EditCVBuilderComponent/EidtLicensesComponent";
+import EditSectionComponent from "../components/EditCVBuilderComponent/EditSectionComponent";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
 const phoneRegExp =
@@ -67,7 +74,10 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export default function CVBuilderPage() {
+export default function EditCVBuilderPage() {
+  
+  const data = useSelector((state) => state?.updateUserByUuid?.items);
+
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
@@ -88,8 +98,12 @@ export default function CVBuilderPage() {
   const section = useSelector((state) => state?.addSection, shallowEqual);
   const uploadImage = useSelector((state) => state?.uploadImage, shallowEqual);
   const cvBuilder = useSelector((state) => state?.cvBuilder, shallowEqual);
+  
 
   const [firstName, setFirstName] = useState("");
+  const [generation, setgeneration] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [pob, setpob] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -100,10 +114,12 @@ export default function CVBuilderPage() {
     "https://www.publishsquare.com/wp-content/uploads/2021/12/Untitled-design36.png",
   );
   const [imageUrl, setImageUrl] = useState(
-    JSON.parse(localStorage.getItem("images"))?.profile,
+    JSON.parse(localStorage.getItem("images"))?.profile
   );
 
-  const [gender, setgender] = useState("other");
+  const [gender, setgender] = useState("");
+
+  const [dob, setdob] = useState("");
 
   const [isPublic, setIsPublic] = useState(true);
 
@@ -133,17 +149,39 @@ export default function CVBuilderPage() {
     // api.post("/files/single", formData).then((res) => console.log(res));
   };
 
+  const location = useLocation();
+
+  useEffect(()=>{
+    setEmail(location.state.email)
+    setFirstName(location.state.profileDetails?.personalDetails?.firstName)
+    setLastName(location.state.profileDetails?.personalDetails?.lastName)
+    setgender(location.state.profileDetails?.personalDetails?.gender)
+    setdob(location.state.profileDetails?.personalDetails?.dob)
+    setpob(location.state.profileDetails?.personalDetails?.pob)
+    setgeneration(location.state.profileDetails?.personalDetails?.generation)
+    setPhoneNumber(location.state.profileDetails?.personalDetails?.phoneNumber)
+    setAddress(location.state.profileDetails?.personalDetails?.address)
+    setNationality(location.state.profileDetails?.personalDetails?.nationality)
+    setSummary(location.state.profileDetails?.personalDetails?.summary)
+    setImage(location.state.profileDetails?.personalDetails?.profile);
+    
+
+console.log("Data : ", location.state);
+  },[location])
+
+  useEffect(()=>{
+    setImageUrl(location.state.profileDetails?.personalDetails?.profile)
+  })
+
   useEffect(() => {
     let reduxImage = uploadImage?.items?.profile?.fileUrl;
     let images = localStorage.getItem("images");
     let localImage = JSON.parse(images);
 
-    if (localImage) {
-      let finalImage = localImage?.profile?.fileUrl;
-      console.log("reduxImage: " + reduxImage);
-      console.log("localImage: " + finalImage);
-      setImageUrl(reduxImage ?? finalImage);
-    }
+    let finalImage = localImage?.profile?.fileUrl;
+    console.log("reduxImage: " + reduxImage);
+    console.log("localImage: " + finalImage);
+    setImageUrl(reduxImage ?? finalImage);
   }, [uploadImage, imageUrl, window.localStorage.onChange]);
 
   console.log(imageUrl);
@@ -166,8 +204,9 @@ export default function CVBuilderPage() {
       }
     });
   };
-  const handleSubmit = (values) => {
-    if (imageUrl) {
+  const handleSubmit = (value) => {
+
+    if(imageUrl!==null && imageUrl !== undefined){
       Swal.fire({
         title: "Save!",
         text: "Are you sure? You would like to submit this data",
@@ -182,33 +221,31 @@ export default function CVBuilderPage() {
           let result = {
             personalDetails: {
               gender,
-              ...values,
+              ...value,
               summary,
               profile: imageUrl,
             },
-
+  
             employmentHistory: experiences,
-
+  
             education: education,
-
+  
             license: license,
-
+  
             skill: skills,
-
+  
             languages: languages,
-
+  
             addSection: section,
           };
           console.log("==== final data result =====", result);
-
-          // console.log(education)
-          // dispatch(fetchExperience(experience));
-
-          result && dispatch(fetchCVBuilder(result, isPublic));
+          
+          console.log(result, isPublic, location.state?.uuid)
+          result && dispatch(fetchUpdateUserByUuid(result, isPublic, location.state?.uuid));
         }
       });
-    } else {
-      CUSTOM_WARNING("Please upload your profile!");
+    }else{
+      CUSTOM_WARNING("Please upload your profile!")
     }
   };
 
@@ -220,7 +257,6 @@ export default function CVBuilderPage() {
   //     : navigate("/sidebar/createNewCV");
   // }, [cvBuilder]);
 
-  console.log("finalData", finalData);
 
   return (
     <>
@@ -237,7 +273,7 @@ export default function CVBuilderPage() {
       >
         <div className="flex flex-row">
           <h1 className="text-2xl font-bold hidden laptop:block">
-            Create New Curriculum Vitae
+            Edit Curriculum Vitae
           </h1>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
@@ -250,7 +286,7 @@ export default function CVBuilderPage() {
               <div
                 class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
                 style={{
-                  backgroundImage: `url('${imageUrl?.toString() ?? image}')`,
+                  backgroundImage: `url('${imageUrl? imageUrl:image}')`,
                 }}
               >
                 <input
@@ -321,27 +357,30 @@ export default function CVBuilderPage() {
         </div>
 
         <Formik
+        
           ref={inputFistNameRef}
+          enableReinitialize
           initialValues={{
-            firstName: "",
-            lastName: "",
-            generation: "",
-            dob: "",
-            pob: "",
-            email: "",
-            nationality: "",
-            phoneNumber: "",
-            address: "",
+            firstName: firstName,
+            lastName: lastName,
+            generation: generation,
+            dob: dob,
+            pob: pob,
+            email: email,
+            nationality: nationality,
+            phoneNumber: phoneNumber,
+            address: address,
           }}
           validationSchema={SignupSchema}
           onSubmit={(values) => {
             // same shape as initial values
             console.log(values);
             setFinalData({ ...values });
-            handleSubmit(values);
+              handleSubmit(values)
+            
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, values }) => (
             <>
               <Form className="grid gap-6 mt-2 mb-5 laptop:grid-cols-2">
                 {/* firt name */}
@@ -349,7 +388,6 @@ export default function CVBuilderPage() {
                   <label
                     for="first_name"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                    name=""
                   >
                     First name
                   </label>
@@ -430,6 +468,7 @@ export default function CVBuilderPage() {
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="dob"
                     type="date"
+                    
                   />
                   {errors.dob && touched.dob ? (
                     <div className="text-red-600">{errors.dob}</div>
@@ -508,6 +547,7 @@ export default function CVBuilderPage() {
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="nationality"
+                    value={nationality}
                     type="text"
                     placeholder="Khmer"
                   />
@@ -530,6 +570,7 @@ export default function CVBuilderPage() {
                   <Field
                     className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="address"
+                    // value={address}
                     type="text"
                     placeholder="No.12, St 2004, Khan sansok, Phnom Penh"
                   />
@@ -561,17 +602,17 @@ export default function CVBuilderPage() {
                 <div></div>
 
                 {/* component */}
-                <ExperienceComponent />
+                <EditExperienceComponent />
 
-                <EducationComponent />
+                <EditEducationComponent />
 
-                <LicensesComponent />
+                <EditLicensesComponent />
 
-                <SkillsComponent />
+                <EditSkillsComponent />
 
-                <LanguageComponent />
+                <EditLanguageComponent />
 
-                <AddSectionComponent />
+                <EditSectionComponent />
 
                 <div className="">
                   <div className="laptop:ml-auto">

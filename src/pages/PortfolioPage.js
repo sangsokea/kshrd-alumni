@@ -99,11 +99,11 @@ export default function PortfolioPage() {
             </div>
             <div className="flex flex-row ">
               <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
-              <button onClick={() => navigate("/sidebar/createNewCV")}>
+              <button onClick={() => navigate("/")}>
                 <Arrow className="w-6 mr-3 mt-7" />
               </button>
 
-              <div className="">
+              {/* <div className="">
                 <div className="">
                   <Popover className="relative">
                     {({ open }) => (
@@ -180,14 +180,14 @@ export default function PortfolioPage() {
                     )}
                   </Popover>
                 </div>
-              </div>
-
+              </div> */}
+              {/* 
               <button>
-                {/* <Group
+                <Group
                   className="mt-7 w-7"
                   onClick={() => dispatch(fetchPortfolioPage(true))}
-                ></Group> */}
-              </button>
+                ></Group>
+              </button> */}
             </div>
           </div>
           <br />
@@ -207,13 +207,14 @@ export default function PortfolioPage() {
                   {/* );
                   })} */}
 
-                  {currentData?.profileDetails?.education?.map((edu) => {
-                    return (
+                  {/* {currentData?.profileDetails?.education?.map((edu) => {
+                    return ( */}
                       <p className="mt-4 desktop:text-xl laptop:text-xl tablet:text-xl max-w-[36rem] laptop:text-md text-sm ">
-                        {edu?.description}
+                        I am a(n) {currentData?.profileDetails?.personalDetails?.generation} student at Korea Software HRD Center.
+                        {/* {edu?.description} */}
                       </p>
-                    );
-                  })}
+                    {/* );
+                  })} */}
 
                   <div className="text-left">
                     <div class="mt-4 flex flex-col">
@@ -269,43 +270,44 @@ export default function PortfolioPage() {
                 </div> */}
                 {currentData?.profileDetails?.education.length != 0 && (
                   <>
-                    {currentData?.profileDetails?.education.map((item, i) => (
+                    {currentData?.profileDetails?.education.map((edu, i) => (
                       <>
                         {i % 2 == 0 ? (
                           <div className="">
-                            <div className="ml-3 desktop:ml-16 laptop:-ml-2 desktop:min-h-1/24 laptop:min-h-1/24 border-l-2 border-sky-500">
+                            <div className="ml-3 desktop:ml-16 laptop:-ml-2 desktop:min-h-1/24 laptop:min-h-1/24">
                               <p className="w-64 mt-20 ml-8 text-sm text-left break-words font-maven desktop:ml-3 laptop:ml-16 desktop:mt-0 laptop:mt-0">
-                                Paññāsāstra University of Cambodia
+                                {edu?.school}
                               </p>
                               <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
-                                Graduated Diploma in English
+                                {edu?.degree} in {edu?.city}
                               </p>
                               <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
-                                2017 - 2018
+                                {edu?.startDate} - {edu?.endDate ? edu?.endDate : "present"}
                               </p>
                             </div>
+
                             {/* circle */}
-                            <div className="flex laptop:ml-10 desktop:ml-10 -ml-80 w-full">
-                              <div className="w-6 h-5 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 mr-2"></div>
+                            <div className="flex laptop:ml-19 desktop:ml-19 -ml-80 w-full items-center">
+                              <div className="w-6 h-5 -mt-5 rounded-full bg-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80"></div>
                               <div className="w-full -mt-5 border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
                             </div>
                           </div>
                         ) : (
-                          <div className="">
-                            <div className="flex ml-10 w-full">
+                          <div className="items-center">
+                            <div className="flex ml-19 w-full">
                               <div className="w-6 h-5 mt-24 rounded-full bg-[#255FAB] desktop:ml-0 laptop:ml-0 -ml-80 "></div>
-                              <div className="w-full -mt-5 border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
+                              <div className="mt-10 w-full items-center border-b-2 border-[#255FAB] desktop:mt-1 laptop:mt-1 laptop:ml-0 desktop:ml-0 -ml-80 "></div>
                             </div>
 
-                            <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12 border-l-2 border-sky-500">
-                              <p className="w-24 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
-                                2016 - 2020{" "}
+                            <div className="-mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
+                              <p className="w-28 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
+                                {edu?.startDate} - {edu?.endDate ? edu?.endDate : "present"}
                               </p>
                               <p className="w-56 ml-3 text-sm font-bold text-left font-maven desktop:text-md">
-                                Bachelor Degree,Computer Science and Engineering
+                                {edu?.degree} in {edu?.city}
                               </p>
                               <p className="w-56 ml-3 text-left font-maven desktop:text-sm text-tinys">
-                                Royal University of Phnom Penh
+                                {edu?.school}
                               </p>
                             </div>
                           </div>
@@ -366,7 +368,7 @@ export default function PortfolioPage() {
                 </div> */}
                 <div className="">
                   <div>
-                    <p className="mt-2 -ml-10 text-xl font-bold text-left desktop:mt-25 laptop:mt-25 tablet:ml-24 laptop:-ml-9 desktop:text-2xl desktop:-ml-11 font-maven">
+                    <p className="mt-2 text-xl font-bold text-left desktop:mt-25 laptop:mt-25 tablet:ml-24 desktop:text-2xl font-maven">
                       TIMELINE
                     </p>
                   </div>

@@ -52,7 +52,7 @@ export default function CvTemplate() {
 
   //*********** TR.DAYAN's code
 
-  // const [currentCv, setCurrentCv] = useState(0);
+  const [currentCv, setCurrentCv] = useState(0);
   // console.log(currentCv);
   // console.log("current profile is: ", ownProfiles?.items[currentCv]);
 
@@ -165,7 +165,6 @@ export default function CvTemplate() {
     <>
       <div className="h-full mb-10">
         <div class="ml-5 laptop:ml-20">
-         
           <div class="grid grid-cols-8">
             {/* {data &&
               data?.map(() => {
@@ -329,7 +328,7 @@ export default function CvTemplate() {
                                             <center>
                                               <span className="font-bold">
                                                 {edu?.startDate} -{" "}
-                                                {edu?.endDate}
+                                                {edu?.endDate ? edu?.endDate : "present"}
                                               </span>
                                             </center>
                                           </div>
@@ -417,7 +416,7 @@ export default function CvTemplate() {
                                       <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
                                         <center>
                                           <span className="font-bold">
-                                            {item?.startDate} - {item?.endDate}
+                                            {item?.startDate} - {item?.endDate ? item?.endDate : "present"}
                                           </span>
                                         </center>
                                       </div>
@@ -511,16 +510,29 @@ export default function CvTemplate() {
               </button> */}
 
               {/* <button
-                class="py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
+                class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={() => dispatch(fetchChangeCVTemplate(false))}
               >
                 Previous Template
               </button> */}
+
+              <p
+                onClick={() => {
+                  console.log(currentData?.uuid);
+                  navigate(`/sidebar/editNewCV/${currentData?.uuid}`, {
+                    state: { ...currentData },
+                  });
+                  // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[currentCv].uuid))
+                }}
+                className="cursor-pointer mt-5 mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
+              >
+                Edit Template
+              </p>
             </div>
           </div>
 
-           <div>
+          <div>
             <h4 className="p-1 text-blue-900 font-light ">
               ➡️ Choose the current CV that you want to display :
             </h4>

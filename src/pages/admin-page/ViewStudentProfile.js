@@ -6,6 +6,7 @@ import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 import { Transition, Popover } from "@headlessui/react";
 import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "@mui/material";
 
 export default function ViewStudentProfile() {
   const data = useSelector((state) => state?.getUserProfileById?.items);
@@ -14,12 +15,15 @@ export default function ViewStudentProfile() {
   const [display, setDisplay] = useState(false);
   const [vall, setTitle] = useState(true);
   const [valls, setTitles] = useState(true);
+  const [studentCv, setStudentCv] = useState([]);
+  const [currentIndex, setcurrentIndex] = useState(0);
+  const [currentStudent, setCurrentStudent] = useState({});
   const [title, setTitleValues] = useState(
-    "I am gratuated student from HRD and have more than 2 years' experience building software for clients. Below is a quick overview of my main technical skill sets and technologies I use.  "
+    "I am gratuated student from HRD and have more than 2 years' experience building software for clients. Below is a quick overview of my main technical skill sets and technologies I use.  ",
   );
   const [test, setTest] = useState(true);
   const [summary, setSummary] = useState(
-    "I'm a Junior Developer in frontend and backend development for complex scalable web apps. If you want to know how I may help your project? Check out my project portfolio and online resume."
+    "I'm a Junior Developer in frontend and backend development for complex scalable web apps. If you want to know how I may help your project? Check out my project portfolio and online resume.",
   );
   const handleTitleChange = (e) => {
     let titleFormValues = e.target.value;
@@ -90,8 +94,8 @@ export default function ViewStudentProfile() {
 
     setMajor(
       major.map((obj) =>
-        obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj
-      )
+        obj.id === item?.id ? { ...obj, isShow: !obj.isShow } : obj,
+      ),
     );
 
     setSelectedMajor(item.data);
@@ -114,6 +118,22 @@ export default function ViewStudentProfile() {
     setTitleValues("");
   };
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    const obj = localStorage.getItem("studentProfile");
+    if (obj) {
+      let student = JSON.parse(obj);
+      setStudentCv(student);
+      setCurrentStudent(student[0]);
+    }
+  }, []);
+
+  const handleChange = (event, value) => {
+    let obj = studentCv[value - 1];
+    obj && setCurrentStudent(obj);
+  };
+
+  console.log("CurrentStudent: ", currentStudent);
   return (
     <div className="body-font font-maven container mx-auto">
       <div>
@@ -162,23 +182,22 @@ export default function ViewStudentProfile() {
                   class="block text-gray-500 font-bold tablet:text-right  pr-4"
                   for="inline-full-name"
                 >
-                  ID :
+                  ID : {currentStudent?.authUserId}
                 </label>
               </div>
               {data?.id?.map((item, key) => (
                 <div class="" key={key}>
-                <input
-                  class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  id="inline-full-name"
-                  type="text"
-                  placeholder={item?.authUserId}
-                 
-                />
-              </div>
+                  <input
+                    class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="inline-full-name"
+                    type="text"
+                    placeholder={item?.authUserId}
+                  />
+                </div>
               ))}
-              
             </div>
           </div>
+
           <div className="flex items-center justify-end flex-col">
             <button>
               <svg
@@ -301,6 +320,16 @@ export default function ViewStudentProfile() {
         <br></br>
         <hr></hr>
 
+        <div className="flex justify-center mt-5">
+          <Pagination
+            defaultPage={1}
+            value={currentIndex + 1}
+            count={studentCv.length}
+            onChange={handleChange}
+            variant="outlined"
+            color="primary"
+          />
+        </div>
         <section class=" p-6 mx-auto  rounded-md  ">
           <h2 class="text-2xl font-bold  capitalize mb-5">
             Personal Information{" "}
@@ -312,7 +341,9 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="username"
-                value=""
+                value={
+                  currentStudent?.profileDetails?.personalDetails?.firstName
+                }
                 type="text"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
@@ -324,7 +355,9 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="emailAddress"
-                value=""
+                value={
+                  currentStudent?.profileDetails?.personalDetails?.lastName
+                }
                 type="text"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
@@ -335,7 +368,9 @@ export default function ViewStudentProfile() {
                 Phone Number <span className="text-red-700">*</span>
               </label>
               <input
-                value=""
+                value={
+                  currentStudent?.profileDetails?.personalDetails?.phoneNumber
+                }
                 id=""
                 type="tel"
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -349,6 +384,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="date"
+                value={currentStudent?.profileDetails?.personalDetails?.dob}
                 class="block w-full border p-2 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -359,7 +395,7 @@ export default function ViewStudentProfile() {
               <input
                 id="passwordConfirmation"
                 type="email"
-                value=""
+                value={currentStudent?.profileDetails?.personalDetails?.email}
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -369,8 +405,8 @@ export default function ViewStudentProfile() {
               </label>
               <input
                 id="passwordConfirmation"
-                type="text"
-                value=""
+                type='text'
+                value={currentStudent?.profileDetails?.personalDetails?.pob}
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
@@ -378,8 +414,8 @@ export default function ViewStudentProfile() {
           <br></br>
           <hr></hr>
           <br></br>
-          <h2 class="text-2xl font-bold  capitalize mb-5 ">Basic Course</h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 mb-5">
+          {/* <h2 class="text-2xl font-bold  capitalize mb-5 ">Basic Course</h2> */}
+          {/* <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 mb-5">
             <div>
               <label class="font-bold" for="username">
                 Class Name <span className="text-red-700">*</span>
@@ -415,10 +451,10 @@ export default function ViewStudentProfile() {
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
-          </div>
+          </div> */}
           <br></br>
-          <h2 class="text-2xl font-semibold mb-5">Advance Course</h2>
-          <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 ">
+          {/* <h2 class="text-2xl font-semibold mb-5">Advance Course</h2> */}
+          {/* <div class="grid grid-cols-1 gap-6 mt-4 laptop:grid-cols-3 ">
             <div>
               <label class="font-bold" for="passwordConfirmation">
                 Class Name <span className="text-red-700">*</span>
@@ -452,10 +488,10 @@ export default function ViewStudentProfile() {
                 class="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </div>
-          </div>{" "}
+          </div>{" "} */}
           <br></br>
-          <h2 class="text-lg  text-[#A098AE] capitalize  mb-3">About</h2>
-          <div className="grid grid-2">
+          {/* <h2 class="text-lg  text-[#A098AE] capitalize  mb-3">About</h2> */}
+          {/* <div className="grid grid-2">
             <div>
               <button
                 class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
@@ -486,12 +522,12 @@ export default function ViewStudentProfile() {
                 </div>
               )}
             </div>
-          </div>
-          <div className="flex mt-12 font-maven text-[#255FAB] mb-5">
+          </div> */}
+          {/* <div className="flex mt-12 font-maven text-[#255FAB] mb-5">
             <p className="h-10 w-1   bg-[#255FAB]"></p>
             <p className="ml-2 text-4xl font-bold  text-cB">What I can do </p>
-          </div>
-          <div className="grid grid-2">
+          </div> */}
+          {/* <div className="grid grid-2">
             <div>
               <button
                 class="rounded-md desktop:text-xl laptop:text-lg  inline-flex  justify-between content-center"
@@ -559,7 +595,7 @@ export default function ViewStudentProfile() {
                       {inputField.map((input, index) => (
                         <form onSubmit={(e) => removeInputField(index, e)}>
                           {/* return ( */}
-                          <div key={index}>
+                          {/* <div key={index}>
                             <div className={!input.isShow ? "hidden" : "block"}>
                               <button type="submit" className="float-right">
                                 <Remove className="w-5"></Remove>
@@ -568,14 +604,14 @@ export default function ViewStudentProfile() {
                                 className="mblock w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 mt-2 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                                 name="newMajor"
                                 placeholder={input.newMajor}
-                                // value={input.newMajor}
+                          
                                 onChange={(event) =>
                                   handleInputFieldChange(index, event)
                                 }
                               ></textarea>
                             </div>
-                          </div>
-                          {/* ); */}
+                          </div> */}
+                          {/* ); 
                         </form>
                       ))}
                     </div>
@@ -583,8 +619,8 @@ export default function ViewStudentProfile() {
                 )}
               </div>
             </div>
-          </div>
-          <div classname="">
+          </div> */}
+          {/* <div classname="">
             <div className="flex items-center laptop:justify-end justify-center ">
               <button
                 class="hover:border-transparent mt-6 hover:bg-[#194f95] bg-[#255FAB] text-white mr-3 py-2 px-4 w-36 h-12 rounded mb-6"
@@ -592,13 +628,14 @@ export default function ViewStudentProfile() {
               >
                 Save
               </button>
-              <button class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              onClick={() => navigate("/admin/manageStudent")}
+              <button
+                class="bg-transparent  w-36 h-12 hover:bg-slate-400 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                onClick={() => navigate("/admin/manageStudent")}
               >
                 Cancel
               </button>
             </div>
-          </div>
+          </div> */}
         </section>
       </div>
     </div>

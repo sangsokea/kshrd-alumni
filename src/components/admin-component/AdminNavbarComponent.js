@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
   const [show, setshow] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="body-font font-maven bg-gradient-to-b from-blue-200 to-white  laptop:ml-72   tablet:ml-72">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
@@ -15,7 +15,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
             iconOnly
             rounded
             ripple="light"
-            className="animate-pulse"
+            className="animate-pulse "
             onClick={() => setShowSidebar("left-0")}
           >
             <svg
@@ -64,6 +64,40 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
           </div>
         </div>
         {/* For large and Medium-sized Screen */}
+        <button onClick={()=>navigate('/')} class="hidden laptop:flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none bg-ccon hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <label class="mx-2 cursor-pointer duration-100 inset-0 z-10 flex justify-center items-center text-lg  bg-opacity-75 text-white font-semibold">
+            back to user page
+          </label>
+        </button>
+
         <div className="flex justify-between ">
           <div className=" flex space-x-3  items-center">
             <h1 className=" text-4xl leading-6 font-maven font-f36 font-bold text-ch">
@@ -81,7 +115,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               <button
                 type="button"
                 class="bg-[#DFE3E8] p-1  rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                onClick={() => navigate('accunt')}
+                onClick={() => navigate("accunt")}
               >
                 <span class="sr-only">View notifications</span>
 
@@ -195,7 +229,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
                 <button
                   type="button"
                   class="bg-gray-100 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  onClick={() => navigate('accunt')}
+                  onClick={() => navigate("accunt")}
                 >
                   <span class="sr-only">View notifications</span>
 
