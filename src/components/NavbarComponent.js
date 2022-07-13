@@ -77,6 +77,17 @@ export default function NavbarComponent() {
                   id="mobile-menu"
                 >
                   <ul className="w-full justify-start flex flex-col mt-4 text-sm laptop:text-md desktop:text-lg laptop:flex-row laptop:space-x-8 laptop:mt-0 laptop:font-medium laptop:items-center">
+                   
+                  <li className="">
+                      <button
+                        onClick={() => navigate("/admin/home")}
+                        className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                        aria-current="page"
+                      >
+                        DASHBOARD
+                      </button>
+                    </li>
+                   
                     <li className="">
                       <button
                         onClick={() => navigate("/viewAlumni")}
@@ -272,6 +283,18 @@ export default function NavbarComponent() {
             {(ref) => (
               <div className="laptop:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+
+                <button
+                    onClick={() => {
+                      navigate("/admin/home");
+                      setIsOpen(!isOpen);
+                    }}
+                    className="inline-flex w-full px-2 py-2 text-sm text-white rounded-md shadow-sm laptop:text-md desktop:text-lg laptop:font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                    aria-current="page"
+                  >
+                    DASHBOARD
+                  </button>
+
                   <button
                     onClick={() => {
                       navigate("/viewAlumni");
