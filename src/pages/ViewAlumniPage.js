@@ -41,7 +41,7 @@ export default function ViewAlumniPage() {
 
     axios(config)
       .then(({ data }) => {
-        console.log(data?.hits?.total?.value);
+        console.log("Elasticsearch",data?.hits?.total?.value);
         setTotalHits(data?.hits?.total?.value);
         setElasticData(data?.hits?.hits);
       })
@@ -154,9 +154,7 @@ export default function ViewAlumniPage() {
           </form>
           {/* card */}
           <div className="grid gap-2 grid-cols-1 desktop:grid-cols-2 desktop:gap-2 laptop:grid-cols-2 laptop:gap-2 tablet:grid-cols-2 tablet:gap-2 ">
-            {elasticData
-              ?.slice(0, size)
-              .map(({ _source: { object: item } }, index) => (
+            {elasticData?.map(({ _source: { object: {profileDetails: item} } }, index) => (
                 <div className="w-full">
                   <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <div className="tablet:h-32 h-24 w-36">

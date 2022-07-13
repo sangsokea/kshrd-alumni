@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { colors } from "../commons/colors/colors";
 import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
@@ -12,16 +12,24 @@ export default function ViewOwnerProfilePage() {
   const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
+  const isAuth = useSelector((state) => state.isAuth, shallowEqual);
   const [fromViewAlumni, setFromViewAlumni] = useState(false);
   const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
 
   const [backToTop, setBackToTop] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate()
 
   useEffect(() => {
     setIsEdit(state);
   }, [state]);
+
+  const handleEdite = () => {
+    navigate(`/sidebar/editNewCV/61d60d81-f34a-4c46-912e-aa4edd3eec69`, {
+      state: { profileDetails: {...dataFromViewAlumni} },
+    })
+  }
 
   useEffect(() => {
     let isFromAlumni = location?.state?.fromViewAlumni;
@@ -84,6 +92,26 @@ export default function ViewOwnerProfilePage() {
               >
                 Name is empty
               </p>
+            )}
+
+            {isAuth && (
+              <button onClick={()=>{}} className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+                Edit
+              </button>
             )}
           </div>
 
@@ -268,13 +296,11 @@ export default function ViewOwnerProfilePage() {
                     ➡️ School
                     <span className="block w-1/2">: {obj?.school}</span>
                   </h4>
-                  
+
                   <h4 className="flex justify-between tablet:w-1/2 w-full">
                     ➡️ Degree{" "}
                     <span className="block w-1/2">: {obj?.degree}</span>
                   </h4>
-                 
-                 
 
                   {obj?.description && (
                     <p className="mt-5 laptop:mt-8 laptop:w-full text-sm laptop:text-md desktop:text-lg w-auto">

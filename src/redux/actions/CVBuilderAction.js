@@ -39,7 +39,13 @@ export const fetchCVBuilder = (requestBody, isPublic) => (dispatch) => {
     .then((res) => {
       dispatch(fetchCVBuilderSuccess('Created successfully'))
       CUSTOM_SUCCESSFUL("Created successfully");
-      myHistory.replace('/sidebar/aboutMe')
+      localStorage.setItem("view", JSON.stringify(requestBody.profileDetails));
+      // localStorage.setItem('currentUuid',)
+      myHistory.replace("/sidebar/aboutMe", {
+        state: {
+          fromViewAlumni: true,
+        },
+      })
     })
     .catch((err) => {
       let message = typeof err.response !== "undefined" ? err.response.data.message??err.response.data.console.error : err.message?? err;

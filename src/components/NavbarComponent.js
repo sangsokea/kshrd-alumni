@@ -44,8 +44,10 @@ export default function NavbarComponent() {
       let admin = decryptRole()
       admin.toLowerCase().includes('admin') && setIsAdmin(true)
       admin.toLowerCase().includes('admin') && localStorage.setItem("adminAuth", true);
+    }else{
+      setIsAdmin(false)
     }
-  },[login])
+  })
 
   return (
     <div style={logoBackground}>

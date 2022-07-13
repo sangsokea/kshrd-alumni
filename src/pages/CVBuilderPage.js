@@ -71,6 +71,7 @@ export default function CVBuilderPage() {
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
+  const [title, setTitle] = useState("Untitled");
   const executeScroll = () => scrollToRef(inputFistNameRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -167,6 +168,10 @@ export default function CVBuilderPage() {
     });
   };
   const handleSubmit = (values) => {
+    if(title.toLowerCase() === 'untitled'){
+      CUSTOM_WARNING("Please, Input title")
+      return
+    }
     if (imageUrl) {
       Swal.fire({
         title: "Save!",
@@ -180,6 +185,7 @@ export default function CVBuilderPage() {
       }).then((result) => {
         if (result.isConfirmed) {
           let result = {
+            cvTitle: title,
             personalDetails: {
               gender,
               ...values,
@@ -236,9 +242,33 @@ export default function CVBuilderPage() {
         className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full"
       >
         <div className="flex flex-row">
-          <h1 className="text-2xl font-bold hidden laptop:block">
-            Create New Curriculum Vitae
-          </h1>
+          <form className="flex">
+            <div>
+              <input
+                className="text-2xl font-bold hidden laptop:block mr-2 bg-transparent"
+                id="title"
+                value={title}
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <span className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+            </span>
+          </form>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
             <div
@@ -519,7 +549,7 @@ export default function CVBuilderPage() {
                 <div></div>
 
                 {/* address */}
-                <div className="mb-6">
+                <div className="mb-6 col-span-2">
                   <label
                     // for="large-input"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
@@ -538,27 +568,36 @@ export default function CVBuilderPage() {
                   ) : null}
                 </div>
 
-                <div></div>
-
                 {/* summary */}
-                <div className="mb-6">
-                  <label
-                    // for="large-input-summary"
-                    className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
-                  >
-                    Summary
-                  </label>
+                <div className="mb-6 w-full col-span-2">
+                  <div className="flex">
+                    <label
+                      // for="large-input-summary"
+                      className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
+                    >
+                      Summary
+                    </label>
+                    <button
+                      onClick={() => {
+                        setSummary(
+                          `Experienced Project Manager with vast IT experience. Skills include computer networking, analytical thinking and creative problem solving. Able to apply customer service concepts to IT to improve user experience for clients, employees and administration.`,
+                        );
+                      }}
+                      className="mx-10 mb-2 font-medium align-middle text-ccon"
+                    >
+                      Auto default
+                    </button>
+                  </div>
                   <textarea
                     name="summary"
                     value={summary}
                     onChange={handleChangeSummary}
+                    placeholder="Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities and skills."
                     type="text"
                     // id="large-input-summary"
-                    className="block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="tablet:h-28 block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
-
-                <div></div>
 
                 {/* component */}
                 <ExperienceComponent />

@@ -21,7 +21,7 @@ export const fetchUpdateStatusUser = (id,status) => (dispatch) => {
       `/admin/user/${id}/${status}`,{},
       {
         headers: { 
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token? token : decryptToken()}`
         }
       }
     )

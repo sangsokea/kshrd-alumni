@@ -279,7 +279,7 @@ export default function SidebarComponent() {
                         setIsActive(3);
                         setShowSidebar("-left-64");
                       }}
-                      to="/sidebar/createNewCV"
+                      to="/sidebar/resume"
                       className={({ isActive }) =>
                         [
                           "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",

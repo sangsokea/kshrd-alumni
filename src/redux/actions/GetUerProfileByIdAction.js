@@ -21,7 +21,7 @@ export const fetchGetUserProfileById = (authUserId,limit,page) => (dispatch) => 
       `/admin/${authUserId}?limit=${limit}&page=${page}`,
       {
         headers: { 
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token? token : decryptToken()}`
         }
       }
     )

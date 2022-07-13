@@ -20,7 +20,7 @@ export const fetchGetAllUserProfle = (limit,page) => (dispatch) => {
       `/admin/users/info?limit=${limit}&page=${page}`,
       {
         headers: { 
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token? token : decryptToken()}`
         }
       }
     )
