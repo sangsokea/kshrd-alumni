@@ -16,7 +16,7 @@ import { fetchChangeTemplate } from "../../redux/actions/ChangeTemplateAction";
 // import { fetchExperience } from "../../redux/actions/FetchExperienceAction";
 
 import cvHrd from "../../commons/images/cvhrd.png";
-import cvAlumni from "../../commons/images/cvAlumni.png"
+import cvAlumni from "../../commons/images/cvAlumni.png";
 
 export default function CvTemplate() {
   const navigate = useNavigate();
@@ -148,6 +148,7 @@ export default function CvTemplate() {
   }, []);
 
   const onChangeTemplate = (uuid) => {
+    setIsChange(!isChange);
     isAlumniTemplate && dispatch(fetchChangeTemplate(uuid, 2));
     isHrdTemplate && dispatch(fetchChangeTemplate(uuid, 1));
   };
@@ -217,8 +218,9 @@ export default function CvTemplate() {
                               </div>
                             </div>
                             <div>
+                              
                               <div className="laptop:col-span-2">
-                                <div className="mt-1 ml-5 text-left laptop:mt-12">
+                                <div className="mt-1 ml-5 text-left laptop:mt-8">
                                   <span className="text-4xl font-bold font-maven ">
                                     {
                                       currentData?.profileDetails
@@ -242,7 +244,15 @@ export default function CvTemplate() {
                                   )}
                                 </div>
                               </div>
+
+                              
                             </div>
+
+                            <div className="laptop:col-span-1 ml-auto">
+                                <p onClick={handleExportWithComponent} className="mt-2 text-slate-200 hover:text-black hover:underline hover:underline-offset-2 cursor-pointer">
+                                  Export as PDF
+                                </p>
+                              </div>
                           </div>
 
                           <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
@@ -480,12 +490,12 @@ export default function CvTemplate() {
             </div>
 
             <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-              <p
+              {/* <p
                 onClick={() => onChangeTemplate(currentData?.uuid)}
                 className="cursor-pointer mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
               >
                 Change Template
-              </p>
+              </p> */}
               {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full"
                 style={styles}
@@ -542,13 +552,13 @@ export default function CvTemplate() {
 
               {isChange ? (
                 <img
-                  src={cvAlumni}
+                  src={cvHrd}
                   className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
                   onClick={() => onChangeTemplate(currentData?.uuid)}
                 ></img>
               ) : (
                 <img
-                  src={cvHrd}
+                  src={cvAlumni}
                   className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
                   onClick={() => onChangeTemplate(currentData?.uuid)}
                 ></img>
