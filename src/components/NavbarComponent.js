@@ -403,7 +403,7 @@ export default function NavbarComponent() {
                         className="flex cursor-pointer"
                       >
                         <img
-                          className="w-10 h-10 rounded-full"
+                          className="w-10 h-10 object-cover rounded-full"
                           src={localImage ? localImage : alumni4}
                           alt="Rounded avatar"
                         ></img>
