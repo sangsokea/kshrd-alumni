@@ -41,6 +41,7 @@
     "html2canvas": "^1.4.1",
     "http-proxy-middleware": "^2.0.6",
     "i": "^0.3.7",
+    "install": "^0.13.0",
     "jspdf": "^2.5.1",
     "moment": "^2.29.4",
     "otp-input-react": "^0.3.0",
@@ -73,6 +74,7 @@
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.4.19",
     "sweetalert2-react-content": "^5.0.0",
+    "tw-elements": "^1.0.0-alpha12",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

@@ -48,7 +48,7 @@ export function ActionPsill({ value }) {
         onClick={() => {
           dispatch(fetchGetUserProfileById(active, 10, 1));
         }}
-        class=" mb-1 mt-auto  py-2 px-5 laptop:ml-auto rounded  overflow-hidden group bg-[#255FAB] relative hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-600 text-white  hover:ring-blue-600 transition-all ease-out duration-300"
+        class=" mb-1 mt-auto  py-1 px-5 laptop:ml-auto rounded  overflow-hidden group bg-[#255FAB] relative hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-600 text-white  hover:ring-blue-600 transition-all ease-out duration-300"
       >
         <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
         <span class="relative ">View</span>
@@ -221,7 +221,7 @@ function AdminTables({ columns, data }) {
             <label>
               <span className="sr-only">Items Per Page</span>
               <select
-                className="mt-1 font-maven block w-full rounded-md h-10 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className=""
                 value={state.pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));

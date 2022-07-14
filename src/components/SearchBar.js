@@ -54,6 +54,8 @@ function GlobalFilter({
   );
 }
 
+
+
 export function StatusPill({ value }) {
   const status = value ? value?.toLowerCase() : "unknown";
 
@@ -314,16 +316,16 @@ function SearchBar({ columns, data }) {
             Next
           </Button>
         </div>
-        <div className="hidden tablet:flex-1 tablet:flex items-center tablet:justify-between">
-          <div className="flex gap-x-2 items-baseline">
-            <span className="text-sm text-gray-700">
+        <div className="hidden font-maven tablet:flex-1 tablet:flex items-center tablet:justify-between">
+          <div className="flex gap-x-2 items-baseline ">
+            <span className="text-sm text-gray-700 ">
               Page <span className="font-medium">{state.pageIndex + 1}</span> of{" "}
               <span className="font-medium">{pageOptions.length}</span>
             </span>
-            <label>
+            <label className=" ">
               <span className="sr-only">Items Per Page</span>
               <select
-                className="mt-1 block w-full rounded-md h-10 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full  rounded-md h-10 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 value={state.pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));

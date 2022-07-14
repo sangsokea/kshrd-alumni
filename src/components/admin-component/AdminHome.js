@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Tables, {  ActionPsill, StatusPill } from './AdminTables' 
+import Tables, { ActionPsill, StatusPill } from "./AdminTables";
 import DATA from "../../Data.json";
 import AdminPagination from "./AdminPagination";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,51 +13,57 @@ export default function AdminHome() {
   // const [data, setData] = useState();
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.getalluserProfile?.items);
-  const location = useLocation()
-  const [localData , setLocalData] = useState([data])
+  const location = useLocation();
+  const [localData, setLocalData] = useState([data]);
 
-  const columns = React.useMemo(() => localData? [
-    {
-      Header: "UserName",
-      accessor: 'username',
-    },
-    {
-      Header: "Email",
-      accessor: 'email',
-    },
-    {
-      Header: "Status",
-      accessor: 'status',
-      Cell: StatusPill
-      
-    },
-    {
-      Header: "CV",
-      accessor: 'cv',
-    },
-    {
-      Header: "Action",
-      accessor: 'action',
-      Cell: ActionPsill,
-    },
-  ]:[], [])
+  const columns = React.useMemo(
+    () =>
+      localData
+        ? [
+            {
+              Header: "UserName",
+              accessor: "username",
+            },
+            {
+              Header: "Email",
+              accessor: "email",
+            },
+            {
+              Header: "Status",
+              accessor: "status",
+              Cell: StatusPill,
+            },
+            {
+              Header: "CV",
+              accessor: "cv",
+            },
+            {
+              Header: "Action",
+              accessor: "action",
+              Cell: ActionPsill,
+            },
+          ]
+        : [],
+    []
+  );
 
+  useEffect(() => {
+    const obj = localStorage.getItem("userInfo");
+    const object = obj && JSON.parse(obj);
+    let dumData =
+      object &&
+      object.map((x) => {
+        return {
+          username: x.username,
+          email: x.email,
+          status: x.status ? "Enabled" : "Disabled",
+          cv: x.cv,
+          action: x.id,
+        };
+      });
+    setLocalData(object ? dumData : []);
+  }, [data, location]);
 
-  useEffect(()=>{
-    const obj = localStorage.getItem('userInfo')
-    const object = obj && JSON.parse(obj)
-    let dumData = object && object.map(x => {
-      return {
-        username: x.username,
-        email: x.email,
-        status: x.status? 'Enabled':"Disabled",
-        cv: x.cv,
-        action: x.id
-      }
-    })
-    setLocalData(object?dumData : [])
-  },[data, location])
-  
   useEffect(() => {
     dispatch(fetchGetAllUserProfle(10, 1));
   }, [dispatch]);
@@ -191,17 +197,15 @@ export default function AdminHome() {
           <div className=" text-2xl text-ccon  font-bold  min-w-full ">
             Total Alumni
           </div>
-
         </div>
         <div className="px-4 text-gray-900">
-      <main className="">
-        <div className="">
+          <main className="">
+            <div className=""></div>
+            <div className="">
+              {localData && <Tables columns={columns} data={localData} />}
+            </div>
+          </main>
         </div>
-        <div className="">
-        {localData && <Tables columns={columns} data={localData} />}
-        </div>
-      </main>
-    </div>
       </div>
     </>
   );

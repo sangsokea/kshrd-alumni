@@ -6,6 +6,7 @@ import { ReactComponent as Remove } from "../../commons/icon/remove.svg";
 import { Transition, Popover } from "@headlessui/react";
 import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
 import { useDispatch, useSelector } from "react-redux";
+import alumni4 from "../../commons/images/Alumni/alumni4.webp";
 import { Pagination } from "@mui/material";
 
 export default function ViewStudentProfile() {
@@ -169,7 +170,11 @@ export default function ViewStudentProfile() {
           </div>
           <img
             class="w-36 h-36 p-1 absolute top-56 object-cover rounded-full ring-2  ml-5 bg-gray-300 "
-            src="https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg1NjUzOTgxOTk1ODY5ODI0/johnnydepp.jpg"
+            src={
+              currentStudent?.profileDetails?.personalDetails?.profile
+                ? currentStudent?.profileDetails?.personalDetails?.profile
+                : alumni4
+            }
             alt="Bordered avatar"
           />
         </div>

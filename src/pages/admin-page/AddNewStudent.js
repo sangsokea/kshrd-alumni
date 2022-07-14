@@ -10,7 +10,7 @@ export default function AddNewStudent() {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
   return (
-    <div className="body-font font-maven">
+    <div className="body-font font-maven mt-10">
       <div className="">
         <div className="flex flex-row px-3 mb-3"></div>
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import Tables, {  ActionPsill, StatusPill } from '../SearchBar'  
+import Tables, { ActionPsill, StatusPill } from '../SearchBar'  
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { fetchGetAllUserProfle } from '../../redux/actions/GetAllUserProfileAction';
- 
+import alumni4 from "../../commons/images/Alumni/alumni4.webp";
 
 function AdminManageStudentComponent() {
   const dispatch = useDispatch();
@@ -49,6 +49,7 @@ function AdminManageStudentComponent() {
         email: x.email,
         status: x.status? 'Enabled':"Disabled",
         cv: x.cv,
+        roles: x.roles,
         action: x.id
       }
     })
@@ -57,10 +58,10 @@ function AdminManageStudentComponent() {
   return (
     <>
     <div className=" text-gray-900">
-      <main className="w-full container mx-auto  ">
+      <main className="px-4 w-full container mx-auto">
         <div className="">
         </div>
-        <div className="mt-6 ">
+        <div className="mt-20">
         {localData && <Tables columns={columns} data={localData} />}
         </div>
       </main>
