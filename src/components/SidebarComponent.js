@@ -83,7 +83,7 @@ export default function SidebarComponent() {
   return ()=>{
     setIsProfileEmpty(true)
   }
-  },[ownProfiles, location]);
+  },[ownProfiles, location, window.location.reload]);
 
   const logOut = () => {
     setShowSidebar("-left-64");
@@ -123,18 +123,16 @@ export default function SidebarComponent() {
               style={styles}
             >
               <div className="p-3 text-sm laptop:text-md desktop:text-lg font-light text-center text-white ">
-                {isShowImg && (
-                  <div className="flex justify-center mt-5">
-                    <img
-                      className="p-5 rounded-tl-lgs"
-                      src={
-                        personalDetails?.profile
-                          ? personalDetails?.profile
-                          : alumni4
-                      }
-                    />
-                  </div>
-                )}
+                <div className="flex justify-center mt-5">
+                  <img
+                    className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
+                    src={
+                      personalDetails?.profile
+                        ? personalDetails?.profile
+                        : alumni4
+                    }
+                  />
+                </div>
                 {/* <p className="divide-y-3"></p> */}
                 <hr className="mt-10"></hr>
                 <p className="mt-5">Contact school’s info:</p>

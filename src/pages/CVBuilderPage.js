@@ -159,7 +159,7 @@ export default function CVBuilderPage() {
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "",
       confirmButtonText: "Yes",
       customClass: "swal-wide",
     }).then((result) => {
@@ -180,7 +180,7 @@ export default function CVBuilderPage() {
         // icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#eee",
+        cancelButtonColor: "",
         confirmButtonText: "Save",
         customClass: "swal-wide",
       }).then((result) => {

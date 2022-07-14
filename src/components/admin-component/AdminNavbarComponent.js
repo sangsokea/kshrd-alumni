@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import alumni4 from "../../commons/images/Alumni/alumni4.webp";
+
 export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const login = useSelector((state) => state?.login.items);
   const location = useLocation().pathname;
+  const user = useSelector((state) => state?.user, shallowEqual);
+  const [localImage, setLocalImage] = useState();
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const item = localStorage.getItem("user");
+    let userItem = item && JSON.parse(item);
+    if (userItem?.username) {
+      setUsername(userItem.username);
+      setLocalImage(userItem.profile);
+    }
+    const username = localStorage.getItem("username");
+    username && setUsername(username);
+  }, [user]);
+
   return (
     <div className="body-font font-maven bg-gradient-to-b from-blue-200 to-white  laptop:ml-72   tablet:ml-72">
       <nav className="desktop:container desktop:mx-auto tablet:py-6 tablet:px-7 py-5 px-4 ">
@@ -135,7 +154,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
             </div>
 
             <div>
-              <p className="font-maven text-md font-bold text-ch">Nabila A.</p>
+              <p className="font-maven text-md font-bold text-ch">{login ? login?.username : username}</p>
               <p className="text-right font-maven">Admin</p>
             </div>
             <div>
@@ -148,8 +167,8 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               >
                 <span class="sr-only">Open user menu</span>
                 <img
-                  class="w-14 h-14 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  class="w-14 h-14 rounded-full object-cover"
+                  src={localImage ? localImage : alumni4}
                   alt=""
                 />
               </button>
@@ -249,7 +268,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
               </div>
               <div className="mr-2">
                 <p className="font-maven text-md font-bold text-ch">
-                  Nabila A.
+                {login ? login?.username : username}
                 </p>
                 <p className="text-right font-maven">Admin</p>
               </div>
@@ -264,7 +283,7 @@ export default function AdminNavbarComponent({ showSidebar, setShowSidebar }) {
                   <span class="sr-only">Open user menu</span>
                   <img
                     class="h-14 w-14 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={localImage ? localImage : alumni4}
                     alt=""
                   />
                 </button>

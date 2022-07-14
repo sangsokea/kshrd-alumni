@@ -22,6 +22,7 @@ export default function ViewAlumniPage() {
   const [totalHits, setTotalHits] = useState(0);
   const [from, setFrom] = useState(0);
   const [size, setSize] = useState(10);
+  const [numOfPage, setNumOfPage] = useState(1);
 
   const navigate = useNavigate();
 
@@ -41,8 +42,10 @@ export default function ViewAlumniPage() {
 
     axios(config)
       .then(({ data }) => {
-        console.log("Elasticsearch",data?.hits?.total?.value);
+        console.log("Elasticsearch", data?.hits?.total?.value);
         setTotalHits(data?.hits?.total?.value);
+        let totalHit = data?.hits?.total?.value;
+        setNumOfPage(totalHit % 2);
         setElasticData(data?.hits?.hits);
       })
       .catch(function (error) {
@@ -74,6 +77,9 @@ export default function ViewAlumniPage() {
       .then(({ data }) => {
         console.log(data?.hits?.total?.value);
         setTotalHits(data?.hits?.total?.value);
+        let totalHit = data?.hits?.total?.value;
+        setNumOfPage(totalHit % 2);
+        totalHits % 2 !== 0 && setNumOfPage((totalHit % 2) + 1);
         setElasticData(data?.hits?.hits);
       })
       .catch(function (error) {
@@ -108,19 +114,6 @@ export default function ViewAlumniPage() {
       <div className="col-span-3 laptop:col-span-2 desktop:col-span-3 rounded-br-md desktop:block bg-slate-200 text-sm laptop:text-md desktop:text-lg">
         <img src={view_alumni} alt="view alumni logo"></img>
         <div className="p-5">
-          <div>
-            <h4 className="p-1 text-blue-900 font-light">
-              ➡️ Set number of cards to display :
-            </h4>
-            <Pagination
-              defaultPage={10}
-              value={size}
-              count={20}
-              onChange={handleChange}
-              variant="outlined"
-              color="primary"
-            />
-          </div>
           <div className="mt-5 mb-3 text-2xl font-bold">
             Results ({totalHits})
           </div>
@@ -154,7 +147,15 @@ export default function ViewAlumniPage() {
           </form>
           {/* card */}
           <div className="grid gap-2 grid-cols-1 desktop:grid-cols-2 desktop:gap-2 laptop:grid-cols-2 laptop:gap-2 tablet:grid-cols-2 tablet:gap-2 ">
-            {elasticData?.map(({ _source: { object: {profileDetails: item} } }, index) => (
+            {elasticData?.map(
+              (
+                {
+                  _source: {
+                    object: { profileDetails: item },
+                  },
+                },
+                index,
+              ) => (
                 <div className="w-full">
                   <div className="desktop:flex-row p-0 flex items-center laptop:p-2 laptop:pl-5 border rounded-lg bg-gray-50 tablet:flex-row hover:bg-gray-100 hover:rounded-lg hover:shadow-md">
                     <div className="tablet:h-32 h-24 w-36">
@@ -182,11 +183,22 @@ export default function ViewAlumniPage() {
                       <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                       <span class="relative mr-5">View</span>
                     </button>
-                    
                   </div>
                 </div>
-              ))}
+              ),
+            )}
           </div>
+
+          {/* <div className="flex justify-center mt-5">
+            <Pagination
+              defaultPage={10}
+              value={size}
+              count={numOfPage}
+              onChange={handleChange}
+              variant="outlined"
+              color="primary"
+            />
+          </div> */}
         </div>
       </div>
     </div>
