@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import { Transition, Popover, Dialog } from "@headlessui/react";
-import { ReactComponent as More } from "../commons/icon/More.svg";
-import { fetchUpdateStatusUser } from "../redux/actions/UpdateStatusUserAction";
+import { ReactComponent as More } from "../../commons/icon/More.svg";
+import { fetchUpdateStatusUser } from "../../redux/actions/UpdateStatusUserAction";
 import {
   useTable,
   useFilters,
@@ -17,9 +17,9 @@ import {
   ChevronDoubleRightIcon,
   ExclamationIcon,
 } from "@heroicons/react/solid";
-import { Button, PageButton } from "../../src/shared/Button";
-import { classNames } from "../../src/shared/Utils";
-import { SortIcon, SortUpIcon, SortDownIcon } from "../../src/shared/Icons";
+import { Button, PageButton } from "../../../src/shared/Button";
+import { classNames } from "../../../src/shared/Utils";
+import { SortIcon, SortUpIcon, SortDownIcon } from "../../../src/shared/Icons";
 import { data } from "autoprefixer";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -97,91 +97,60 @@ export function ActionPsill({ value }) {
         {({ open }) => (
           <>
             <Popover.Button>
-              <More className="w-5 mr-2"></More>
+              <label for="my-modal-3" class="cursor-pointer">
+              <img src="https://img.icons8.com/fluency/48/000000/download.png" className="w-7 ml-3"/>
+              </label>
             </Popover.Button>
-            <Transition.Root show={open} as={Fragment}>
-              <Dialog
-                as="div"
-                className="relative z-10"
-                initialFocus={cancelButtonRef}
-                onClose={setOpen}
+            <div className="bg-cyan-700">
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
               >
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                </Transition.Child>
-
-                <div className="fixed z-10 inset-0 overflow-y-auto">
-                  <div className="flex items-center tablet:items-center justify-center min-h-full p-4 text-center tablet:p-0">
-                    <Transition.Child
-                      as={Fragment}
-                      enter="ease-out duration-300"
-                      enterFrom="opacity-0 translate-y-4 translate-y-0 scale-95"
-                      enterTo="opacity-100 translate-y-0 scale-100"
-                      leave="ease-in duration-200"
-                      leaveFrom="opacity-100 translate-y-0 scale-100"
-                      leaveTo="opacity-0 translate-y-4 translate-y-0 scale-95"
-                    >
-                      <Dialog.Panel className="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all tablet:my-8 max-w-lg tablet:w-full">
-                        <div className="bg-white px-4 pt-5 pb-4 p-6 tablet:pb-4">
-                          <div className="tablet:flex tablet:items-start">
-                            <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 ">
-                              <ExclamationIcon
-                                className="h-6 w-6 text-red-600"
-                                aria-hidden="true"
-                              />
-                            </div>
-                            <div className=" text-center  tablet:ml-4 tablet:text-left">
-                              <Dialog.Title
-                                as="h3"
-                                className="text-lg leading-6 tablet:mr-10 font-medium text-gray-900"
-                              >
-                                Deactivate account
-                              </Dialog.Title>
-                              <div className="mt-2 tablet:mr-20">
-                                <p className="text-sm  font-medium text-gray-900">
-                                  Are you sure you want to disable your account?
-                                </p>
-                              </div>
-                            </div>
+                <Popover.Panel className="absolute -left-10  z-10 mt-3 w-52 h-270 max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
+                  <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                    <div className="relative  gap-8 bg-white p-7 ">
+                      {/* {solutions.map((item) => ( */}
+                      <div>
+                        <div className="flow-root rounded-md px-2 py-2 transition duration-150 ease-in-out -mt-4  focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                          <div className="flex items-center pdf-download">
+                            <p className="text-xl font-maven font-extrabold text-gray-900 export-as">
+                              Export as
+                            </p>
+                            <hr class="mt-10"></hr>
                           </div>
                         </div>
-                        <div className="bg-gray-50 px-4 py-3 tablet:px-6 flex flex-row-reverse">
-                          <button
-                            type="button"
-                            className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3 sm:w-auto sm:text-sm"
-                            onClick={() => {
-                              setOpen(false);
-                              dispatch(fetchUpdateStatusUser(active, false));
-                            }}
+                      </div>
+                      <div>
+                        <div className="flex text-left mt-3 ml-3 cursor-pointer hover:text-blue-500">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
                           >
-                            Disable
-                          </button>
-                          <button
-                            type="button"
-                            className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  sm:ml-3 sm:w-auto sm:text-sm"
-                            onClick={() => {
-                              setOpen(false);
-                              dispatch(fetchUpdateStatusUser(active, true));
-                            }}
-                            ref={cancelButtonRef}
-                          >
-                            Enable
-                          </button>
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                            />
+                          </svg>
+                          PDF
                         </div>
-                      </Dialog.Panel>
-                    </Transition.Child>
+                      </div>
+                      {/* ))} */}
+                    </div>
+                    {/* <div className="bg-gray-50 p-4"></div> */}
                   </div>
-                </div>
-              </Dialog>
-            </Transition.Root>
+                </Popover.Panel>
+              </Transition>
+            </div>
           </>
         )}
       </Popover>
@@ -189,7 +158,7 @@ export function ActionPsill({ value }) {
   );
 }
 
-function SearchBar({ columns, data }) {
+function ViewStudentTable({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -243,7 +212,7 @@ function SearchBar({ columns, data }) {
         )}
       </div>
       {/* table */}
-      <div className=" flex flex-col shadow-[0px_5px_100px_10px_rgba(0,0,0,0.2)] rounded-lg">
+      <div className=" flex flex-col shadow-[0px_5px_100px_10px_rgba(0,0,0,0.2)] rounded-l">
         <div className="-my-2 overflow-x-auto -mx-4 tablet:-mx-6 laptop:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full tablet:px-6 laptop:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 tablet:rounded-lg">
@@ -251,7 +220,7 @@ function SearchBar({ columns, data }) {
                 {...getTableProps()}
                 className="min-w-full divide-y divide-gray-200"
               >
-                <thead className="bg-gray-50 ">
+                <thead className="bg-[#255FAB] ">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
@@ -259,7 +228,7 @@ function SearchBar({ columns, data }) {
                         // we can add them into the header props
                         <th
                           scope="col"
-                          className="group px-6 py-3 font-bold text-left text-xs  text-gray-500 uppercase tracking-wider"
+                          className="group px-6 py-3 font-bold text-left text-xs font-maven  text-m text-white uppercase tracking-wider"
                           {...column.getHeaderProps(
                             column.getSortByToggleProps()
                           )}
@@ -404,4 +373,4 @@ function SearchBar({ columns, data }) {
   );
 }
 
-export default SearchBar;
+export default ViewStudentTable;

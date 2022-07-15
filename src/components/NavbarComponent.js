@@ -66,12 +66,12 @@ export default function NavbarComponent() {
         </div>
       </div>
 
-      <div className="relative body-font font-maven">
+      <div className="relative body-font  font-maven">
         <nav
-          className="bg-white laptop:px-4 laptop:py-1 text-white body-font font-maven tablet:text-sm overflow-hidden"
+          className="bg-white   laptop:px-4 laptop:py-1  text-white body-font font-maven tablet:text-sm overflow-hidden"
           style={styles}
         >
-          <div className="container flex items-center justify-between mx-auto">
+          <div className="container flex items-center  justify-between mx-auto">
             <div onClick={() => navigate("/")} className="items-center">
               <span className="hidden tablet:inline-block self-center text-white text-3xl font-bold tracking-wider whitespace-nowrap cursor-pointer">
                 KSHRD ALUMNI
