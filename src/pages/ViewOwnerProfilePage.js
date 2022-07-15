@@ -115,7 +115,7 @@ export default function ViewOwnerProfilePage() {
                 <div className="flex laptop:justify-between mt-8 laptop:w-full">
                   {dataFromViewAlumni?.personalDetails ? (
                     <p
-                      className="text-lg laptop:text-2xl desktop:text-4xl font-bold"
+                      className="text-lg laptop:text-2xl desktop:text-4xl font-bold capitalize"
                       style={styles}
                     >
                       {dataFromViewAlumni?.personalDetails?.firstName}{" "}

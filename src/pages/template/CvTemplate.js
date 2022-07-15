@@ -173,333 +173,363 @@ export default function CvTemplate() {
 
   return (
     <>
-      <section class=" p-6 mx-auto  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
+      <section class="mx-auto  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
         <div class="">
           <div className="">
-          {currentData ? (
-        <div className="h-full mb-10">
-          <div class="ml-5 laptop:ml-20">
-            <div class="grid grid-cols-8">
-              {/* {data &&
+            {currentData ? (
+              <div className="h-full mb-10">
+                <div class="ml-5 laptop:ml-20">
+                  <div class="grid grid-cols-8">
+                    {/* {data &&
               data?.map(() => {
                 return ( */}
 
-              <div class="col-span-6">
-                {isHrdTemplate && <HrdCvTemplate object={currentData} />}
-                {isAlumniTemplate && (
-                  <div>
-                    <PDFExport ref={pdfExportComponent} paperSize="A4">
-                      {currentData && (
-                        <center>
-                          <div className="shadow w-350 laptop:w-full mt-10">
-                            <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
-                              <div className="h-40 laptop:bg-regal-gg">
-                                <div class="absolute ">
-                                  <svg
-                                    width="126"
-                                    height="124"
-                                    viewBox="0 0 126 124"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <circle
-                                      cx="51"
-                                      cy="49"
-                                      r="75"
-                                      fill="#8CC0DE"
-                                    />
-                                  </svg>
-                                  <div className="absolute w-32 h-32 bg-white rounded-full laptop:h-32 laptop:w-32 laptop:left-10 left-7 top-5">
-                                    <div>
-                                      <img
-                                        ref={image}
-                                        className="absolute bg-gray-500 rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
-                                        src={
-                                          currentData?.profileDetails
-                                            ?.personalDetails?.profile
-                                        }
-                                        alt="user profile"
-                                      />
-                                      <div className="absolute rounded-full bg-regal-rgb laptop:h-14 laptop:w-14 laptop:left-20"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="laptop:col-span-2">
-                                  <div className="mt-1 ml-5 text-left laptop:mt-8">
-                                    <span className="text-4xl font-bold font-maven ">
-                                      {
-                                        currentData?.profileDetails
-                                          ?.personalDetails?.lastName
-                                      }
-                                    </span>
-                                    &nbsp;
-                                    <span className="text-4xl font-bold font-maven text-regal-bg">
-                                      {
-                                        currentData?.profileDetails
-                                          ?.personalDetails?.firstName
-                                      }
-                                    </span>
-                                  </div>
+                    <div class="col-span-6">
+                      <div className="flex">
+                        <p
+                          onClick={() => {
+                            console.log(currentData?.uuid);
+                            navigate(
+                              `/sidebar/editNewCV/${currentData?.uuid}`,
+                              {
+                                state: { ...currentData },
+                              },
+                            );
+                            // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[currentCv].uuid))
+                          }}
+                          className="ml-auto cursor-pointer mt-3 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
+                        >
+                          Edit
+                        </p>
+                      </div>
 
-                                  <div>
-                                    {skill && (
-                                      <h2 className="ml-5 text-xl text-left font-maven">
-                                        {skill[0]?.skill}
-                                      </h2>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
+                      {isHrdTemplate && <HrdCvTemplate object={currentData} />}
+                      {isAlumniTemplate && (
+                        <div>
+                          <p
+                            onClick={handleExportWithComponent}
+                            className="cursor-pointer hover:underline hover:underline-offset-2 hover:text-blue-800 font-bold"
+                          >
+                            Export as PDF
+                          </p>
 
-                              <div className="laptop:col-span-1 ml-auto">
-                              
-                              </div>
-                            </div>
-
-                            <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
-                              <div className=" laptop:bg-regal-gg">
-                                <div className="mb-4">
-                                  <div>
-                                    <h2 class="font-maven text-left ml-5  mt-4 font-bold text-xl">
-                                      Details
-                                    </h2>
-                                  </div>
-
-                                  <div className="mt-2 ml-5 text-xs text-left font-maven">
-                                    <p>
-                                      <span>
-                                        {
-                                          currentData?.profileDetails
-                                            ?.personalDetails?.address
-                                        }
-                                        ,{" "}
-                                      </span>
-                                      {/* <span>phnom penh, </span>
-                              <span className="break-words">Cambodia</span> */}
-                                    </p>
-                                    <p>
-                                      {
-                                        currentData?.profileDetails
-                                          ?.personalDetails?.phoneNumber
-                                      }
-                                    </p>
-                                    <p className="mb-2 break-words text-regal-blue">
-                                      {
-                                        currentData?.profileDetails
-                                          ?.personalDetails?.email
-                                      }
-                                    </p>
-                                    <p className="font-bold">Nationality</p>
-                                    <p>
-                                      {
-                                        currentData?.profileDetails
-                                          ?.personalDetails?.nationality
-                                      }
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="laptop:col-span-2 bg-white">
-                                <div className="mt-4 laptop:mt-5 ">
-                                  <h2 class="font-maven text-left ml-5  font-bold text-xl">
-                                    Profile
-                                  </h2>
-                                </div>
-                                <div>
-                                  <p className="mt-2 ml-5 text-xs text-left font-maven">
-                                    {
-                                      currentData?.profileDetails
-                                        ?.personalDetails?.summary
-                                    }
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="laptop:grid laptop:grid-cols-3 flex flex-wrap-reverse">
-                              <div className="w-full min-h-1/22 laptop:bg-regal-gg bg-slate-50">
-                                {/*Start CV Profile */}
-
-                                {/* End CV Profile */}
-
-                                {/* start Details */}
-                                <div className="mb-4">
-                                  {/*  Start Education */}
-                                  <div className="mt-5 tablet:mt-3">
-                                    <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                                      Education
-                                    </h2>
-                                  </div>
-
-                                  {currentData?.profileDetails?.education?.map(
-                                    (edu, i) => {
-                                      console.log("Education", currentData);
-                                      return (
-                                        <div
-                                          key={i}
-                                          className="mt-2 ml-5 text-xs text-left font-maven"
+                          <PDFExport ref={pdfExportComponent} paperSize="A4">
+                            {currentData && (
+                              <center>
+                                <div className="shadow w-350 laptop:w-full mt-5">
+                                  <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
+                                    <div className="h-40 laptop:bg-regal-gg">
+                                      <div class="absolute ">
+                                        <svg
+                                          width="126"
+                                          height="124"
+                                          viewBox="0 0 126 124"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
                                         >
+                                          <circle
+                                            cx="51"
+                                            cy="49"
+                                            r="75"
+                                            fill="#8CC0DE"
+                                          />
+                                        </svg>
+                                        <div className="absolute w-32 h-32 bg-white rounded-full laptop:h-32 laptop:w-32 laptop:left-10 left-7 top-5">
                                           <div>
-                                            <div className="w-32 h-4 text-left rounded bg-[#8CC0DE]">
-                                              <center>
-                                                <span className="font-bold">
-                                                  {edu?.startDate} -{" "}
-                                                  {edu?.endDate
-                                                    ? edu?.endDate
-                                                    : "present"}
-                                                </span>
-                                              </center>
-                                            </div>
-                                            <p className="mt-1">
-                                              <span>{edu?.degree}, </span>
-                                              <span>{edu?.school}, </span>
-                                              <span>{edu?.city} </span>
-                                            </p>
+                                            <img
+                                              ref={image}
+                                              className="absolute object-cover bg-gray-500 rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
+                                              src={
+                                                currentData?.profileDetails
+                                                  ?.personalDetails?.profile
+                                              }
+                                              alt="user profile"
+                                            />
+                                            <div className="absolute rounded-full bg-regal-rgb laptop:h-14 laptop:w-14 laptop:left-20"></div>
                                           </div>
                                         </div>
-                                      );
-                                    },
-                                  )}
-
-                                  {/* End  Education */}
-
-                                  {/* start Links */}
-                                  <div className="mt-3">
-                                    <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                                      Links
-                                    </h2>
-                                  </div>
-                                  <div className="mt-2 ml-3 text-left">
-                                    <div>
-                                      <img
-                                        className="w-20"
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                                        alt=""
-                                      />
-                                    </div>
-                                  </div>
-                                  {/* End Links */}
-
-                                  {/* Start Skills */}
-                                  <div className="mb-3">
-                                    <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                                      Skills
-                                    </h2>
-                                  </div>
-
-                                  {currentData?.profileDetails?.skill?.map(
-                                    (sk) => {
-                                      return (
-                                        <div className="mt-2 ml-5 text-xs text-left font-maven">
-                                          <div className="grid grid-cols-3 gap-4">
-                                            <div class="">
-                                              <p>{sk?.skill}</p>
-                                            </div>
-                                            <div class="col-span-2">
-                                              <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
-                                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                                <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      );
-                                    },
-                                  )}
-                                </div>
-
-                                {/* End Skills  */}
-                              </div>
-                              <div className="laptop:col-span-2 bg-white">
-                                <div className="laptop:mt-0 mt-">
-                                  <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                                    Employment History
-                                  </h2>
-                                </div>
-
-                                {currentData?.profileDetails?.employmentHistory?.map(
-                                  (item) => (
-                                    <div className="mt-4 ml-5 font-maven">
-                                      <div className="mb-1 text-left">
-                                        <span>{item?.jobTitle},</span>{" "}
-                                        &nbsp;&nbsp;
-                                        <span>{item?.employee},</span>{" "}
-                                        &nbsp;&nbsp;
-                                        <span>{item?.city}</span>
                                       </div>
-                                      <div className="text-left">
-                                        <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
-                                          <center>
-                                            <span className="font-bold">
-                                              {item?.startDate} -{" "}
-                                              {item?.endDate
-                                                ? item?.endDate
-                                                : "present"}
-                                            </span>
-                                          </center>
+                                    </div>
+                                    <div>
+                                      <div className="laptop:col-span-2 capitalize">
+                                        <div className="mt-1 ml-5 text-left laptop:mt-8">
+                                          <span className="text-4xl font-bold font-maven ">
+                                            {
+                                              currentData?.profileDetails
+                                                ?.personalDetails?.lastName
+                                            }
+                                          </span>
+                                          &nbsp;
+                                          <span className="text-4xl font-bold font-maven text-regal-bg">
+                                            {
+                                              currentData?.profileDetails
+                                                ?.personalDetails?.firstName
+                                            }
+                                          </span>
                                         </div>
-                                        <p className="mt-3 text-xs">
-                                          {item?.description}
+
+                                        <div>
+                                          {skill && (
+                                            <h2 className="ml-5 text-xl text-left font-maven">
+                                              {skill[0]?.skill}
+                                            </h2>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div className="laptop:col-span-1 ml-auto"></div>
+                                  </div>
+
+                                  <div className="grid laptop:grid laptop:grid-cols-3 bg-slate-50">
+                                    <div className=" laptop:bg-regal-gg">
+                                      <div className="mb-4">
+                                        <div>
+                                          <h2 class="font-maven text-left ml-5  mt-4 font-bold text-xl">
+                                            Details
+                                          </h2>
+                                        </div>
+
+                                        <div className="mt-2 ml-5 text-xs text-left font-maven">
+                                          <p>
+                                            <span>
+                                              {
+                                                currentData?.profileDetails
+                                                  ?.personalDetails?.address
+                                              }
+                                              ,{" "}
+                                            </span>
+                                            {/* <span>phnom penh, </span>
+                              <span className="break-words">Cambodia</span> */}
+                                          </p>
+                                          <p>
+                                            {
+                                              currentData?.profileDetails
+                                                ?.personalDetails?.phoneNumber
+                                            }
+                                          </p>
+                                          <p className="mb-2 break-words text-regal-blue">
+                                            {
+                                              currentData?.profileDetails
+                                                ?.personalDetails?.email
+                                            }
+                                          </p>
+                                          <p className="font-bold">
+                                            Nationality
+                                          </p>
+                                          <p>
+                                            {
+                                              currentData?.profileDetails
+                                                ?.personalDetails?.nationality
+                                            }
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="laptop:col-span-2 bg-white">
+                                      <div className="mt-4 laptop:mt-5 ">
+                                        <h2 class="font-maven text-left ml-5  font-bold text-xl">
+                                          Profile
+                                        </h2>
+                                      </div>
+                                      <div>
+                                        <p className="mt-2 ml-5 text-xs text-left font-maven">
+                                          {
+                                            currentData?.profileDetails
+                                              ?.personalDetails?.summary
+                                          }
                                         </p>
                                       </div>
                                     </div>
-                                  ),
-                                )}
+                                  </div>
 
-                                <div className="mt-7">
-                                  <h2 class="font-maven text-left ml-5 font-bold text-xl">
-                                    Hobbies
-                                  </h2>
-                                </div>
+                                  <div class="laptop:grid laptop:grid-cols-3 flex flex-wrap-reverse">
+                                    <div className="w-full min-h-1/22 laptop:bg-regal-gg bg-slate-50">
+                                      {/*Start CV Profile */}
 
-                                <div className="mt-4 text-left ml-9">
-                                  <div className="flex justify-start gap-2 text-sm">
-                                    {currentData?.profileDetails?.addSection?.map(
-                                      (sec) => {
-                                        return (
-                                          <ui>
-                                            <li class="fff">
-                                              {sec.customSection}
-                                            </li>
-                                            <li class="fff">
-                                              {sec.sectionValue}
-                                            </li>
-                                          </ui>
-                                        );
-                                      },
-                                    )}
+                                      {/* End CV Profile */}
+
+                                      {/* start Details */}
+                                      <div className="mb-4">
+                                        {/*  Start Education */}
+                                        <div className="mt-5 tablet:mt-3">
+                                          <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                                            Education
+                                          </h2>
+                                        </div>
+
+                                        {currentData?.profileDetails?.education?.map(
+                                          (edu, i) => {
+                                            console.log(
+                                              "Education",
+                                              currentData,
+                                            );
+                                            return (
+                                              <div
+                                                key={i}
+                                                className="mt-2 ml-5 text-xs text-left font-maven"
+                                              >
+                                                <div>
+                                                  <div className="w-32 h-4 text-left rounded bg-[#8CC0DE]">
+                                                    <center>
+                                                      <span className="font-bold">
+                                                        {edu?.startDate} -{" "}
+                                                        {edu?.endDate
+                                                          ? edu?.endDate
+                                                          : "present"}
+                                                      </span>
+                                                    </center>
+                                                  </div>
+                                                  <p className="mt-1">
+                                                    <span>{edu?.degree}, </span>
+                                                    <span>{edu?.school}, </span>
+                                                    <span>{edu?.city} </span>
+                                                  </p>
+                                                </div>
+                                              </div>
+                                            );
+                                          },
+                                        )}
+
+                                        {/* End  Education */}
+
+                                        {/* start Links */}
+                                        <div className="mt-3">
+                                          <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                                            Links
+                                          </h2>
+                                        </div>
+                                        <div className="mt-2 ml-3 text-left">
+                                          <div>
+                                            <img
+                                              className="w-20"
+                                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+                                              alt=""
+                                            />
+                                          </div>
+                                        </div>
+                                        {/* End Links */}
+
+                                        {/* Start Skills */}
+                                        <div className="mb-3">
+                                          <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                                            Skills
+                                          </h2>
+                                        </div>
+
+                                        {currentData?.profileDetails?.skill?.map(
+                                          (sk) => {
+                                            return (
+                                              <div className="mt-2 ml-5 text-xs text-left font-maven">
+                                                <div className="grid grid-cols-3 gap-4">
+                                                  <div class="">
+                                                    <p>{sk?.skill}</p>
+                                                  </div>
+                                                  <div class="col-span-2">
+                                                    <div className="flex justify-start gap-2 mt-1 laptop:grid laptop:grid-cols-6">
+                                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                                      <div className="w-3 h-3 rounded-full bg-[#8CC0DE]"></div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            );
+                                          },
+                                        )}
+                                      </div>
+
+                                      {/* End Skills  */}
+                                    </div>
+                                    <div className="laptop:col-span-2 bg-white">
+                                      <div className="laptop:mt-0 mt-">
+                                        <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                                          Employment History
+                                        </h2>
+                                      </div>
+
+                                      {currentData?.profileDetails?.employmentHistory?.map(
+                                        (item) => (
+                                          <div className="mt-4 ml-5 font-maven">
+                                            <div className="mb-1 text-left">
+                                              <span>{item?.jobTitle},</span>{" "}
+                                              &nbsp;&nbsp;
+                                              <span>
+                                                {item?.employee},
+                                              </span>{" "}
+                                              &nbsp;&nbsp;
+                                              <span>{item?.city}</span>
+                                            </div>
+                                            <div className="text-left">
+                                              <div className="w-48 h-4 text-xs rounded bg-[#8CC0DE]">
+                                                <center>
+                                                  <span className="font-bold">
+                                                    {item?.startDate} -{" "}
+                                                    {item?.endDate
+                                                      ? item?.endDate
+                                                      : "present"}
+                                                  </span>
+                                                </center>
+                                              </div>
+                                              <p className="mt-3 text-xs">
+                                                {item?.description}
+                                              </p>
+                                            </div>
+                                          </div>
+                                        ),
+                                      )}
+
+                                      <div className="mt-7">
+                                        <h2 class="font-maven text-left ml-5 font-bold text-xl">
+                                          Hobbies
+                                        </h2>
+                                      </div>
+
+                                      <div className="mt-4 text-left ml-9">
+                                        <div className="flex justify-start gap-2 text-sm">
+                                          {currentData?.profileDetails?.addSection?.map(
+                                            (sec) => {
+                                              return (
+                                                <ui>
+                                                  <li class="fff">
+                                                    {sec.customSection}
+                                                  </li>
+                                                  <li class="fff">
+                                                    {sec.sectionValue}
+                                                  </li>
+                                                </ui>
+                                              );
+                                            },
+                                          )}
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                        </center>
+                              </center>
+                            )}
+                          </PDFExport>
+                        </div>
                       )}
-                    </PDFExport>
-                  </div>
-                )}
-                {/* {changeTemplate ? (
+                      {/* {changeTemplate ? (
                 <HrdCvTemplate />
               ) : ( */}
 
-                {/* )} */}
+                      {/* )} */}
 
-                {/* )} */}
-              </div>
+                      {/* )} */}
+                    </div>
 
-              <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
-                {/* <p
+                    <div class="col-span-2 mt-10 ml-10 hidden laptop:block">
+                      {/* <p
                 onClick={() => onChangeTemplate(currentData?.uuid)}
                 className="cursor-pointer mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
               >
                 Change Template
               </p> */}
-                {/* <button
+                      {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full"
                 style={styles}
                 onClick={handleExportWithComponent}
@@ -507,7 +537,7 @@ export default function CvTemplate() {
                 Export as PDF
               </button> */}
 
-                {/* <button
+                      {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={(e) => handleNextCv(e)}
@@ -523,7 +553,7 @@ export default function CvTemplate() {
                 back
               </button> */}
 
-                {/* <button
+                      {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={() => onChangeTemplate(currentData?.uuid)}
@@ -532,7 +562,7 @@ export default function CvTemplate() {
                 Change Template
               </button> */}
 
-                {/* <button
+                      {/* <button
                 class="mb-5 py-2 text-white text-lg rounded-lg w-full hidden laptop:block"
                 style={styles}
                 onClick={() => dispatch(fetchChangeCVTemplate(false))}
@@ -540,84 +570,73 @@ export default function CvTemplate() {
                 Previous Template
               </button> */}
 
-                <p
-                  onClick={() => {
-                    console.log(currentData?.uuid);
-                    navigate(`/sidebar/editNewCV/${currentData?.uuid}`, {
-                      state: { ...currentData },
-                    });
-                    // dispatch(fetchUpdateUserByUuid(ownProfiles?.items[currentCv].uuid))
-                  }}
-                  className="cursor-pointer mt-5 mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
-                >
-                  Edit Template
-                </p>
+                      <p className="mt-5">Try another template</p>
 
-                {isChange ? (
-                  <img
-                    src={cvHrd}
-                    className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
-                    onClick={() => onChangeTemplate(currentData?.uuid)}
-                  ></img>
-                ) : (
-                  <img
-                    src={cvAlumni}
-                    className="mt-10 cursor-pointer hover:border-2 hover:border-blue-800"
-                    onClick={() => onChangeTemplate(currentData?.uuid)}
-                  ></img>
-                )}
-              </div>
-            </div>
+                      {isChange ? (
+                        <img
+                          src={cvHrd}
+                          className="mt-3 cursor-pointer hover:border-2 hover:border-blue-800"
+                          onClick={() => onChangeTemplate(currentData?.uuid)}
+                        ></img>
+                      ) : (
+                        <img
+                          src={cvAlumni}
+                          className="mt-3 cursor-pointer hover:border-2 hover:border-blue-800"
+                          onClick={() => onChangeTemplate(currentData?.uuid)}
+                        ></img>
+                      )}
+                    </div>
+                  </div>
 
-            <div className="mt-5">
-              {/* <h4 className="p-1 text-blue-900 font-light ">
+                  <div className="mt-5">
+                    {/* <h4 className="p-1 text-blue-900 font-light ">
               ➡️ Choose the current CV that you want to display :
             </h4> */}
-              <Pagination
-                defaultPage={currenIndex + 1}
-                value={currenIndex + 1}
-                count={data.length}
-                onChange={handleChange}
-                variant="outlined"
-                color="primary"
-              />
-            </div>
-          </div>
+                    <Pagination
+                      defaultPage={currenIndex + 1}
+                      value={currenIndex + 1}
+                      count={data.length}
+                      onChange={handleChange}
+                      variant="outlined"
+                      color="primary"
+                    />
+                  </div>
+                </div>
 
-          <div className="flex flex-row justify-end mt-5">
-            {/* <p
+                <div className="flex flex-row justify-end mt-5">
+                  {/* <p
             onClick={() => dispatch(fetchChangeCVTemplate(false))}
             className="cursor-pointer mr-10 font-bold hover:underline-offset-2 hover:underline hover:text-blue-800"
           >
             Previous
           </p> */}
-          </div>
+                </div>
 
-          <div className="flex flex-row ">
-            <div className="laptop:ml-auto">
-              <button
-                className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
-                style={styles}
-                onClick={() => navigate("/sidebar/resume")}
-              >
-                Finish
-              </button>
+                <div className="flex flex-row ">
+                  <div className="laptop:ml-auto">
+                    <button
+                      className="ml-12 px-12 py-2 text-sm laptop:text-md desktop:text-lg text-white bg-transparent border rounded-md hover:border-transparent"
+                      style={styles}
+                      onClick={() => navigate("/sidebar/resume")}
+                    >
+                      Finish
+                    </button>
 
-              <button
-                className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
-                onClick={() => navigate("/sidebar/aboutMe")}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="ml-0 tablet:ml-5 laptop:ml-20 tablet:mr-5 laptop:mr-20 mr-5">
-          <ShowCVTemplate />
-        </div>
-      )}
-      {/* ))} */}
+                    <button
+                      className="mb-10 px-10 py-2 mt-10 ml-3 text-sm laptop:text-md desktop:text-lg text-blue-600 bg-transparent border rounded-md hover:border-transparent"
+                      onClick={() => navigate("/sidebar/aboutMe")}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="ml-0 tablet:ml-5 laptop:ml-20 tablet:mr-5 laptop:mr-20 mr-5">
+                <ShowCVTemplate />
+              </div>
+            )}
+            {/* ))} */}
           </div>
         </div>
       </section>

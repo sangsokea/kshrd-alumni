@@ -166,7 +166,7 @@ export default function ViewAlumniPage() {
                       />
                     </div>
                     <div className="flex flex-col justify-between mt-5 ml-5 leading-normal w-full">
-                      <h6 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+                      <h6 className="mb-2 text-md laptop:text-lg desktop:text-2xl font-bold tracking-tight text-gray-900 dark:text-black capitalize">
                         {item?.personalDetails?.firstName}{" "}
                         {item?.personalDetails?.lastName}
                       </h6>

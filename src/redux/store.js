@@ -7,4 +7,10 @@ const store = createStore(
   RootReducer,
   composeWithDevTools(applyMiddleware(logger, thunk)),
 );
+
+// production
+// const store = createStore(
+//   RootReducer,
+//   composeWithDevTools(applyMiddleware(thunk)),
+// );
 export default store;

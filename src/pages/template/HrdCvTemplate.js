@@ -12,16 +12,19 @@ import { api } from "../../api";
 import { fetchOwnProfiles } from "../../redux/actions/OwnProfilesAction";
 import { Pagination } from "@mui/material";
 
-export default function HrdCvTemplate({object}) {
+export default function HrdCvTemplate({ object }) {
   const pdfExportComponent = useRef(null);
   const image = useRef(null);
 
-  const handleExportWithComponent = (event) => {
-    pdfExportComponent.current.save();
+  const handleExportHrdTemplate = (event) => {
+    if (image.current) {
+      pdfExportComponent.current.save();
+    }
+
     // savePDF(image.current, { imageResolution: 36 });
   };
 
-  console.log("In HrdTemplate ", object)
+  console.log("In HrdTemplate ", object);
 
   const dispatch = useDispatch();
 
@@ -41,13 +44,12 @@ export default function HrdCvTemplate({object}) {
   console.log("OwnProfiles: ", ownProfiles);
 
   // const state1 = useSelector((state1) => state1.changeCVTemplate, shallowEqual);
-React.useEffect(()=>{
-  setCurrentData(object)
-},[object])
-
+  React.useEffect(() => {
+    setCurrentData(object);
+  }, [object]);
 
   console.log("OwnProfiles Data :", ownProfiles);
-  console.log("Language", currentData?.profileDetails?.languages)
+  console.log("Language", currentData?.profileDetails?.languages);
   // console.log(
   //   "EmploymentHistory",
   //   ownProfiles?.items[0]?.profileDetails?.employmentHistory
@@ -63,7 +65,6 @@ React.useEffect(()=>{
 
   // const token =
   //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjay5tb25zdGVyLm1ha2VyQGdtYWlsLmNvbSIsImlhdCI6MTY1NjkzMjU5NSwiZXhwIjoxNjU5NTYyMzk1fQ.p7_P8Y4BXroRmZL4s1ejgpVJrJnPB4nNqsOzSuRbPwSm9UCC8bhYUBL-5WB7Z92TzPhYS2JhJBw_LJXBfQojDA";
-
 
   return (
     <div className="h-full mb-10">
@@ -83,10 +84,17 @@ React.useEffect(()=>{
               color="primary"
             />
           </div> */}
+          <p
+            onClick={handleExportHrdTemplate}
+            className="cursor-pointer hover:underline hover:underline-offset-2 hover:text-blue-800 font-bold"
+          >
+            Export as PDF
+          </p>
+
           <PDFExport ref={pdfExportComponent} paperSize="A4">
             {currentData && (
               <center>
-                <div className="shadow laptop:w-full mt-10">
+                <div className="shadow laptop:w-full mt-5">
                   <div class="tablet:gap-4 h-44 tablet:grid tablet:grid-cols-5 grid grid-cols-3 ">
                     <div className="mt-10">
                       <img
@@ -147,7 +155,7 @@ React.useEffect(()=>{
                     </div>
                     <div className="px-3">
                       <div className="text-sm laptop:text-md desktop:text-lg mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-6 tablet:ml-10 font-maven">
-                        <span className="capitalize">Mr./Ms. </span>
+                        {/* <span className="capitalize">Mr./Ms. </span> */}
                         <span>
                           {
                             currentData?.profileDetails?.personalDetails
@@ -169,7 +177,12 @@ React.useEffect(()=>{
                           <p>:</p>
                         </div>
                         <div className="tablet:col-span-4">
-                          <p className="-ml-16">{currentData?.profileDetails?.personalDetails?.address} </p>
+                          <p className="-ml-16">
+                            {
+                              currentData?.profileDetails?.personalDetails
+                                ?.address
+                            }{" "}
+                          </p>
                         </div>
                       </div>
                       <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-1 tablet:ml-10 font-maven text-tinys">
@@ -181,7 +194,10 @@ React.useEffect(()=>{
                         </div>
                         <div className="tablet:col-span-4">
                           <p className="-ml-16">
-                            {currentData?.profileDetails?.personalDetails?.phoneNumber}
+                            {
+                              currentData?.profileDetails?.personalDetails
+                                ?.phoneNumber
+                            }
                           </p>
                         </div>
                       </div>
@@ -193,7 +209,12 @@ React.useEffect(()=>{
                           <p>:</p>
                         </div>
                         <div className="tablet:col-span-4">
-                          <p className="-ml-16">{currentData?.profileDetails?.personalDetails?.email}</p>
+                          <p className="-ml-16">
+                            {
+                              currentData?.profileDetails?.personalDetails
+                                ?.email
+                            }
+                          </p>
                         </div>
                       </div>
                       <div className="mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-4 text-regal-color_hrd tablet:ml-10 font-maven text-tinys">
@@ -209,7 +230,10 @@ React.useEffect(()=>{
                         </div>
                         <div className="tablet:col-span-4">
                           <p className="-ml-16 capitalize">
-                            {currentData?.profileDetails?.personalDetails?.gender}
+                            {
+                              currentData?.profileDetails?.personalDetails
+                                ?.gender
+                            }
                           </p>
                         </div>
                       </div>
@@ -248,7 +272,10 @@ React.useEffect(()=>{
                         </div>
                         <div className="tablet:col-span-4">
                           <p className="-ml-16">
-                            {currentData?.profileDetails?.personalDetails?.nationality}
+                            {
+                              currentData?.profileDetails?.personalDetails
+                                ?.nationality
+                            }
                           </p>
                         </div>
                       </div>
@@ -262,7 +289,8 @@ React.useEffect(()=>{
                           <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                             <div className="font-extrabold">
                               <p>
-                                {edu?.startDate} - {edu?.endDate ? edu?.endDate : "present"}
+                                {edu?.startDate} -{" "}
+                                {edu?.endDate ? edu?.endDate : "present"}
                               </p>
                             </div>
                             <div className="font-extrabold">
@@ -280,23 +308,26 @@ React.useEffect(()=>{
                         <span>Employment History</span>
                       </div>
 
-                      {currentData?.profileDetails?.employmentHistory?.map((item) => {
-                        return (
-                          <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
-                            <div className="font-extrabold">
-                              <p>
-                                {item?.startDate} - {item?.endDate ? item?.endDate : "present"}
-                              </p>
+                      {currentData?.profileDetails?.employmentHistory?.map(
+                        (item) => {
+                          return (
+                            <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
+                              <div className="font-extrabold">
+                                <p>
+                                  {item?.startDate} -{" "}
+                                  {item?.endDate ? item?.endDate : "present"}
+                                </p>
+                              </div>
+                              <div className="font-extrabold">
+                                <p>:</p>
+                              </div>
+                              <div className="tablet:col-span-4">
+                                <p className="-ml-16">{item?.description}</p>
+                              </div>
                             </div>
-                            <div className="font-extrabold">
-                              <p>:</p>
-                            </div>
-                            <div className="tablet:col-span-4">
-                              <p className="-ml-16">{item?.description}</p>
-                            </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        },
+                      )}
 
                       <div className="mt-3 ml-2 font-extrabold text-left uppercase tablet:mt-4 text-regal-color_hrd tablet:ml-10 font-maven text-tinys">
                         <span>4. </span>
@@ -304,7 +335,7 @@ React.useEffect(()=>{
                       </div>
 
                       {currentData?.profileDetails?.languages?.map((langua) => {
-                        console.log("Language" , langua)
+                        console.log("Language", langua);
                         return (
                           <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                             <div className="font-extrabold">

@@ -13,6 +13,7 @@ import PortfolioPageEdit from "../pages/PortfolioPageEdit";
 import { fetchPortfolioPage } from "../redux/actions/localAction/PortfolioPageAction";
 import { fetchOwnProfiles } from "../redux/actions/OwnProfilesAction";
 import { Pagination } from "@mui/material";
+import { array } from "yup";
 
 export default function PortfolioPage() {
   const dispatch = useDispatch();
@@ -25,14 +26,60 @@ export default function PortfolioPage() {
   const [data, setData] = useState([]);
   const [currentData, setCurrentData] = useState({});
   const [addSection, setAddSection] = useState([]);
-  const [education, setEducation] = useState([]);
+  const [education, setEducation] = useState([
+    {
+      city: "",
+      degree: "",
+      description: "",
+      endDate: "",
+      id: 0,
+      school: "",
+      startDate: "",
+    },
+    {
+      city: "",
+      degree: "",
+      description: "",
+      endDate: "",
+      id: 0,
+      school: "",
+      startDate: "",
+    },
+    {
+      city: "",
+      degree: "",
+      description: "",
+      endDate: "",
+      id: 0,
+      school: "",
+      startDate: "",
+    },
+    {
+      city: "",
+      degree: "",
+      description: "",
+      endDate: "",
+      id: 0,
+      school: "",
+      startDate: "",
+    },
+    {
+      city: "",
+      degree: "",
+      description: "",
+      endDate: "",
+      id: 0,
+      school: "",
+      startDate: "",
+    },
+  ]);
   const [employmentHistory, setEmploymentHistory] = useState([]);
   const [license, setLicense] = useState([]);
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
 
   const [currenIndex, setCurrenIndex] = useState(
-    localStorage.getItem("currentIndex") ?? 0
+    localStorage.getItem("currentIndex") ?? 0,
   );
 
   useEffect(() => {
@@ -41,23 +88,36 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const obj = localStorage.getItem("ownProfiles");
-    // if (obj) {
-    //   const data = JSON.parse(obj);
-    setData(ownProfiles?.items);
-    setCurrentData(ownProfiles?.items[0]);
-    //   if (data[localStorage.getItem('currentIndex')??0].templateId === 1) {
-    //     setIsHrdTemplate(true);
-    //     setIsAlumniTemplate(false);
-    //   } else if (data[localStorage.getItem('currentIndex')??0].templateId === 2) {
-    //     setIsHrdTemplate(false);
-    //     setIsAlumniTemplate(true);
-    //   }
-    //   setCurrenIndex(localStorage.getItem('currentIndex')??0)
+    if (ownProfiles?.items) {
+      const data = ownProfiles?.items;
+      setData(data);
+      setCurrentData(data[0]);
+      let dumEducation = data?.profileDetails?.education;
+      let oldData = education;
+      
+      for (let i = 0; i < dumEducation?.length; i++) {
+        oldData[i] = dumEducation[i];
+      }
+
+      setEducation(oldData);
+    } else {
+      const data = obj && JSON.parse(obj);
+      setData(data ?? []);
+      setCurrentData(data ? data[0] : []);
+
+      let dumEducation = data?.profileDetails?.education;
+      let oldData = education;
+     
+      for (let i = 0; i < dumEducation?.length; i++) {
+        oldData[i] = dumEducation[i];
+      }
+      setEducation(oldData)
+    }
 
     data &&
       data?.map((arr) => {
         setAddSection(arr?.profileDetails?.addSection);
-        setEducation(arr?.profileDetails?.education);
+        // setEducation(arr?.profileDetails?.education);
         setEmploymentHistory(arr?.profileDetails?.employmentHistory);
         setLicense(arr?.profileDetails?.license);
         setSkill(arr?.profileDetails?.skill);
@@ -81,6 +141,9 @@ export default function PortfolioPage() {
     setCurrentData(data[value - 1]);
   };
 
+  var countData = new Array(6);
+  console.log("Count data : ", countData.length);
+
   return (
     <>
       {/* {isEdit ? (
@@ -99,7 +162,7 @@ export default function PortfolioPage() {
             </div>
             <div className="flex flex-row ">
               <p className="container mx-auto desktop:container desktop:mx-auto laptop:container laptop:mx-auto tablet:container tablet:mx-auto"></p>
-              <button onClick={() => navigate("/")}>
+              <button onClick={() => navigate("/sidebar/aboutMe")}>
                 <Arrow className="w-6 mr-3 mt-7" />
               </button>
 
@@ -196,7 +259,7 @@ export default function PortfolioPage() {
               <div className="flex flex-wrap-reverse desktop:grid desktop:grid-cols-3 laptop:grid laptop:grid-cols-3">
                 <div className="mt-5 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
                   <ul className="laptop:mt-10 font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl">
-                    <li className="flex flex-row">
+                    <li className="flex flex-row capitalize">
                       {currentData?.profileDetails?.skill
                         ?.slice(0, 3)
                         .map((sk) => {
@@ -235,18 +298,18 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center ">
                   <img
-                    className="tablet:order-1 desktop:-ml-4 object-contain laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-fit laptop:w-fit tablet:w-fit tablet:mx-32 w-fit h-48  mt-14 rounded-tl-tl-lgs"
+                    className="tablet:order-1 desktop:-ml-4 object-contain laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-fit laptop:w-fit tablet:w-fit w-auto h-48  mt-14 rounded-tl-tl-lgs"
                     src={currentData?.profileDetails?.personalDetails?.profile}
-                    alt=""
+                    alt="user profile"
                   />
                 </div>
               </div>
               <div className="ml-16 desktop:grid desktop:grid-cols-8 laptop:grid laptop:grid-cols-8 desktop:mt-16 laptop:mt-16 laptop:ml-0 desktop:ml-0">
                 {currentData?.profileDetails?.education.length != 0 && (
                   <>
-                    {currentData?.profileDetails?.education.map((edu, i) => (
+                    {education?.map((edu, i) => (
                       <>
                         {i % 2 == 0 ? (
                           <div className="">
@@ -320,7 +383,7 @@ export default function PortfolioPage() {
                               </span>
                             </li>
                           );
-                        }
+                        },
                       )}
                     </ul>
                   </div>
