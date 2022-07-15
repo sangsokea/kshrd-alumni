@@ -122,7 +122,7 @@ export default function SidebarComponent() {
         <div className="grid desktop:grid-cols-5  mt-1 bg-white laptop:grid-cols-3 tablet:grid-cols-2">
           <div>
             <div
-              className={`h-screen bg-white   shadow-[-30px_0px_50px_1px_rgba(0,0,0,0.1)] tablet:rounded-lg  laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
+              className={`h-screen bg-white shadow-[-30px_0px_50px_1px_rgba(0,0,0,0.1)] tablet:rounded-lg  laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
             >
               <div className="p-3 text-sm  laptop:text-md  desktop:text-lg font-light text-center text-white ">
                   <div className="flex justify-center mt-5">
