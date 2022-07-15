@@ -213,7 +213,13 @@ export default function CvTemplate() {
                             Export as PDF
                           </p>
 
-                          <PDFExport ref={pdfExportComponent} paperSize="A4">
+                          <PDFExport
+                            ref={pdfExportComponent}
+                            paperSize="A4"
+                            fileName="AlumniTemplate.pdf"
+                            margin="1cm"
+                            scale={0.8}
+                          >
                             {currentData && (
                               <center>
                                 <div className="shadow w-350 laptop:w-full mt-5">

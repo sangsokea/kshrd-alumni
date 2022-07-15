@@ -26,54 +26,14 @@ export default function PortfolioPage() {
   const [data, setData] = useState([]);
   const [currentData, setCurrentData] = useState({});
   const [addSection, setAddSection] = useState([]);
-  const [education, setEducation] = useState([
-    {
-      city: "",
-      degree: "",
-      description: "",
-      endDate: "",
-      id: 0,
-      school: "",
-      startDate: "",
-    },
-    {
-      city: "",
-      degree: "",
-      description: "",
-      endDate: "",
-      id: 0,
-      school: "",
-      startDate: "",
-    },
-    {
-      city: "",
-      degree: "",
-      description: "",
-      endDate: "",
-      id: 0,
-      school: "",
-      startDate: "",
-    },
-    {
-      city: "",
-      degree: "",
-      description: "",
-      endDate: "",
-      id: 0,
-      school: "",
-      startDate: "",
-    },
-    {
-      city: "",
-      degree: "",
-      description: "",
-      endDate: "",
-      id: 0,
-      school: "",
-      startDate: "",
-    },
+  const [education, setEducation] = useState([null, null, null, null, null]);
+  const [employmentHistory, setEmploymentHistory] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
   ]);
-  const [employmentHistory, setEmploymentHistory] = useState([]);
   const [license, setLicense] = useState([]);
   const [skill, setSkill] = useState([]);
   const [personalDetails, setPersonalDetails] = useState("");
@@ -88,37 +48,54 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const obj = localStorage.getItem("ownProfiles");
-    if (ownProfiles?.items) {
+    if (ownProfiles?.items && ownProfiles?.items?.length < 6) {
       const data = ownProfiles?.items;
       setData(data);
       setCurrentData(data[0]);
-      let dumEducation = data?.profileDetails?.education;
-      let oldData = education;
-      
+      // education
+      let dumEducation = data[0]?.profileDetails?.education;
+      let oldEducation = education;
+
       for (let i = 0; i < dumEducation?.length; i++) {
-        oldData[i] = dumEducation[i];
+        oldEducation[i] = dumEducation[i];
       }
 
-      setEducation(oldData);
+      // expirence
+      let dumExpirence = data[0]?.profileDetails?.employmentHistory;
+      let oldExpirence = employmentHistory;
+      for (let i = 0; i < dumExpirence?.length; i++) {
+        oldExpirence[i] = dumExpirence[i];
+      }
+      setEmploymentHistory(oldExpirence);
     } else {
       const data = obj && JSON.parse(obj);
       setData(data ?? []);
       setCurrentData(data ? data[0] : []);
 
-      let dumEducation = data?.profileDetails?.education;
-      let oldData = education;
-     
-      for (let i = 0; i < dumEducation?.length; i++) {
-        oldData[i] = dumEducation[i];
+      if (data && data?.length < 6) {
+        // education
+        let dumEducation = data[0]?.profileDetails?.education;
+        let oldEducation = education;
+        for (let i = 0; i < dumEducation?.length; i++) {
+          oldEducation[i] = dumEducation[i];
+        }
+        setEducation(oldEducation);
+
+        // expirence
+        let dumExpirence = data[0]?.profileDetails?.employmentHistory;
+        let oldExpirence = employmentHistory;
+        for (let i = 0; i < dumExpirence?.length; i++) {
+          oldExpirence[i] = dumExpirence[i];
+        }
+        setEmploymentHistory(oldExpirence);
       }
-      setEducation(oldData)
     }
 
     data &&
       data?.map((arr) => {
         setAddSection(arr?.profileDetails?.addSection);
         // setEducation(arr?.profileDetails?.education);
-        setEmploymentHistory(arr?.profileDetails?.employmentHistory);
+        // setEmploymentHistory(arr?.profileDetails?.employmentHistory);
         setLicense(arr?.profileDetails?.license);
         setSkill(arr?.profileDetails?.skill);
         setPersonalDetails(arr?.profileDetails?.personalDetails);
@@ -139,10 +116,23 @@ export default function PortfolioPage() {
   const handleChange = (event, value) => {
     localStorage.setItem("currentIndex", value - 1);
     setCurrentData(data[value - 1]);
-  };
 
-  var countData = new Array(6);
-  console.log("Count data : ", countData.length);
+    // education
+    let dumEducation = data[value - 1]?.profileDetails?.education;
+    let oldData = education;
+    for (let i = 0; i < dumEducation?.length; i++) {
+      oldData[i] = dumEducation[i];
+    }
+    setEducation(oldData);
+
+    // expirence
+    let dumExpirence = data[value - 1]?.profileDetails?.employmentHistory;
+    let oldExpirence = employmentHistory;
+    for (let i = 0; i < dumExpirence?.length; i++) {
+      oldExpirence[i] = dumExpirence[i];
+    }
+    setEmploymentHistory(oldExpirence);
+  };
 
   return (
     <>
@@ -260,7 +250,8 @@ export default function PortfolioPage() {
                 <div className="mt-5 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
                   <ul className="laptop:mt-10 font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl">
                     <li className="flex flex-row capitalize">
-                      {currentData?.profileDetails?.skill
+                      {currentData?.profileDetails?.skill?.length !== 0 ? <>
+                        {currentData?.profileDetails?.skill
                         ?.slice(0, 3)
                         .map((sk) => {
                           return (
@@ -269,6 +260,7 @@ export default function PortfolioPage() {
                             </div>
                           );
                         })}
+                      </>: <span>The skills</span>}
                     </li>
                   </ul>
 
@@ -314,16 +306,26 @@ export default function PortfolioPage() {
                         {i % 2 == 0 ? (
                           <div className="">
                             <div className="border-blue-800 border-l-4 desktop:ml-16 laptop:-ml-2 desktop:min-h-1/24 laptop:min-h-1/24">
-                              <p className="w-64 mt-20 ml-8 text-sm text-left break-words font-maven desktop:ml-3 laptop:ml-16 desktop:mt-0 laptop:mt-0">
-                                {edu?.school}
-                              </p>
-                              <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
-                                {edu?.degree} in {edu?.city}
-                              </p>
-                              <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
-                                {edu?.startDate} -{" "}
-                                {edu?.endDate ? edu?.endDate : "present"}
-                              </p>
+                              {edu ? (
+                                <>
+                                  <p className="w-64 mt-20 ml-8 text-sm text-left break-words font-maven desktop:ml-3 laptop:ml-16 desktop:mt-0 laptop:mt-0">
+                                    {edu?.school}
+                                  </p>
+                                  <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
+                                    {edu?.degree} in {edu?.city}
+                                  </p>
+                                  <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
+                                    {edu?.startDate} -{" "}
+                                    {edu?.endDate ? edu?.endDate : "present"}
+                                  </p>
+                                </>
+                              ) : (
+                                <>
+                                  <h1 className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16 ">
+                                    Coming Soon
+                                  </h1>
+                                </>
+                              )}
                             </div>
 
                             {/* circle */}
@@ -340,16 +342,26 @@ export default function PortfolioPage() {
                             </div>
 
                             <div className="border-blue-800 border-l-4 -mt-6 desktop:ml-16 desktop:min-h-1/24 desktop:mt-5 laptop:mt-5 laptop:min-h-1/24 laptop:ml-12">
-                              <p className="w-28 font-bold desktop:ml-2 laptop:ml-2 -ml-122 font-maven">
-                                {edu?.startDate} -{" "}
-                                {edu?.endDate ? edu?.endDate : "present"}
-                              </p>
-                              <p className="w-56 ml-3 text-sm font-bold text-left font-maven desktop:text-md">
-                                {edu?.degree} in {edu?.city}
-                              </p>
-                              <p className="w-56 ml-3 text-left font-maven desktop:text-sm text-tinys">
-                                {edu?.school}
-                              </p>
+                              {edu ? (
+                                <>
+                                  <p className="w-64 mt-20 ml-8 text-sm text-left break-words font-maven desktop:ml-3 laptop:ml-16 desktop:mt-0 laptop:mt-0">
+                                    {edu?.school}
+                                  </p>
+                                  <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
+                                    {edu?.degree} in {edu?.city}
+                                  </p>
+                                  <p className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16">
+                                    {edu?.startDate} -{" "}
+                                    {edu?.endDate ? edu?.endDate : "present"}
+                                  </p>
+                                </>
+                              ) : (
+                                <>
+                                  <h1 className="w-56 font-bold text-left font-maven text-md desktop:ml-3 laptop:ml-16 ">
+                                    Coming Soon
+                                  </h1>
+                                </>
+                              )}
                             </div>
                           </div>
                         )}
@@ -372,19 +384,23 @@ export default function PortfolioPage() {
                       (ex) => {
                         return ( */}
                     <ul className="list-outside flex flex-col">
-                      {currentData?.profileDetails?.employmentHistory?.map(
-                        (ex) => {
-                          return (
-                            <li class="fff desktop:text-xl">
+                      {employmentHistory?.map((ex) => {
+                        return (
+                          <li class="fff desktop:text-xl">
+                            {ex ? (
                               <span className="text-black">
                                 {ex?.description && ex?.description
                                   ? ex?.jobTitle + " : " + ex?.description
                                   : ex?.jobTitle}
                               </span>
-                            </li>
-                          );
-                        },
-                      )}
+                            ) : (
+                              <h1 className="text-black">
+                                Experienced: Coming soon...
+                              </h1>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
