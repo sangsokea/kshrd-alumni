@@ -96,7 +96,7 @@ export default function ViewOwnerProfilePage() {
       {isEdit ? (
         <ViewOwnerProfileEdit />
       ) : (
-        <section class=" p-6 w-full rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
+        <section class=" p-10  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)]  ml-2 laptop:px-20">
         <div class="">
           <div className="">
            
@@ -107,7 +107,7 @@ export default function ViewOwnerProfilePage() {
           <div>
             {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}
             <img
-              className="w-auto laptop:w-full h-56 object-cover"
+              className="w-auto tablet:w-full laptop:h-56 h-44 object-cover"
               src="https://images.alphacoders.com/109/1092814.jpg"
               alt="Image"
             />
