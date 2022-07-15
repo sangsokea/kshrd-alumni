@@ -47,9 +47,12 @@ export default function SidebarComponent() {
   const [isActive, setIsActive] = useState(1);
   const isAuth = useSelector((state) => state?.isAuth, shallowEqual);
   const ownProfiles = useSelector((state) => state?.ownProfiles, shallowEqual);
+  const user = useSelector((state) => state?.user, shallowEqual);
   const [personalDetails, setPersonalDetails] = useState({});
   const [isShowImg, setIsShowImg] = useState(false);
   const [isProfileEmpty, setIsProfileEmpty] = useState(true);
+  const [profile, setprofile] = useState(alumni4);
+
   React.useEffect(() => {
     const localObj = localStorage.getItem("ownProfile");
     let isFromAlumni = location?.state?.fromViewAlumni;
@@ -57,19 +60,35 @@ export default function SidebarComponent() {
     if (localViewObj && isFromAlumni) {
       const profile = JSON?.parse(localViewObj);
       profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
+      profile?.personalDetails && setprofile(profile?.personalDetails?.profile);
     } else if (localObj && isAuth) {
       const profile = JSON?.parse(localObj);
       profile?.profileDetails &&
         setPersonalDetails(profile?.profileDetails?.personalDetails);
+
+      const userProfile = localStorage.getItem("user");
+      if (userProfile) {
+        const user = JSON.parse(userProfile);
+        console.log("user", user);
+        user && setprofile(user?.profile);
+      }
+    } else if (isAuth) {
+      const userProfile = localStorage.getItem("user");
+      if (userProfile) {
+        const user = JSON.parse(userProfile);
+        console.log("user", user);
+        user && setprofile(user?.profile);
+      }
     } else {
       const profile = JSON?.parse(localViewObj);
       profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
+      profile?.personalDetails && setprofile(profile?.personalDetails?.profile);
     }
     return () => {
       setIsShowImg(false);
       setPersonalDetails({});
     };
-  }, [location, isAuth]);
+  }, [location, isAuth, user]);
 
   React.useEffect(() => {
     location.pathname.includes("/sidebar/aboutMe") && setIsShowImg(true);
@@ -89,6 +108,15 @@ export default function SidebarComponent() {
       setIsProfileEmpty(true);
     };
   }, [ownProfiles, location, window.location.reload]);
+
+  // React.useEffect(() => {
+  //   const userProfile = localStorage.getItem("user");
+  //   if (userProfile) {
+  //     const user = JSON.parse(userProfile);
+  //     console.log("user", user);
+  //     user && setprofile(user?.profile);
+  //   }
+  // }, [user, ownProfiles, location, window.location.reload]);
 
   const logOut = () => {
     setShowSidebar("-left-64");
@@ -130,11 +158,7 @@ export default function SidebarComponent() {
                 <div className="flex justify-center mt-5">
                   <img
                     className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
-                    src={
-                      personalDetails?.profile
-                        ? personalDetails?.profile
-                        : alumni4
-                    }
+                    src={profile}
                   />
                 </div>
                 {/* <p className="divide-y-3"></p> */}

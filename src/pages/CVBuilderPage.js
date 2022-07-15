@@ -149,6 +149,10 @@ export default function CVBuilderPage() {
     }
   }, [uploadImage, imageUrl, window.localStorage.onChange]);
 
+  useEffect(() => {
+    localStorage.removeItem("view");
+  }, []);
+
   console.log(imageUrl);
   const handleCancel = (e) => {
     e.preventDefault();
@@ -214,7 +218,6 @@ export default function CVBuilderPage() {
           // dispatch(fetchExperience(experience));
 
           result && dispatch(fetchCVBuilder(result, isPublic));
-          
         }
       });
     } else {

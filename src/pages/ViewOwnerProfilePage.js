@@ -14,10 +14,12 @@ export default function ViewOwnerProfilePage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.aboutMePage, shallowEqual);
   const isAuth = useSelector((state) => state.isAuth, shallowEqual);
+  const user = useSelector((state) => state.user, shallowEqual);
   const ownProfiles = useSelector((state) => state.ownProfiles, shallowEqual);
   const [fromViewAlumni, setFromViewAlumni] = useState(false);
   const [dataFromViewAlumni, setDataFromViewAlumni] = useState({});
   const [isShowEdit, setisShowEdit] = useState(false);
+  const [username, setusername] = useState(localStorage.getItem("username"));
 
   const [backToTop, setBackToTop] = useState(false);
 
@@ -51,6 +53,14 @@ export default function ViewOwnerProfilePage() {
       const itemFromAlumni = localData && JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
     } else if (isAuth && localData) {
+      const itemFromAlumni = localData && JSON.parse(localData);
+      itemFromAlumni &&
+        localStorage.setItem("currentUuid", itemFromAlumni?.uuid);
+      setDataFromViewAlumni(
+        itemFromAlumni ? itemFromAlumni?.profileDetails : {},
+      );
+    } else if (isAuth) {
+      executeScroll();
       const itemFromAlumni = localData && JSON.parse(localData);
       itemFromAlumni &&
         localStorage.setItem("currentUuid", itemFromAlumni?.uuid);
@@ -91,6 +101,16 @@ export default function ViewOwnerProfilePage() {
     };
   }, [ownProfiles, location, window.location.reload]);
 
+  React.useEffect(() => {
+    const item = localStorage.getItem("user");
+    let userItem = item && JSON.parse(item);
+    if (userItem?.username) {
+      setusername(userItem.username);
+    }
+    const username = localStorage.getItem("username");
+    username && setusername(username);
+  }, [user]);
+
   const [isEdit, setIsEdit] = useState(state);
 
   console.log(dataFromViewAlumni);
@@ -126,7 +146,7 @@ export default function ViewOwnerProfilePage() {
                       className="text-lg laptop:text-2xl desktop:text-4xl font-bold"
                       style={styles}
                     >
-                      Name is empty
+                      {username}
                     </p>
                   )}
 

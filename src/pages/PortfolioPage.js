@@ -18,6 +18,7 @@ import { array } from "yup";
 export default function PortfolioPage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.portfolioPage, shallowEqual);
+  const isAuth = useSelector((state) => state.isAuth, shallowEqual);
 
   // const [currentData, setCurrentData] = useState({});
   const ownProfiles = useSelector((state) => state?.ownProfiles);
@@ -26,6 +27,7 @@ export default function PortfolioPage() {
   const [data, setData] = useState([]);
   const [currentData, setCurrentData] = useState({});
   const [addSection, setAddSection] = useState([]);
+  const [image, setimage] = useState([]);
   const [education, setEducation] = useState([null, null, null, null, null]);
   const [employmentHistory, setEmploymentHistory] = useState([
     null,
@@ -47,7 +49,6 @@ export default function PortfolioPage() {
   }, [location]);
 
   useEffect(() => {
-    const obj = localStorage.getItem("ownProfiles");
     if (ownProfiles?.items && ownProfiles?.items?.length < 6) {
       const data = ownProfiles?.items;
       setData(data);
@@ -67,7 +68,8 @@ export default function PortfolioPage() {
         oldExpirence[i] = dumExpirence[i];
       }
       setEmploymentHistory(oldExpirence);
-    } else {
+    } else if (isAuth) {
+      const obj = localStorage.getItem("ownProfiles");
       const data = obj && JSON.parse(obj);
       setData(data ?? []);
       setCurrentData(data ? data[0] : []);
@@ -89,6 +91,25 @@ export default function PortfolioPage() {
         }
         setEmploymentHistory(oldExpirence);
       }
+    } else {
+      const obj = localStorage.getItem("view");
+      const data = obj && JSON.parse(obj);
+      setimage(data?.personalDetails?.profile);
+
+      let dumEducation = data?.education;
+      let oldEducation = education;
+      for (let i = 0; i < dumEducation?.length; i++) {
+        oldEducation[i] = dumEducation[i];
+      }
+      setEducation(oldEducation);
+
+      // expirence
+      let dumExpirence = data?.employmentHistory;
+      let oldExpirence = employmentHistory;
+      for (let i = 0; i < dumExpirence?.length; i++) {
+        oldExpirence[i] = dumExpirence[i];
+      }
+      setEmploymentHistory(oldExpirence);
     }
 
     data &&
@@ -250,17 +271,23 @@ export default function PortfolioPage() {
                 <div className="mt-5 ml-5 text-left tablet:w-full desktop:col-span-2 desktop:mr-20 desktop:mt-20 desktop:text-left desktop:ml-20 tablet:ml-20 tablet:col-span-2 tablet:text-left laptop:col-span-2 laptop:mt-5 laptop:text-left laptop:ml-10 font-maven">
                   <ul className="laptop:mt-10 font-extrabold desktop:mt-0 desktop:text-4xl laptop:text-3xl">
                     <li className="flex flex-row capitalize">
-                      {currentData?.profileDetails?.skill?.length !== 0 ? <>
-                        {currentData?.profileDetails?.skill
-                        ?.slice(0, 3)
-                        .map((sk) => {
-                          return (
-                            <div>
-                              <span className="mr-3">{sk?.skill} ,</span>
-                            </div>
-                          );
-                        })}
-                      </>: <span>The skills</span>}
+                      {currentData?.profileDetails?.skill?.length !== 0 ? (
+                        <>
+                          {currentData?.profileDetails?.skill
+                            ?.slice(0, 3)
+                            .map((sk) => {
+                              return (
+                                <div>
+                                  <span className="mr-3">
+                                    {sk?.skill ?? "The skill"} ,
+                                  </span>
+                                </div>
+                              );
+                            })}
+                        </>
+                      ) : (
+                        <span>The skills</span>
+                      )}
                     </li>
                   </ul>
 
@@ -293,7 +320,10 @@ export default function PortfolioPage() {
                 <div className="flex items-center ">
                   <img
                     className="tablet:order-1 desktop:-ml-4 object-contain laptop:-ml-10 desktop:mt-20 laptop:mt-14 tablet:mt-14 desktop:w-fit laptop:w-fit tablet:w-fit w-auto h-48  mt-14 rounded-tl-tl-lgs"
-                    src={currentData?.profileDetails?.personalDetails?.profile}
+                    src={
+                      currentData?.profileDetails?.personalDetails?.profile ??
+                      image
+                    }
                     alt="user profile"
                   />
                 </div>
@@ -412,19 +442,21 @@ export default function PortfolioPage() {
                 </div>
               </div>
             </div>
-            <div className="mb-5 mt-5 desktop:ml-[300px]">
-              {/* <h4 className="p-1 text-blue-900 font-light mt-5">
+            {isAuth && (
+              <div className="mb-5 mt-5 desktop:ml-[300px]">
+                {/* <h4 className="p-1 text-blue-900 font-light mt-5">
               ➡️ Choose the current CV that you want to display :
             </h4> */}
-              <Pagination
-                defaultPage={currenIndex + 1}
-                value={currenIndex + 1}
-                count={data.length}
-                onChange={handleChange}
-                variant="outlined"
-                color="primary"
-              />
-            </div>
+                <Pagination
+                  defaultPage={currenIndex + 1}
+                  value={currenIndex + 1}
+                  count={data.length}
+                  onChange={handleChange}
+                  variant="outlined"
+                  color="primary"
+                />
+              </div>
+            )}
           </center>
         </div>
       </div>
