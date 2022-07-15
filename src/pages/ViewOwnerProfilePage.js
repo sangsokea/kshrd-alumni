@@ -96,15 +96,19 @@ export default function ViewOwnerProfilePage() {
       {isEdit ? (
         <ViewOwnerProfileEdit />
       ) : (
-        <div
+        <section class=" p-6 w-full rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
+        <div class="">
+          <div className="">
+           
+          <div
           ref={scrollRef}
-          className="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven"
+          className="  body-font font-maven"
         >
           <div>
             {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}
             <img
-              className="w-auto laptop:w-full h-auto"
-              src="https://i.pinimg.com/originals/a6/cd/63/a6cd63445858ab32de5a829c1d22b77c.png"
+              className="w-auto laptop:w-full h-56 object-cover"
+              src="https://images.alphacoders.com/109/1092814.jpg"
               alt="Image"
             />
           </div>
@@ -673,6 +677,11 @@ export default function ViewOwnerProfilePage() {
             </ScrollToTop>
           )}
         </div>
+           
+          </div>
+        </div>
+
+      </section>
       )}
     </>
   );

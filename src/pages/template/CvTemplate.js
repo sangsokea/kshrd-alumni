@@ -173,7 +173,10 @@ export default function CvTemplate() {
 
   return (
     <>
-      {currentData ? (
+      <section class=" p-6 mx-auto  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
+        <div class="">
+          <div className="">
+          {currentData ? (
         <div className="h-full mb-10">
           <div class="ml-5 laptop:ml-20">
             <div class="grid grid-cols-8">
@@ -615,6 +618,9 @@ export default function CvTemplate() {
         </div>
       )}
       {/* ))} */}
+          </div>
+        </div>
+      </section>
     </>
     // </div>
   );
