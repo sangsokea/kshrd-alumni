@@ -64,6 +64,7 @@ export default function ViewOwnerProfilePage() {
         setBackToTop(false);
       }
     });
+    executeScroll()
   }, []);
 
   React.useEffect(() => {

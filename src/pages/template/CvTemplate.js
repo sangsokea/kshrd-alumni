@@ -251,12 +251,7 @@ export default function CvTemplate() {
                               </div>
 
                               <div className="laptop:col-span-1 ml-auto">
-                                <p
-                                  onClick={handleExportWithComponent}
-                                  className="mt-2 text-slate-200 hover:text-black hover:underline hover:underline-offset-2 cursor-pointer"
-                                >
-                                  Export as PDF
-                                </p>
+                              
                               </div>
                             </div>
 
