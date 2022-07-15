@@ -91,13 +91,13 @@ export default function ViewOwnerProfilePage() {
       {isEdit ? (
         <ViewOwnerProfileEdit />
       ) : (
-        <section class=" p-6 mx-auto  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
+        <section class=" p-6  rounded-md  shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] laptop:ml-2 laptop:px-20">
         <div class="">
           <div className="">
            
           <div
           ref={scrollRef}
-          className="ml-5 mt-5 mr-5 laptop:mt-5 laptop:ml-10 body-font font-maven"
+          className="  body-font font-maven"
         >
           <div>
             {/* <img className='w-72 h-72' src={nop} alt="Image" /> */}

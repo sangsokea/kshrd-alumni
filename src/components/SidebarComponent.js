@@ -119,13 +119,12 @@ export default function SidebarComponent() {
       <div className="laptop:container  laptop:mx-auto body-font font-maven">
         {/* sideBar */}
 
-        <div className="grid desktop:grid-cols-5  mt-1 laptop:grid-cols-3 tablet:grid-cols-2">
+        <div className="grid desktop:grid-cols-5  mt-1 bg-white laptop:grid-cols-3 tablet:grid-cols-2">
           <div>
             <div
-              className={`h-screen bg-white  shadow-[-30px_0px_50px_1px_rgba(0,0,0,0.1)] tablet:rounded-lg  laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
+              className={`h-screen bg-white   shadow-[-30px_0px_50px_1px_rgba(0,0,0,0.1)] tablet:rounded-lg  laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
             >
-              <div className="laptop:relative ">
-                <div className="p-3 text-sm  laptop:text-md  desktop:text-lg font-light text-center text-white ">
+              <div className="p-3 text-sm  laptop:text-md  desktop:text-lg font-light text-center text-white ">
                   <div className="flex justify-center mt-5">
                     <img
                       className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
@@ -323,7 +322,6 @@ export default function SidebarComponent() {
                     </div>
                   )}
                 </div>
-              </div>
             </div>
           </div>
 

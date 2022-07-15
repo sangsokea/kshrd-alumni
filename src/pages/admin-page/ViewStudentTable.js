@@ -195,12 +195,7 @@ function ViewStudentTable({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <div className="tablet:flex tablet:gap-x-2">
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={state.globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
+      <div className="tablet:flex tablet:gap-x-2">  
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (

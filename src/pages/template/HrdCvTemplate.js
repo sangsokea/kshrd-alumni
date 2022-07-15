@@ -101,8 +101,8 @@ React.useEffect(()=>{
                         Download as PDF
                       </div> */}
                     </div>
-                    <div class="tablet:col-span-3 col-span-2 border-b-4 text-sm laptop:text-md desktop:text-lg">
-                      <p className="mt-10 font-bold text-tiny font-Maven tablet:mt-28 mb-5">
+                    <div class="tablet:col-span-3 col-span-2 border-b-4 text-sm laptop:text-xs">
+                      <p className="mt-10 font-bold text-[9px] font-Maven tablet:mt-28">
                         Korea Software HRD Center Student's Background <br></br>
                         #12, St 323, Boeungkak II Commune, Toul Kork District,
                         Phnom Penh. <br></br>
@@ -122,23 +122,23 @@ React.useEffect(()=>{
                             currentData?.profileDetails?.personalDetails
                               ?.profile
                           }
-                          className="w-87 h-100 tablet:-ml-14"
+                          className="w-87 h-100 tablet:-ml-14 object-cover"
                           alt="user profile"
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div className="mb-4 min-h-1/25 text-sm laptop:text-md desktop:text-lg">
+                  <div className="mb-4 min-h-1/25 ">
                     <div className="tablet:bg-regal-blue_hrd tablet:h-1 tablet:w-543">
                       {" "}
                     </div>
 
                     <div>
-                      <div className="grid grid-cols-4 mt-36">
+                      <div className="grid grid-cols-4 ">
                         <div className="col-span-3">
                           <center>
-                            <p className="laptop:text-md desktop:text-lg ml-20 text-xs font-extrabold font-maven tablet:mt-5 tablet:ml-44 text-regal-color_hrd">
+                            <p className="mt-24 ml-20 text-xs font-extrabold font-maven tablet:mt-5 tablet:ml-44 text-regal-color_hrd">
                               CURRICULUM VITAE
                             </p>
                           </center>
