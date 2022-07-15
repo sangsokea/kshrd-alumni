@@ -40,16 +40,14 @@ export default function ViewOwnerProfilePage() {
 
   useEffect(() => {
     let isFromAlumni = location?.state?.fromViewAlumni;
-    const isEmpty = localStorage.getItem("isProfileEmpty");
-
     setFromViewAlumni(isFromAlumni);
     if (isFromAlumni) {
-      setisShowEdit(false);
+      executeScroll();
+
       const localData = localStorage.getItem("view");
       const itemFromAlumni = localData && JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
     } else {
-      !isEmpty && setisShowEdit(true);
       const localData = localStorage.getItem("ownProfile");
       const itemFromAlumni = localData && JSON.parse(localData);
       setDataFromViewAlumni(
@@ -66,7 +64,23 @@ export default function ViewOwnerProfilePage() {
         setBackToTop(false);
       }
     });
+    executeScroll()
   }, []);
+
+  React.useEffect(() => {
+    let isFromAlumni = location?.state?.fromViewAlumni;
+    if (isAuth && !isFromAlumni) {
+      const isEmpty = localStorage.getItem("isProfileEmpty");
+      isEmpty && JSON.parse(isEmpty)
+        ? setisShowEdit(false)
+        : setisShowEdit(true);
+    } else {
+      setisShowEdit(false);
+    }
+    return () => {
+      setisShowEdit(true);
+    };
+  }, [ownProfiles, location, window.location.reload]);
 
   const [isEdit, setIsEdit] = useState(state);
 
@@ -111,7 +125,7 @@ export default function ViewOwnerProfilePage() {
               </p>
             )}
 
-            {isAuth && isShowEdit && (
+            {isShowEdit && (
               <button
                 onClick={() => handleEdite()}
                 className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
@@ -165,7 +179,6 @@ export default function ViewOwnerProfilePage() {
           {dataFromViewAlumni?.education ? (
             <>
               {dataFromViewAlumni?.education?.map((obj, i) => (
-                
                 <div class="bg-white shadow overflow-hidden tablet:rounded-lg mt-5">
                   <div class="px-4 py-5 tablet:px-6">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">

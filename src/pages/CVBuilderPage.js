@@ -70,10 +70,10 @@ const SignupSchema = Yup.object().shape({
 export default function CVBuilderPage() {
   const refFocus = React.useRef(null);
   const inputFile = React.useRef(null);
-  const inputFistNameRef = React.useRef(null);
+  const scrollRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
   const [title, setTitle] = useState("Untitled");
-  const executeScroll = () => scrollToRef(inputFistNameRef);
+  const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const experiences = useSelector(
@@ -159,7 +159,7 @@ export default function CVBuilderPage() {
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "",
       confirmButtonText: "Yes",
       customClass: "swal-wide",
     }).then((result) => {
@@ -180,7 +180,7 @@ export default function CVBuilderPage() {
         // icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        cancelButtonColor: "",
         confirmButtonText: "Save",
         customClass: "swal-wide",
       }).then((result) => {
@@ -212,6 +212,7 @@ export default function CVBuilderPage() {
           // dispatch(fetchExperience(experience));
 
           result && dispatch(fetchCVBuilder(result, isPublic));
+          result && executeScroll()
         }
       });
     } else {
@@ -237,6 +238,7 @@ export default function CVBuilderPage() {
         </div>
       )}
       <div
+      ref={scrollRef}
         style={{
           opacity: uploadImage?.loading || cvBuilder?.loading ? "20%" : "100%",
         }}
@@ -358,7 +360,7 @@ export default function CVBuilderPage() {
         </div>
 
         <Formik
-          ref={inputFistNameRef}
+          
           initialValues={{
             firstName: "",
             lastName: "",
@@ -556,7 +558,7 @@ export default function CVBuilderPage() {
                 <div></div>
 
                 {/* address */}
-                <div className="mb-6 col-span-2">
+                <div className="mb-6 tablet:col-span-2">
                   <label
                     // for="large-input"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
@@ -575,8 +577,10 @@ export default function CVBuilderPage() {
                   ) : null}
                 </div>
 
+                <div className="tablet:hidden"></div>
+
                 {/* summary */}
-                <div className="mb-6 w-full col-span-2">
+                <div className="mb-6 w-full tablet:col-span-2">
                   <div className="flex">
                     <label
                       // for="large-input-summary"
@@ -605,6 +609,8 @@ export default function CVBuilderPage() {
                     className="tablet:h-28 block w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
+
+                <div className="tablet:hidden"></div>
 
                 {/* component */}
                 <ExperienceComponent />

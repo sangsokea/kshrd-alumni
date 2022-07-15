@@ -262,7 +262,7 @@ React.useEffect(()=>{
                           <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                             <div className="font-extrabold">
                               <p>
-                                {edu?.startDate} - {edu?.endDate}
+                                {edu?.startDate} - {edu?.endDate ? edu?.endDate : "present"}
                               </p>
                             </div>
                             <div className="font-extrabold">
@@ -285,7 +285,7 @@ React.useEffect(()=>{
                           <div className="grid grid-cols-3 mt-2 ml-2 text-left tablet:grid tablet:grid-cols-6 tablet:mt-3 tablet:ml-10 font-maven text-tinys">
                             <div className="font-extrabold">
                               <p>
-                                {item?.startDate} - {item?.endDate}
+                                {item?.startDate} - {item?.endDate ? item?.endDate : "present"}
                               </p>
                             </div>
                             <div className="font-extrabold">

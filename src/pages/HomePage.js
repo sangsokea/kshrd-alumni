@@ -25,10 +25,16 @@ const settings = {
   dots: true,
   arrows: true,
 };
-
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCente);
 export default function HomePage() {
+  const scrollRef = React.useRef(null);
+  const executeScroll = () => scrollToRef(scrollRef);
+
+  React.useEffect(() => {
+    executeScroll();
+  }, []);
   return (
-    <div className="container mx-auto mt-3">
+    <div ref={scrollRef} className="container mx-auto mt-3">
       <section className="text-sm body-font font-maven laptop:text-md">
         <img src={homepage} alt="9th gen image"></img>
         <div className="hidden laptop:block">

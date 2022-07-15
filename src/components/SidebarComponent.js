@@ -82,10 +82,10 @@ export default function SidebarComponent() {
         ? setIsProfileEmpty(false)
         : setIsProfileEmpty(true);
     }
-    return () => {
-      setIsProfileEmpty(true);
-    };
-  }, [ownProfiles, location]);
+  return ()=>{
+    setIsProfileEmpty(true)
+  }
+  },[ownProfiles, location, window.location.reload]);
 
   const logOut = () => {
     setShowSidebar("-left-64");

@@ -9,8 +9,12 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { fetchDeleteUserProfile } from "../redux/actions/DeleteUseerProfileAction";
 import { CUSTOM_ERROR } from "../commons/notify/Notify";
+import ScrollToTop from "react-scroll-up";
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCente);
 export default function ResumePage() {
+  const scrollRef = React.useRef(null);
+  const executeScroll = () => scrollToRef(scrollRef);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const pdfExportComponent = useRef(null);
@@ -23,6 +27,7 @@ export default function ResumePage() {
 
   const [del, setDel] = useState();
   const [resumes, setResumes] = useState([]);
+  const [backToTop, setBackToTop] = useState(false);
 
   React.useEffect(() => {
     const obj = localStorage.getItem("ownProfiles");
@@ -50,6 +55,10 @@ export default function ResumePage() {
     };
   }, [ownProfiles]);
 
+  React.useEffect(() => {
+    executeScroll();
+  }, []);
+
   const handleDelete = (uuid) => {
     Swal.fire({
       title: "Delete!",
@@ -70,7 +79,10 @@ export default function ResumePage() {
   };
 
   return (
-    <div className=" tablet:mx-10 mx-0 mt-5 body-font font-maven ">
+    <div
+      ref={scrollRef}
+      className=" tablet:mx-10 mx-0 mt-5 body-font font-maven "
+    >
       {/* content */}
       <div className="col-span-4">
         <div className="body-font font-maven tablet:p-10 rounded-tr-lg rounded-br-lg h-full grid-cols-2">
