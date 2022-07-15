@@ -35,7 +35,7 @@ import EditSkillsComponent from "../components/EditCVBuilderComponent/EditSkills
 import EditLicensesComponent from "../components/EditCVBuilderComponent/EidtLicensesComponent";
 import EditSectionComponent from "../components/EditCVBuilderComponent/EditSectionComponent";
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const SignupSchema = Yup.object().shape({
@@ -82,7 +82,8 @@ export default function EditCVBuilderPage() {
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
 
-  const executeScroll = () => scrollToRef(inputFistNameRef);
+  const scrollRef = React.useRef(null);
+  const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const experiences = useSelector(
@@ -250,12 +251,20 @@ export default function EditCVBuilderPage() {
                 fetchUpdateUserByUuid(result, isPublic, location.state?.uuid),
               );
           } else {
+            let localUuid = localStorage.getItem("currentUuid");
             const url = location.pathname;
-            const matches = url.match("/sidebar/editNewCV/");
-            const uuid = url.split(matches);
+            const matches = url?.match("/sidebar/editNewCV/");
+            const uuid = url?.split(matches);
+            
 
             result &&
-              dispatch(fetchUpdateUserByUuid(result, isPublic, uuid[1]));
+              dispatch(
+                fetchUpdateUserByUuid(
+                  result,
+                  isPublic,
+                  localUuid ? localUuid : uuid[1],
+                ),
+              );
           }
         }
       });
@@ -280,6 +289,7 @@ export default function EditCVBuilderPage() {
         </div>
       )}
       <div
+        ref={scrollRef}
         style={{
           opacity: uploadImage?.loading || updateUser?.loading ? "40%" : "100%",
         }}
