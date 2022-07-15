@@ -70,10 +70,10 @@ const SignupSchema = Yup.object().shape({
 export default function CVBuilderPage() {
   const refFocus = React.useRef(null);
   const inputFile = React.useRef(null);
-  const inputFistNameRef = React.useRef(null);
+  const scrollRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
   const [title, setTitle] = useState("Untitled");
-  const executeScroll = () => scrollToRef(inputFistNameRef);
+  const executeScroll = () => scrollToRef(scrollRef);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const experiences = useSelector(
@@ -212,6 +212,7 @@ export default function CVBuilderPage() {
           // dispatch(fetchExperience(experience));
 
           result && dispatch(fetchCVBuilder(result, isPublic));
+          result && executeScroll()
         }
       });
     } else {
@@ -237,6 +238,7 @@ export default function CVBuilderPage() {
         </div>
       )}
       <div
+      ref={scrollRef}
         style={{
           opacity: uploadImage?.loading || cvBuilder?.loading ? "20%" : "100%",
         }}
@@ -358,7 +360,7 @@ export default function CVBuilderPage() {
         </div>
 
         <Formik
-          ref={inputFistNameRef}
+          
           initialValues={{
             firstName: "",
             lastName: "",

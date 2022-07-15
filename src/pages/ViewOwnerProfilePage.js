@@ -42,6 +42,8 @@ export default function ViewOwnerProfilePage() {
     let isFromAlumni = location?.state?.fromViewAlumni;
     setFromViewAlumni(isFromAlumni);
     if (isFromAlumni) {
+      executeScroll();
+
       const localData = localStorage.getItem("view");
       const itemFromAlumni = localData && JSON.parse(localData);
       isFromAlumni && setDataFromViewAlumni(itemFromAlumni);
@@ -65,16 +67,19 @@ export default function ViewOwnerProfilePage() {
   }, []);
 
   React.useEffect(() => {
-    if (isAuth) {
+    let isFromAlumni = location?.state?.fromViewAlumni;
+    if (isAuth && !isFromAlumni) {
       const isEmpty = localStorage.getItem("isProfileEmpty");
-     isEmpty && JSON.parse(isEmpty)? setisShowEdit(false): setisShowEdit(true)
-    }else{
-      setisShowEdit(false)
+      isEmpty && JSON.parse(isEmpty)
+        ? setisShowEdit(false)
+        : setisShowEdit(true);
+    } else {
+      setisShowEdit(false);
     }
-  return ()=>{
-    setisShowEdit(true)
-  }
-  },[ownProfiles, location, window.location.reload]);
+    return () => {
+      setisShowEdit(true);
+    };
+  }, [ownProfiles, location, window.location.reload]);
 
   const [isEdit, setIsEdit] = useState(state);
 
