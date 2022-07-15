@@ -105,7 +105,7 @@ export default function ExperienceComponent() {
           Experience
           <span onClick={addFieldsExperience}>
             <svg
-              className="w-4 latpop:w-6 h-auto ml-2 text-black"
+              className="w-4 latpop:w-6 h-auto ml-2 text-blue-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -125,7 +125,7 @@ export default function ExperienceComponent() {
           {experience.map((input, index) => (
             <form
               onSubmit={submit}
-              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+              className="p-5 mt-5 border bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
             >
               <div
                 className="flex flex-row mb-5"
@@ -135,7 +135,7 @@ export default function ExperienceComponent() {
                 <span className="ml-auto">
                   {!input.isShow ? (
                     <svg
-                      className="w-4 laptop:w-6 h-auto text-gray-500"
+                      className="w-4 laptop:w-6 h-auto text-blue-700"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -151,7 +151,7 @@ export default function ExperienceComponent() {
                     </svg>
                   ) : (
                     <svg
-                      className="w-4 laptop:w-6 h-auto text-gray-500"
+                      className="w-4 laptop:w-6 h-auto text-blue-700"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"

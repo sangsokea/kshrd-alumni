@@ -23,7 +23,7 @@ import Swal from "sweetalert2";
 import LanguageComponent from "../components/CVBuilderComponent/LanguageComponent";
 import { CUSTOM_WARNING } from "../commons/notify/Notify";
 import moment from "moment";
-
+import ScrollToTop from "react-scroll-up";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { YouTube } from "@material-ui/icons";
@@ -77,7 +77,7 @@ const SignupSchema = Yup.object().shape({
 export default function EditCVBuilderPage() {
   const ref = React.useRef(null);
   const updateUser = useSelector((state) => state?.updateUserByUuid);
-
+  const [backToTop, setBackToTop] = useState(false);
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
   const [isFirstNameFocus, setIsFirstNameFocus] = useState(false);
@@ -273,6 +273,16 @@ export default function EditCVBuilderPage() {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        setBackToTop(true);
+      } else {
+        setBackToTop(false);
+      }
+    });
+    executeScroll();
+  }, []);
   // useEffect(() => {
   //   cvBuilder.items
   //     ? navigate("/sidebar/aboutMe", {
@@ -293,7 +303,7 @@ export default function EditCVBuilderPage() {
         style={{
           opacity: uploadImage?.loading || updateUser?.loading ? "40%" : "100%",
         }}
-        className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full"
+        className="laptop:ml-2 shadow-[0_4px_100px_10px_rgba(0,0,0,0.1)] h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-white w-full"
       >
         <div className="flex flex-col ">
           <form className="flex justify-start laptop:w-1/2 w-full relative my-5">
@@ -335,10 +345,10 @@ export default function EditCVBuilderPage() {
               onClick={() => {
                 inputFile.current.click();
               }}
-              class="w-64 h-64 bg-red-100 relative rounded-2xl"
+              class="w-64 h-64 bg-red-100 relative rounded-md"
             >
               <div
-                class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
+                class="absolute inset-0 bg-cover bg-center z-0 rounded-sm"
                 style={{
                   backgroundImage: `url('${imageUrl ? imageUrl : image}')`,
                 }}
@@ -373,7 +383,7 @@ export default function EditCVBuilderPage() {
               className="ml-5 cursor-pointer"
             >
               <svg
-                class="w-6 h-6 cursor-pointer"
+                class="w-6 h-6 cursor-pointer text-blue-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -393,7 +403,7 @@ export default function EditCVBuilderPage() {
               className="ml-5 cursor-pointer"
             >
               <svg
-                class="w-6 h-6 cursor-pointer"
+                class="w-6 h-6 cursor-pointer text-blue-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -440,7 +450,7 @@ export default function EditCVBuilderPage() {
                     for="first_name"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    First name
+                    First name <span className="text-red-700">*</span>
                   </label>
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -457,7 +467,7 @@ export default function EditCVBuilderPage() {
                     for="last_name"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Last name
+                    Last name <span className="text-red-700">*</span>
                   </label>
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -474,7 +484,7 @@ export default function EditCVBuilderPage() {
                     for="gender"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Gender
+                    Gender <span className="text-red-700">*</span>
                   </label>
                   <select
                     value={gender}
@@ -493,7 +503,7 @@ export default function EditCVBuilderPage() {
                     for="generation"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Generation
+                    Generation <span className="text-red-700">*</span>
                   </label>
                   <Field
                     className="block w-full border p-2.5 text-sm border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-blue-600 focus:ring-1 bg-gray-50 sm:text-md dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -512,7 +522,7 @@ export default function EditCVBuilderPage() {
                     for="dob"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Date of Birth
+                    Date of Birth <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -531,7 +541,7 @@ export default function EditCVBuilderPage() {
                     for="placeOfBirth"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Place of Birth
+                    Place of Birth <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -551,7 +561,7 @@ export default function EditCVBuilderPage() {
                     for="email"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Email
+                    Email <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -571,7 +581,7 @@ export default function EditCVBuilderPage() {
                     for="phone"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Phone number
+                    Phone number <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -591,7 +601,7 @@ export default function EditCVBuilderPage() {
                     for="nationality"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Nationality
+                    Nationality <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -614,7 +624,7 @@ export default function EditCVBuilderPage() {
                     // for="large-input"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Address
+                    Address <span className="text-red-700">*</span>
                   </label>
 
                   <Field
@@ -637,7 +647,7 @@ export default function EditCVBuilderPage() {
                     // for="large-input-summary"
                     className="block mb-2 font-medium text-sm laptop:text-md desktop:text-lg dark:text-black"
                   >
-                    Summary
+                    Summary <span className="text-red-700">*</span>
                   </label>
                   <textarea
                     name="summary"
@@ -688,6 +698,34 @@ export default function EditCVBuilderPage() {
           )}
         </Formik>
       </div>
+      {backToTop && (
+            <ScrollToTop showUnder={0} duration={1000}>
+              <div className="animate-bounce fixed bottom-10 right-10">
+                <button
+                  type="button"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                  class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+                  id="btn-back-to-top"
+                >
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    class="w-4 h-4"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </ScrollToTop>
+          )}
     </>
   );
 }

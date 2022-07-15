@@ -163,7 +163,7 @@ export default function LicensesComponent() {
           Licenses & Cerifications
           <span onClick={addFieldsLicensesAndCertifications}>
             <svg
-              className="w-4 latpop:w-6 h-auto ml-2 text-black"
+              className="w-4 latpop:w-6 h-auto ml-2 text-blue-700"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -183,7 +183,7 @@ export default function LicensesComponent() {
           {licenses?.map((input, index) => (
             <form
               onSubmit={submit}
-              className="p-5 mt-5 bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
+              className="p-5 mt-5 border bg-white rounded-md text-sm laptop:text-md desktop:text-lg"
             >
               {/* Image and Upload Certificate Button */}
               <div onClick={() => onDropDwon(input.id)}>
@@ -194,7 +194,7 @@ export default function LicensesComponent() {
                   <span className="ml-auto">
                     {!input.isShow ? (
                       <svg
-                        className="w-4 laptop:w-6 h-auto text-gray-500"
+                        className="w-4 laptop:w-6 h-auto text-blue-700"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
@@ -210,7 +210,7 @@ export default function LicensesComponent() {
                       </svg>
                     ) : (
                       <svg
-                        className="w-4 laptop:w-6 h-auto text-gray-500"
+                        className="w-4 laptop:w-6 h-auto text-blue-700"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"

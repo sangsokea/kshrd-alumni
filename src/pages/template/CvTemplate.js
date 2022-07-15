@@ -213,7 +213,7 @@ export default function CvTemplate() {
                                     <div>
                                       <img
                                         ref={image}
-                                        className="absolute bg-gray-500 rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
+                                        className="absolute bg-white object-cover rounded-full laptop:h-28 laptop:w-28 h-28 w-28 left-2 top-2"
                                         src={
                                           currentData?.profileDetails
                                             ?.personalDetails?.profile
@@ -243,13 +243,6 @@ export default function CvTemplate() {
                                     </span>
                                   </div>
 
-                                  <div>
-                                    {skill && (
-                                      <h2 className="ml-5 text-xl text-left font-maven">
-                                        {skill[0]?.skill}
-                                      </h2>
-                                    )}
-                                  </div>
                                 </div>
                               </div>
 
