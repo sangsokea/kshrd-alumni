@@ -210,7 +210,7 @@ export default function PortfolioPage() {
                   </ul>
 
                   <p className="mt-4 desktop:text-xl laptop:text-xl tablet:text-xl max-w-[36rem] laptop:text-md text-sm ">
-                    I am a(n){" "}
+                    I am the{" "}
                     {currentData?.profileDetails?.personalDetails?.generation}{" "}
                     generation student at Korea Software HRD Center.
                   </p>

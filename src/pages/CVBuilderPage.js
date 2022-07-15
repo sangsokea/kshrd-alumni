@@ -28,7 +28,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { YouTube } from "@material-ui/icons";
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCenter);
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const SignupSchema = Yup.object().shape({
@@ -169,6 +169,7 @@ export default function CVBuilderPage() {
     });
   };
   const handleSubmit = (values) => {
+    executeScroll();
     if (title.toLowerCase() === "untitled") {
       CUSTOM_WARNING("Please, Input title");
       return;
@@ -212,7 +213,7 @@ export default function CVBuilderPage() {
           // dispatch(fetchExperience(experience));
 
           result && dispatch(fetchCVBuilder(result, isPublic));
-          result && executeScroll()
+          
         }
       });
     } else {
@@ -238,29 +239,19 @@ export default function CVBuilderPage() {
         </div>
       )}
       <div
-      ref={scrollRef}
+        ref={scrollRef}
         style={{
           opacity: uploadImage?.loading || cvBuilder?.loading ? "20%" : "100%",
         }}
         className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full"
       >
-        <div className="flex flex-row">
-          <form className="flex">
-            <div>
-              <input
-                ref={refFocus}
-                className="text-2xl font-bold hidden laptop:block mr-2 bg-transparent"
-                id="title"
-                value={title}
-                type="text"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
+        <div className="flex flex-col ">
+          <form className="flex justify-start laptop:w-1/2 w-full relative my-5">
             <span
               onClick={() => {
                 refFocus.current.focus();
               }}
-              className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+              className="absolute font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -277,6 +268,16 @@ export default function CVBuilderPage() {
                 />
               </svg>
             </span>
+            <div className="p-5 w-full h-8">
+              <input
+                ref={refFocus}
+                className="text-2xl font-bold laptop:block mr-2 bg-transparent w-full"
+                id="title"
+                value={title}
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
           </form>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
@@ -289,7 +290,7 @@ export default function CVBuilderPage() {
               <div
                 class="absolute inset-0 bg-cover bg-center z-0 rounded-2xl"
                 style={{
-                  backgroundImage: `url('${imageUrl?.toString() ?? image}')`,
+                  backgroundImage: `url('${imageUrl ? imageUrl : image}')`,
                 }}
               >
                 <input
@@ -360,7 +361,6 @@ export default function CVBuilderPage() {
         </div>
 
         <Formik
-          
           initialValues={{
             firstName: "",
             lastName: "",

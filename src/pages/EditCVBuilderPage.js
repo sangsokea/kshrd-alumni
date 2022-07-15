@@ -255,7 +255,6 @@ export default function EditCVBuilderPage() {
             const url = location.pathname;
             const matches = url?.match("/sidebar/editNewCV/");
             const uuid = url?.split(matches);
-            
 
             result &&
               dispatch(

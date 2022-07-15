@@ -57,16 +57,19 @@ export default function SidebarComponent() {
     if (localViewObj && isFromAlumni) {
       const profile = JSON?.parse(localViewObj);
       profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
-    } else if (localObj) {
+    } else if (localObj && isAuth) {
       const profile = JSON?.parse(localObj);
       profile?.profileDetails &&
         setPersonalDetails(profile?.profileDetails?.personalDetails);
+    } else {
+      const profile = JSON?.parse(localViewObj);
+      profile?.personalDetails && setPersonalDetails(profile?.personalDetails);
     }
     return () => {
       setIsShowImg(false);
       setPersonalDetails({});
     };
-  }, [location]);
+  }, [location, isAuth]);
 
   React.useEffect(() => {
     location.pathname.includes("/sidebar/aboutMe") && setIsShowImg(true);
@@ -82,10 +85,10 @@ export default function SidebarComponent() {
         ? setIsProfileEmpty(false)
         : setIsProfileEmpty(true);
     }
-  return ()=>{
-    setIsProfileEmpty(true)
-  }
-  },[ownProfiles, location, window.location.reload]);
+    return () => {
+      setIsProfileEmpty(true);
+    };
+  }, [ownProfiles, location, window.location.reload]);
 
   const logOut = () => {
     setShowSidebar("-left-64");
@@ -107,7 +110,6 @@ export default function SidebarComponent() {
   };
 
   return (
-    
     <body>
       <header class="">
         <ReNavbarComponent
@@ -125,58 +127,94 @@ export default function SidebarComponent() {
               className={`h-screen bg-white shadow-[-30px_0px_50px_1px_rgba(0,0,0,0.1)] tablet:rounded-lg  laptop:h-full top-0 desktop:relative fixed laptop:relative tablet:relative tablet:left-0 ${showSidebar} overflow-y-auto flex-row overflow-hidden w-64 z-10 transition-all duration-300`}
             >
               <div className="p-3 text-sm  laptop:text-md  desktop:text-lg font-light text-center text-white ">
-                  <div className="flex justify-center mt-5">
+                <div className="flex justify-center mt-5">
+                  <img
+                    className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
+                    src={
+                      personalDetails?.profile
+                        ? personalDetails?.profile
+                        : alumni4
+                    }
+                  />
+                </div>
+                {/* <p className="divide-y-3"></p> */}
+                <hr className="mt-10"></hr>
+                <p className="mt-5 text-blue-500">Contact school’s infdo:</p>
+
+                <div className="flex justify-center pt-3">
+                  <ButtonMailto
+                    mailto="mailto:info.kshrd@gmail.com"
+                    className="mr-2"
+                  >
                     <img
-                      className=" w-36 h-36  object-cover rounded-full ring-2  bg-gray-300 "
-                      src={
-                        personalDetails?.profile
-                          ? personalDetails?.profile
-                          : alumni4
-                      }
+                      src="https://img.icons8.com/fluency/48/000000/new-message.png"
+                      className="w-8 h-auto"
                     />
-                  </div>
-                  {/* <p className="divide-y-3"></p> */}
-                  <hr className="mt-10"></hr>
-                  <p className="mt-5 text-blue-500">Contact school’s infdo:</p>
+                  </ButtonMailto>
+                  <a
+                    href="https://www.facebook.com/ksignhrd?_rdc=1&_rdr"
+                    target={"_blank"}
+                    className="ml-2 cursor-pointer"
+                  >
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/facebook-new.png"
+                      className="w-8 h-auto"
+                    />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/c/KoreaSoftwareHRDCenter"
+                    target={"_blank"}
+                    className="ml-2 cursor-pointer"
+                  >
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/youtube-play.png"
+                      className="w-8 h-auto"
+                    />
+                  </a>
+                </div>
 
-                  <div className="flex justify-center pt-3">
-                    <ButtonMailto
-                      mailto="mailto:info.kshrd@gmail.com"
-                      className="mr-2"
-                    >
-                      <img src="https://img.icons8.com/fluency/48/000000/new-message.png" className="w-8 h-auto"/>
+                <hr className="mt-5"></hr>
 
-                    </ButtonMailto>
-                    <a
-                      href="https://www.facebook.com/ksignhrd?_rdc=1&_rdr"
-                      target={"_blank"}
-                      className="ml-2 cursor-pointer"
-                    >
-                      <img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" className="w-8 h-auto"/>
-                    </a>
-                    <a
-                      href="https://www.youtube.com/c/KoreaSoftwareHRDCenter"
-                      target={"_blank"}
-                      className="ml-2 cursor-pointer"
-                    >
-                      <img src="https://img.icons8.com/fluency/48/000000/youtube-play.png" className="w-8 h-auto"/>
-                    </a>
-                  </div>
+                {/* Link to about me page */}
+                {/* <NavLink to="/sidebar/aboutMe"> */}
+                <div className="mt-10 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                  <NavLink
+                    onClick={() => {
+                      setIsActive(1);
+                      setShowSidebar("-left-64");
+                    }}
+                    to="/sidebar/aboutMe"
+                    className={({ isActive }) =>
+                      [
+                        "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md ",
+                        isActive
+                          ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                          : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" ")
+                    }
+                  >
+                    <img
+                      src="https://img.icons8.com/fluency/48/000000/gender-neutral-user.png"
+                      className="w-6 h-auto"
+                    />
+                    {/* <img className="mr-3 iCon" src={v2} /> */}
+                    <div className="ml-5">About Me</div>
+                  </NavLink>
+                </div>
+                {/* </NavLink> */}
 
-                  <hr className="mt-5"></hr>
-
-                  {/* Link to about me page */}
-                  {/* <NavLink to="/sidebar/aboutMe"> */}
-                  <div className="mt-10 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                {/* Link to portfolio page */}
+                {/* <NavLink to="/portfolio"> */}
+                {isProfileEmpty && (
+                  <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
                     <NavLink
-                      onClick={() => {
-                        setIsActive(1);
-                        setShowSidebar("-left-64");
-                      }}
-                      to="/sidebar/aboutMe"
+                      onClick={() => setIsActive(2)}
+                      to="/portfolio"
                       className={({ isActive }) =>
                         [
-                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md ",
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
                           isActive
                             ? "bg-gray-50 text-blue-500 shadow-md w-full"
                             : null,
@@ -185,143 +223,126 @@ export default function SidebarComponent() {
                           .join(" ")
                       }
                     >
-                      <img src="https://img.icons8.com/fluency/48/000000/gender-neutral-user.png"  className="w-6 h-auto"/>
-                      {/* <img className="mr-3 iCon" src={v2} /> */}
-                      <div className="ml-5">About Me</div>
+                      <span>
+                        <img
+                          src="https://img.icons8.com/fluency/48/000000/monitor.png"
+                          className="w-7 h-auto"
+                        />
+                      </span>
+                      <div className="ml-5">Portfolio</div>
                     </NavLink>
                   </div>
-                  {/* </NavLink> */}
+                )}
+                {/* </NavLink> */}
 
-                  {/* Link to portfolio page */}
-                  {/* <NavLink to="/portfolio"> */}
-                  {isProfileEmpty && (
-                    <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                      <NavLink
-                        onClick={() => setIsActive(2)}
-                        to="/portfolio"
-                        className={({ isActive }) =>
-                          [
-                            "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                            isActive
-                              ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                              : null,
-                          ]
-                            .filter(Boolean)
-                            .join(" ")
-                        }
-                      >
-                        <span>
-                        <img src="https://img.icons8.com/fluency/48/000000/monitor.png" className="w-7 h-auto"/>
-                        </span>
-                        <div className="ml-5">Portfolio</div>
-                      </NavLink>
-                    </div>
-                  )}
-                  {/* </NavLink> */}
-
-                  {/* Link to create new cv page */}
-                  {/* <NavLink to="/sidebar/resume"> */}
-                  {isAuth && (
-                    <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                      <NavLink
-                        onClick={() => {
-                          setIsActive(3);
-                          setShowSidebar("-left-64");
-                        }}
-                        to="/sidebar/resume"
-                        className={({ isActive }) =>
-                          [
-                            "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                            isActive
-                              ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                              : null,
-                          ]
-                            .filter(Boolean)
-                            .join(" ")
-                        }
-                      >
-                        <span>
-                        <img src="https://img.icons8.com/fluency/48/000000/circled-play.png" className="w-7 h-auto"/>
-
-
-                        </span>
-                        <p className="ml-5">Resume</p>
-                        <span className="ml-auto">
-                          <svg
-                            className="w-6 h-auto"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            stroke-width="1"
-                            stroke="currentColor"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            {" "}
-                            <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                            <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
-                            <circle cx="12" cy="16" r="1" />{" "}
-                            <path d="M8 11v-5a4 4 0 0 1 8 0" />
-                          </svg>
-                        </span>
-                      </NavLink>
-                    </div>
-                  )}
-                  {/* </NavLink> */}
-
-                  {/* Link to account setting page */}
-                  {/* <NavLink to="/sidebar/accountSetting"> */}
-                  {isAuth && (
-                    <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
-                      <NavLink
-                        onClick={() => {
-                          setIsActive(4);
-                          setShowSidebar("-left-64");
-                        }}
-                        to="/sidebar/accountSetting"
-                        className={({ isActive }) =>
-                          [
-                            "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
-                            isActive
-                              ? "bg-gray-50 text-blue-500 shadow-md w-full"
-                              : null,
-                          ]
-                            .filter(Boolean)
-                            .join(" ")
-                        }
-                      >
-                        <span>
-                        <img src="https://img.icons8.com/fluency/48/000000/settings.png" className="w-7 h-auto"/>
-
-
-                        </span>
-
-                        <div className="ml-5">Account Setting</div>
-                      </NavLink>
-                    </div>
-                  )}
-                  {/* </NavLink> */}
-
-                  {/* Log out */}
-                  {isAuth && (
-                    <div
-                      onClick={logOut}
-                      // onClick={() => {
-                      //   dispatch(fetchIsAucthenticated(false));
-                      //   localStorage.setItem("isAuth", false);
-                      //   navigate("/");
-
-                      // }}
-                      className="flex text-sm text-blue-500 laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
+                {/* Link to create new cv page */}
+                {/* <NavLink to="/sidebar/resume"> */}
+                {isAuth && (
+                  <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                    <NavLink
+                      onClick={() => {
+                        setIsActive(3);
+                        setShowSidebar("-left-64");
+                      }}
+                      to="/sidebar/resume"
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
+                          isActive
+                            ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
                     >
                       <span>
-                      <img src="https://img.icons8.com/fluency/48/000000/exit.png" className="w-7 h-auto"/>
+                        <img
+                          src="https://img.icons8.com/fluency/48/000000/circled-play.png"
+                          className="w-7 h-auto"
+                        />
                       </span>
-                      <p className="ml-5">Log Out</p>
-                    </div>
-                  )}
-                </div>
+                      <p className="ml-5">Resume</p>
+                      <span className="ml-auto">
+                        <svg
+                          className="w-6 h-auto"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          stroke-width="1"
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          {" "}
+                          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                          <rect x="5" y="11" width="14" height="10" rx="2" />{" "}
+                          <circle cx="12" cy="16" r="1" />{" "}
+                          <path d="M8 11v-5a4 4 0 0 1 8 0" />
+                        </svg>
+                      </span>
+                    </NavLink>
+                  </div>
+                )}
+                {/* </NavLink> */}
+
+                {/* Link to account setting page */}
+                {/* <NavLink to="/sidebar/accountSetting"> */}
+                {isAuth && (
+                  <div className="mt-5 text-blue-500 hover:bg-gray-50 hover:rounded-md hover:text-blue-500 cursor-pointer">
+                    <NavLink
+                      onClick={() => {
+                        setIsActive(4);
+                        setShowSidebar("-left-64");
+                      }}
+                      to="/sidebar/accountSetting"
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center text-sm laptop:text-md desktop:text-lg px-2 py-1.5 rounded-md",
+                          isActive
+                            ? "bg-gray-50 text-blue-500 shadow-md w-full"
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
+                    >
+                      <span>
+                        <img
+                          src="https://img.icons8.com/fluency/48/000000/settings.png"
+                          className="w-7 h-auto"
+                        />
+                      </span>
+
+                      <div className="ml-5">Account Setting</div>
+                    </NavLink>
+                  </div>
+                )}
+                {/* </NavLink> */}
+
+                {/* Log out */}
+                {isAuth && (
+                  <div
+                    onClick={logOut}
+                    // onClick={() => {
+                    //   dispatch(fetchIsAucthenticated(false));
+                    //   localStorage.setItem("isAuth", false);
+                    //   navigate("/");
+
+                    // }}
+                    className="flex text-sm text-blue-500 laptop:text-md desktop:text-lg items-center px-2 py-1.5 mt-5 cursor-pointer hover:bg-gray-50 hover:rounded-md hover:text-blue-500"
+                  >
+                    <span>
+                      <img
+                        src="https://img.icons8.com/fluency/48/000000/exit.png"
+                        className="w-7 h-auto"
+                      />
+                    </span>
+                    <p className="ml-5">Log Out</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
