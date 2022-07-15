@@ -76,7 +76,7 @@ const SignupSchema = Yup.object().shape({
 
 export default function EditCVBuilderPage() {
   const ref = React.useRef(null);
-  const data = useSelector((state) => state?.updateUserByUuid?.items);
+  const updateUser = useSelector((state) => state?.updateUserByUuid);
 
   const inputFile = React.useRef(null);
   const inputFistNameRef = React.useRef(null);
@@ -137,6 +137,7 @@ export default function EditCVBuilderPage() {
   };
 
   const handleImageChange = (e) => {
+    executeScroll();
     console.log("e.target.files[0] " + e.target.files[0]);
     // console.log(URL.createObjectURL(e.target.files[0]));
     // setImageUrl(URL.createObjectURL(e.target.files[0]));
@@ -206,6 +207,7 @@ export default function EditCVBuilderPage() {
     });
   };
   const handleSubmit = (value) => {
+    executeScroll();
     if (imageUrl !== null && imageUrl !== undefined) {
       Swal.fire({
         title: "Save!",
@@ -242,10 +244,19 @@ export default function EditCVBuilderPage() {
           console.log("==== final data result =====", result);
 
           console.log(result, isPublic, location.state?.uuid);
-          result &&
-            dispatch(
-              fetchUpdateUserByUuid(result, isPublic, location.state?.uuid),
-            );
+          if (location.state?.uuid) {
+            result &&
+              dispatch(
+                fetchUpdateUserByUuid(result, isPublic, location.state?.uuid),
+              );
+          } else {
+            const url = location.pathname;
+            const matches = url.match("/sidebar/editNewCV/");
+            const uuid = url.split(matches);
+
+            result &&
+              dispatch(fetchUpdateUserByUuid(result, isPublic, uuid[1]));
+          }
         }
       });
     } else {
@@ -263,34 +274,24 @@ export default function EditCVBuilderPage() {
 
   return (
     <>
-      {(uploadImage?.loading || cvBuilder?.loading) && (
+      {(uploadImage?.loading || updateUser?.loading) && (
         <div className="absolute top-2/4 left-2/4">
           <img src="https://i.stack.imgur.com/hzk6C.gif" />
         </div>
       )}
       <div
         style={{
-          opacity: uploadImage?.loading || cvBuilder?.loading ? "20%" : "100%",
+          opacity: uploadImage?.loading || updateUser?.loading ? "40%" : "100%",
         }}
         className="laptop:ml-0 h-full mb-10 pl-10 pt-10 pr-10 rounded-tr-lg rounded-br-lg body-font font-maven bg-slate-100 w-full"
       >
-        <div className="flex flex-row">
-          <form className="flex">
-            <div>
-              <input
-                ref={ref}
-                className="text-2xl font-bold hidden laptop:block mr-2 bg-transparent"
-                id="title"
-                value={title}
-                type="text"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
+        <div className="flex flex-col ">
+          <form className="flex justify-start laptop:w-1/2 w-full relative my-5">
             <span
               onClick={() => {
                 ref.current.focus();
               }}
-              className="font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
+              className="absolute font-medium text-lg text-ccon hover:text-blue-500 flex transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -307,6 +308,16 @@ export default function EditCVBuilderPage() {
                 />
               </svg>
             </span>
+            <div className="p-5 w-full h-8">
+              <input
+                ref={ref}
+                className="text-2xl font-bold laptop:block mr-2 bg-transparent w-full"
+                id="title"
+                value={title}
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
           </form>
 
           <div className="w-auto laptop:ml-auto ml-5 ">
@@ -390,7 +401,6 @@ export default function EditCVBuilderPage() {
         </div>
 
         <Formik
-          ref={inputFistNameRef}
           enableReinitialize
           initialValues={{
             firstName: firstName,

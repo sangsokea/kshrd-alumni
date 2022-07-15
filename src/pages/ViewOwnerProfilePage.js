@@ -32,7 +32,7 @@ export default function ViewOwnerProfilePage() {
     setTimeout(
       () =>
         navigate(`/sidebar/editNewCV/${uuid}`, {
-          state: { profileDetails: { ...dataFromViewAlumni } },
+          state: { profileDetails: { ...dataFromViewAlumni, uuid } },
         }),
       10,
     );
