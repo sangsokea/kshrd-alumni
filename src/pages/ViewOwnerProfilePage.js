@@ -5,6 +5,7 @@ import ViewOwnerProfileEdit from "./ViewOwnerProfileEdit";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { fetchAboutMePage } from "../redux/actions/localAction/AboutMePageAction";
 import ScrollToTop from "react-scroll-up";
+import { CUSTOM_ERROR } from "../commons/notify/Notify";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetCente);
 export default function ViewOwnerProfilePage() {
@@ -29,13 +30,15 @@ export default function ViewOwnerProfilePage() {
 
   const handleEdite = () => {
     let uuid = localStorage.getItem("currentUuid");
-    setTimeout(
-      () =>
-        navigate(`/sidebar/editNewCV/${uuid}`, {
-          state: { profileDetails: { ...dataFromViewAlumni } },
-        }),
-      10,
-    );
+    uuid
+      ? setTimeout(
+          () =>
+            navigate(`/sidebar/editNewCV/${uuid}`, {
+              state: { profileDetails: { ...dataFromViewAlumni } },
+            }),
+          10,
+        )
+      : CUSTOM_ERROR("Can't edit this information!");
   };
 
   useEffect(() => {
@@ -50,6 +53,8 @@ export default function ViewOwnerProfilePage() {
     } else {
       const localData = localStorage.getItem("ownProfile");
       const itemFromAlumni = localData && JSON.parse(localData);
+      itemFromAlumni &&
+        localStorage.setItem("currentUuid", itemFromAlumni?.uuid);
       setDataFromViewAlumni(
         itemFromAlumni ? itemFromAlumni?.profileDetails : {},
       );
@@ -64,7 +69,7 @@ export default function ViewOwnerProfilePage() {
         setBackToTop(false);
       }
     });
-    executeScroll()
+    executeScroll();
   }, []);
 
   React.useEffect(() => {
