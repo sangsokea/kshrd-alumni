@@ -7,6 +7,7 @@ import { Transition, Popover } from "@headlessui/react";
 import { fetchGetUserProfileById } from "../../redux/actions/GetUerProfileByIdAction";
 import { useDispatch, useSelector } from "react-redux";
 import alumni4 from "../../commons/images/Alumni/alumni4.webp";
+import moment from "moment";
 import Tables, { ActionPsill, StatusPill } from './ViewStudentTable'  
 import { Pagination } from "@mui/material";
 
@@ -51,10 +52,9 @@ export default function ViewStudentProfile() {
         return {
           cvTitle: x.profileDetails?.cvTitle ??
           "Curriculum Vitae" + (i + 1),
-          createdAt: x.createdAt 
-          // moment(x.createdAt).format("MMM Do YY")
+          createdAt: x.createdAt &&
+          moment(x.createdAt).format("MMM Do YY")
         }
-        console.log(x.profileDetails?.cvTitle);
       })
       setLocalData(student?dumData : [])
       setStudentCv(student);
@@ -113,13 +113,13 @@ export default function ViewStudentProfile() {
             alt="Bordered avatar"
           />
         </div>
-        <div className="mt-19 ml-11  font-maven grid grid-cols-6 font-bold text-ch text-xl">
+        <div className="mt-19 ml-4  font-maven grid grid-cols-6 font-bold text-ch text-xl">
           <div className="col-span-5">
             <p className="mb-3">Name : {currentStudent?.username}</p>
             <div class="flex items-center">
               <div class="">
                 <label
-                  class="block text-gray-500 font-bold tablet:text-right  pr-4"
+                  class="block text-gray-500 font-bold tablet:text-right"
                   for="inline-full-name"
                 >
                   ID : {currentStudent?.authUserId}
@@ -142,12 +142,12 @@ export default function ViewStudentProfile() {
           </div>
         </div>
         <br></br>
-        <hr></hr>
+       
         <div className=" text-gray-900">
       <main className="px-4 w-full container mx-auto">
         <div className="">
         </div>
-        <div className="mt-20">
+        <div className="">
         {localData && <Tables columns={columns} data={localData} />}
         </div>
       </main>

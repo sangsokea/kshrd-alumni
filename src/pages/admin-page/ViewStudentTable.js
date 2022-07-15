@@ -93,12 +93,12 @@ export function ActionPsill({ value }) {
 
   return (
     <div>
-      <Popover className="relative">
+      <Popover className="laptop:absolute">
         {({ open }) => (
           <>
             <Popover.Button>
               <label for="my-modal-3" class="cursor-pointer">
-              <img src="https://img.icons8.com/fluency/48/000000/download.png" className="w-7 ml-3"/>
+              <img src="https://img.icons8.com/fluency/48/000000/download.png" className="w-7 ml-3 -mt-7"/>
               </label>
             </Popover.Button>
             <div className="bg-cyan-700">
@@ -112,11 +112,11 @@ export function ActionPsill({ value }) {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute -left-10  z-10 mt-3 w-52 h-270 max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
-                  <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                  <div className="overflow-hidden  rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                     <div className="relative  gap-8 bg-white p-7 ">
                       {/* {solutions.map((item) => ( */}
                       <div>
-                        <div className="flow-root rounded-md px-2 py-2 transition duration-150 ease-in-out -mt-4  focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                        <div className="flow-root  rounded-md px-2 py-2 transition duration-150 ease-in-out -mt-4  focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
                           <div className="flex items-center pdf-download">
                             <p className="text-xl font-maven font-extrabold text-gray-900 export-as">
                               Export as
